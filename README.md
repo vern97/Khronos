@@ -1,7 +1,7 @@
 # Khronos
 
 ## **Motto**
-All in Good Time
+>All in Good Time
 
 This repository is maintained by:
 
