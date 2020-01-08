@@ -1,5 +1,8 @@
 # Khronos
 
+## **Motto**
+All in Good Time
+
 This repository is maintained by:
 
 * Victoria Rhine
