@@ -1,9 +1,11 @@
 ## **Team Project Ideas**   
 
 - **Finance Tracker**   
-*An app that allows users to track their finances and receipts*.   
-Features include receipt scanning, manual input capabilities for the user, graphical tracking 
-of finances, spending reports, bill tracking, system to organize information for tax filing. 
+*A web application that allows one to store receipts and order them by date, 
+sum, sum of items bought, store/receipt origin, and more. 
+Future implementations can include Artificial Intelligence auto filling this data, the user confirming that it’s correct, 
+and storing it in the database. It would allow one to see their highest spending spike on food, gas, or other; money spent per year/month; 
+tax return information organization and more.
 
 - **Festival Friend Finder**    
 *An app to find like-minded individuals attending the same festival*.   
