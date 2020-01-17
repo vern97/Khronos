@@ -82,7 +82,7 @@ T: Task
 
 ## Initial Architecture Envisioning
 
-[Architecture](Milestones/Milestone 2/Architecture_Drawing.jpg)
+[Architecture](Architecture_Drawing.jpg)
 
 ## Agile Data Modeling
 
