@@ -61,8 +61,8 @@ At this time, our vision only reflects tracking events that are associated with 
 
 ### Other Modeling
 
-[Mind Map 1](Milestones/Milestone 2/Mind_Map_1.jpg)
-[Mind Map 2](Milestones/Milestone 2/Mind_Map_2.jpg)
+[Mind Map 1](Mind_Map_1.jpg)
+[Mind Map 2](Mind_Map_2.jpg)
 
 ## Identify Non-Functional Requirements
 
