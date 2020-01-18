@@ -54,11 +54,7 @@ At this time, our vision only reflects tracking events that are associated with 
 
 ## Identify Non-Functional Requirements
 
-1. User accounts and data must be stored indefinitely.  They don't want to delete; rather, mark items as "deleted" but don't actually delete them.  They also used the word "inactive" as a synonym for deleted.
-2. Passwords should not expire
-3. Site should never return debug error pages.  Web server should have a custom 404 page that is cute or funny and has a link to the main index page.
-4. All server errors must be logged so we can investigate what is going on in a page accessible only to Admins.
-5. English will be the default language.
+[Nonfunctional Requirements](Nonfunctional_Reqs.pdf)
 
 ## Identify Functional Requirements (User Stories)
 
@@ -119,7 +115,7 @@ T: Task
 
 ## Agile Data Modeling
 
-[ER Diagram](ER_Diagram.png)
+[ER Diagram](ERD_Diagram.png)
 
 ## Timeline and Release Plan
 
