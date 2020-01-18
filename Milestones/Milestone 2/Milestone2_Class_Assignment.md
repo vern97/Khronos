@@ -115,7 +115,7 @@ T: Task
 
 ## Agile Data Modeling
 
-[ER Diagram](ER_Diagram.png)
+[ER Diagram](ERD_Diagram.png)
 
 ## Timeline and Release Plan
 
