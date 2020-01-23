@@ -8,10 +8,7 @@ body {
     background-size: cover;
 }
 
-#site-title {
-    font-size: 40px;
-}
-
+/* This is the custom orange button found on the home page */
 .nav-bar-button {
     box-shadow: 0px 1px 0px 0px #fff6af;
     background: linear-gradient(to bottom, #edb826 5%, #b0881a 100%);
@@ -38,18 +35,29 @@ body {
         top: 1px;
     }
 
-
+/* This is the custom sign in link */
  #nav-sign-in {
      border: 2px;
      border-color: aliceblue;
      border-style: solid;
  }
 
+ /* This controls spacing of nav bar items */
 .navbar-nav > li {
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
+}
+
+#bottom-home-page {
+    background-color: #1a1e24;
+}
+
+.full-width {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
 }
 
 /* Set padding to keep content from hitting the edges */
