@@ -1,6 +1,55 @@
-﻿body {
+﻿@import url('https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap');
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: #bdcacb;
+    background-image: url(https://get.pxhere.com/photo/water-light-recreation-pool-underwater-swimming-pool-training-blue-exercise-swimming-swimmer-bubbles-screenshot-computer-wallpaper-1349366.jpg);
+    background-size: cover;
+}
+
+#site-title {
+    font-size: 40px;
+}
+
+.nav-bar-button {
+    box-shadow: 0px 1px 0px 0px #fff6af;
+    background: linear-gradient(to bottom, #edb826 5%, #b0881a 100%);
+    background-color: #ffec64;
+    border-radius: 6px;
+    border: 1px solid #ffaa22;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Trebuchet MS;
+    font-size: 18px;
+    padding: 7px 24px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #ffee66;
+}
+
+    .nav-bar-button:hover {
+        background: linear-gradient(to bottom, #b0881a 5%, #edb826 100%);
+        background-color: #ffec64;
+    }
+
+    .nav-bar-button:active {
+        position: relative;
+        top: 1px;
+    }
+
+
+ #nav-sign-in {
+     border: 2px;
+     border-color: aliceblue;
+     border-style: solid;
+ }
+
+.navbar-nav > li {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 /* Set padding to keep content from hitting the edges */
