@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29509.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwimMeetTracker", "SwimMeetTracker.csproj", "{778E1618-6F72-4E33-B22A-1381BE000389}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{778E1618-6F72-4E33-B22A-1381BE000389}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{778E1618-6F72-4E33-B22A-1381BE000389}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{778E1618-6F72-4E33-B22A-1381BE000389}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{778E1618-6F72-4E33-B22A-1381BE000389}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {04C7B6C8-9E02-445A-B985-993D2D3B5830}
+	EndGlobalSection
+EndGlobal
