@@ -1,6 +1,91 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 80px;
     padding-bottom: 20px;
+    background-color: #ffffff;  
+}
+
+/* This sets the background for the homepage only */
+.home-bg {
+    background-image: url(https://get.pxhere.com/photo/water-light-recreation-pool-underwater-swimming-pool-training-blue-exercise-swimming-swimmer-bubbles-screenshot-computer-wallpaper-1349366.jpg);
+    background-size: cover;
+}
+
+/* This is the custom orange button found on the home page */
+.nav-bar-button {
+    box-shadow: 0px 1px 0px 0px #fff6af;
+    background: linear-gradient(to bottom, #edb826 5%, #b0881a 100%);
+    background-color: #ffec64;
+    border-radius: 6px;
+    border: 1px solid #ffaa22;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Trebuchet MS;
+    font-size: 18px;
+    padding: 7px 24px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #ffee66;
+}
+
+    .nav-bar-button:hover {
+        background: linear-gradient(to bottom, #b0881a 5%, #edb826 100%);
+        background-color: #ffec64;
+    }
+
+    .nav-bar-button:active {
+        position: relative;
+        top: 1px;
+    }
+
+/* This is the custom sign in link */
+#nav-sign-in {
+    border: 2px;
+    border-color: aliceblue;
+    border-style: solid;
+}
+
+/* This controls spacing of nav bar items */
+.navbar-nav > li {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/* This handles the stats animation on the homepage*/
+.fade-in {
+    -webkit-animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) 3s both;
+    animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) 3s both;
+}
+
+@-webkit-keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* This customizes the horizontal rule on the home page */
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
 }
 
 /* Set padding to keep content from hitting the edges */
