@@ -3,15 +3,15 @@
 }
 
 <div class="text-center pt-3 pb-3">
-    <h1 class="text-center">@ViewBag.Title</h1>
+    <h1 class="text-center header_font border-bottom pb-3">@ViewBag.Title</h1>
 </div>
 
 
 <div class="accordion" id="accordionExample">
     <div class="card">
-        <div class="card-header" id="headingOne">
+        <div class="card-header bg-dark" id="headingOne">
             <h2 class="mb-0">
-                <button class="btn btn-link text-decoration-none" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <button class="btn btn-link text-decoration-none text-white" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                     What is the purpose of Elite Swimming?
                 </button>
             </h2>
@@ -23,9 +23,9 @@
         </div>
     </div>
     <div class="card">
-        <div class="card-header" id="headingTwo">
+        <div class="card-header bg-dark" id="headingTwo">
             <h2 class="mb-0">
-                <button class="btn btn-link collapsed text-decoration-none" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <button class="btn btn-link collapsed text-decoration-none text-white" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                     What sets us apart from other services?
                 </button>
             </h2>
@@ -37,9 +37,9 @@
         </div>
     </div>
     <div class="card">
-        <div class="card-header" id="headingThree">
+        <div class="card-header bg-dark" id="headingThree">
             <h2 class="mb-0">
-                <button class="btn btn-link collapsed text-decoration-none" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <button class="btn btn-link collapsed text-decoration-none text-white" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                     Is all information open to the public?
                 </button>
             </h2>
@@ -51,30 +51,44 @@
         </div>
     </div>
     <div class="card">
-        <div class="card-header" id="headingFour">
+        <div class="card-header bg-dark" id="headingFour">
             <h2 class="mb-0">
-                <button class="btn btn-link collapsed text-decoration-none" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                <button class="btn btn-link collapsed text-decoration-none text-white" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                     How much does it cost?
                 </button>
             </h2>
         </div>
         <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
             <div class="card-body">
-                Currently our services are completely free! In the future we plan to have paid versions of our service, but for now, browse to your hearts content!
+                Currently our services are completely free! In the future we plan to have paid versions of our service, but for now, browse to your hearts content.
             </div>
         </div>
     </div>
     <div class="card">
-        <div class="card-header" id="headingFive">
+        <div class="card-header bg-dark" id="headingFive">
             <h2 class="mb-0">
-                <button class="btn btn-link collapsed text-decoration-none" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                <button class="btn btn-link collapsed text-decoration-none text-white" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                     How often is Athlete data updated?
                 </button>
             </h2>
         </div>
         <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
             <div class="card-body">
-                Information on athletes is updated as soon as the infromation is collected and made available to our great team of site Administrators to be entered! We can't predict the time it takes to enter in athlete information, but we can assure you it will eventually make its way onto an athlete's page.
+                Information on athletes is updated as soon as the infromation is collected and made available to our great team of site Administrators to be entered. We can't predict the time it takes to enter in athlete information, but we can assure you it will eventually make its way onto an athlete's page.
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header bg-dark" id="headingSix">
+            <h2 class="mb-0">
+                <button class="btn btn-link collapsed text-decoration-none text-white" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                    How do I make an account?
+                </button>
+            </h2>
+        </div>
+        <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+            <div class="card-body">
+                You can access account creation <a href="/Account/Register" id="registerLink" class="text-decoration-none">here</a>.
             </div>
         </div>
     </div>

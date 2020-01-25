@@ -107,3 +107,8 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/* Custom font for h1 */
+h1.header_font {
+    font-family: "Arial Black", Gadget, sans-serif;
+}
