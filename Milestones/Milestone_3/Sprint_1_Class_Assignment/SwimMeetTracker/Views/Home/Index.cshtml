@@ -1,6 +1,8 @@
 ﻿@{
-ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home Page";
 }
+
+@Html.Action(actionName: "TempMessage", controllerName: "Message")
 
 <body class="home-bg">
     <div class="row" style="padding-top: 10px; padding-bottom: 20px;">
