@@ -9,7 +9,7 @@ namespace SwimMeetTracker.DAL
     public partial class TrackMeetContext : DbContext
     {
         public TrackMeetContext()
-            : base("name=TrackMeetContext")
+            : base("name=TrackMeetContext_Azure")
         {
         }
 
