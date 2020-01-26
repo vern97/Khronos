@@ -14,13 +14,29 @@
             </button>
             <div class="navbar-collapse collapse" id="navbarSupportedContent">
                 <ul class="nav navbar-nav mr-auto">
-                    <img src="https://i.imgur.com/a5YRvkx.png" />                
+                    <img src="https://i.imgur.com/a5YRvkx.png" />
                 </ul>
                 <ul class="nav navbar-nav navbar-right ml-auto">
                     <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="/Home/FAQ" class="nav-link">FAQ</a></li>
+                    @using Microsoft.AspNet.Identity
+                    @if (Request.IsAuthenticated)
+                    {
+                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                        {
+                            @Html.AntiForgeryToken()
+                    <li class="nav-item">
+                        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage Account", style = "color:#ffffff" })
+                    </li>
+                    <li class="nav-item"><a href="javascript:document.getElementById('logoutForm').submit()" style="color: #ffffff;">Sign out</a></li>
+                    }
+                    }
+                    else
+                    {
+
                     <li class="nav-item" id="nav-sign-in"><a href="/Account/Login" id="loginLink" class="nav-link">Sign in</a></li>
                     <li class="button"><a href="/Account/Register" id="registerLink" class="nav-bar-button">Try it Now</a></li>
+                    }
                 </ul>
             </div>
         </div>
