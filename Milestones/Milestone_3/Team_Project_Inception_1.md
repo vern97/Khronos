@@ -1,10 +1,6 @@
-﻿## Summary of Our Approach to Software Development     
- add link here
-
-## Initial Vision Discussion with Stakeholder(s)
-Primary Stakeholder -- Tori Rhine, current tutor with the Western Oregon University (WOU) Computer Science Department (CSD) and hopeful entrepreneur
-
-Rhine's experience with CSD tutoring led to a desire to help students gain a better understanding of computer science topics and to relay what she learned through tutoring to the professors. The problem is CSD tutoring at WOU is outdated and inefficient. There is little online presence and most tasks are done on paper. This leads to poor communication between tutors and students, a payroll system that doesn't lend itself to easy logging, and professors in the dark regarding student needs. She wants to create a system that brings tutoring into 2020 and provides a useful platform for everyone connected to the department. Rhine is hiring your team to create the product. 
+﻿## Initial Vision Discussion with Stakeholder(s)
+Primary Stakeholder -- Dr. Becka Morgan, professor with the Western Oregon University Computer Science Department and hopeful entrepreneur              
+CSD tutoring at WOU is outdated and inefficient. There is little online presence and most tasks are done on paper. This leads to poor communication between tutors and students, a payroll system that doesn't lend itself to easy logging, and professors in the dark regarding student needs. Dr. Morgan wants to create a system that brings tutoring into 2020 and provides a useful platform for everyone connected to the department. Dr. Morgan is hiring your team to create the product. 
 
 #### The product is centered around these core features:
 
@@ -35,7 +31,7 @@ Q: If a student has an appointment with a tutor who can't make the originally sc
 *A: Tutors should also have a way to cancel appointments, and this could go through the same system as students. However, there is no punishment for tutors that need to cancel.*       
 
 Q: Will notifications for certain "service alerts", including appointment confirmations, be sent through email or a similar service?     
-*A: The simplest route would be messaging and alerts send to the registered email. We would love to see a messaging system within the application, simply for the convenience, but would be satisfied with either implementation, as long as something exists.         
+*A: The simplest route would be messaging and alerts send to the registered email. We would love to see a messaging system within the application, simply for the convenience, but would be satisfied with either implementation, as long as something exists.*         
 
 Q: Should tutoring requests be a specified amount of time 30 minutes, 1 hour?     
 *A:  Realistically, a session would likely be at least 30 minutes long. Maybe sessions can be booked in 30 minute increments. The entire time does not need to be used and there is no penalization for only taking some of the session time.*
