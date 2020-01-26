@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SwimMeetTracker.Models;
 using SwimMeetTracker.DAL;
+using System.Diagnostics;
 
 namespace SwimMeetTracker.Controllers
 {
