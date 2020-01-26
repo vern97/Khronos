@@ -182,6 +182,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\asp_down.sql" />
+    <Content Include="App_Data\asp_up.sql" />
     <Content Include="App_Data\down.sql" />
     <Content Include="App_Data\SwimMeet.mdf" />
     <Content Include="App_Data\SwimMeet_log.ldf">
