@@ -172,8 +172,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AthletesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MeetingsController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -359,6 +361,16 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\FAQ.cshtml" />
     <Content Include="Views\Message\TempMessage.cshtml" />
+    <Content Include="Views\Athletes\Create.cshtml" />
+    <Content Include="Views\Athletes\Delete.cshtml" />
+    <Content Include="Views\Athletes\Details.cshtml" />
+    <Content Include="Views\Athletes\Edit.cshtml" />
+    <Content Include="Views\Athletes\Index.cshtml" />
+    <Content Include="Views\Meetings\Create.cshtml" />
+    <Content Include="Views\Meetings\Delete.cshtml" />
+    <Content Include="Views\Meetings\Details.cshtml" />
+    <Content Include="Views\Meetings\Edit.cshtml" />
+    <Content Include="Views\Meetings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
