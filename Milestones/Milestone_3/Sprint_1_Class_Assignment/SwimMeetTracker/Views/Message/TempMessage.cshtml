@@ -1,0 +1,22 @@
+﻿@{
+    //proof of not logged in
+    string message = TempData["!LoggedIn"] as string;
+    if (!String.IsNullOrEmpty(message))
+    {
+        <div class="bg-warning" style="text-align: center;">
+            <b>@message</b>
+        </div>
+    }
+
+    //proof of logged in
+    string message2 = TempData["LoggedIn"] as string;
+    if (!String.IsNullOrEmpty(message2))
+    {
+        <div class="bg-success" style="text-align: center;">
+            <b style="text-align: center;">@message2</b>
+        </div>
+    }
+}
+
+
+
