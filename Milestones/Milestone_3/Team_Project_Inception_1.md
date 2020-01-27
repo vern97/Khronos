@@ -144,5 +144,6 @@ Q: Is there anything else you want us to know before we get started?
  20. Chat logs from online sessions should not be stored. 
  21. There should be a feature that easily allows a professor to submit grading requests to a tutor. Professors should be able to see how many grading tasks are currently assigned to each tutor. Students should be able to mark a request as received and professors should be able to see the request was received. Students should be able to mark a request as finished to update their current amount of tasks. 
 
- 
+ ## Initial Modeling
+ [Use Case Diagram](BTT_Use_Case_Diagram.png)
 
