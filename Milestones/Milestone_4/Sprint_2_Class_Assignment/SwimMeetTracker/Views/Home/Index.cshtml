@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@Html.Action(actionName: "TempMessage", controllerName: "Message")
+
+<body class="home-bg">
+    <div class="row" style="padding-top: 10px; padding-bottom: 20px;">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-2">
+            <h6 style="color: darkgray;">Distance</h6>
+            <hr />
+            <h6 class="fade-in" style="color: darkgray">250</h6>
+        </div>
+        <div class="col-md-2">
+            <h6 style="color: aqua;">Time</h6>
+            <hr />
+            <h6 class="fade-in" style="color: aqua">Time: 5:00</h6>
+            <h6 class="fade-in" style="color: aqua">Interval: 1:00</h6>
+        </div>
+        <div class="col-md-2">
+            <h6 style="color: chartreuse;">Stroke</h6>
+            <hr />
+            <h6 class="fade-in" style="color: chartreuse">Free: 2:50</h6>
+        </div>
+        <div class="col-md-2">
+            <h6 style="color: yellowgreen;">Type</h6>
+            <hr />
+            <h6 class="fade-in" style="color: yellowgreen">Kick: 2:50</h6>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6" style="text-align: center;">
+            <h1 style="color: aliceblue;">The <i>#1</i> analysis tool for coaches and swimmers</h1>
+            <div class="button"><a href="/Account/Register" id="registerLink" class="nav-bar-button">Try it Now</a></div>
+        </div>
+        <div class="col-md-3">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6" style="text-align: center; padding-top: 25px;">
+            <p style="color: aliceblue;">"Finally an affordable program that makes athlete analysis simple."</p>
+            <img class="rounded-circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHACJvUSIvDuUQrcsvrg5DZLJWOmDU3sx34Cl5GkO7UQGv0I36&s" />
+            <p style="color: aliceblue;"><b>Phineas Smith,</b> Eagles Swim Team</p>
+        </div>
+        <div class="col-md-3">
+        </div>
+    </div>
+</body>
+
