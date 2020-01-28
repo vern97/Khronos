@@ -12,3 +12,8 @@ INSERT INTO [dbo].[Teams] (CoachID, Name) VALUES
 	(1, 'Wolves'),
 	(2, 'Huskies')
 GO
+
+INSERT INTO [dbo].[AthleteTeams] (AthleteID, TeamID) VALUES
+	(1, 1),
+	(2, 2)
+GO

@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using SwimMeetTracker.DAL;
 using SwimMeetTracker.Models;
+using SwimMeetTracker.Models.ViewModels;
+
 
 namespace SwimMeetTracker.Controllers
 {
@@ -33,7 +35,8 @@ namespace SwimMeetTracker.Controllers
             {
                 return HttpNotFound();
             }
-            return View(athlete);
+            AthleteViewModel viewModel = new AthleteViewModel(athlete);
+            return View(viewModel);
         }
 
         // GET: Athletes/Create

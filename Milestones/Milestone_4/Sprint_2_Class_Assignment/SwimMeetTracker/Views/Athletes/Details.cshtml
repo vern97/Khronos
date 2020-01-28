@@ -1,4 +1,4 @@
-﻿@model SwimMeetTracker.Models.Athlete
+﻿@model SwimMeetTracker.Models.ViewModels.AthleteViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -11,19 +11,11 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.DisplayNameFor(model => model.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
+            @Html.DisplayFor(model => model.Name)
         </dd>
 
         <dt>
@@ -33,6 +25,29 @@
         <dd>
             @Html.DisplayFor(model => model.DateOfBirth)
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Team)
+        </dt>
+
+        @for (int i = 0; i < Model.Team.Count(); i++)
+        {
+            <dd>
+                @Html.DisplayFor(model => model.Team[i])
+            </dd>
+        }
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CoachName)
+        </dt>
+
+        @for (int i = 0; i < Model.CoachName.Count(); i++)
+        {
+            <dd>
+                @Html.DisplayFor(model => model.CoachName[i])
+            </dd>
+        }
 
     </dl>
 </div>
