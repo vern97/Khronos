@@ -8,31 +8,29 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark khronos" style="font-style: bold;">
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
         <div class="container">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             </button>
             <div class="navbar-collapse collapse" id="navbarSupportedContent">
                 <ul class="nav navbar-nav mr-auto">
                     <li>
-                        >
-                        <a href="/"><img src="https://i.imgur.com/a5YRvkx.png" /a>
+                        <img src="https://i.imgur.com/a5YRvkx.png" />
+
                     </li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right ml-auto" style="font-weight: bold; font-size: larger;">
+                <ul class="nav navbar-nav navbar-right ml-auto">
                     <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="/Home/FAQ" class="nav-link">FAQ</a></li>
                     @using Microsoft.AspNet.Identity
                     @if (Request.IsAuthenticated)
                     {
-
                         <li class="nav-item"><a href="/Athletes/Search" class="nav-link">Search Athletes</a></li>
-                        <li><div class="col-sm-1"></div></li> <!--White space-->
-                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right", style = "text-align: right" }))
+                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                         {
                             @Html.AntiForgeryToken()
                             <li class="nav-item">
-                                @Html.ActionLink("Account Settings", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage Account", style = "color:#ffffff" })
+                                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage Account", style = "color:#ffffff" })
                             </li>
                             <li class="nav-item"><a href="javascript:document.getElementById('logoutForm').submit()" style="color: #ffffff;">Sign out</a></li>
                         }
