@@ -16,15 +16,15 @@ namespace SwimMeetTracker.Controllers
 
         public ActionResult FAQ()
         {
-            if (User.Identity.IsAuthenticated)
-            {
+            //if (User.Identity.IsAuthenticated)
+            //{
                 // only if you need to ask manually.  Normally use [Authorize] attribute on the class or method.
-                TempData["LoggedIn"] = "THIS IS AN ELEVATED PRIVILAGE TEST – You are logged in as: " + User.Identity.Name;
+                //TempData["LoggedIn"] = "THIS IS AN ELEVATED PRIVILAGE TEST – You are logged in as: " + User.Identity.Name;
                 return View();
-            }
+            //}
 
-            TempData["!LoggedIn"] = "THIS IS AN ELEVATED PRIVILAGE TEST – Please log into an existing account to access the FAQ page";
-            return RedirectToAction("Index");
+            //TempData["!LoggedIn"] = "THIS IS AN ELEVATED PRIVILAGE TEST – Please log into an existing account to access the FAQ page";
+            //return RedirectToAction("Index");
         }
 
     }
