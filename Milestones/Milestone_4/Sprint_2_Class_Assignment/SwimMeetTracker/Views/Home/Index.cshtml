@@ -2,32 +2,39 @@
     ViewBag.Title = "Home Page";
 }
 
-@Html.Action(actionName: "TempMessage", controllerName: "Message")
+<!--(a)Html.Action(actionName: "TempMessage", controllerName: "Message")-->
 
 <body class="home-bg">
-    <div class="row" style="padding-top: 10px; padding-bottom: 20px;">
-        <div class="col-md-2">
+    <div class="row  justify-content-md-center" style="padding-top: 10px; padding-bottom: 20px; font-weight:bold">
+        <div class="col-md-12">
+        </div>
+        <div class="col-md-4">
+            <h6 style="color: darkgray;">Meet</h6>
+            <hr />
+            <h6 class="fade-in" style="color: darkgray">Dunder Mifflin Sponsored Meet</h6>
+            <h6 class="fade-in" style="color: darkgray">Marion Country Championship 2019</h6>
+            <h6 class="fade-in" style="color: darkgray">McNary High Semi-Finals</h6>
         </div>
         <div class="col-md-2">
-            <h6 style="color: darkgray;">Distance</h6>
+            <h6 style="color: aqua;">Date</h6>
             <hr />
-            <h6 class="fade-in" style="color: darkgray">250</h6>
+            <h6 class="fade-in" style="color: aqua">1/23/2020</h6>
+            <h6 class="fade-in" style="color: aqua">12/28/2019</h6>
+            <h6 class="fade-in" style="color: aqua">3/5/2019</h6>
+        </div>
+        <div class="col-md-3">
+            <h6 style="color: chartreuse; ">Type</h6>
+            <hr />
+            <h6 class="fade-in" style="color: chartreuse">100 meter freestyle</h6>
+            <h6 class="fade-in" style="color: chartreuse">200 meter freestyle</h6>
+            <h6 class="fade-in" style="color: chartreuse">200 meter individual medley</h6>
         </div>
         <div class="col-md-2">
-            <h6 style="color: aqua;">Time</h6>
+            <h6 style="color: yellowgreen;">Time</h6>
             <hr />
-            <h6 class="fade-in" style="color: aqua">Time: 5:00</h6>
-            <h6 class="fade-in" style="color: aqua">Interval: 1:00</h6>
-        </div>
-        <div class="col-md-2">
-            <h6 style="color: chartreuse;">Stroke</h6>
-            <hr />
-            <h6 class="fade-in" style="color: chartreuse">Free: 2:50</h6>
-        </div>
-        <div class="col-md-2">
-            <h6 style="color: yellowgreen;">Type</h6>
-            <hr />
-            <h6 class="fade-in" style="color: yellowgreen">Kick: 2:50</h6>
+            <h6 class="fade-in" style="color: yellowgreen">23s</h6>
+            <h6 class="fade-in" style="color: yellowgreen">55.3s</h6>
+            <h6 class="fade-in" style="color: yellowgreen">62s</h6>
         </div>
         <div class="col-md-2">
         </div>
