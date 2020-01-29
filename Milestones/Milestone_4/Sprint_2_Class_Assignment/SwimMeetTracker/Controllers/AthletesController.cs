@@ -127,5 +127,25 @@ namespace SwimMeetTracker.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult Search()
+        {
+            string athSearch = Request["SearchAthlete"];
+
+            if (athSearch != null)
+            {
+                ViewBag.Failed = true;
+                ViewBag.athlete = athSearch;
+
+                var getAthletes = db.Athletes.Where(ath => ath.FirstName.Contains(athSearch) || ath.LastName.Contains(athSearch)).ToList();
+                if (getAthletes.Count() > 0)
+                {
+                    ViewBag.Failed = false;
+                    return View(getAthletes);
+                }
+            }
+
+            return View();
+        }
     }
 }

@@ -37,7 +37,15 @@
         </div>
         <div class="col-md-6" style="text-align: center;">
             <h1 style="color: aliceblue;">The <i>#1</i> analysis tool for coaches and swimmers</h1>
-            <div class="button"><a href="/Account/Register" id="registerLink" class="nav-bar-button">Try it Now</a></div>
+
+            @if (Request.IsAuthenticated)
+            {
+                <div class="button"><a href="/Athletes/Search" id="registerLink" class="nav-bar-button">Search for Athlete</a></div>
+            }
+            else
+            {
+                <div class="button"><a href="/Account/Register" id="registerLink" class="nav-bar-button">Try it Now</a></div>
+            }
         </div>
         <div class="col-md-3">
         </div>
