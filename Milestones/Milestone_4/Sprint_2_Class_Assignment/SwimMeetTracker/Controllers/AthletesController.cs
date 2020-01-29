@@ -26,17 +26,26 @@ namespace SwimMeetTracker.Controllers
         // GET: Athletes/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (User.Identity.IsAuthenticated)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                // only if you need to ask manually.  Normally use [Authorize] attribute on the class or method.
+                TempData["LoggedIn"] = "THIS IS AN ELEVATED PRIVILAGE TEST – You are logged in as: " + User.Identity.Name;
+
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Athlete athlete = db.Athletes.Find(id);
+                if (athlete == null)
+                {
+                    return HttpNotFound();
+                }
+                AthleteViewModel viewModel = new AthleteViewModel(athlete);
+                return View(viewModel);
             }
-            Athlete athlete = db.Athletes.Find(id);
-            if (athlete == null)
-            {
-                return HttpNotFound();
-            }
-            AthleteViewModel viewModel = new AthleteViewModel(athlete);
-            return View(viewModel);
+
+            TempData["!LoggedIn"] = "THIS IS AN ELEVATED PRIVILAGE TEST – Please log into an existing account to access the Athlete Details page";
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: Athletes/Create
@@ -126,6 +135,35 @@ namespace SwimMeetTracker.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult Search()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                // only if you need to ask manually.  Normally use [Authorize] attribute on the class or method.
+                TempData["LoggedIn"] = "THIS IS AN ELEVATED PRIVILAGE TEST – You are logged in as: " + User.Identity.Name;
+
+                string athSearch = Request["SearchAthlete"];
+
+                if (athSearch != null)
+                {
+                    ViewBag.Failed = true;
+                    ViewBag.athlete = athSearch;
+
+                    var getAthletes = db.Athletes.Where(ath => ath.FirstName.Contains(athSearch) || ath.LastName.Contains(athSearch)).ToList();
+                    if (getAthletes.Count() > 0)
+                    {
+                        ViewBag.Failed = false;
+                        return View(getAthletes);
+                    }
+                }
+
+                return View();
+            }
+
+            TempData["!LoggedIn"] = "THIS IS AN ELEVATED PRIVILAGE TEST – Please log into an existing account to access the Athlete Search page";
+            return RedirectToAction("Index", "Home");
         }
     }
 }

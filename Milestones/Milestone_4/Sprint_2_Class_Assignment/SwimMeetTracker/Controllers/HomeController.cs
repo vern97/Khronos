@@ -26,5 +26,6 @@ namespace SwimMeetTracker.Controllers
             TempData["!LoggedIn"] = "THIS IS AN ELEVATED PRIVILAGE TEST – Please log into an existing account to access the FAQ page";
             return RedirectToAction("Index");
         }
+
     }
 }
