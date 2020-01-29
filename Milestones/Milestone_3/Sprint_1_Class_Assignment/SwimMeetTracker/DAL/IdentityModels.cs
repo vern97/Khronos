@@ -22,8 +22,7 @@
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("TrackMeetContext_Azure", throwIfV1Schema: false)
-//            : base("AzureConnection", throwIf1Schema: false)
+            : base("TrackMeetContext", throwIfV1Schema: false)
         {
             // Disable code-first migrations
             Database.SetInitializer<ApplicationDbContext>(null);
