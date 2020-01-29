@@ -1,5 +1,4 @@
 ﻿@model SwimMeetTracker.Models.ViewModels.AthleteViewModel
- 
 
 @{
     ViewBag.Title = "Details";
@@ -52,33 +51,6 @@
 
     </dl>
 </div>
-<br />
-<table class="table table-hover table-striped table-sm">
-    <thead>
-        <tr>
-            <th scope="col">@Html.DisplayNameFor(model => model.MeetNames)</th>
-            <th scope="col">@Html.DisplayNameFor(model => model.MeetDates)</th>
-            <th scope="col">@Html.DisplayNameFor(model => model.EventTypes)</th>
-            <th scope="col">@Html.DisplayNameFor(model => model.CompletedIns)</th>
-        </tr>
-    </thead>
-    <tbody>
-        @{
-            for (int i = 0; i < Model.MeetNames.Count(); i++)
-            {
-                <tr onclick="location.href = '/Meetings/Details/' + @Model.FK_MIDs[i]" style="cursor: pointer">
-                    <td>@Html.DisplayFor(model => model.MeetNames[i])</td>
-                    <td>@Html.DisplayFor(model => model.MeetDates[i])</td>
-                    <td>@Html.DisplayFor(model => model.EventTypes[i])</td>
-                    <td>@Html.DisplayFor(model => model.CompletedIns[i])
-                    <td>
-                </tr>
-            }
-        }
-    </tbody>
-</table>
-
-
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.AID }) |
     @Html.ActionLink("Back to List", "Index")

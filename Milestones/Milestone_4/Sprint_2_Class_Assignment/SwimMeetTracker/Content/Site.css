@@ -6,7 +6,7 @@
 
 /* This sets the background for the homepage only */
 .home-bg {
-    background-image: url(https://get.pxhere.com/photo/water-light-recreation-pool-underwater-swimming-pool-training-blue-exercise-swimming-swimmer-bubbles-screenshot-computer-wallpaper-1349366.jpg);
+    background: url('../images/swimmingpool.jpg');
     background-size: cover;
 }
 
@@ -111,4 +111,8 @@ textarea {
 /* Custom font for h1 */
 h1.header_font {
     font-family: "Arial Black", Gadget, sans-serif;
+}
+
+.khronos {
+    background: url("../Images/khronos.png") no-repeat;
 }
