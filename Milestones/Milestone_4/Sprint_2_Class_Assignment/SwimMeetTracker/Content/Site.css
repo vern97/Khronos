@@ -69,7 +69,7 @@
         top: 1px;
     }
 
-.registration-box {
+.new-box {
     border: solid;
     border-color: #ffec64;
     border-width: 5px;
@@ -78,6 +78,10 @@
     padding: 3px 3px 2px 2px;
     width: inherit;
     outline: none;
+}
+
+.custom-text {
+    color: #FFFFFF;
 }
 
 #box-background {
