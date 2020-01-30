@@ -120,6 +120,10 @@ Q: Do you plan to expand this application beyond the computer science department
 Q: Is there anything else you want us to know before we get started?    
 *A: I think that is enough information to get your team going. We would be happy seeing these features implemented but will be in touch if we think of anything else. We also really like the name Beyond the Tutor and would like a custom logo on the home page.*  
 
+## Nonfunctional Requirements
+
+[Nonfunctional Requirements](BTT_Nonfunctional_Requirements.md)
+
 ## List of Needs and Features
 
  1. They want a modern site with school colors and a custom logo. The homepage should be simple yet informative. It should be obvious how to register, login, use additional features, and read FAQs. Current tutoring availability is visible.   
@@ -155,3 +159,6 @@ Q: Is there anything else you want us to know before we get started?
  [Student](Initial_WhiteBoarding/student_whiteboard.jpg) | 
  [Tutor](Initial_WhiteBoarding/tutor_whiteboard.jpg) | 
  [Visitor](Initial_WhiteBoarding/visitor_whiteboard.jpg)
+ 
+ ## Architecture Modeling
+ [Aricheture Diagram](BTT_Architecture_Drawing.PNG)
