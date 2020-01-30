@@ -29,7 +29,7 @@ namespace SwimMeetTracker.Models.ViewModels
             Teams = details.Select(i => i.theTeam).ToList();
         }
 
-        [DisplayName("Event Name")]
+        [DisplayName("Meet")]
         public string eName { get; set; }
 
         [DisplayName("Event Date")]
