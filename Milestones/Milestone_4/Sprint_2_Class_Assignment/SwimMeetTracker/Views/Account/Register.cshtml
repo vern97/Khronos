@@ -2,35 +2,35 @@
 @{
     ViewBag.Title = "Register";
 }
-
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-5">
-                <h2>Registration</h2>
+    <body class="other-bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-5">
+                    <h2>Registration</h2>
+                </div>
             </div>
         </div>
-    </div>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
 
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-5" id="box-background">
-                @Html.TextBoxFor(m => m.Email, new { placeholder = "email", @class = "registration-box" })
-                <br />
-                @Html.PasswordFor(m => m.Password, new { placeholder = "password", @class = "registration-box" })
-                <br />
-                @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "confirm password", @class = "registration-box" })
-                <br />
-                <input type="submit" class="other-button" value="submit" />
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-5" id="box-background">
+                        @Html.TextBoxFor(m => m.Email, new { placeholder = "email", @class = "registration-box" })
+                        <br />
+                        @Html.PasswordFor(m => m.Password, new { placeholder = "password", @class = "registration-box" })
+                        <br />
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "confirm password", @class = "registration-box" })
+                        <br />
+                        <input type="submit" class="other-button" value="submit" />
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-}
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+        }
+        </body>
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
