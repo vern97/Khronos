@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using SwimMeetTracker.DAL;
 using SwimMeetTracker.Models;
+using SwimMeetTracker.Models.ViewModels;
 
 namespace SwimMeetTracker.Controllers
 {
@@ -29,11 +30,13 @@ namespace SwimMeetTracker.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Meeting meeting = db.Meetings.Find(id);
+            
             if (meeting == null)
             {
                 return HttpNotFound();
             }
-            return View(meeting);
+            MeetingDetailsViewModel viewModel = new MeetingDetailsViewModel(meeting);
+            return View(viewModel);
         }
 
         // GET: Meetings/Create
