@@ -2,32 +2,30 @@
 @{
     ViewBag.Title = "Search";
 }
-
+<body class="other-bg-2">
 <div class="container">
-    <div class="row mt-4 mb-3">
-        <div class="col-lg-12">
-            <div class="container d-flex justify-content-center align-items-center">
-                <form action="/Athletes/Search" method="get">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">Enter Athlete:</div>
-                            </div>
-                            <input type="text" name="SearchAthlete" class="form-control form-control-lg" placeholder="@ViewBag.athlete" style="width:600px" required />
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="submit" style="width:125px">Search</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
+    <div class="row justify-content-center">
+        <div class="col-5">
+            <h2 style="margin-top: 10px;">Enter Athlete Name</h2>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-12">
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-5" id="box-background">
+            <form action="/Athletes/Search" method="get">
+                <input type="text" name="SearchAthlete" class="new-box" placeholder="@ViewBag.athlete" style="width:600px" required />
+                <br />
+                <button class="other-button" type="submit" style="width:125px">Search</button>
+            </form>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-5">
             @if (ViewBag.Failed == false)
             {
-                <p>Displaying all search results for "@ViewBag.athlete" - </p>
+            <h3 style="margin-top: 10px;">Search results for: "@ViewBag.athlete"</h3>
                 <table class="table table-hover" style="border:none" cellpadding="0" cellspacing="0">
                     <thead>
                         <tr>
@@ -56,4 +54,4 @@
         </div>
     </div>
 </div>
-
+</body>

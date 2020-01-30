@@ -10,9 +10,20 @@
     background-size: cover;
 }
 
+/* This sets the background for login, registration, account pages */
 .other-bg {
     background: url('../images/blue.jpg');
     background-size: cover;
+}
+
+.other-bg-2 {
+    background: url('../images/blueyellow.jpg');
+    background-size: cover;
+}
+
+/*Makes the hovor color yellow*/
+table.table-hover tbody tr:hover {
+    background-color: #ffee66;
 }
 
 /* This is the custom orange button found on the home page */
@@ -42,6 +53,7 @@
         top: 1px;
     }
 
+/* The button used everywhere aside from the homepage */
 .other-button {
     box-shadow: inset 0px 1px 0px 0px #fff6af;
     background: linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
@@ -69,6 +81,7 @@
         top: 1px;
     }
 
+ /* Text boxes on login, registration, and accounts pages */
 .new-box {
     border: solid;
     border-color: #ffec64;
@@ -80,6 +93,7 @@
     outline: none;
 }
 
+/* Make text white where needed for visibility */
 .custom-text {
     color: #FFFFFF;
 }
@@ -89,7 +103,6 @@
     padding-top: 15px;
     padding-bottom: 15px;
 }
-
 
 /* This is the custom sign in link */
 #nav-sign-in {
@@ -108,8 +121,8 @@
 
 /* This handles the stats animation on the homepage*/
 .fade-in {
-    -webkit-animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) 3s both;
-    animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) 3s both;
+    -webkit-animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) 2s both;
+    animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) 2s both;
 }
 
 @-webkit-keyframes fade-in {
@@ -166,4 +179,3 @@ textarea {
 h1.header_font {
     font-family: "Arial Black", Gadget, sans-serif;
 }
-+
