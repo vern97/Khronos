@@ -16,12 +16,13 @@
     background-size: cover;
 }
 
+/* This sets the background for search results and those linked pages */
 .other-bg-2 {
     background: url('../images/blueyellow.jpg');
     background-size: cover;
 }
 
-/*Makes the hovor color yellow*/
+/* Makes the hovor color yellow */
 table.table-hover tbody tr:hover {
     background-color: #ffee66;
 }
