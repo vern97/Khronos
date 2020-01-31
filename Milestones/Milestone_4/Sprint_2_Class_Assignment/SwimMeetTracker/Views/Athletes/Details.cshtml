@@ -7,36 +7,27 @@
 <body class="other-bg-2">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-5" id="box-background">
-                <h2 style="margin-top: 10px; color: #FFFFFF;">Details for @Html.DisplayFor(model => model.Name)</h2>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-5">
+            <div class="col-5" id="box-background" style="color: #FFFFFF;">
+                <h2 style="margin-top: 10px; color: #FFFFFF;">@Html.DisplayFor(model => model.Name)</h2>
                 <h5>Date of Birth</h5>
-                @Html.DisplayFor(model => model.DateOfBirth, new { @class = "custom-text" })
+                @Html.DisplayFor(model => model.DateOfBirth)
                 <br />
                 <h5>Team(s)</h5>
                 @for (int i = 0; i < Model.Team.Count(); i++)
                 {
 
-                    @Html.DisplayFor(model => model.Team[i], new { @class = "custom-text" })
+                    @Html.DisplayFor(model => model.Team[i])
 
                 }
                 <br />
                 <h5>Coach(es)</h5>
                 @for (int i = 0; i < Model.CoachName.Count(); i++)
                 {
-                    @Html.DisplayFor(model => model.CoachName[i], new { @class = "custom-text" })
+                    @Html.DisplayFor(model => model.CoachName[i])
                 }
-                <br />
             </div>
         </div>
     </div>
-
 <br />
 <table class="table table-hover table-striped table-sm">
     <thead>

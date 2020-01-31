@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -33,6 +34,7 @@ namespace SwimMeetTracker.Models.ViewModels
         public string eName { get; set; }
 
         [DisplayName("Event Date")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
         public DateTime eDate { get; set; }
 
 
