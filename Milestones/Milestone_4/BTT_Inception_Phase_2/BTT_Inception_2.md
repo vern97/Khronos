@@ -46,4 +46,7 @@
 
 ## Agile Data Modeling
 
-## Timeline and Release Plan
+[Professor ER](BTT_Initial_ER/Prof_Prelim.jpg) | 
+[Student ER](BTT_Initial_ER/Student_Prelim.jpg) | 
+[Tutor ER](BTT_Initial_ER/Tutor_Prelim.jpg) | 
+[User ER](BTT_Initial_ER/User_Prelim.jpg) | 
