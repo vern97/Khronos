@@ -27,11 +27,11 @@
 [Use Case Diagram](BTT_Use_Case_Diagram.png)
  
 ### Whiteboarding 
- [Admin](Initial_WhiteBoarding/admin_whiteboard.jpg) | 
- [Professor](Initial_WhiteBoarding/professor_whiteboard.jpg) | 
- [Student](Initial_WhiteBoarding/student_whiteboard.jpg) | 
- [Tutor](Initial_WhiteBoarding/tutor_whiteboard.jpg) | 
- [Visitor](Initial_WhiteBoarding/visitor_whiteboard.jpg)
+ [Admin](BTT_Initial_WhiteBoarding/admin_whiteboard.jpg) | 
+ [Professor](BTT_Initial_WhiteBoarding/professor_whiteboard.jpg) | 
+ [Student](BTT_Initial_WhiteBoarding/student_whiteboard.jpg) | 
+ [Tutor](BTT_Initial_WhiteBoarding/tutor_whiteboard.jpg) | 
+ [Visitor](BTT_Initial_WhiteBoarding/visitor_whiteboard.jpg)
 
 ## Identify Non-Functional Requirements
 
