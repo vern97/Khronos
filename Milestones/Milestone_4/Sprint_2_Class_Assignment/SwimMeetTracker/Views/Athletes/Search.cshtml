@@ -1,0 +1,57 @@
+﻿@model IEnumerable<SwimMeetTracker.Models.Athlete>
+@{
+    ViewBag.Title = "Search";
+}
+<body class="other-bg-2">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-5">
+            <h2 style="margin-top: 10px;">Enter Athlete Name</h2>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-5" id="box-background">
+            <form action="/Athletes/Search" method="get">
+                <input type="text" name="SearchAthlete" class="new-box" placeholder="@ViewBag.athlete" style="width:600px" required />
+                <br />
+                <button class="other-button" type="submit" style="width:125px">Search</button>
+            </form>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-5">
+            @if (ViewBag.Failed == false)
+            {
+            <h3 style="margin-top: 10px;">Search results for: "@ViewBag.athlete"</h3>
+                <table class="table table-hover" style="border:none" cellpadding="0" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th style="text-align:center">First Name</th>
+                            <th style="text-align:center">Last Name</th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr onclick="location.href = '@(Url.Action("Details", "Athletes", new { id = item.AID }))'" class="text-center" style="cursor: pointer">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastName)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+            else if (ViewBag.Failed == true)
+            {
+                <p>No search result for item "@ViewBag.athlete"</p>
+            }
+        </div>
+    </div>
+</div>
+</body>

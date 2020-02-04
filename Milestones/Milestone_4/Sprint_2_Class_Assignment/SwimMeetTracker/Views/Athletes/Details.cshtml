@@ -1,0 +1,56 @@
+﻿@model SwimMeetTracker.Models.ViewModels.AthleteViewModel
+ 
+@{
+    ViewBag.Title = "Details";
+}
+
+<body class="other-bg-2">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-5" id="box-background" style="color: #FFFFFF;">
+                <h2 style="margin-top: 10px; color: #FFFFFF;">@Html.DisplayFor(model => model.Name)</h2>
+                <h5>Date of Birth</h5>
+                @Html.DisplayFor(model => model.DateOfBirth)
+                <br />
+                <h5>Team(s)</h5>
+                @for (int i = 0; i < Model.Team.Count(); i++)
+                {
+
+                    @Html.DisplayFor(model => model.Team[i])
+
+                }
+                <br />
+                <h5>Coach(es)</h5>
+                @for (int i = 0; i < Model.CoachName.Count(); i++)
+                {
+                    @Html.DisplayFor(model => model.CoachName[i])
+                }
+            </div>
+        </div>
+    </div>
+<br />
+<table class="table table-hover table-striped table-sm">
+    <thead>
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(model => model.MeetNames)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.MeetDates)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.EventTypes)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.CompletedIns)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            for (int i = 0; i < Model.MeetNames.Count(); i++)
+            {
+                <tr onclick="location.href = '/Meetings/Details/' + @Model.FK_MIDs[i]" style="cursor: pointer">
+                    <td>@Html.DisplayFor(model => model.MeetNames[i])</td>
+                    <td>@Html.DisplayFor(model => model.MeetDates[i])</td>
+                    <td>@Html.DisplayFor(model => model.EventTypes[i])</td>
+                    <td>@Html.DisplayFor(model => model.CompletedIns[i])
+                    <td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+</body>

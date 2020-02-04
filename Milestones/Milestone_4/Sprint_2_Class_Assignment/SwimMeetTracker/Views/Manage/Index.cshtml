@@ -1,0 +1,29 @@
+﻿@model SwimMeetTracker.Models.IndexViewModel
+@{
+    ViewBag.Title = "Manage";
+}
+
+<body class="other-bg">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-5">
+                <h2 style="margin-top: 10px;">Manage Account Settings</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-5" id="box-background">
+                @if (Model.HasPassword)
+                {
+                    @Html.ActionLink("Change your password", "ChangePassword")
+                }
+                else
+                {
+                @Html.ActionLink("Create", "SetPassword")
+                }
+            </div>
+        </div>
+    </div>
+</body>
+
