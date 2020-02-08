@@ -48,16 +48,16 @@ will return better student performance results in the computer science program. 
 our product will provide a state-of-the-art resource for the Computer Science Department. *
 
 ### Getting Started
-You can read how to clone and setup this project [here](). Contributing guidelines can be found [here]().
+You can read how to fork and setup this project [here](). Contributing guidelines can be found [here]().
 
 ### Software Construction Processes
 For this project we are following Disciplined Agile Develivery (DAD) process framework. Our inception phase is to last three weeks, followed by two week sprints.
 Each week we conduct sprint planning meetings, and at the end of each sprint we conduct a sprint review and retrospective.
 
 ### Tools and Packages
-Visit this page for a complete list of [tools](Milestones/Milestone_5/BTT_Tools).
+Visit this page for a complete list of [tools](/Milestones/Milestone_5/BTT_Tools).
 
-## Feel Free to Play Our Team Song on Repeat
+### Feel Free to Play Our Team Song on Repeat
 [Come and Get Your Love](https://www.youtube.com/watch?v=eo813WVXqk8)
 
 
