@@ -45,17 +45,17 @@ Tutors will also benefit from digital time sheets to quickly and accurately log 
 data collected from tutoring sessions will provide a better understanding of student needs both in real-time and over the long term through predictive analytics. 
 The system will improve computer science tutoring using continuous information and modernized tools. This, combined with data to assist the department in program design, 
 will return better student performance results in the computer science program. Unlike the outdated processes used in the department, 
-our product will provide a state-of-the-art resource for the Computer Science Department. *
+our product will provide a state-of-the-art resource for the Computer Science Department.*
 
 ### Getting Started
-You can read how to fork and setup this project [here](). Contributing guidelines can be found [here]().
+You can read how to fork and setup this project [here](/Milestones/Milestone_5/BTT_Getting_Started.md). Contributing guidelines can be found [here](/Milestones/Milestone_5/BTT_Contribution_Guidelines.md).
 
 ### Software Construction Processes
 For this project we are following Disciplined Agile Develivery (DAD) process framework. Our inception phase is to last three weeks, followed by two week sprints.
 Each week we conduct sprint planning meetings, and at the end of each sprint we conduct a sprint review and retrospective.
 
 ### Tools and Packages
-Visit this page for a complete list of [tools](/Milestones/Milestone_5/BTT_Tools).
+Visit this page for a complete list of [tools](/Milestones/Milestone_5/BTT_Tools.md).
 
 ### Feel Free to Play Our Team Song on Repeat
 [Come and Get Your Love](https://www.youtube.com/watch?v=eo813WVXqk8)

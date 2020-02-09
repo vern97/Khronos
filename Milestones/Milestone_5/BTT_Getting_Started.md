@@ -9,5 +9,5 @@
     - Run 'git remote add upstream *repo_string*'
 3. Pull upstream to update local repository
     - Run 'git pull upstream *branch_name*'
-4. Follow [these](/BTT_Contribution_Guidelines) guidelines for contributing to this repository
+4. Follow these [guidelines](/BTT_Contribution_Guidelines.md) for contributing to this repository
  
