@@ -31,6 +31,7 @@ These guidelines are meant to be followed when contribting code to this project.
     - Feature branches should be named in this context - *first_initial-task_name* (b-navbar)
     - A feature branch should only contain changes for a single feature
 - Commit often; make it easy for the GitMaster to see what code has changed and why
+    - Commits should always be written as present tense
 - Merge dev into your feature branch to ensure there are no merge conflicts
     - You are responsible for resolving merge conflicts, not the GitMaster
 - Push your changes to your remote feature branch
