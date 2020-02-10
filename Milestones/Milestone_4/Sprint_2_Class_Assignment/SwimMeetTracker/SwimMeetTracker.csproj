@@ -373,6 +373,7 @@
     <Content Include="Views\Meetings\Edit.cshtml" />
     <Content Include="Views\Meetings\Index.cshtml" />
     <Content Include="Views\Athletes\Search.cshtml" />
+    <Content Include="Views\Home\Testing.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
