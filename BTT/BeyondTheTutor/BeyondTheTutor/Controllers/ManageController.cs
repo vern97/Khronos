@@ -7,6 +7,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BeyondTheTutor.Models;
+using BeyondTheTutor.DAL;
+
 
 namespace BeyondTheTutor.Controllers
 {

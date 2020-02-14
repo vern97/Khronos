@@ -6,6 +6,8 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using BeyondTheTutor.Models;
+using BeyondTheTutor.DAL;
+
 
 namespace BeyondTheTutor
 {
