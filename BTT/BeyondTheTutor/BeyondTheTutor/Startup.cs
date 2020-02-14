@@ -66,7 +66,7 @@ namespace BeyondTheTutor
             if (!roleManager.RoleExists(ROLES[1]))
             {
                 // Create role
-                var role = new IdentityRole(ROLES[0]);       // role name is "Admin"
+                var role = new IdentityRole(ROLES[1]);       // role name is "Professor"
                 IdentityResult res = roleManager.Create(role);
 
                 // Create user with this role
@@ -86,7 +86,7 @@ namespace BeyondTheTutor
             if (!roleManager.RoleExists(ROLES[2]))
             {
                 // Create role
-                var role = new IdentityRole(ROLES[0]);       // role name is "Admin"
+                var role = new IdentityRole(ROLES[2]);       // role name is "Student"
                 IdentityResult res = roleManager.Create(role);
 
                 // Create user with this role
@@ -106,7 +106,7 @@ namespace BeyondTheTutor
             if (!roleManager.RoleExists(ROLES[3]))
             {
                 // Create role
-                var role = new IdentityRole(ROLES[3]);       // role name is "Admin"
+                var role = new IdentityRole(ROLES[3]);       // role name is "Tutor"
                 IdentityResult res = roleManager.Create(role);
 
                 // Create user with this role
