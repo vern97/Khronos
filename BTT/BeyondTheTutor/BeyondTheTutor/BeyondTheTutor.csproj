@@ -95,6 +95,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -171,19 +173,44 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Professor\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Professor\ProfessorAreaRegistration.cs" />
+    <Compile Include="Areas\Student\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
+    <Compile Include="Areas\Tutor\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Tutor\TutorAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\VIewModels\AccountViewModels.cs" />
+    <Compile Include="Models\Admin.cs" />
+    <Compile Include="DAL\BeyondTheTutorContext.cs" />
+    <Compile Include="DAL\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Professor.cs" />
+    <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\Tutor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\AspDown.sql" />
+    <Content Include="App_Data\AspUp.sql" />
+    <Content Include="App_Data\BeyondTheTutor.mdf" />
+    <Content Include="App_Data\BeyondTheTutor_log.ldf">
+      <DependentUpon>BeyondTheTutor.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\down.sql" />
+    <Content Include="App_Data\up.sql" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\components\accordion.css" />
     <Content Include="Content\components\accordion.js" />
     <Content Include="Content\components\accordion.min.css" />
@@ -329,6 +356,7 @@
     <Content Include="Content\themes\default\assets\fonts\icons.svg" />
     <Content Include="Content\themes\default\assets\images\flags.png" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\default\assets\fonts\icons.woff2" />
@@ -336,7 +364,33 @@
     <Content Include="Content\themes\default\assets\fonts\icons.ttf" />
     <Content Include="Content\themes\default\assets\fonts\icons.otf" />
     <Content Include="Content\themes\default\assets\fonts\icons.eot" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Student\Views\web.config" />
+    <Content Include="Areas\Tutor\Views\web.config" />
+    <Content Include="Areas\Professor\Views\web.config" />
+    <Content Include="Areas\Tutor\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Tutor\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Tutor\Views\Home\Index.cshtml" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Professor\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Professor\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Professor\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Student\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Student\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Student\Views\Home\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -383,7 +437,10 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Professor\Data\" />
+    <Folder Include="Areas\Student\Data\" />
+    <Folder Include="Areas\Tutor\Data\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
