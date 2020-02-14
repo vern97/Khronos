@@ -187,7 +187,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\VIewModels\AccountViewModels.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="DAL\BeyondTheTutorContext.cs" />
     <Compile Include="DAL\IdentityModels.cs" />
@@ -426,6 +426,7 @@
     <Folder Include="Areas\Professor\Data\" />
     <Folder Include="Areas\Student\Data\" />
     <Folder Include="Areas\Tutor\Data\" />
+    <Folder Include="Models\VIewModels\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
