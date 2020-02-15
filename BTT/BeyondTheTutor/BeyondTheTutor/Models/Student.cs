@@ -22,7 +22,7 @@ namespace BeyondTheTutor.Models
         public DateTime GraduatingYear { get; set; }
 
         [Required]
-        [StringLength(1)]
+        [StringLength(10)]
         public string ClassStanding { get; set; }
 
         [Required]

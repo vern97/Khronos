@@ -4,7 +4,7 @@
     [FirstName]         [NVARCHAR](50)      NOT NULL,
     [LastName]			[NVARCHAR](50)      NOT NULL,
     [GraduatingYear]	[DATETIME]          NOT NULL,
-	[ClassStanding]		[NVARCHAR]			NOT NULL,
+	[ClassStanding]		[NVARCHAR](10)		NOT NULL,
 	[ASPNetIdentityID]	[NVARCHAR] (128)	NOT NULL	
     CONSTRAINT [PK_dbo.Students] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
