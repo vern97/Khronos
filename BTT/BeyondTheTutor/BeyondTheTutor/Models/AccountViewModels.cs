@@ -82,9 +82,7 @@ namespace BeyondTheTutor.Models
 
         [Required]
         [Display(Name = "Class of")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:y}")]
-        public DateTime GraduatingYear { get; set; }
+        public Int16 GraduatingYear { get; set; }
 
         [Required]
         [Display(Name = "Class Standing")]

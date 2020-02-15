@@ -18,7 +18,7 @@ namespace BeyondTheTutor.Models
         [StringLength(50)]
         public string LastName { get; set; }
 
-        public DateTime ClassOf { get; set; }
+        public Int16 ClassOf { get; set; }
 
         [Required]
         [StringLength(9)]
