@@ -19,7 +19,7 @@ namespace BeyondTheTutor.Models
         [StringLength(50)]
         public string LastName { get; set; }
 
-        public DateTime GraduatingYear { get; set; }
+        public Int16 GraduatingYear { get; set; }
 
         [Required]
         [StringLength(10)]

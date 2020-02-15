@@ -125,7 +125,7 @@ namespace BeyondTheTutor
                         FirstName = "default",
                         LastName = "default",
                         ClassStanding = "default",
-                        GraduatingYear = DateTime.Today,
+                        GraduatingYear = 2022,
                         ASPNetIdentityID = user.Id
                     };
                     db.Students.Add(special_user);
@@ -159,7 +159,7 @@ namespace BeyondTheTutor
                         FirstName = "default",
                         LastName = "default",
                         VNumber = "V00000000",
-                        ClassOf = DateTime.Today,
+                        ClassOf = 2020,
                         ASPNetIdentityID = user.Id
                     };
                     db.Tutors.Add(special_user);
