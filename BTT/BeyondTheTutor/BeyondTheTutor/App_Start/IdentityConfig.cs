@@ -41,31 +41,16 @@
 
             var response = await client.SendEmailAsync(myMessage);
         }
-
-        public async Task<Task> configSendGridasync(IdentityMessage message) => configSendGridasync(message);
-
-        private async Task ConfigSendGridasync(IdentityMessage message)
-        {
-            var apiKey = "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";
-            var client = new SendGridClient(apiKey);
-            var from = new EmailAddress("linton97v@gmail.com", "BeyondTheTutor Services");
-            var subject = message.Subject;
-            var to = new EmailAddress(message.Destination);
-            var plainTextContent = message.Body;
-            var htmlContent = message.Body;
-            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
-            var response = await client.SendEmailAsync(msg);
-        }
     }
 
-    /*public class SmsService : IIdentityMessageService
+    public class SmsService : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)
         {
             // Plug in your SMS service here to send a text message.
             return Task.FromResult(0);
         }
-    }*/
+    }
 
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
     public class ApplicationUserManager : UserManager<ApplicationUser>
