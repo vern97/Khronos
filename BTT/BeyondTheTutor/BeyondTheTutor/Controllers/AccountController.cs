@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BeyondTheTutor.Models;
 using BeyondTheTutor.DAL;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System.Web.Routing;
 
 namespace BeyondTheTutor.Controllers
@@ -190,6 +191,9 @@ namespace BeyondTheTutor.Controllers
 
                     TempData["Message"] = ViewBag.Message;
 
+                    // Won't be shown to the user if we redirect to home
+                    ViewBag.Message = "Check your email and confirm your account; you must be confirmed "
+                        + "if you ever need to recover your password.";
                     // TODO: Handle errors, do this upon refactoring into repository pattern
                     // Succeeded in creating a new Identity account, so let's create a new 
 
@@ -240,6 +244,7 @@ namespace BeyondTheTutor.Controllers
             await SendEmailConfirmationTokenAsync(id, "Confirm your account", ",");
             ViewBag.EmailSent = true;
             return RedirectToAction("Index", new RouteValueDictionary(new { controller = "Home", action = "Index", message = AccountMessageId.EmailSentSuccess }));
+
         }
 
 
