@@ -19,6 +19,15 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
             return View(tutorSchedules.ToList());
         }
 
+        public ActionResult ScheduleSuccess()
+        {
+            var userID = User.Identity.GetUserId();
+            var currentUserID = (from t in db.Tutors where t.ASPNetIdentityID == userID select t.ID).FirstOrDefault();
+            var scheduleList = from t in db.TutorSchedules where t.TutorID == currentUserID select t;
+
+            return View(scheduleList.ToList());
+        }
+
         // GET: Tutor/TutorSchedules/Details/5
         public ActionResult Details(int? id)
         {
@@ -40,7 +49,6 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
             var userID = User.Identity.GetUserId();
 
             ViewBag.CurrentTutorID = (from t in db.Tutors where t.ASPNetIdentityID == userID select t.ID).FirstOrDefault();
-            ViewBag.FirstName = (from t in db.Tutors where t.ASPNetIdentityID == userID select t.FirstName).FirstOrDefault();
 
             return View();
         }
@@ -54,7 +62,7 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
             {
                 db.TutorSchedules.Add(tutorSchedule);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ScheduleSuccess");
             }
 
             ViewBag.TutorID = new SelectList(db.Tutors, "ID", "FirstName", tutorSchedule.TutorID);
@@ -78,8 +86,6 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
         }
 
         // POST: Tutor/TutorSchedules/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Description,StartTime,EndTime,ThemeColor,IsFullDay,TutorID")] TutorSchedule tutorSchedule)

@@ -1,0 +1,24 @@
+﻿@model IEnumerable<BeyondTheTutor.Models.TutorSchedule>
+
+<div class="ui green message">Schedule Successfully Added!</div>
+<table class="ui striped table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Description)</th>
+            <th>@Html.DisplayNameFor(model => model.StartTime)</th>
+            <th>@Html.DisplayNameFor(model => model.EndTime)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                <td>@Html.DisplayFor(modelItem => item.StartTime)</td>
+                <td>@Html.DisplayFor(modelItem => item.EndTime)</td>
+            </tr>
+        }
+        </tbody>
+</table>
+
+

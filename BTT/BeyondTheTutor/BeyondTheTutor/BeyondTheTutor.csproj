@@ -196,7 +196,6 @@
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\Tutor.cs" />
     <Compile Include="Models\TutorSchedule.cs" />
-    <Compile Include="Models\VIewModels\AccountViewModels.cs" />
     <Compile Include="DAL\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -387,6 +386,7 @@
     <Content Include="Areas\Tutor\Views\TutorSchedules\Details.cshtml" />
     <Content Include="Areas\Tutor\Views\TutorSchedules\Edit.cshtml" />
     <Content Include="Areas\Tutor\Views\TutorSchedules\Index.cshtml" />
+    <Content Include="Areas\Tutor\Views\TutorSchedules\ScheduleSuccess.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -440,7 +440,6 @@
     <Folder Include="Areas\Professor\Data\" />
     <Folder Include="Areas\Student\Data\" />
     <Folder Include="Areas\Tutor\Data\" />
-    <Folder Include="Models\VIewModels\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
