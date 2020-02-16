@@ -9,8 +9,7 @@
 </head>
 <body>
     <div class="ui inverted menu">
-        <a href="/Home/Index" class="item">Application Home</a>
-        <a href="/Tutor/Home/Index" class="item">Tutor Home</a>
+        <a href="/Tutor/Home/Index" class="item">Tutor Portal</a>
         <div class="right menu">
             <a href="/Tutor/TutorSchedules/Create" class="item">Add Tutoring Schedule</a>
         </div>
@@ -28,11 +27,9 @@
     <script src="~/Scripts/semantic.min.js"></script>
 
     <div class="container body-content">
+
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Beyond the Tutor</p>
-        </footer>
+
     </div>
 
     @RenderSection("scripts", required: false)

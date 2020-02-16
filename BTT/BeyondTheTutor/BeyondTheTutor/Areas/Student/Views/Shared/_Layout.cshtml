@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="ui inverted menu">
-        <a href="/Home/Index" class="item">Home</a>
+        <a href="/Student/Home/Index" class="item">Student Portal</a>
         <div class="right menu">
             @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
             {
@@ -27,10 +27,6 @@
 
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Beyond the Tutor</p>
-        </footer>
     </div>
 
     @RenderSection("scripts", required: false)
