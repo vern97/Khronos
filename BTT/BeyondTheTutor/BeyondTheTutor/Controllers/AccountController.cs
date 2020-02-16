@@ -1,7 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -78,10 +75,35 @@ namespace BeyondTheTutor.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
+            //var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            // Error in call here. PasswordSingInAsync needs username not email, so either they need to be the same or you have to modify the
+            // login page and loginviewmodel to get the username
+
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
+                    // Require the user to have a confirmed email before they can log on.
+                    var user = await UserManager.FindByNameAsync(model.Email);
+                    // Resolve the user via their email
+                    var roles = await UserManager.GetRolesAsync(user.Id);
+                    var confirmedByEmail = await UserManager.IsEmailConfirmedAsync(user.Id);
+                    if (user != null)
+                    {
+                        var noob = roles.Contains("Student");
+                        if (!confirmedByEmail && roles.Contains("Student"))
+                        {
+                            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                            ViewBag.error = "You must have a confirmed email to log on.";
+                            return View();
+                        }
+                        else if (!roles.Contains("Admin") && !confirmedByEmail) // || !confirmedByAdmin) 
+                        {
+                            ViewBag.error = "You must confirm your email and/or get special permission by emailing: Admin@BeyondTheTutor.com";
+                            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                            return View();
+                        }
+                    }
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -162,9 +184,12 @@ namespace BeyondTheTutor.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account");
+                    string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account", model.FirstName);
+
+                    // Won't be shown to the user if we redirect to home
+                    ViewBag.Message = "Once you've confirmed that " + model.Email + " is your email address, you can continue to your account.";
+
+                    TempData["Message"] = ViewBag.Message;
 
                     // Won't be shown to the user if we redirect to home
                     ViewBag.Message = "Check your email and confirm your account; you must be confirmed "
@@ -187,6 +212,8 @@ namespace BeyondTheTutor.Controllers
                     await db.SaveChangesAsync();
                     UserManager.AddToRole(user.Id, "Student");
 
+
+
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
@@ -196,11 +223,11 @@ namespace BeyondTheTutor.Controllers
             return View(model);
         }
 
-        private async Task<string> SendEmailConfirmationTokenAsync(string userID, string subject)
+        private async Task<string> SendEmailConfirmationTokenAsync(string userID, string subject, string name)
         {
             string code = await UserManager.GenerateEmailConfirmationTokenAsync(userID);
             var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = userID, code = code }, protocol: Request.Url.Scheme);
-            string bodyOfEmail = "Beyond The Tutor Services\n\nPlease confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>";
+            string bodyOfEmail = "Hello " + name + ", please follow <a href=\"" + callbackUrl + "\">this link</a> to confirm your <i>Beyond The Tutor</i> account";
 
             await UserManager.SendEmailAsync(userID, subject, bodyOfEmail);
 
@@ -214,9 +241,10 @@ namespace BeyondTheTutor.Controllers
         public async Task<ActionResult> SendConfirmationEmail(string urlOfReferrer)
         {
             string id = User.Identity.GetUserId();
-            await SendEmailConfirmationTokenAsync(id, "Confirm your account");
+            await SendEmailConfirmationTokenAsync(id, "Confirm your account", ",");
             ViewBag.EmailSent = true;
-            return RedirectToAction("Index", new RouteValueDictionary(new { controller = "Home", action = "Index"}));
+            return RedirectToAction("Index", new RouteValueDictionary(new { controller = "Home", action = "Index", message = AccountMessageId.EmailSentSuccess }));
+
         }
 
 
@@ -232,6 +260,8 @@ namespace BeyondTheTutor.Controllers
             var result = await UserManager.ConfirmEmailAsync(userId, code);
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
+
+
 
         //
         // GET: /Account/ForgotPassword

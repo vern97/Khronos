@@ -129,4 +129,11 @@ namespace BeyondTheTutor.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
+
+    // For passing simple message data to the view
+    public enum AccountMessageId
+    {
+        EmailSentSuccess,
+        EmailConfirmationNeeded
+    }
 }

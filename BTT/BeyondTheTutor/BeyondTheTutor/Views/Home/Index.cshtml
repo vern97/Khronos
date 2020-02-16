@@ -2,12 +2,27 @@
     ViewBag.Title = "Home Page";
 }
 
+@if(TempData["Message"] != null)
+{
     <div class="ui icon message">
-        <i class="notched circle loading icon"></i>
+        <i class="inbox icon"></i>
         <div class="content">
             <div class="header">
-                Beyond the Tutor
+                You have successfully created an account!
             </div>
-            <p>Excuse our mess, we are under construction!</p>
+            <p>@TempData["Message"]</p>
+            <i>Make sure to check your <b>SPAM</b> folder for our email.</i>
+            <p>Thank you!</p>
         </div>
     </div>
+ }
+
+<div class="ui icon message">
+    <i class="notched circle loading icon"></i>
+    <div class="content">
+        <div class="header">
+            Beyond the Tutor
+        </div>
+        <p>Excuse our mess, we are under construction!</p>
+    </div>
+</div>

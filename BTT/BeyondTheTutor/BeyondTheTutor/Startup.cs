@@ -51,9 +51,11 @@ namespace BeyondTheTutor
                 // Create user with this role
                 string userPWD = "admin2020";// System.Web.Configuration.WebConfigurationManager.AppSettings["AdminPassword"];
                 string userEmail = "admin@beyondthetutor.com";// System.Web.Configuration.WebConfigurationManager.AppSettings["AdminEmail"];
-                var user = new ApplicationUser { 
-                    UserName = userEmail, 
+                var user = new ApplicationUser {
+                    UserName = userEmail,
+                    EmailConfirmed = true,
                     Email = userEmail
+                    
                 };
                 // Username and email must be the same unless you want to make changes to the login code, which assumes they are the same
                 // It will appear to work but once you clear your cache (to delete the cookie) or use another browser it won't work
@@ -76,7 +78,12 @@ namespace BeyondTheTutor
                 // Create user with this role
                 string userPWD = "professor2020";// System.Web.Configuration.WebConfigurationManager.AppSettings["AdminPassword"];
                 string userEmail = "professor@beyondthetutor.com";// System.Web.Configuration.WebConfigurationManager.AppSettings["AdminEmail"];
-                var user = new ApplicationUser { UserName = userEmail, Email = userEmail };
+                var user = new ApplicationUser 
+                { 
+                    UserName = userEmail, 
+                    Email = userEmail, 
+                    EmailConfirmed = true
+                };
                 // Username and email must be the same unless you want to make changes to the login code, which assumes they are the same
                 // It will appear to work but once you clear your cache (to delete the cookie) or use another browser it won't work
 
@@ -108,10 +115,11 @@ namespace BeyondTheTutor
                 // Create user with this role
                 string userPWD = "student2020";// System.Web.Configuration.WebConfigurationManager.AppSettings["AdminPassword"];
                 string userEmail = "student@beyondthetutor.com";// System.Web.Configuration.WebConfigurationManager.AppSettings["AdminEmail"];
-                var user = new ApplicationUser 
-                { 
-                    UserName = userEmail, 
-                    Email = userEmail
+                var user = new ApplicationUser
+                {
+                    UserName = userEmail,
+                    Email = userEmail,
+                    EmailConfirmed = true
                 };
                 // Username and email must be the same unless you want to make changes to the login code, which assumes they are the same
                 // It will appear to work but once you clear your cache (to delete the cookie) or use another browser it won't work
@@ -146,7 +154,12 @@ namespace BeyondTheTutor
                 // Create user with this role
                 string userPWD = "tutor2020";// System.Web.Configuration.WebConfigurationManager.AppSettings["AdminPassword"];
                 string userEmail = "tutor@beyondthetutor.com";// System.Web.Configuration.WebConfigurationManager.AppSettings["AdminEmail"];
-                var user = new ApplicationUser { UserName = userEmail, Email = userEmail };
+                var user = new ApplicationUser
+                {
+                    UserName = userEmail,
+                    Email = userEmail,
+                    EmailConfirmed = true
+                };
                 // Username and email must be the same unless you want to make changes to the login code, which assumes they are the same
                 // It will appear to work but once you clear your cache (to delete the cookie) or use another browser it won't work
 

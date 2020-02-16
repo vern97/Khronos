@@ -1,6 +1,5 @@
 ﻿namespace BeyondTheTutor.DAL
 {
-    
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
@@ -19,10 +18,28 @@
 
     public class EmailService : IIdentityMessageService
     {
-        public Task SendAsync(IdentityMessage message)
+        // Following this tutorial to enable password reset:
+        // https://docs.microsoft.com/en-us/aspnet/mvc/overview/security/create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset#password-recoveryreset
+        public async Task SendAsync(IdentityMessage message)
         {
             // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            //return Task.FromResult(0);
+            await ConfigSendGridasync(message);
+        }
+
+        // Use NuGet to install SendGrid (Basic C# client lib) 
+        private async Task ConfigSendGridasync(IdentityMessage message)
+        {
+            var myMessage = new SendGridMessage();
+            myMessage.AddTo(message.Destination);
+            myMessage.SetFrom(new EmailAddress("linton97v@gmail.com", "Beyond The Tutor"));
+            myMessage.SetSubject(message.Subject);
+            myMessage.AddContent(MimeType.Text, message.Body);
+            myMessage.AddContent(MimeType.Html, message.Body);
+            string apiKey = "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"; // need to hide this
+            var client = new SendGridClient(apiKey);
+
+            var response = await client.SendEmailAsync(myMessage);
         }
 
         public async Task<Task> configSendGridasync(IdentityMessage message) => configSendGridasync(message);
