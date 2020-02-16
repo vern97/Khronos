@@ -5,7 +5,6 @@ namespace BeyondTheTutor.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
-    
 
     public partial class Student
     {
@@ -19,10 +18,10 @@ namespace BeyondTheTutor.Models
         [StringLength(50)]
         public string LastName { get; set; }
 
-        public DateTime GraduatingYear { get; set; }
+        public short GraduatingYear { get; set; }
 
         [Required]
-        [StringLength(1)]
+        [StringLength(10)]
         public string ClassStanding { get; set; }
 
         [Required]

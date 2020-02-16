@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using BeyondTheTutor.DAL;
 
 namespace BeyondTheTutor.Areas.Tutor.Controllers
 {
-    [Authorize(Roles = "Tutor")]
+    // [Authorize(Roles = "Tutor")]
 
     public class HomeController : Controller
     {
+        private BeyondTheTutorContext db = new BeyondTheTutorContext();
+
         // GET: Tutor/Home
         public ActionResult Index()
         {
             return View();
         }
+
     }
 }
