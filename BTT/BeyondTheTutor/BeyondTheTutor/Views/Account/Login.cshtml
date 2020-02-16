@@ -5,6 +5,14 @@
 }
 
 <h2>@ViewBag.Title.</h2>
+@if (ViewBag.error != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.error");
+            };
+    </script>
+}
 <div class="row">
     <div class="col-md-8">
         <section id="loginForm">
