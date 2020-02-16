@@ -1,3 +1,3 @@
-﻿SELECT * FROM AspNetUsers
+﻿SELECT * FROM TutorSchedule
 
 SELECT * FROM Tutors
