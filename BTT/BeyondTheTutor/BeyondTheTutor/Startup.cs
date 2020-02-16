@@ -5,6 +5,7 @@ using BeyondTheTutor.DAL;
 using BeyondTheTutor.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
+using System;
 
 [assembly: OwinStartupAttribute(typeof(BeyondTheTutor.Startup))]
 namespace BeyondTheTutor
@@ -25,6 +26,9 @@ namespace BeyondTheTutor
         {
             // The context that Identity created
             ApplicationDbContext context = new ApplicationDbContext();
+
+            //the main database
+            BeyondTheTutorContext db = new BeyondTheTutorContext();
 
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
@@ -78,6 +82,18 @@ namespace BeyondTheTutor
 
                 res = UserManager.Create(user, userPWD);
 
+                if (res.Succeeded)
+                {
+                    var special_user = new Professor
+                    {
+                        FirstName = "default",
+                        LastName = "default",
+                        ASPNetIdentityID = user.Id
+                    };
+                    db.Professors.Add(special_user);
+                    db.SaveChangesAsync();
+                }
+
                 if (res.Succeeded) { var result1 = UserManager.AddToRole(user.Id, ROLES[1]); }
             }
 
@@ -92,11 +108,29 @@ namespace BeyondTheTutor
                 // Create user with this role
                 string userPWD = "student2020";// System.Web.Configuration.WebConfigurationManager.AppSettings["AdminPassword"];
                 string userEmail = "student@beyondthetutor.com";// System.Web.Configuration.WebConfigurationManager.AppSettings["AdminEmail"];
-                var user = new ApplicationUser { UserName = userEmail, Email = userEmail };
+                var user = new ApplicationUser 
+                { 
+                    UserName = userEmail, 
+                    Email = userEmail
+                };
                 // Username and email must be the same unless you want to make changes to the login code, which assumes they are the same
                 // It will appear to work but once you clear your cache (to delete the cookie) or use another browser it won't work
 
                 res = UserManager.Create(user, userPWD);
+
+                if (res.Succeeded)
+                {
+                    var special_user = new Student
+                    {
+                        FirstName = "default",
+                        LastName = "default",
+                        ClassStanding = "default",
+                        GraduatingYear = 2022,
+                        ASPNetIdentityID = user.Id
+                    };
+                    db.Students.Add(special_user);
+                    db.SaveChangesAsync();
+                }
 
                 if (res.Succeeded) { var result1 = UserManager.AddToRole(user.Id, ROLES[2]); }
             }
@@ -117,6 +151,20 @@ namespace BeyondTheTutor
                 // It will appear to work but once you clear your cache (to delete the cookie) or use another browser it won't work
 
                 res = UserManager.Create(user, userPWD);
+
+                if (res.Succeeded)
+                {
+                    var special_user = new Tutor
+                    {
+                        FirstName = "default",
+                        LastName = "default",
+                        VNumber = "V00000000",
+                        ClassOf = 2020,
+                        ASPNetIdentityID = user.Id
+                    };
+                    db.Tutors.Add(special_user);
+                    db.SaveChangesAsync();
+                }
 
                 if (res.Succeeded) { var result1 = UserManager.AddToRole(user.Id, ROLES[3]); }
             }

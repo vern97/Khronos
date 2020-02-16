@@ -23,8 +23,7 @@ namespace BeyondTheTutor.Models
         [Required]
         [StringLength(50)]
         public string LastName { get; set; }
-
-        public short ClassOf { get; set; }
+        public Int16 ClassOf { get; set; }
 
         [Required]
         [StringLength(9)]

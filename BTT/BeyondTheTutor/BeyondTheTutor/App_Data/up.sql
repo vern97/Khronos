@@ -11,12 +11,12 @@
 
 CREATE TABLE [dbo].[Tutors]
 (
-    [ID]                INT IDENTITY (1,1)    NOT NULL,
-    [FirstName]         [NVARCHAR](50)        NOT NULL,
-    [LastName]          [NVARCHAR](50)        NOT NULL,
-    [ClassOf]           SMALLINT              NOT NULL,
-    [VNumber]           [NVARCHAR](9)         NOT NULL,
-    [ASPNetIdentityID]  [NVARCHAR] (128)      NOT NULL
+    [ID]                INT IDENTITY (1,1)	NOT NULL,
+    [FirstName]         [NVARCHAR](50)		NOT NULL,
+    [LastName]          [NVARCHAR](50)		NOT NULL,
+	[ClassOf]			SMALLINT			NOT NULL,
+    [VNumber]           [NVARCHAR](9)		NOT NULL,
+	[ASPNetIdentityID]	[NVARCHAR] (128)	NOT NULL
     CONSTRAINT [PK_dbo.Tutors] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 
