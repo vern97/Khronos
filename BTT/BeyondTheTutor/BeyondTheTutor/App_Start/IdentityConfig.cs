@@ -32,11 +32,11 @@
         {
             var myMessage = new SendGridMessage();
             myMessage.AddTo(message.Destination);
-            myMessage.SetFrom(new EmailAddress("linton97v@gmail.com", "Beyond The Tutor"));
+            myMessage.SetFrom(new EmailAddress("OurEmail@gmail.com", "Beyond The Tutor"));
             myMessage.SetSubject(message.Subject);
             myMessage.AddContent(MimeType.Text, message.Body);
             myMessage.AddContent(MimeType.Html, message.Body);
-            string apiKey = "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"; // need to hide this
+            string apiKey = "API_KEY"; 
             var client = new SendGridClient(apiKey);
 
             var response = await client.SendEmailAsync(myMessage);
