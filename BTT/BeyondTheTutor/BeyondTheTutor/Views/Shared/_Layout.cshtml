@@ -11,10 +11,25 @@
 <body>
     <div class="ui inverted menu">
         <a href="/Home/Index" class="item">Home</a>
-        <div class="right menu">
-            <a href="/Account/Login" class="item">Sign in</a>
-            <a href="/Account/Register" class="item">Register</a>
-        </div>
+
+        @if (Request.IsAuthenticated)
+        {
+            <div class="right menu">
+            using(Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ActionLink("Account Settings", "Index", "Manage", new { area = "" }, htmlAttributes: new { @class = "item", title = "Manage Account" })
+                <a href="javascript:document.getElementById('logoutForm').submit()" class="item">Sign out</a>
+            }
+                </div>
+        }
+        else
+        {
+            <div class="right menu">
+                <a href="/Account/Login" class="item">Sign in</a>
+                <a href="/Account/Register" class="item">Register</a>
+            </div>
+        }
     </div>
 
     @Scripts.Render("~/bundles/jquery")
