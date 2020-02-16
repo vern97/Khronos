@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BeyondTheTutor.Models;
 using BeyondTheTutor.DAL;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace BeyondTheTutor.Controllers
 {
@@ -152,6 +153,7 @@ namespace BeyondTheTutor.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 //var user = new ApplicationUser { UserName = model.FirstName + " " + model.LastName, Email = model.Email };
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
@@ -166,20 +168,22 @@ namespace BeyondTheTutor.Controllers
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     // TODO: Handle errors, do this upon refactoring into repository pattern
-                    // Succeeded in creating a new Identity account, so let's create a new SUPUser
+                    // Succeeded in creating a new Identity account, so let's create a new 
 
                     var special_user = new Student
                     {
-                        /*FirstName = model.FirstName,
+                        FirstName = model.FirstName,
                         LastName = model.LastName,
                         ClassStanding = model.ClassStanding,
                         GraduatingYear = model.GraduatingYear,
-                        ASPNetIdentityID = user.Id*/
+                        ASPNetIdentityID = user.Id                    
                     };
 
                     BeyondTheTutorContext db = new BeyondTheTutorContext();
+
                     db.Students.Add(special_user);
                     await db.SaveChangesAsync();
+                    UserManager.AddToRole(user.Id, "Student");
 
                     return RedirectToAction("Index", "Home");
                 }

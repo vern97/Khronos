@@ -11,10 +11,43 @@
     <h4>Create a new account.</h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.FirstName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.LastName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ClassStanding, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.ClassStanding, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <label>Graduation Year</label>
+    <div class="field form-group">
+        <select class="ui simple dropdown item form-control" id="GraduatingYear" type="number" style="width:150px; height: 30px;" name="GraduatingYear" >
+            @{int year = DateTime.Today.Year.ToString().AsInt() - 2;}
+
+            @for (int i = 0; i < 7; i++)
+            {
+                <option type="number" value="@year">@year</option>
+                year += 1;
+            }
+        </select>
+    </div>
+
     <div class="form-group">
         @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.EditorFor(m => m.Email, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">

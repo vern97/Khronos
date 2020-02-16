@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace BeyondTheTutor.Areas.Tutor.Controllers
 {
-    [Authorize(Roles = "Tutor")]
+    //[Authorize(Roles = "Tutor")]
 
     public class HomeController : Controller
     {
