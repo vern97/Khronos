@@ -1,7 +1,5 @@
-﻿using System;
-using System.Globalization;
+﻿
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -10,9 +8,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BeyondTheTutor.Models;
 using BeyondTheTutor.DAL;
-using Microsoft.AspNet.Identity.EntityFramework;
 using System.Web.Routing;
-using System.Web.Security;
 
 namespace BeyondTheTutor.Controllers
 {
