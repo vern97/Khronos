@@ -3,12 +3,7 @@ using BeyondTheTutor.DAL;
 
 namespace BeyondTheTutor.Areas.Tutor.Controllers
 {
-<<<<<<< HEAD
-    // [Authorize(Roles = "Tutor")]
-=======
-    //[Authorize(Roles = "Tutor")]
->>>>>>> dev
-
+    [Authorize(Roles = "Tutor")]
     public class HomeController : Controller
     {
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
