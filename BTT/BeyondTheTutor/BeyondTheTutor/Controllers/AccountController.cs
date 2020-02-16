@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using BeyondTheTutor.Models;
 using BeyondTheTutor.DAL;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Web.Routing;
 
 namespace BeyondTheTutor.Controllers
 {
@@ -163,10 +164,11 @@ namespace BeyondTheTutor.Controllers
 
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account");
 
+                    // Won't be shown to the user if we redirect to home
+                    ViewBag.Message = "Check your email and confirm your account; you must be confirmed "
+                        + "if you ever need to recover your password.";
                     // TODO: Handle errors, do this upon refactoring into repository pattern
                     // Succeeded in creating a new Identity account, so let's create a new 
 
@@ -193,6 +195,30 @@ namespace BeyondTheTutor.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
+        private async Task<string> SendEmailConfirmationTokenAsync(string userID, string subject)
+        {
+            string code = await UserManager.GenerateEmailConfirmationTokenAsync(userID);
+            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = userID, code = code }, protocol: Request.Url.Scheme);
+            string bodyOfEmail = "Beyond The Tutor Services\n\nPlease confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>";
+
+            await UserManager.SendEmailAsync(userID, subject, bodyOfEmail);
+
+            return callbackUrl;
+        }
+
+        // Our addition, to send out an email with a confirmation link
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> SendConfirmationEmail(string urlOfReferrer)
+        {
+            string id = User.Identity.GetUserId();
+            await SendEmailConfirmationTokenAsync(id, "Confirm your account");
+            ViewBag.EmailSent = true;
+            return RedirectToAction("Index", new RouteValueDictionary(new { controller = "Home", action = "Index"}));
+        }
+
 
         //
         // GET: /Account/ConfirmEmail
