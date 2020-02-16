@@ -183,7 +183,7 @@ namespace BeyondTheTutor.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-                    string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account");
+                    string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account", model.FirstName);
 
                     // Won't be shown to the user if we redirect to home
                     ViewBag.Message = "Once you've confirmed that " + model.Email + " is your email address, you can continue to your account.";
@@ -219,11 +219,11 @@ namespace BeyondTheTutor.Controllers
             return View(model);
         }
 
-        private async Task<string> SendEmailConfirmationTokenAsync(string userID, string subject)
+        private async Task<string> SendEmailConfirmationTokenAsync(string userID, string subject, string name)
         {
             string code = await UserManager.GenerateEmailConfirmationTokenAsync(userID);
             var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = userID, code = code }, protocol: Request.Url.Scheme);
-            string bodyOfEmail = "Beyond The Tutor\n\nPlease confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>";
+            string bodyOfEmail = "Hello " + name + ", please follow <a href=\"" + callbackUrl + "\">this link</a> to confirm your <i>Beyond The Tutor</i> account";
 
             await UserManager.SendEmailAsync(userID, subject, bodyOfEmail);
 
@@ -237,11 +237,8 @@ namespace BeyondTheTutor.Controllers
         public async Task<ActionResult> SendConfirmationEmail(string urlOfReferrer)
         {
             string id = User.Identity.GetUserId();
-            await SendEmailConfirmationTokenAsync(id, "Confirm your account");
+            await SendEmailConfirmationTokenAsync(id, "Confirm your account", ",");
             ViewBag.EmailSent = true;
-            //if (!String.IsNullOrEmpty(urlOfReferrer))
-            //    return Redirect(urlOfReferrer);
-            //else
             return RedirectToAction("Index", new RouteValueDictionary(new { controller = "Home", action = "Index", message = AccountMessageId.EmailSentSuccess }));
         }
 
