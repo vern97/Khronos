@@ -1,7 +1,6 @@
 ﻿namespace BeyondTheTutor.DAL
 {
-    
-    using System;
+     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Linq;
@@ -14,8 +13,8 @@
     using Microsoft.Owin;
     using Microsoft.Owin.Security;
     using BeyondTheTutor.Models;
-    using SendGrid;
     using SendGrid.Helpers.Mail;
+    using SendGrid;
 
     public class EmailService : IIdentityMessageService
     {
