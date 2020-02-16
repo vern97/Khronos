@@ -1,6 +1,6 @@
 ﻿namespace BeyondTheTutor.DAL
 {
-     using System;
+    using System;
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Linq;

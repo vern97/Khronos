@@ -183,13 +183,12 @@ namespace BeyondTheTutor.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
                     string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account");
 
                     // Won't be shown to the user if we redirect to home
-                    ViewBag.Message = "Check your email and confirm your account; you must be confirmed "
-                        + "if you ever need to recover your password.";
+                    ViewBag.Message = "Once you've confirmed that " + model.Email + " is your email address, you can continue to your account.";
+
+                    TempData["Message"] = ViewBag.Message;
 
                     // TODO: Handle errors, do this upon refactoring into repository pattern
                     // Succeeded in creating a new Identity account, so let's create a new 
@@ -208,6 +207,8 @@ namespace BeyondTheTutor.Controllers
                     db.Students.Add(special_user);
                     await db.SaveChangesAsync();
                     UserManager.AddToRole(user.Id, "Student");
+
+
 
                     return RedirectToAction("Index", "Home");
                 }
