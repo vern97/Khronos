@@ -8,6 +8,12 @@ namespace BeyondTheTutor.Models
 
     public partial class Tutor
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Tutor()
+        {
+            TutorSchedules = new HashSet<TutorSchedule>();
+        }
+
         public int ID { get; set; }
 
         [Required]
@@ -17,7 +23,6 @@ namespace BeyondTheTutor.Models
         [Required]
         [StringLength(50)]
         public string LastName { get; set; }
-
         public Int16 ClassOf { get; set; }
 
         [Required]
@@ -27,5 +32,8 @@ namespace BeyondTheTutor.Models
         [Required]
         [StringLength(128)]
         public string ASPNetIdentityID { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TutorSchedule> TutorSchedules { get; set; }
     }
 }

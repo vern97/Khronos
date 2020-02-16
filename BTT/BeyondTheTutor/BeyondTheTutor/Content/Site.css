@@ -22,3 +22,19 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.ui.attached.message.schedule {
+    margin-bottom: 5px;
+    border-radius: 0.28571429rem 0.28571429rem 0em 0em;
+    -webkit-box-shadow: 0em 0em 0em 1px rgba(34, 36, 38, 0.15) inset;
+    box-shadow: 0em 0em 0em 1px rgba(34, 36, 38, 0.15) inset;
+    margin-left: -1px;
+    margin-right: -1px;
+    background-color: rgb(196,198,200);
+    padding-bottom: 10px;
+}
+
+.fluid.ui.button.schedule {
+    width: 100%;
+    background-color: #db0a29;
+}

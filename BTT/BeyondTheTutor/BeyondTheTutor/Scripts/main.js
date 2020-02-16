@@ -1,0 +1,3 @@
+﻿$('#demo').datetimepicker({
+    inline: true,
+});
