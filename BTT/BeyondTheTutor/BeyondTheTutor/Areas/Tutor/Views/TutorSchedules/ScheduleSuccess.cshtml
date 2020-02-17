@@ -4,9 +4,9 @@
 <table class="ui striped table">
     <thead>
         <tr>
-            <th>@Html.DisplayNameFor(model => model.Description)</th>
-            <th>@Html.DisplayNameFor(model => model.StartTime)</th>
-            <th>@Html.DisplayNameFor(model => model.EndTime)</th>
+            <th><h4>Tutor Name &amp; Job</h4></th>
+            <th> <h4>Start Date &amp; Time</h4></th>
+            <th>End Date &amp; Time</th>
         </tr>
     </thead>
     <tbody>
@@ -18,7 +18,9 @@
                 <td>@Html.DisplayFor(modelItem => item.EndTime)</td>
             </tr>
         }
-        </tbody>
+    </tbody>
 </table>
+<a href="/Tutor/TutorSchedules/Create" button class="fluid ui button schedule" style="color: rgb(196,198,200);">Add More Schedules</a>
+
 
 

@@ -17,37 +17,22 @@
         <form>
             <div class="three fields">
                 <div class="field">
-                    <h4>Description</h4>
+                    <h4>Tutor Name &amp; Job</h4>
                     @Html.TextBoxFor(model => model.Description, new { placeholder = "Your Name - Event", @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                 </div>
                 <div class="field">
-                    <h4>Start</h4>
-                    @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control" } })
+                    <h4>Start Date &amp; Time</h4>
+                    @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @type="datetime-local", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
                 </div>
                 <div class="field">
-                    <h4>End</h4>
-                    @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control" } })
+                    <h4>End Date &amp; Time</h4>
+                    @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @type="datetime-local", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <button class="fluid ui button schedule"><b>Submit New Schedule</b></button>
+            <button class="fluid ui button schedule" style="color: rgb(196,198,200);"><b>Submit New Schedule</b></button>
         </form>
     }
 </div>
-
-@*<input type="text" id="demo" />*@
-
-@section scripts
-{
-    <link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="~/Scripts/jquery.datetimepicker.js"></script>
-    <script src="~/Scripts/main.js"></script>
-}
-
-
-
-
-

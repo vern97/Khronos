@@ -23,7 +23,7 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
         {
             var userID = User.Identity.GetUserId();
             var currentUserID = (from t in db.Tutors where t.ASPNetIdentityID == userID select t.ID).FirstOrDefault();
-            var scheduleList = from t in db.TutorSchedules where t.TutorID == currentUserID select t;
+            var scheduleList = from t in db.TutorSchedules orderby t.StartTime descending where t.TutorID == currentUserID select t;
 
             return View(scheduleList.ToList());
         }
