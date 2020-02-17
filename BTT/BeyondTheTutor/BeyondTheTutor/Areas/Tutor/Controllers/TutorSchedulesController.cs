@@ -19,7 +19,7 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
             return View(tutorSchedules.ToList());
         }
 
-        public ActionResult ScheduleSuccess()
+        public ActionResult UpdateSchedule()
         {
             var userID = User.Identity.GetUserId();
             var currentUserID = (from t in db.Tutors where t.ASPNetIdentityID == userID select t.ID).FirstOrDefault();
@@ -28,19 +28,13 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
             return View(scheduleList.ToList());
         }
 
-        // GET: Tutor/TutorSchedules/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult ScheduleSuccess()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            TutorSchedule tutorSchedule = db.TutorSchedules.Find(id);
-            if (tutorSchedule == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tutorSchedule);
+            var userID = User.Identity.GetUserId();
+            var currentUserID = (from t in db.Tutors where t.ASPNetIdentityID == userID select t.ID).FirstOrDefault();
+            var scheduleList = from t in db.TutorSchedules orderby t.StartTime descending where t.TutorID == currentUserID select t;
+
+            return View(scheduleList.ToList());
         }
 
         // GET: Tutor/TutorSchedules/Create
@@ -72,6 +66,10 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
         // GET: Tutor/TutorSchedules/Edit/5
         public ActionResult Edit(int? id)
         {
+            var userID = User.Identity.GetUserId();
+
+            ViewBag.CurrentTutorID = (from t in db.Tutors where t.ASPNetIdentityID == userID select t.ID).FirstOrDefault();
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -94,7 +92,7 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
             {
                 db.Entry(tutorSchedule).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("UpdateSchedule");
             }
             ViewBag.TutorID = new SelectList(db.Tutors, "ID", "FirstName", tutorSchedule.TutorID);
             return View(tutorSchedule);
@@ -123,7 +121,7 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
             TutorSchedule tutorSchedule = db.TutorSchedules.Find(id);
             db.TutorSchedules.Remove(tutorSchedule);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("UpdateSchedule");
         }
 
         protected override void Dispose(bool disposing)
