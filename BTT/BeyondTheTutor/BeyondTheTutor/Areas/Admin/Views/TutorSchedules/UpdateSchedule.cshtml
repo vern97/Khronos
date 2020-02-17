@@ -1,0 +1,26 @@
+﻿@model IEnumerable<BeyondTheTutor.Models.TutorSchedule>
+
+<div class="ui red message">Careful! You may edit or delete schedules below. Deletion cannot be undone.</div>
+<table class="ui striped table">
+    <thead>
+        <tr>
+            <th><h4>Tutor Name &amp; Job</h4></th>
+            <th> <h4>Start Date &amp; Time</h4></th>
+            <th>End Date &amp; Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                <td>@Html.DisplayFor(modelItem => item.StartTime)</td>
+                <td>@Html.DisplayFor(modelItem => item.EndTime)</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

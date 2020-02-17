@@ -9,15 +9,16 @@
 </head>
 <body>
     <div class="ui inverted menu">
-        <a href="/Home/Index" class="item">Home</a>
+        <a href="/Admin/Home/Index" class="item">Administrator Portal</a>
         <div class="right menu">
             @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
             {
-                <div class="right menu">
-                    @Html.AntiForgeryToken()
-                    @Html.ActionLink("Account Settings", "Index", "Manage", new { area = "" }, htmlAttributes: new { @class = "item", title = "Manage Account" })
-                    <a href="javascript:document.getElementById('logoutForm').submit()" class="item">Sign out</a>
-                </div>
+            <div class="right menu">
+                <a href="/Admin/TutorSchedules/UpdateSchedule" class="item">Edit Tutor Schedules</a>
+                @Html.AntiForgeryToken()
+                @Html.ActionLink("Account Settings", "Index", "Manage", new { area = "" }, htmlAttributes: new { @class = "item", title = "Manage Account" })
+                <a href="javascript:document.getElementById('logoutForm').submit()" class="item">Sign out</a>
+            </div>
             }
         </div>
     </div>
@@ -27,10 +28,6 @@
 
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Beyond the Tutor</p>
-        </footer>
     </div>
 
     @RenderSection("scripts", required: false)
