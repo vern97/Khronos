@@ -1,0 +1,31 @@
+﻿@model BeyondTheTutor.Models.TutorSchedule
+
+<div class="ui red message">Careful! You may delete schedules below. Deletion cannot be undone.</div>
+
+<table class="ui striped table">
+    <thead>
+        <tr>
+            <th><h4>Tutor Name &amp; Job</h4></th>
+            <th> <h4>Start Date &amp; Time</h4></th>
+            <th>End Date &amp; Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Html.DisplayFor(model => model.Description)</td>
+            <td>@Html.DisplayFor(model => model.StartTime)</td>
+            <td>@Html.DisplayFor(model => model.EndTime)</td>
+        </tr>
+    </tbody>
+</table>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <button class="fluid ui button schedule" style="color: rgb(196,198,200); margin-bottom: 3px;"><b>Delete Schedule Entry</b></button>
+        <a href="/Admin/TutorSchedules/UpdateSchedule" button class="fluid ui button schedule" style="color: rgb(196,198,200);"><b>Oops! Go Back to List</b></a>
+    </div>
+}

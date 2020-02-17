@@ -178,6 +178,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TutorSchedulesController.cs" />
     <Compile Include="Areas\Professor\Controllers\HomeController.cs" />
     <Compile Include="Areas\Professor\ProfessorAreaRegistration.cs" />
     <Compile Include="Areas\Student\Controllers\HomeController.cs" />
@@ -387,9 +388,11 @@
     <Content Include="Areas\Tutor\Views\TutorSchedules\Create.cshtml" />
     <Content Include="Areas\Tutor\Views\TutorSchedules\Delete.cshtml" />
     <Content Include="Areas\Tutor\Views\TutorSchedules\Edit.cshtml" />
-    <Content Include="Areas\Tutor\Views\TutorSchedules\Index.cshtml" />
     <Content Include="Areas\Tutor\Views\TutorSchedules\ScheduleSuccess.cshtml" />
     <Content Include="Areas\Tutor\Views\TutorSchedules\UpdateSchedule.cshtml" />
+    <Content Include="Areas\Admin\Views\TutorSchedules\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\TutorSchedules\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\TutorSchedules\UpdateSchedule.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

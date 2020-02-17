@@ -4,9 +4,8 @@ using System.Net;
 using System.Web.Mvc;
 using BeyondTheTutor.DAL;
 using BeyondTheTutor.Models;
-using Microsoft.AspNet.Identity;
 
-namespace BeyondTheTutor.Areas.Tutor.Controllers
+namespace BeyondTheTutor.Areas.Admin.Controllers
 {
     public class TutorSchedulesController : Controller
     {
@@ -14,55 +13,13 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
 
         public ActionResult UpdateSchedule()
         {
-            var userID = User.Identity.GetUserId();
-            var currentUserID = (from t in db.Tutors where t.ASPNetIdentityID == userID select t.ID).FirstOrDefault();
-            var scheduleList = from t in db.TutorSchedules orderby t.StartTime descending where t.TutorID == currentUserID select t;
-
-            return View(scheduleList.ToList());
+            var tutorSchedules = db.TutorSchedules.Include(t => t.Tutor);
+            return View(tutorSchedules.ToList());
         }
 
-        public ActionResult ScheduleSuccess()
-        {
-            var userID = User.Identity.GetUserId();
-            var currentUserID = (from t in db.Tutors where t.ASPNetIdentityID == userID select t.ID).FirstOrDefault();
-            var scheduleList = from t in db.TutorSchedules orderby t.StartTime descending where t.TutorID == currentUserID select t;
-
-            return View(scheduleList.ToList());
-        }
-
-        // GET: Tutor/TutorSchedules/Create
-        public ActionResult Create()
-        {
-            var userID = User.Identity.GetUserId();
-
-            ViewBag.CurrentTutorID = (from t in db.Tutors where t.ASPNetIdentityID == userID select t.ID).FirstOrDefault();
-
-            return View();
-        }
-
-        // POST: Tutor/TutorSchedules/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Description,StartTime,EndTime,ThemeColor,IsFullDay,TutorID")] TutorSchedule tutorSchedule)
-        {
-            if (ModelState.IsValid)
-            {
-                db.TutorSchedules.Add(tutorSchedule);
-                db.SaveChanges();
-                return RedirectToAction("ScheduleSuccess");
-            }
-
-            ViewBag.TutorID = new SelectList(db.Tutors, "ID", "FirstName", tutorSchedule.TutorID);
-            return View(tutorSchedule);
-        }
-
-        // GET: Tutor/TutorSchedules/Edit/5
+        // GET: Admin/TutorSchedules/Edit/5
         public ActionResult Edit(int? id)
         {
-            var userID = User.Identity.GetUserId();
-
-            ViewBag.CurrentTutorID = (from t in db.Tutors where t.ASPNetIdentityID == userID select t.ID).FirstOrDefault();
-
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -72,11 +29,11 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.TutorID = new SelectList(db.Tutors, "ID", "FirstName", tutorSchedule.TutorID);
+            ViewBag.TutorID = tutorSchedule.TutorID;
             return View(tutorSchedule);
         }
 
-        // POST: Tutor/TutorSchedules/Edit/5
+        // POST: Admin/TutorSchedules/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Description,StartTime,EndTime,ThemeColor,IsFullDay,TutorID")] TutorSchedule tutorSchedule)
@@ -91,7 +48,7 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
             return View(tutorSchedule);
         }
 
-        // GET: Tutor/TutorSchedules/Delete/5
+        // GET: Admin/TutorSchedules/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -106,7 +63,7 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
             return View(tutorSchedule);
         }
 
-        // POST: Tutor/TutorSchedules/Delete/5
+        // POST: Admin/TutorSchedules/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
