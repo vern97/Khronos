@@ -386,10 +386,10 @@
     <Content Include="Areas\Student\Views\Home\Index.cshtml" />
     <Content Include="Areas\Tutor\Views\TutorSchedules\Create.cshtml" />
     <Content Include="Areas\Tutor\Views\TutorSchedules\Delete.cshtml" />
-    <Content Include="Areas\Tutor\Views\TutorSchedules\Details.cshtml" />
     <Content Include="Areas\Tutor\Views\TutorSchedules\Edit.cshtml" />
     <Content Include="Areas\Tutor\Views\TutorSchedules\Index.cshtml" />
     <Content Include="Areas\Tutor\Views\TutorSchedules\ScheduleSuccess.cshtml" />
+    <Content Include="Areas\Tutor\Views\TutorSchedules\UpdateSchedule.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
