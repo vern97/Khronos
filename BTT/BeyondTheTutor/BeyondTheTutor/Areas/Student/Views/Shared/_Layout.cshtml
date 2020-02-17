@@ -13,11 +13,8 @@
         <div class="right menu">
             @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
             {
-                <div class="right menu">
-                    @Html.AntiForgeryToken()
-                    @Html.ActionLink("Account Settings", "Index", "Manage", new { area = "" }, htmlAttributes: new { @class = "item", title = "Manage Account" })
-                    <a href="javascript:document.getElementById('logoutForm').submit()" class="item">Sign out</a>
-                </div>
+                @Html.AntiForgeryToken()
+                <a href="javascript:document.getElementById('logoutForm').submit()" class="item">Sign out</a>
             }
         </div>
     </div>
