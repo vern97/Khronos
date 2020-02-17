@@ -39,4 +39,10 @@ textarea {
     background-color: #db0a29;
 }
 
+.campus-bg {
+    background: url('../images/Campus.jpg');
+    background-size: cover;
+}
+
+
 
