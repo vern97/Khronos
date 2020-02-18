@@ -197,18 +197,28 @@ namespace BeyondTheTutor.Controllers
                     // TODO: Handle errors, do this upon refactoring into repository pattern
                     // Succeeded in creating a new Identity account, so let's create a new 
 
-                    var special_user = new Student
+
+                    
+
+                    var special_user = new BTTUser
                     {
                         FirstName = model.FirstName,
                         LastName = model.LastName,
-                        ClassStanding = model.ClassStanding,
-                        GraduatingYear = model.GraduatingYear,
                         ASPNetIdentityID = user.Id                    
                     };
 
-                    BeyondTheTutorContext db = new BeyondTheTutorContext();
+                    var sub_user = new Student
+                    {
+                        ID = special_user.ID,
+                        ClassStanding = model.ClassStanding,
+                        GraduatingYear = model.GraduatingYear
+                    };
 
-                    db.Students.Add(special_user);
+                    BeyondTheTutorContext db = new BeyondTheTutorContext();
+                    
+                    db.BTTUsers.Add(special_user);
+                    db.Students.Add(sub_user);
+
                     await db.SaveChangesAsync();
                     UserManager.AddToRole(user.Id, "Student");
 
