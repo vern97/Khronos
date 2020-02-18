@@ -196,6 +196,7 @@
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\AspNetUser.cs" />
     <Compile Include="DAL\BeyondTheTutorContext.cs" />
+    <Compile Include="Models\BTTUser.cs" />
     <Compile Include="Models\Professor.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\Tutor.cs" />

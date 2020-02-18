@@ -1,5 +1,5 @@
-﻿SELECT * FROM TutorSchedule
+﻿SELECT * FROM BTTUsers
 
 SELECT * FROM Tutors
 
-SELECT * FROM AspNetUsers
+SELECT * FROM TutorSchedule
