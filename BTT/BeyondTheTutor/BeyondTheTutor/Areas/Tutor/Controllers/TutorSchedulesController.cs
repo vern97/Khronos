@@ -15,27 +15,26 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
         public ActionResult UpdateSchedule()
         {
             var userID = User.Identity.GetUserId();
-            var currentUserID = (from t in db.Tutors where t.ASPNetIdentityID == userID select t.ID).FirstOrDefault();
-            var scheduleList = from t in db.TutorSchedules orderby t.StartTime descending where t.TutorID == currentUserID select t;
+            var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
+            var scheduleList = db.TutorSchedules.Where(m => m.TutorID.Equals(currentUserID)).ToList();
 
-            return View(scheduleList.ToList());
+            return View(scheduleList);
         }
 
         public ActionResult ScheduleSuccess()
         {
             var userID = User.Identity.GetUserId();
-            var currentUserID = (from t in db.Tutors where t.ASPNetIdentityID == userID select t.ID).FirstOrDefault();
-            var scheduleList = from t in db.TutorSchedules orderby t.StartTime descending where t.TutorID == currentUserID select t;
+            var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
+            var scheduleList = db.TutorSchedules.Where(m => m.TutorID.Equals(currentUserID)).ToList();
 
-            return View(scheduleList.ToList());
+            return View(scheduleList);
         }
 
         // GET: Tutor/TutorSchedules/Create
         public ActionResult Create()
         {
             var userID = User.Identity.GetUserId();
-
-            ViewBag.CurrentTutorID = (from t in db.Tutors where t.ASPNetIdentityID == userID select t.ID).FirstOrDefault();
+            ViewBag.CurrentTutorID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
 
             return View();
         }
@@ -52,7 +51,6 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
                 return RedirectToAction("ScheduleSuccess");
             }
 
-            ViewBag.TutorID = new SelectList(db.Tutors, "ID", "FirstName", tutorSchedule.TutorID);
             return View(tutorSchedule);
         }
 
@@ -60,8 +58,7 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
         public ActionResult Edit(int? id)
         {
             var userID = User.Identity.GetUserId();
-
-            ViewBag.CurrentTutorID = (from t in db.Tutors where t.ASPNetIdentityID == userID select t.ID).FirstOrDefault();
+            ViewBag.CurrentTutorID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
 
             if (id == null)
             {
@@ -72,7 +69,7 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.TutorID = new SelectList(db.Tutors, "ID", "FirstName", tutorSchedule.TutorID);
+
             return View(tutorSchedule);
         }
 
@@ -87,7 +84,7 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
                 db.SaveChanges();
                 return RedirectToAction("UpdateSchedule");
             }
-            ViewBag.TutorID = new SelectList(db.Tutors, "ID", "FirstName", tutorSchedule.TutorID);
+
             return View(tutorSchedule);
         }
 

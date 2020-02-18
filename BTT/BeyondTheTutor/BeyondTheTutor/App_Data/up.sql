@@ -57,10 +57,3 @@ CREATE TABLE [dbo].[TutorSchedule]
 	CONSTRAINT [PK_dbo.TutorSchedule] PRIMARY KEY CLUSTERED ([ID] ASC),
 	CONSTRAINT [FK_dbo.TutorSchedule_dbo.Tutors_ID] FOREIGN KEY ([TutorID]) REFERENCES [dbo].[Tutors] ([ID]) ON DELETE CASCADE
 );
-
-
-
-
-select distinct * from BTTUsers;
-select * from Students;
-select * from Tutors;
