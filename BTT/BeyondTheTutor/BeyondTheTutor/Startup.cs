@@ -55,12 +55,30 @@ namespace BeyondTheTutor
                     UserName = userEmail,
                     EmailConfirmed = true,
                     Email = userEmail
-                    
                 };
                 // Username and email must be the same unless you want to make changes to the login code, which assumes they are the same
                 // It will appear to work but once you clear your cache (to delete the cookie) or use another browser it won't work
 
                 res = UserManager.Create(user, userPWD);
+
+                if (res.Succeeded)
+                {
+                    var special_user = new BTTUser
+                    {
+                        FirstName = "Admin",
+                        LastName = "Account",
+                        ASPNetIdentityID = user.Id
+                    };
+
+                    var sub_user = new Admin
+                    {
+                        ID = special_user.ID
+                    };
+
+                    db.BTTUsers.Add(special_user);
+                    db.Admins.Add(sub_user);
+                    db.SaveChangesAsync();
+                }
 
                 if (res.Succeeded) { var result1 = UserManager.AddToRole(user.Id, ROLES[0]); }
             }
@@ -91,13 +109,21 @@ namespace BeyondTheTutor
 
                 if (res.Succeeded)
                 {
-                    var special_user = new Professor
+                    var special_user = new BTTUser
                     {
-                        FirstName = "default",
-                        LastName = "default",
+                        FirstName = "Professor",
+                        LastName = "Account",
                         ASPNetIdentityID = user.Id
                     };
-                    db.Professors.Add(special_user);
+
+                    var sub_user = new Professor
+                    {
+                        ID = special_user.ID,
+                        AdminApproved = false
+                    };
+
+                    db.BTTUsers.Add(special_user);
+                    db.Professors.Add(sub_user);
                     db.SaveChangesAsync();
                 }
 
@@ -128,15 +154,22 @@ namespace BeyondTheTutor
 
                 if (res.Succeeded)
                 {
-                    var special_user = new Student
+                    var special_user = new BTTUser
                     {
-                        FirstName = "default",
-                        LastName = "default",
-                        ClassStanding = "default",
-                        GraduatingYear = 2022,
+                        FirstName = "Student",
+                        LastName = "Account",
                         ASPNetIdentityID = user.Id
                     };
-                    db.Students.Add(special_user);
+
+                    var sub_user = new Student
+                    {
+                        ID = special_user.ID,
+                        ClassStanding = "default",
+                        GraduatingYear = 2022
+                    };
+
+                    db.BTTUsers.Add(special_user);
+                    db.Students.Add(sub_user);
                     db.SaveChangesAsync();
                 }
 
@@ -167,15 +200,23 @@ namespace BeyondTheTutor
 
                 if (res.Succeeded)
                 {
-                    var special_user = new Tutor
+                    var special_user = new BTTUser
                     {
-                        FirstName = "default",
-                        LastName = "default",
-                        VNumber = "V00000000",
-                        ClassOf = 2020,
+                        FirstName = "Tutor",
+                        LastName = "Account",
                         ASPNetIdentityID = user.Id
                     };
-                    db.Tutors.Add(special_user);
+
+                    var sub_user = new Tutor
+                    {
+                        ID = special_user.ID,
+                        VNumber = "V00000000",
+                        ClassOf = 2020,
+                        AdminApproved = true
+                    };
+
+                    db.BTTUsers.Add(special_user);
+                    db.Tutors.Add(sub_user);
                     db.SaveChangesAsync();
                 }
 

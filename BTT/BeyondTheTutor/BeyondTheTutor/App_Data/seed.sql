@@ -1,6 +1,10 @@
-﻿INSERT INTO [dbo].[Tutors](FirstName,LastName, ClassOf, VNumber, ASPNetIdentityID)
+﻿
+INSERT INTO [dbo].[BTTUsers](FirstName, LastName, ASPNetIdentityID)
+	VALUES	('Victoria', 'Rhine', 'e2810071-8b0b-4465-aa61-0c07950231b1');
+
+INSERT INTO [dbo].[Tutors](ClassOf, VNumber, AdminApproved)
 	VALUES
-	('Victoria', 'Rhine', '2020', 'V12345', 'e2810071-8b0b-4465-aa61-0c07950231b1');
+	('2020', 'V00000123', 1);
 
 INSERT INTO [dbo].[TutorSchedule](Description, StartTime, EndTime, TutorID)
 	VALUES

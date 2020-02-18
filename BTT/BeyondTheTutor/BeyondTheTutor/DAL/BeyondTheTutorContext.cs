@@ -14,7 +14,7 @@ namespace BeyondTheTutor.DAL
         }
 
         public virtual DbSet<Admin> Admins { get; set; }
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<BTTUser> BTTUsers { get; set; }
         public virtual DbSet<Professor> Professors { get; set; }
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Tutor> Tutors { get; set; }
@@ -22,6 +22,21 @@ namespace BeyondTheTutor.DAL
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<BTTUser>()
+                .HasOptional(e => e.Admin)
+                .WithRequired(e => e.BTTUser);
+
+            modelBuilder.Entity<BTTUser>()
+                .HasOptional(e => e.Professor)
+                .WithRequired(e => e.BTTUser);
+
+            modelBuilder.Entity<BTTUser>()
+                .HasOptional(e => e.Student)
+                .WithRequired(e => e.BTTUser);
+
+            modelBuilder.Entity<BTTUser>()
+                .HasOptional(e => e.Tutor)
+                .WithRequired(e => e.BTTUser);
         }
     }
 }

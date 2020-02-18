@@ -10,16 +10,6 @@ namespace BeyondTheTutor.Models
     {
         public int ID { get; set; }
 
-        [Required]
-        [StringLength(50)]
-        public string FirstName { get; set; }
-
-        [Required]
-        [StringLength(50)]
-        public string LastName { get; set; }
-
-        [Required]
-        [StringLength(128)]
-        public string ASPNetIdentityID { get; set; }
+        public virtual BTTUser BTTUser { get; set; }
     }
 }
