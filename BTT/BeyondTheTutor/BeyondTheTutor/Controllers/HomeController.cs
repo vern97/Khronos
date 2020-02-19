@@ -12,6 +12,7 @@ namespace BeyondTheTutor.Controllers
 {
     public class HomeController : Controller
     {
+        private BeyondTheTutorContext db = new BeyondTheTutorContext();
         public ActionResult Index()
         {
             if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
@@ -24,6 +25,19 @@ namespace BeyondTheTutor.Controllers
                 return RedirectToAction("Index", "Professor");
             else
                 return View();
+        }
+
+        public ActionResult GetTutorSchedules()
+        {
+            var events = db.TutorSchedules.Select(e => new
+            {
+                id = e.ID,
+                title = e.Description,
+                start = e.StartTime,
+                end = e.EndTime
+            }).ToList();
+
+            return Json(events, JsonRequestBehavior.AllowGet);
         }
     }
 }
