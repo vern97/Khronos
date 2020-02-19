@@ -75,6 +75,7 @@ namespace BeyondTheTutor
                         ID = special_user.ID
                     };
 
+                    sub_user.BTTUser = special_user;
                     db.BTTUsers.Add(special_user);
                     db.Admins.Add(sub_user);
                     db.SaveChangesAsync();
@@ -122,6 +123,7 @@ namespace BeyondTheTutor
                         AdminApproved = false
                     };
 
+                    sub_user.BTTUser = special_user;
                     db.BTTUsers.Add(special_user);
                     db.Professors.Add(sub_user);
                     db.SaveChangesAsync();
@@ -168,6 +170,7 @@ namespace BeyondTheTutor
                         GraduatingYear = 2022
                     };
 
+                    sub_user.BTTUser = special_user;
                     db.BTTUsers.Add(special_user);
                     db.Students.Add(sub_user);
                     db.SaveChangesAsync();
@@ -215,6 +218,7 @@ namespace BeyondTheTutor
                         AdminApproved = true
                     };
 
+                    sub_user.BTTUser = special_user;
                     db.BTTUsers.Add(special_user);
                     db.Tutors.Add(sub_user);
                     db.SaveChangesAsync();

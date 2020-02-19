@@ -184,7 +184,7 @@ namespace BeyondTheTutor.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-                    string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account", model.FirstName);
+                    //string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account", model.FirstName);
 
                     // Won't be shown to the user if we redirect to home
                     ViewBag.Message = "Once you've confirmed that " + model.Email + " is your email address, you can continue to your account.";
@@ -198,8 +198,6 @@ namespace BeyondTheTutor.Controllers
                     // Succeeded in creating a new Identity account, so let's create a new 
 
 
-                    
-
                     var special_user = new BTTUser
                     {
                         FirstName = model.FirstName,
@@ -209,10 +207,11 @@ namespace BeyondTheTutor.Controllers
 
                     var sub_user = new Student
                     {
-                        ID = special_user.ID,
                         ClassStanding = model.ClassStanding,
                         GraduatingYear = model.GraduatingYear
                     };
+
+                    sub_user.BTTUser = special_user;
 
                     BeyondTheTutorContext db = new BeyondTheTutorContext();
                     
@@ -221,8 +220,6 @@ namespace BeyondTheTutor.Controllers
 
                     await db.SaveChangesAsync();
                     UserManager.AddToRole(user.Id, "Student");
-
-
 
                     return RedirectToAction("Index", "Home");
                 }
