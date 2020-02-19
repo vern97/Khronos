@@ -225,6 +225,44 @@ namespace BeyondTheTutor
                 }
 
                 if (res.Succeeded) { var result1 = UserManager.AddToRole(user.Id, ROLES[3]); }
+
+
+                //tutor number two
+                userPWD = "tutor2020";// System.Web.Configuration.WebConfigurationManager.AppSettings["AdminPassword"];
+                userEmail = "tutor@beyondthetutor.com";// System.Web.Configuration.WebConfigurationManager.AppSettings["AdminEmail"];
+                var tutor = new ApplicationUser
+                {
+                    UserName = userEmail,
+                    Email = userEmail,
+                    EmailConfirmed = true
+                };
+               
+                res = UserManager.Create(tutor, userPWD);
+
+                if (res.Succeeded)
+                {
+                    var special_user = new BTTUser
+                    {
+                        FirstName = "Tutor2",
+                        LastName = "Account2",
+                        ASPNetIdentityID = tutor.Id
+                    };
+
+                    var sub_user = new Tutor
+                    {
+                        ID = special_user.ID,
+                        VNumber = "V11111111",
+                        ClassOf = 2021,
+                        AdminApproved = true
+                    };
+
+                    sub_user.BTTUser = special_user;
+                    db.BTTUsers.Add(special_user);
+                    db.Tutors.Add(sub_user);
+                    db.SaveChangesAsync();
+                }
+
+                if (res.Succeeded) { var result1 = UserManager.AddToRole(tutor.Id, ROLES[3]); }
             }
 
 
