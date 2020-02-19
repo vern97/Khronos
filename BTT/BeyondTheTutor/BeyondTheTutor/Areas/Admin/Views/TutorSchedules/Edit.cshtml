@@ -1,38 +1,43 @@
 ﻿@model BeyondTheTutor.Models.TutorSchedule
 
-<div class="ui red message">Careful! You may edit schedules below.</div>
-<div class="ui form attached fluid segment">
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.Hidden("TutorID", (object)ViewBag.TutorID)
-        @Html.HiddenFor(model => model.ID)
+<body class="wou-grey-bg">
+    <div class="ui one column stackable page grid">
+        <div class="ui red message schedule"><i class="close icon"></i>Careful! You may edit schedules below.</div>
+        <div class="ui form attached fluid segment">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.Hidden("TutorID", (object)ViewBag.CurrentTutorID)
+                @Html.HiddenFor(model => model.ID)
 
-        <form>
-            <div class="three fields">
-                <div class="field">
-                    <h4>Tutor Name &amp; Job</h4>
-                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                </div>
-                <div class="field">
-                    <h4>Start Date &amp; Time</h4>
-                    @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
-                </div>
-                <div class="field">
-                    <h4>End Date &amp; Time</h4>
-                    @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <button class="fluid ui button schedule" style="color: rgb(196,198,200); margin-bottom: 3px;"><b>Save Schedule Edits</b></button>
-            <a href="/Admin/TutorSchedules/UpdateSchedule" button class="fluid ui button schedule" style="color: rgb(196,198,200);"><b>Oops! Go Back to List</b></a>
-        </form>
-    }
-</div>
+                <form>
+                    <div class="three fields">
+                        <div class="field">
+                            <h4>Tutor Name &amp; Job</h4>
+                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="field">
+                            <h4>Start Date &amp; Time</h4>
+                            @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="field">
+                            <h4>End Date &amp; Time</h4>
+                            @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <button class="fluid ui button schedule" style="margin-bottom: 3px;">Save Schedule Edits</button>
+                    <a href="/Admin/TutorSchedules/UpdateSchedule" button class="fluid ui button schedule">Go Back to List</a>
+                </form>
+            }
+        </div>
+    </div>
+</body>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/main.js"></script>
 }

@@ -37,13 +37,25 @@ textarea {
 .fluid.ui.button.schedule {
     width: 100%;
     background-color: #db0a29;
+    color: #FFFFFF;
+}
+
+.ui.green.message.schedule {
+    width: 100%;
+}
+
+.ui.red.message.schedule {
+    width: 100%;
 }
 
 .campus-bg {
     background: url('../images/Campus.jpg');
     background-size: cover;
 }
+.wou-grey-bg {
+    background-color: rgb(196,198,200);
+}
 
-#calendar {
-    max-width: 100px;
+.wou-silver-bg {
+    background-color: rgb(167,169,172);
 }

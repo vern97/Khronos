@@ -33,7 +33,7 @@
 
     <label>Graduation Year</label>
     <div class="field form-group">
-        <select class="ui simple dropdown item form-control" id="GraduatingYear" type="number" style="width:150px; height: 30px;" name="GraduatingYear" >
+        <select class="ui simple dropdown item form-control" id="GraduatingYear" type="number" style="width:150px; height: 30px;" name="GraduatingYear">
             @{int year = DateTime.Today.Year.ToString().AsInt() - 2;}
 
             @for (int i = 0; i < 7; i++)
