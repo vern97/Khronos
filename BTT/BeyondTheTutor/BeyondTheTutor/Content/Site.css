@@ -44,5 +44,6 @@ textarea {
     background-size: cover;
 }
 
-
-
+#calendar {
+    max-width: 100px;
+}
