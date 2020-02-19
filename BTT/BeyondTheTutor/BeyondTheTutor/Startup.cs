@@ -229,7 +229,7 @@ namespace BeyondTheTutor
 
                 //tutor number two
                 userPWD = "tutor2020";// System.Web.Configuration.WebConfigurationManager.AppSettings["AdminPassword"];
-                userEmail = "tutor@beyondthetutor.com";// System.Web.Configuration.WebConfigurationManager.AppSettings["AdminEmail"];
+                userEmail = "tutor2@beyondthetutor.com";// System.Web.Configuration.WebConfigurationManager.AppSettings["AdminEmail"];
                 var tutor = new ApplicationUser
                 {
                     UserName = userEmail,
