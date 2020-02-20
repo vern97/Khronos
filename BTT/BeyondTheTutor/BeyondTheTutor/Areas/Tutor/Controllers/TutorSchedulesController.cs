@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using BeyondTheTutor.DAL;
 using BeyondTheTutor.Models;
 using Microsoft.AspNet.Identity;
+using System.Collections.Generic;
 
 namespace BeyondTheTutor.Areas.Tutor.Controllers
 {
@@ -46,6 +47,19 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
         {
             if (ModelState.IsValid)
             {
+                Dictionary<int, string> tutorColor = new Dictionary<int, string>()
+                {
+                    {1, "red"},
+                    {2, "blue"},
+                    {3, "green"}
+                };
+                var userID = User.Identity.GetUserId();
+                var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
+                var tutors = db.Tutors.Select(m => m.ID).ToList();
+                var findTutorIndex = (tutors.FindIndex(x => x == currentUserID)) + 1;
+                var setTutorColor = tutorColor[findTutorIndex];
+
+                tutorSchedule.ThemeColor = setTutorColor;
                 db.TutorSchedules.Add(tutorSchedule);
                 db.SaveChanges();
                 return RedirectToAction("ScheduleSuccess");
