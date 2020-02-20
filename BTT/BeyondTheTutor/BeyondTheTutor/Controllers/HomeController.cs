@@ -34,7 +34,8 @@ namespace BeyondTheTutor.Controllers
                 id = e.ID,
                 title = e.Description,
                 start = e.StartTime,
-                end = e.EndTime
+                end = e.EndTime,
+                backgroundColor = e.ThemeColor
             }).ToList();
 
             return Json(events, JsonRequestBehavior.AllowGet);
