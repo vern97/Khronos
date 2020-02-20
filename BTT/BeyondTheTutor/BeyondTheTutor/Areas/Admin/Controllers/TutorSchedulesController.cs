@@ -7,6 +7,7 @@ using BeyondTheTutor.Models;
 
 namespace BeyondTheTutor.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class TutorSchedulesController : Controller
     {
         private BeyondTheTutorContext db = new BeyondTheTutorContext();

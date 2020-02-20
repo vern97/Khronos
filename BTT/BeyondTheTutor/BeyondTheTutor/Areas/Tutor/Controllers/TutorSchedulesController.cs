@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity;
 
 namespace BeyondTheTutor.Areas.Tutor.Controllers
 {
+    [Authorize(Roles = "Tutor")]
     public class TutorSchedulesController : Controller
     {
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
