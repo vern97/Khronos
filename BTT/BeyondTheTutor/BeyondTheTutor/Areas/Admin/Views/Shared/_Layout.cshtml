@@ -11,7 +11,13 @@
     <div class="ui inverted menu">
         <a href="/Admin/Home/Index" class="item">Admin Portal</a>
         <div class="right menu">
-            <a href="/Admin/TutorSchedules/UpdateSchedule" class="item">Edit Tutor Schedules</a>
+            <div class="ui simple dropdown item">
+                Scheduling
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <a href="/Admin/TutorSchedules/UpdateSchedule" class="item">Edit Tutor Schedules</a>
+                </div>
+            </div>
             @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
             {
                 @Html.AntiForgeryToken()
