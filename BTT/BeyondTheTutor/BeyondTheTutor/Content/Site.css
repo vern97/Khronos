@@ -60,3 +60,6 @@ textarea {
     background-color: rgb(167,169,172);
 }
 
+.calendar-container {
+    width: 60%;
+}
