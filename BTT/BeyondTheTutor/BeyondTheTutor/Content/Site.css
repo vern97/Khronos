@@ -34,6 +34,10 @@ textarea {
     padding-bottom: 10px;
 }
 
+.ui.grid.registration {
+    padding-bottom: 10px;
+}
+
 .ui.green.message.schedule {
     width: 100%;
 }
