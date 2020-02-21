@@ -50,9 +50,9 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
             {
                 Dictionary<int, string> tutorColor = new Dictionary<int, string>()
                 {
-                    {1, "#b4d7ff"},
-                    {2, "#ffb7b4"},
-                    {3, "#b4ffdd"}
+                    {1, "#ff6e68"},
+                    {2, "#68aeff"},
+                    {3, "#68ffba"}
                 };
                 var userID = User.Identity.GetUserId();
                 var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
