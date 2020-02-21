@@ -34,18 +34,18 @@ textarea {
     padding-bottom: 10px;
 }
 
-.fluid.ui.button.schedule {
-    width: 100%;
-    background-color: #db0a29;
-    color: #FFFFFF;
-}
-
 .ui.green.message.schedule {
     width: 100%;
 }
 
 .ui.red.message.schedule {
     width: 100%;
+}
+
+.fluid.ui.button.schedule {
+    width: 100%;
+    background-color: #db0a29;
+    color: #FFFFFF;
 }
 
 .campus-bg {

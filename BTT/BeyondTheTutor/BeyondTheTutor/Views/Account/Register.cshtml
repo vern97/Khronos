@@ -1,74 +1,66 @@
 ﻿@model BeyondTheTutor.Models.RegisterViewModel
-@{
-    ViewBag.Title = "Register";
-}
 
-<h2>@ViewBag.Title.</h2>
+<body class="wou-grey-bg">
+    <div class="ui grid">
+        <div class="four wide column"></div>
+            <div class="eight wide column">
+                <div class="ui form attached fluid segment ui equal width form">
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <h4 class="ui dividing header">Registration</h4>
+        <div class="two fields">
+            <div class="field">
+                <label>First Name</label>
+                @Html.EditorFor(m => m.FirstName, new { htmlAttributes = new { placeholder = "First Name" } })
+            </div>
+            <div class="field">
+                <label>Last Name</label>
+                @Html.EditorFor(m => m.LastName, new { htmlAttributes = new { placeholder = "Last Name" } })
+            </div>
+        </div>
+        <div class="two fields">
+            <div class="field">
+                <label>Class Standing</label>
+                <select class="ui simple dropdown item form-control" id="ClassStanding" type="text" style="width:150px; height: 30px;" name="ClassStanding">
+                    <option type="text" value="Freshman">Freshman</option>
+                    <option type="text" value="Sophomore">Sophomore</option>
+                    <option type="text" value="Junior">Junior</option>
+                    <option type="text" value="Senior">Senior</option>
+                </select>
+            </div>
+            <div class="field">
+                <label>Graduation Year</label>
+                <select class="ui simple dropdown item form-control" id="ClassStanding" type="text" style="width:150px; height: 30px;" name="ClassStanding">
+                    @{int year = DateTime.Today.Year.ToString().AsInt() - 2;}
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-
-    <div class="form-group">
-        @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.EditorFor(m => m.FirstName, new { @class = "form-control" })
+                    @for (int i = 0; i < 7; i++)
+                    {
+                        <option type="number" value="@year">@year</option>
+                        year += 1;
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="three fields">
+            <div class="field">
+                <label>Email</label>
+                @Html.EditorFor(m => m.Email, new { @class = "form-control" })
+            </div>
+            <div class="field">
+                <label>Password</label>
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
+            <div class="field">
+                <label>Password Confirmation</label>
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            </div>
+        </div>
+        <button class="fluid ui button schedule">Register Now</button>       
+    }
+                <div class="four wide column"></div>
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.EditorFor(m => m.LastName, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ClassStanding, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.EditorFor(m => m.ClassStanding, new { @class = "form-control" })
-        </div>
-    </div>
-
-    <label>Graduation Year</label>
-    <div class="field form-group">
-        <select class="ui simple dropdown item form-control" id="GraduatingYear" type="number" style="width:150px; height: 30px;" name="GraduatingYear">
-            @{int year = DateTime.Today.Year.ToString().AsInt() - 2;}
-
-            @for (int i = 0; i < 7; i++)
-            {
-                <option type="number" value="@year">@year</option>
-                year += 1;
-            }
-        </select>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.EditorFor(m => m.Email, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
-}
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+</body>
