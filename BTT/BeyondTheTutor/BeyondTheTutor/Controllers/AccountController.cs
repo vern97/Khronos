@@ -90,7 +90,6 @@ namespace BeyondTheTutor.Controllers
                     var confirmedByEmail = await UserManager.IsEmailConfirmedAsync(user.Id);
                     if (user != null)
                     {
-                        var noob = roles.Contains("Student");
                         if (!confirmedByEmail && roles.Contains("Student"))
                         {
                             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
@@ -220,6 +219,8 @@ namespace BeyondTheTutor.Controllers
 
                     await db.SaveChangesAsync();
                     UserManager.AddToRole(user.Id, "Student");
+
+                    AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
 
                     return RedirectToAction("Index", "Home");
                 }

@@ -11,28 +11,26 @@
 </head>
 <body>
     <div class="ui inverted menu">
-        <div class="header item">
-            <a href="/Home/Index">Beyond the Tutor</a>
-        </div>
-
-        @if (Request.IsAuthenticated)
-        {
-            <div class="right menu">
-            using(Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
+        <a href="/Home/Index" class="item">Beyond the Tutor</a>
+        <div class="right menu">
+            @if (Request.IsAuthenticated)
             {
-                @Html.AntiForgeryToken()
-                @Html.ActionLink("Account Settings", "Index", "Manage", new { area = "" }, htmlAttributes: new { @class = "item", title = "Manage Account" })
-                <a href="javascript:document.getElementById('logoutForm').submit()" class="item">Sign out</a>
+                @Html.ActionLink("Account Settings", "Index", "Manage", new { area = "" }, htmlAttributes: new { @class = "item" })
+
+                using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
+                {
+
+                    @Html.AntiForgeryToken()
+                    <a href="javascript:document.getElementById('logoutForm').submit()" class="item">Sign out</a>
+                }
             }
-                </div>
-        }
-        else
-        {
-            <div class="right menu">
+            else
+            {
                 <a href="/Account/Login" class="item">Sign in</a>
                 <a href="/Account/Register" class="item">Register</a>
-            </div>
-        }
+            }
+        </div>
+
     </div>
 
     @Scripts.Render("~/bundles/jquery")
