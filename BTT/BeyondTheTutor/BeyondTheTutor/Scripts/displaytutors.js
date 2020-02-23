@@ -3,7 +3,7 @@
         type: 'GET',
         dataType: 'json',
         url: 'Home/GetTutors',
-        success: displayTutors1,
+        success: displayTutors,
         error: errorOnAjax
     });
 });
@@ -12,9 +12,9 @@ function errorOnAjax() {
     console.log('Error on AJAX return');
 }
 
-function displayTutors1(data) {
+function displayTutors(data) {
     $('#display_tutors').append(`
-        <div class="ui link cards" id="tutor_cards"></div>
+        <div class="ui cards" id="tutor_cards"></div>
     `)
     for (var i = 0; i < data.length; i++) {
         $('#tutor_cards').append(`
