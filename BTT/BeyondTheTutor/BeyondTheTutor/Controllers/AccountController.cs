@@ -183,7 +183,7 @@ namespace BeyondTheTutor.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-                    //string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account", model.FirstName);
+                    string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account", model.FirstName);
 
                     // Won't be shown to the user if we redirect to home
                     ViewBag.Message = "Once you've confirmed that " + model.Email + " is your email address, you can continue to your account.";
