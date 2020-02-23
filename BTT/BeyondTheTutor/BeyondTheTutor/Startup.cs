@@ -205,8 +205,8 @@ namespace BeyondTheTutor
                 {
                     var special_user = new BTTUser
                     {
-                        FirstName = "Tutor",
-                        LastName = "Account",
+                        FirstName = "Victoria",
+                        LastName = "Rhine",
                         ASPNetIdentityID = user.Id
                     };
 
@@ -243,8 +243,8 @@ namespace BeyondTheTutor
                 {
                     var special_user = new BTTUser
                     {
-                        FirstName = "Tutor2",
-                        LastName = "Account2",
+                        FirstName = "Michael",
+                        LastName = "Scott",
                         ASPNetIdentityID = tutor.Id
                     };
 
