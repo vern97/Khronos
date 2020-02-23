@@ -32,7 +32,7 @@
         {
             var myMessage = new SendGridMessage();
             myMessage.AddTo(message.Destination);
-            myMessage.SetFrom(new EmailAddress("OurEmail@gmail.com", "Beyond The Tutor"));
+            myMessage.SetFrom(new EmailAddress("Admin@BeyondTheTutor.com", "Beyond The Tutor"));
             myMessage.SetSubject(message.Subject);
             myMessage.AddContent(MimeType.Text, message.Body);
             myMessage.AddContent(MimeType.Html, message.Body);
