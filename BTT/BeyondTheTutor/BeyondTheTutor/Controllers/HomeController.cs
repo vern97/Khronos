@@ -40,5 +40,17 @@ namespace BeyondTheTutor.Controllers
 
             return Json(events, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetTutors()
+        {
+            var tutors = db.Tutors.Select(e => new
+            {
+                fName = e.BTTUser.FirstName,
+                lName = e.BTTUser.LastName,
+                gradYear = e.ClassOf
+            }).ToList();
+
+            return Json(tutors, JsonRequestBehavior.AllowGet);
+        }
     }
 }

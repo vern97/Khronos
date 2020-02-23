@@ -6,7 +6,7 @@ namespace BeyondTheTutor.DAL
     public partial class BeyondTheTutorContext : DbContext
     {
         public BeyondTheTutorContext()
-            : base("name=BTTContext_Azure")
+            : base("name=BeyondTheTutorContext")
         {
         }
 

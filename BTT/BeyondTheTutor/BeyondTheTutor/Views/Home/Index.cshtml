@@ -2,44 +2,51 @@
     ViewBag.Title = "Home Page";
 }
 
-@if(TempData["Message"] != null)
-{
-    <div class="ui icon message">
-        <i class="inbox icon"></i>
-        <div class="content">
-            <div class="header">
-                You have successfully created an account!
+
+
+<div class="ui container">
+    @if (TempData["Message"] != null)
+    {
+        <div class="ui icon message">
+            <i class="inbox icon"></i>
+            <div class="content">
+                <div class="header">
+                    You have successfully created an account!
+                </div>
+                <p>@TempData["Message"]</p>
+                <i>Make sure to check your <b>SPAM</b> folder for our email.</i>
+                <p>Thank you!</p>
             </div>
-            <p>@TempData["Message"]</p>
-            <i>Make sure to check your <b>SPAM</b> folder for our email.</i>
-            <p>Thank you!</p>
         </div>
+    }
+
+    <div class="ui two column centered grid">
+        <img src="../Content/images/BeyondtheTutor_Banner2.png" alt="Alternate Text" />
     </div>
- }
 
-
-<div class="ui icon message calendar-container">
-    <i class="notched circle loading icon"></i>
-    <div class="content">
-        <div class="header">
-            Beyond the Tutor
-        </div>
-        <p>Excuse our mess, we are under construction!</p>
-    </div>
-</div>
-
-<div class="ui two column centered padded grid">
-    <div class="column">
-        <div class="ui piled segment">
-            <div class="ui blue centered segment">
-                <div id="calendar"></div>
+    <div class="ui one column centered padded grid">
+        <div class="column">
+            <div class="ui piled segment">
+                <div class="ui red centered segment">
+                    <div id="calendar"></div>
+                </div>
             </div>
         </div>
     </div>
+
+    <div class="ui one column padded center aligned grid" id="tutors_container">
+        <div class="column">
+            <div class="ui huge header"><i class="graduation cape icon"></i> Meet Your Tutors </div>
+        </div>
+        <div id="display_tutors"></div>
+    </div>
 </div>
 
-    
+
+
+
 @section scripts
 {
-    <script src="~/Scripts/schedulecalendar.js"></script>    
+    <script src="~/Scripts/schedulecalendar.js"></script>
+    <script src="~/Scripts/displaytutors.js"></script>
 }
