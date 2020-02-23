@@ -64,6 +64,11 @@ textarea {
     background-color: rgb(167,169,172);
 }
 
-.calendar-container {
-    width: 60%;
+#tutors_container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#tutor_cards {
+    padding-top: 15px;
 }
