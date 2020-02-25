@@ -14,6 +14,11 @@ namespace SwimMeetTracker.Controllers
             return View();
         }
 
+        public ActionResult Testing()
+        {
+            return View();
+        }
+
         public ActionResult FAQ()
         {
             //if (User.Identity.IsAuthenticated)

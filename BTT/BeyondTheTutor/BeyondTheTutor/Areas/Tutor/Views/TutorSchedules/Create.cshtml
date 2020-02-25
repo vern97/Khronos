@@ -1,0 +1,40 @@
+﻿@model BeyondTheTutor.Models.TutorSchedule
+
+<body class="wou-silver-bg">
+    <div class="ui one column stackable page grid">
+        <div class="ui form attached fluid segment">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.Hidden("TutorID", (object)ViewBag.CurrentTutorID)
+            <div class="ui attached message schedule">
+                <div class="header">
+                    Welcome to tutor scheduling!
+                </div>
+                <p>Fill out the form below to add a new schedule</p>
+            </div>
+            <form>
+                <div class="three fields">
+                    <div class="field">
+                        <h4>Tutor Name &amp; Job</h4>
+                        @Html.TextBoxFor(model => model.Description, new { placeholder = "Your Name - Event", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="field">
+                        <h4>Start Date &amp; Time</h4>
+                        @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @type="datetime-local", @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="field">
+                        <h4>End Date &amp; Time</h4>
+                        @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @type="datetime-local", @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <button class="fluid ui button schedule">Submit New Schedule</button>
+            </form>
+        }
+        </div>
+    </div>
+</body>

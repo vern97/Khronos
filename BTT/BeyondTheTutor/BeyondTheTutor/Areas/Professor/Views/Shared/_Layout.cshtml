@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" type="text/css" href="~/Content/semantic.min.css">
+</head>
+<body>
+    <div class="ui inverted menu">
+        <a href="/Professor/Home/Index" class="item">Professor Portal</a>
+        <div class="right menu">
+            @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
+            {
+                @Html.AntiForgeryToken()
+                <a href="javascript:document.getElementById('logoutForm').submit()" class="item">Sign out</a>
+            }
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/semantic.min.js"></script>
+
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
