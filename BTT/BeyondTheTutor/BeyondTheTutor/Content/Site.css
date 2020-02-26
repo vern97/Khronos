@@ -46,6 +46,10 @@ textarea {
     width: 100%;
 }
 
+.ui.yellow.message.schedule {
+    width: 100%;
+}
+
 .fluid.ui.button.schedule {
     width: 100%;
     background-color: #db0a29;
