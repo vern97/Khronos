@@ -6,8 +6,11 @@
 <body class="wou-silver-bg">
     <div class="ui one column stackable page grid">
         <div class="ui one column stackable page grid">
-            <div class="ui yellow message schedule"><i class="close icon"></i>Select a date and time range when you would like a tutoring session. 
-            Then select an estimated duration for your session.</div>
+            <div class="ui yellow message schedule">
+                <i class="close icon"></i>Select a date and time range for your tutoring session.
+                Then select the estimated length for your session.<br />
+                Start Date & Time and End Date & Time indicates you are available at any time within that range.
+            </div>
         </div>
         <div class="ui form attached fluid segment">
             @using (Html.BeginForm())
@@ -36,7 +39,7 @@
                             @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
                         </div>
                         <div class="field">
-                            <h4>Estimated Duration</h4>
+                            <h4>Session Length</h4>
                             <div class="field">
                                 <select class="ui simple dropdown item" id="Length" name="Length">
                                     <option type="text" value="15 minutes">15 minutes</option>
@@ -60,3 +63,9 @@
         </div>
     </div>
 </body>
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+}
+

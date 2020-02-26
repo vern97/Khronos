@@ -10,7 +10,7 @@ namespace BeyondTheTutor.DAL
     {
         public BeyondTheTutorContext()
              : base("name=BTTContext_Azure")
-            //: base("name=BeyondTheTutorContext")
+             //: base("name=BeyondTheTutorContext")
         {
         }
 
