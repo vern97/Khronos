@@ -15,7 +15,6 @@ namespace BeyondTheTutor.DAL
         }
 
         public virtual DbSet<Admin> Admins { get; set; }
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<BTTUser> BTTUsers { get; set; }
         public virtual DbSet<Class> Classes { get; set; }
         public virtual DbSet<Professor> Professors { get; set; }
