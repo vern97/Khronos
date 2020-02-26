@@ -182,6 +182,7 @@
     <Compile Include="Areas\Professor\Controllers\HomeController.cs" />
     <Compile Include="Areas\Professor\ProfessorAreaRegistration.cs" />
     <Compile Include="Areas\Student\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Student\Controllers\TutoringApptsController.cs" />
     <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
     <Compile Include="Areas\Tutor\Controllers\HomeController.cs" />
     <Compile Include="Areas\Tutor\Controllers\TutorSchedulesController.cs" />
@@ -192,15 +193,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ViewModels\AccountViewModel.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\AspNetUser.cs" />
     <Compile Include="DAL\BeyondTheTutorContext.cs" />
     <Compile Include="Models\BTTUser.cs" />
+    <Compile Include="Models\Class.cs" />
     <Compile Include="Models\Professor.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\Tutor.cs" />
+    <Compile Include="Models\TutoringAppt.cs" />
     <Compile Include="Models\TutorSchedule.cs" />
+    <Compile Include="Models\ViewModels\AccountViewModel.cs" />
     <Compile Include="DAL\IdentityModels.cs" />
     <Compile Include="Models\ViewModels\ManageViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -211,7 +214,6 @@
     <Content Include="App_Data\AspUp.sql" />
     <Content Include="App_Data\down.sql" />
     <Content Include="App_Data\queries.sql" />
-    <Content Include="App_Data\seed.sql" />
     <Content Include="App_Data\up.sql" />
     <Content Include="Content\components\accordion.css" />
     <Content Include="Content\components\accordion.js" />
@@ -397,6 +399,12 @@
     <Content Include="Areas\Admin\Views\TutorSchedules\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\TutorSchedules\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\TutorSchedules\UpdateSchedule.cshtml" />
+    <Content Include="Areas\Student\Views\TutoringAppts\Create.cshtml" />
+    <Content Include="Areas\Student\Views\TutoringAppts\Delete.cshtml" />
+    <Content Include="Areas\Student\Views\TutoringAppts\Details.cshtml" />
+    <Content Include="Areas\Student\Views\TutoringAppts\Edit.cshtml" />
+    <Content Include="Areas\Student\Views\TutoringAppts\Index.cshtml" />
+    <Content Include="Areas\Student\Views\TutoringAppts\SessionSuccess.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\displaytutors.js" />
     <Content Include="Scripts\fullcalendar.js" />

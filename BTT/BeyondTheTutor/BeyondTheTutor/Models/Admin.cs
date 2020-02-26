@@ -8,6 +8,7 @@ namespace BeyondTheTutor.Models
 
     public partial class Admin
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
         public virtual BTTUser BTTUser { get; set; }

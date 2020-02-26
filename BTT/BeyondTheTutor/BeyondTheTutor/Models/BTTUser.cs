@@ -1,4 +1,4 @@
-﻿namespace BeyondTheTutor.Models
+namespace BeyondTheTutor.Models
 {
     using System;
     using System.Collections.Generic;
