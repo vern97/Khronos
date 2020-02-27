@@ -405,6 +405,10 @@
     <Content Include="Areas\Student\Views\TutoringAppts\Edit.cshtml" />
     <Content Include="Areas\Student\Views\TutoringAppts\Index.cshtml" />
     <Content Include="Areas\Student\Views\TutoringAppts\SessionSuccess.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Guide.cshtml" />
+    <Content Include="Areas\Professor\Views\Home\Guide.cshtml" />
+    <Content Include="Areas\Student\Views\Home\Guide.cshtml" />
+    <Content Include="Areas\Tutor\Views\Home\Guide.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\displaytutors.js" />
     <Content Include="Scripts\fullcalendar.js" />
@@ -551,6 +555,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\FAQ.cshtml" />
+    <Content Include="Views\Home\Privacy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

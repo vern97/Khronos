@@ -4,3 +4,6 @@
             .closest('.message')
             .transition('fade');
     });
+
+$('.ui.accordion')
+    .accordion();

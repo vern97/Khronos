@@ -11,12 +11,14 @@
     <div class="ui inverted menu">
         <a href="/Professor/Home/Index" class="item">Professor Portal</a>
         <div class="right menu">
+            <a href="/Professor/Home/Guide" class="item">User Guide</a>
             @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
             {
                 @Html.AntiForgeryToken()
                 <a href="javascript:document.getElementById('logoutForm').submit()" class="item">Sign out</a>
             }
         </div>
+
     </div>
 
     @Scripts.Render("~/bundles/jquery")
