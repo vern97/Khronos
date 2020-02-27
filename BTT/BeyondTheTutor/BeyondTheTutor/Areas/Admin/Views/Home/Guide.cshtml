@@ -1,1 +1,38 @@
-﻿Placeholder
+﻿<body class="wou-grey-bg">
+    <div class="ui grid FAQ">
+        <div class="three wide column"></div>
+        <div class="ten wide column">
+            <h1 class="ui centered header">Administrator Guide</h1>
+            <div class="ui styled fluid accordion FAQ">
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Welcome Message
+                </div>
+                <div class="content">
+                    <p>
+                        Beyond the Tutor welcomes you to the administrator portal! We provide several resources to create a
+                        pleasant experience during your time as a Computer Science Department administrator. Browse our guide
+                        to learn about features available to you.
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Tutoring Center Scheduling
+                </div>
+                <div class="content">
+                    <p>
+                        It's the responsibility of tutors to add current schedules and edit any longterm changes. 
+                        However there are times when a tutor may be unable to edit this information themselves. In such a situation
+                        you may access a list of all tutor schedules and <a href="/Admin/TutorSchedules/UpdateSchedule" target="_blank">edit or delete schedules</a> as needed. 
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="three wide column"></div>
+    </div>
+</body>
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+}
