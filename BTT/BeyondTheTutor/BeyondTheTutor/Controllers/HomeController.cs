@@ -27,6 +27,16 @@ namespace BeyondTheTutor.Controllers
                 return View();
         }
 
+        public ActionResult FAQ()
+        {
+            return View(); 
+        }
+
+        public  ActionResult Privacy()
+        {
+            return View();
+        }
+
         public ActionResult GetTutorSchedules()
         {
             var events = db.TutorSchedules.Select(e => new

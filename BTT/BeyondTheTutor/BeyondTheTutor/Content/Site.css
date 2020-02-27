@@ -57,7 +57,7 @@ textarea {
 }
 
 .campus-bg {
-    background: url('../images/Campus.jpg');
+    background: url('../Content/images/Campus.jpg');
     background-size: cover;
 }
 .wou-grey-bg {
@@ -76,3 +76,14 @@ textarea {
 #tutor_cards {
     padding-top: 15px;
 }
+
+.ui.styled.fluid.accordion.FAQ {
+    border-top: solid;
+    border-color: #db0a29;
+    border-width: 3px;
+}
+
+.ui.grid.FAQ {
+    padding-bottom: 30px;
+}
+

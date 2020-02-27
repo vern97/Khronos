@@ -15,5 +15,9 @@ namespace BeyondTheTutor.Areas.Professor.Controllers
         {
             return View();
         }
+        public ActionResult Guide()
+        {
+            return View();
+        }
     }
 }

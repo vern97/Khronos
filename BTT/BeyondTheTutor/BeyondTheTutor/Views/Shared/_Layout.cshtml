@@ -12,6 +12,7 @@
     <div class="ui inverted menu">
         <a href="/Home/Index" class="item">Beyond the Tutor</a>
         <div class="right menu">
+            <a href="/Home/FAQ" class="item">FAQ</a>
             @if (Request.IsAuthenticated)
             {
                 @Html.ActionLink("Account Settings", "Index", "Manage", new { area = "" }, htmlAttributes: new { @class = "item" })
