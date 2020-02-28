@@ -60,6 +60,12 @@ textarea {
     background: url('../Content/images/Campus.jpg');
     background-size: cover;
 }
+
+.chalkboard-bg {
+    background: url('../Content/images/Chalkboard.jpg');
+    background-size: cover;
+}
+
 .wou-grey-bg {
     background-color: rgb(196,198,200);
 }

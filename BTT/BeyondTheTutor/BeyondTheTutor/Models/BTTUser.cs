@@ -8,6 +8,12 @@ namespace BeyondTheTutor.Models
 
     public partial class BTTUser
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public BTTUser()
+        {
+            StudentResources = new HashSet<StudentResource>();
+        }
+
         public int ID { get; set; }
 
         [Required]
@@ -29,5 +35,8 @@ namespace BeyondTheTutor.Models
         public virtual Student Student { get; set; }
 
         public virtual Tutor Tutor { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StudentResource> StudentResources { get; set; }
     }
 }

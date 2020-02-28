@@ -18,6 +18,7 @@ namespace BeyondTheTutor.DAL
         public virtual DbSet<BTTUser> BTTUsers { get; set; }
         public virtual DbSet<Class> Classes { get; set; }
         public virtual DbSet<Professor> Professors { get; set; }
+        public virtual DbSet<StudentResource> StudentResources { get; set; }
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<TutoringAppt> TutoringAppts { get; set; }
         public virtual DbSet<Tutor> Tutors { get; set; }
@@ -40,6 +41,12 @@ namespace BeyondTheTutor.DAL
             modelBuilder.Entity<BTTUser>()
                 .HasOptional(e => e.Tutor)
                 .WithRequired(e => e.BTTUser);
+
+            modelBuilder.Entity<BTTUser>()
+                .HasMany(e => e.StudentResources)
+                .WithOptional(e => e.BTTUser)
+                .HasForeignKey(e => e.UserID)
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<TutoringAppt>()
                 .Property(e => e.Note)
