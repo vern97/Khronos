@@ -12,15 +12,15 @@
         @Html.ActionLink("Beyond the Tutor", "Index", "Home", new { area = "" }, htmlAttributes: new { @class = "item" })
         <a href="/Tutor/Home/Index" class="item">Tutor Portal</a>
         <div class="right menu">
-            <a href="/Tutor/Home/Guide" class="item">User Guide</a>
             <div class="ui simple dropdown item">
                 Scheduling
                 <i class="dropdown icon"></i>
                 <div class="menu">
-                    <a href="/Tutor/TutorSchedules/Create" class="item">Add Tutoring Schedule</a>
+                    <a href="/Tutor/TutorSchedules/Create" class="item">Add Tutoring Schedules</a>
                     <a href="/Tutor/TutorSchedules/UpdateSchedule" class="item">Edit Tutoring Schedules</a>
                 </div>
             </div>
+            <a href="/Tutor/Home/Guide" class="item">User Guide</a>
             @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
             {
                 @Html.AntiForgeryToken()

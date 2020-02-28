@@ -12,7 +12,6 @@
         @Html.ActionLink("Beyond the Tutor", "Index", "Home", new { area = "" }, htmlAttributes: new { @class = "item" })
         <a href="/Student/Home/Index" class="item">Student Portal</a>
         <div class="right menu">
-            <a href="/Student/Home/Guide" class="item">User Guide</a>
             <div class="ui simple dropdown item">
                 Tutoring Sessions
                 <i class="dropdown icon"></i>
@@ -20,6 +19,8 @@
                     <a href="/Student/TutoringAppts/Create" class="item">Request Session</a>
                 </div>
             </div>
+            <a href="/Student/StudentResources/Index" class="item">Resources</a>
+            <a href="/Student/Home/Guide" class="item">User Guide</a>
             @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
             {
                 @Html.AntiForgeryToken()
