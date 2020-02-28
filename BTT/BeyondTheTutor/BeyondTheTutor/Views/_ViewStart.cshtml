@@ -1,3 +1,23 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@{ 
+    if (this.User.IsInRole("Admin"))
+    {
+        Layout = "../Areas/Admin/Views/Shared/_Layout.cshtml";
+    } else if (this.User.IsInRole("Professor"))
+    {
+        Layout = "../Areas/Professor/Views/Shared/_Layout.cshtml";
+    } else if (this.User.IsInRole("Student"))
+    {
+        Layout = "../Areas/Student/Views/Shared/_Layout.cshtml";
+    } else if (this.User.IsInRole("Tutor"))
+    {
+        Layout = "../Areas/Tutor/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "./Shared/_Layout.cshtml";
+    }
+}
