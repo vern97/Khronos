@@ -56,6 +56,12 @@ textarea {
     color: #FFFFFF;
 }
 
+.fluid.ui.button.login {
+    width: 100%;
+    background-color: rgb(167,169,172);
+    color: #FFFFFF;
+}
+
 .campus-bg {
     background: url('../Content/images/Campus.jpg');
     background-size: cover;
@@ -97,6 +103,12 @@ textarea {
 }
 
 .ui.striped.selectable.celled.table.resources {
+    border-top: solid;
+    border-top-width: 3px;
+    border-top-color: #db0a29;
+}
+
+.ui.segment.login {
     border-top: solid;
     border-top-width: 3px;
     border-top-color: #db0a29;
