@@ -46,6 +46,10 @@ textarea {
     width: 100%;
 }
 
+.ui.yellow.message.schedule {
+    width: 100%;
+}
+
 .fluid.ui.button.schedule {
     width: 100%;
     background-color: #db0a29;
@@ -53,9 +57,15 @@ textarea {
 }
 
 .campus-bg {
-    background: url('../images/Campus.jpg');
+    background: url('../Content/images/Campus.jpg');
     background-size: cover;
 }
+
+.chalkboard-bg {
+    background: url('../Content/images/Chalkboard.jpg');
+    background-size: cover;
+}
+
 .wou-grey-bg {
     background-color: rgb(196,198,200);
 }
@@ -71,4 +81,18 @@ textarea {
 
 #tutor_cards {
     padding-top: 15px;
+}
+
+.ui.styled.fluid.accordion.FAQ {
+    border-top: solid;
+    border-color: #db0a29;
+    border-width: 3px;
+}
+
+.ui.grid.FAQ {
+    padding-bottom: 30px;
+}
+
+.ui.grid.privacy {
+    padding-bottom: 30px;
 }

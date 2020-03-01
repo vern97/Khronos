@@ -1,0 +1,36 @@
+﻿@model IEnumerable<BeyondTheTutor.Models.TutoringAppt>
+
+<body class="wou-silver-bg">
+    <div class="ui one column stackable page grid">
+        <div class="ui green message schedule"><i class="close icon"></i>Tutoring Session Successfully Requested!</div>
+        <table class="ui striped table ui selectable celled table table-schedule">
+            <thead>
+                <tr>
+                    <th><h4>Class Name</h4></th>
+                    <th><h4>Start Date &amp; Time</h4></th>
+                    <th><h4>End Date &amp; Time</h4></th>
+                    <th><h4>Session Length</h4></th>
+                    <th><h4>Current Status</h4></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Class.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.StartTime)</td>
+                        <td>@Html.DisplayFor(modelItem => item.EndTime)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Length)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a href="/Student/TutoringAppts/Create" button class="fluid ui button schedule">Request Another Tutoring Session</a>
+    </div>
+</body>
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+}

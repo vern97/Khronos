@@ -23,6 +23,7 @@
     {
         public ApplicationDbContext()
             : base("BTTContext_Azure", throwIfV1Schema: false)
+            //: base("BeyondTheTutorContext", throwIfV1Schema: false)
         {
         }
 

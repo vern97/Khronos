@@ -13,6 +13,10 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
         {
             return View();
         }
+        public ActionResult Guide()
+        {
+            return View();
+        }
 
     }
 }

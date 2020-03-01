@@ -10,8 +10,9 @@
 </head>
 <body>
     <div class="ui inverted menu">
-        <a href="/Home/Index" class="item">Beyond the Tutor</a>
+        @Html.ActionLink("Beyond the Tutor", "Index", "Home", new { area = "" }, htmlAttributes: new { @class = "item" })
         <div class="right menu">
+            @Html.ActionLink("FAQ", "FAQ", "Home", new { area = "" }, htmlAttributes: new { @class = "item" })
             @if (Request.IsAuthenticated)
             {
                 @Html.ActionLink("Account Settings", "Index", "Manage", new { area = "" }, htmlAttributes: new { @class = "item" })
@@ -25,11 +26,10 @@
             }
             else
             {
-                <a href="/Account/Login" class="item">Sign in</a>
-                <a href="/Account/Register" class="item">Register</a>
+                @Html.ActionLink("Sign In", "Login", "Account", new { area = "" }, htmlAttributes: new { @class = "item" })
+                @Html.ActionLink("Register", "Register", "Account", new { area = "" }, htmlAttributes: new { @class = "item" })
             }
         </div>
-
     </div>
 
     @Scripts.Render("~/bundles/jquery")

@@ -15,16 +15,17 @@ namespace BeyondTheTutor.Controllers
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
         public ActionResult Index()
         {
-            if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-                return RedirectToAction("Index", "Admin");
-            else if (User.Identity.IsAuthenticated && User.IsInRole("Student"))
-                return RedirectToAction("Index", "Student");
-            else if (User.Identity.IsAuthenticated && User.IsInRole("Tutor"))
-                return RedirectToAction("Index", "Tutor");
-            else if (User.Identity.IsAuthenticated && User.IsInRole("Professor"))
-                return RedirectToAction("Index", "Professor");
-            else
-                return View();
+            return View();
+        }
+
+        public ActionResult FAQ()
+        {
+            return View(); 
+        }
+
+        public  ActionResult Privacy()
+        {
+            return View();
         }
 
         public ActionResult GetTutorSchedules()
