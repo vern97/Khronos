@@ -61,9 +61,8 @@ textarea {
     background-size: cover;
 }
 
-.chalkboard-bg {
-    background: url('../Content/images/Chalkboard.jpg');
-    background-size: cover;
+.tutor-bg {
+    background-image: linear-gradient(#403B4A, #E7E9BB);
 }
 
 .wou-grey-bg {
@@ -85,8 +84,8 @@ textarea {
 
 .ui.styled.fluid.accordion.FAQ {
     border-top: solid;
-    border-color: #db0a29;
-    border-width: 3px;
+    border-top-width: 3px;
+    border-top-color: #db0a29;
 }
 
 .ui.grid.FAQ {
@@ -95,4 +94,10 @@ textarea {
 
 .ui.grid.privacy {
     padding-bottom: 30px;
+}
+
+.ui.striped.selectable.celled.table.resources {
+    border-top: solid;
+    border-top-width: 3px;
+    border-top-color: #db0a29;
 }

@@ -1,51 +1,29 @@
 ﻿@model IEnumerable<BeyondTheTutor.Models.StudentResource>
 
-@{
-    ViewBag.Title = "Index";
-}
+<body class="wou-silver-bg">
+    <div class="ui grid">
+        <div class="three wide column"></div>
+        <div class="ten wide column">
+            <table class="ui striped selectable celled table resources">
+                <thead>
+                    <tr>
+                        <th><h1 class="ui centered header">Topic</h1></th>
+                        <th><h1 class="ui centered header">Resource List</h1></th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tbody>
+                        <tr>
+                            <td><b>@Html.DisplayFor(modelItem => item.Topic)</b></td>
+                            <td><a href="@Html.DisplayFor(modelItem => item.URL)" target="_blank">@Html.DisplayFor(modelItem => item.DisplayText)</a></td>
+                        </tr>
+                    </tbody>
+                }
+            </table>
+        </div>
+        <div class="three wide column"></div>
+    </div>
+</body>
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.BTTUser.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Topic)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.URL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DisplayText)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.BTTUser.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Topic)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.URL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DisplayText)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
-
-</table>
