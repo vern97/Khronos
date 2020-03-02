@@ -26,7 +26,7 @@
                             <div class="two fields">
                                 <div class="field">
                                     <label>Class Standing</label>
-                                    <select class="ui simple dropdown item" id="ClassStanding" name="ClassStanding">
+                                    <select class="ui simple dropdown item" id="studentVM_ClassStanding" name="studentVM.ClassStanding">
                                         <option type="text" value="Freshman">Freshman</option>
                                         <option type="text" value="Sophomore">Sophomore</option>
                                         <option type="text" value="Junior">Junior</option>
@@ -72,7 +72,7 @@
                         {
                             @Html.AntiForgeryToken()
                             @Html.ValidationSummary("", new { @class = "text-danger" })
-                            <h4 class="ui dividing header">STUDENT ACCOUNT REGISTRATION</h4>
+                            <h4 class="ui dividing header">TUTOR ACCOUNT REGISTRATION</h4>
                             <div class="two fields">
                                 <div class="field form-group">
                                     <label>First Name</label>
@@ -161,6 +161,5 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </body>
