@@ -1,66 +1,130 @@
-﻿@model BeyondTheTutor.Models.RegisterViewModel
+﻿@using BeyondTheTutor.Models
+@model RegistrationTypes
 
 <body class="wou-grey-bg">
-    <div class="ui grid registration">
-        <div class="four wide column"></div>
-            <div class="eight wide column">
-                <div class="ui form attached fluid segment ui equal width form">
-    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-    {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary("", new { @class = "text-danger" })
-        <h4 class="ui dividing header">Registration</h4>
-        <div class="two fields">
-            <div class="field">
-                <label>First Name</label>
-                @Html.EditorFor(m => m.FirstName, new { htmlAttributes = new { placeholder = "First Name" } })
+    <div class="ui three column divided grid">
+        <div class="row">
+            <div class="column"><!--student registraion-->
+                <div class="ui grid registration">
+                    <div class="ui form attached fluid segment ui equal width form">
+                        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary("", new { @class = "text-danger" })
+                            <h4 class="ui dividing header">STUDENT ACCOUNT REGISTRATION</h4>
+                            <div class="two fields">
+                                <div class="field">
+                                    <label>First Name</label>
+                                    @Html.EditorFor(m => m.studentVM.FirstName, new { htmlAttributes = new { placeholder = "First Name" } })
+                                </div>
+                                <div class="field">
+                                    <label>Last Name</label>
+                                    @Html.EditorFor(m => m.studentVM.LastName, new { htmlAttributes = new { placeholder = "Last Name" } })
+                                </div>
+                            </div>
+                            <div class="two fields">
+                                <div class="field">
+                                    <label>Class Standing</label>
+                                    <select class="ui simple dropdown item" id="ClassStanding" name="ClassStanding">
+                                        <option type="text" value="Freshman">Freshman</option>
+                                        <option type="text" value="Sophomore">Sophomore</option>
+                                        <option type="text" value="Junior">Junior</option>
+                                        <option type="text" value="Senior">Senior</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label>Graduation Year</label>
+                                    <select class="ui simple dropdown item" data-val-required="The Class of field is required." id="studentVM_GraduatingYear" name="studentVM.GraduatingYear">
+                                        @{int year = DateTime.Today.Year.ToString().AsInt() - 1;}
+                                        @for (int i = 0; i < 5; i++)
+                                        {
+                                            <option type="number" value="@year">@year</option>
+                                            year += 1;
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="three fields">
+                                <div class="field">
+                                    <label>Email</label>
+                                    @Html.EditorFor(m => m.studentVM.Email, new { @class = "form-control" })
+                                </div>
+                                <div class="field">
+                                    <label>Password</label>
+                                    @Html.PasswordFor(m => m.studentVM.Password, new { @class = "form-control" })
+                                </div>
+                                <div class="field">
+                                    <label>Password Confirmation</label>
+                                    @Html.PasswordFor(m => m.studentVM.ConfirmPassword, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <button class="fluid ui button schedule">Register Now</button>
+                        }
+                    </div>
+                </div>
             </div>
-            <div class="field">
-                <label>Last Name</label>
-                @Html.EditorFor(m => m.LastName, new { htmlAttributes = new { placeholder = "Last Name" } })
-            </div>
-        </div>
-        <div class="two fields">
-            <div class="field">
-                <label>Class Standing</label>
-                <select class="ui simple dropdown item" id="ClassStanding" name="ClassStanding">
-                    <option type="text" value="Freshman">Freshman</option>
-                    <option type="text" value="Sophomore">Sophomore</option>
-                    <option type="text" value="Junior">Junior</option>
-                    <option type="text" value="Senior">Senior</option>
-                </select>
-            </div>
-            <div class="field">
-                <label>Graduation Year</label>
-                <select class="ui simple dropdown item" id="ClassStanding" name="ClassStanding">
-                    @{int year = DateTime.Today.Year.ToString().AsInt();}
 
-                    @for (int i = 0; i < 7; i++)
-                    {
-                        <option type="number" value="@year">@year</option>
-                        year += 1;
-                    }
-                </select>
+            <div class="column">
+                <div class="ui grid registration">
+                    <div class="ui form attached fluid segment ui equal width form">
+                        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary("", new { @class = "text-danger" })
+                            <h4 class="ui dividing header">STUDENT ACCOUNT REGISTRATION</h4>
+                            <div class="two fields">
+                                <div class="field form-group">
+                                    <label>First Name</label>
+                                    @Html.EditorFor(m => m.tutorVM.FirstName, new { htmlAttributes = new { placeholder = "First Name" } })
+                                </div>
+                                <div class="field form-group">
+                                    <label>Last Name</label>
+                                    @Html.EditorFor(m => m.tutorVM.LastName, new { htmlAttributes = new { placeholder = "Last Name" } })
+                                </div>
+                            </div>
+                            <div class="two fields">
+                                <div class="field form-group">
+                                    <label>VNumber</label>
+                                    <div class="form-group">
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(m => m.tutorVM.VNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field form-group">
+                                    <label>Graduation Year</label>
+                                    <select class="ui simple dropdown item" data-val-required="The Class of field is required." id="tutorVM_ClassOf" name="tutorVM.ClassOf">
+                                        @{int year = DateTime.Today.Year.ToString().AsInt() - 1;}
+                                        @for (int i = 0; i < 5; i++)
+                                        {
+                                            <option type="number" value="@year">@year</option>
+                                            year += 1;
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="three fields">
+                                <div class="field form-group">
+                                    <label>Email</label>
+                                    @Html.EditorFor(m => m.tutorVM.Email, new { @class = "form-control" })
+                                </div>
+                                <div class="field form-group">
+                                    <label>Password</label>
+                                    @Html.PasswordFor(m => m.tutorVM.Password, new { @class = "form-control" })
+                                </div>
+                                <div class="field form-group">
+                                    <label>Password Confirmation</label>
+                                    @Html.PasswordFor(m => m.tutorVM.ConfirmPassword, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <button class="fluid ui button schedule">Register Now</button>
+                        }
+                    </div>
+                </div>  
             </div>
-        </div>
-        <div class="three fields">
-            <div class="field">
-                <label>Email</label>
-                @Html.EditorFor(m => m.Email, new { @class = "form-control" })
+                    <div class="column">
+                        <p>tree</p>
+                    </div>
+                </div>
             </div>
-            <div class="field">
-                <label>Password</label>
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-            </div>
-            <div class="field">
-                <label>Password Confirmation</label>
-                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-            </div>
-        </div>
-        <button class="fluid ui button schedule">Register Now</button>       
-    }
-                <div class="four wide column"></div>
-            </div>
-        </div>
-    </div>
 </body>

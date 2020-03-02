@@ -171,22 +171,21 @@ namespace BeyondTheTutor.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegistrationTypes model)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && model.studentVM != null)
             {
-                
                 //var user = new ApplicationUser { UserName = model.FirstName + " " + model.LastName, Email = model.Email };
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var user = new ApplicationUser { UserName = model.studentVM.Email, Email = model.studentVM.Email };
+                var result = await UserManager.CreateAsync(user, model.studentVM.Password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-                    string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account", model.FirstName);
+                    string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account", model.studentVM.FirstName);
 
                     // Won't be shown to the user if we redirect to home
-                    ViewBag.Message = "Once you've confirmed that " + model.Email + " is your email address, you can continue to your account.";
+                    ViewBag.Message = "Once you've confirmed that " + model.studentVM.Email + " is your email address, you can continue to your account.";
 
                     TempData["Message"] = ViewBag.Message;
 
@@ -199,15 +198,15 @@ namespace BeyondTheTutor.Controllers
 
                     var special_user = new BTTUser
                     {
-                        FirstName = model.FirstName,
-                        LastName = model.LastName,
+                        FirstName = model.studentVM.FirstName,
+                        LastName = model.studentVM.LastName,
                         ASPNetIdentityID = user.Id                    
                     };
 
                     var sub_user = new Student
                     {
-                        ClassStanding = model.ClassStanding,
-                        GraduatingYear = model.GraduatingYear
+                        ClassStanding = model.studentVM.ClassStanding,
+                        GraduatingYear = model.studentVM.GraduatingYear
                     };
 
                     sub_user.BTTUser = special_user;
