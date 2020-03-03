@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -24,7 +25,7 @@ namespace BeyondTheTutor.Areas.Student.Controllers
         {
             var userID = User.Identity.GetUserId();
             var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
-            var sessionList = db.TutoringAppts.Where(m => m.StudentID.Equals(currentUserID)).ToList();
+            var sessionList = db.TutoringAppts.Where(m => m.StudentID.Equals(currentUserID)).OrderBy(m => m.StartTime).ToList();
 
             return View(sessionList);
         }
@@ -57,8 +58,15 @@ namespace BeyondTheTutor.Areas.Student.Controllers
         // POST: Student/TutoringAppts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,StartTime,EndTime,TypeOfMeeting,ClassID,Length,Status,Note,StudentID,TutorID")] TutoringAppt tutoringAppt)
+        public ActionResult Create([Bind(Include = "ID,StartTime,EndTime,TypeOfMeeting,ClassID,Length,Status,Note,StudentID,TutorID")] TutoringAppt tutoringAppt, DateTime Date)
         {
+            var date = Date.ToString("yyyy-MM-dd");
+            var startTime = tutoringAppt.StartTime.ToString("HH:mm:ss tt");
+            var endTime = tutoringAppt.EndTime.ToString("HH:mm:ss tt");
+
+            tutoringAppt.StartTime = Convert.ToDateTime(date + " " + startTime);
+            tutoringAppt.EndTime = Convert.ToDateTime(date + " " + endTime); 
+
             if (ModelState.IsValid)
             {
                 db.TutoringAppts.Add(tutoringAppt);

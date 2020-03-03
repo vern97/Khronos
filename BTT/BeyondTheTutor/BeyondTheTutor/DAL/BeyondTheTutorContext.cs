@@ -57,5 +57,6 @@ namespace BeyondTheTutor.DAL
                 .WithOptional(e => e.Tutor)
                 .WillCascadeOnDelete();
         }
+
     }
 }
