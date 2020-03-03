@@ -1,4 +1,4 @@
-﻿DROP TABLE StudentResources;
+﻿DROP TABLE dbo.StudentResources;
 DROP TABLE dbo.TutoringAppts;
 DROP TABLE dbo.Classes;
 DROP TABLE dbo.TutorSchedule;
