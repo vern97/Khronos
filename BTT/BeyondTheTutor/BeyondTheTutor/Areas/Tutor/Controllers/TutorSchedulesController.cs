@@ -18,7 +18,7 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
         {
             var userID = User.Identity.GetUserId();
             var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
-            var scheduleList = db.TutorSchedules.Where(m => m.TutorID.Equals(currentUserID)).ToList();
+            var scheduleList = db.TutorSchedules.Where(m => m.TutorID.Equals(currentUserID)).OrderBy(m => m.StartTime).ToList();
 
             return View(scheduleList);
         }
@@ -27,7 +27,7 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
         {
             var userID = User.Identity.GetUserId();
             var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
-            var scheduleList = db.TutorSchedules.Where(m => m.TutorID.Equals(currentUserID)).ToList();
+            var scheduleList = db.TutorSchedules.Where(m => m.TutorID.Equals(currentUserID)).OrderBy(m => m.StartTime).ToList();
 
             return View(scheduleList);
         }

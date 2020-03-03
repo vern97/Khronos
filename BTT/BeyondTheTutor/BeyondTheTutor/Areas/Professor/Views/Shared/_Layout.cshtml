@@ -12,6 +12,14 @@
         @Html.ActionLink("Beyond the Tutor", "Index", "Home", new { area = "" }, htmlAttributes: new { @class = "item" })
         <a href="/Professor/Home/Index" class="item">Professor Portal</a>
         <div class="right menu">
+            <div class="ui simple dropdown item">
+                Resources
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <a href="/StudentResources/Index" class="item">View</a>
+                    <a href="/StudentResources/Manage" class="item">Manage</a>
+                </div>
+            </div>
             <a href="/Professor/Home/Guide" class="item">User Guide</a>
             @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
             {

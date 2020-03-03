@@ -113,3 +113,7 @@ textarea {
     border-top-width: 3px;
     border-top-color: #db0a29;
 }
+
+.ui.one.column.stackable.page.grid.schedule {
+    padding-top: 10px;
+}
