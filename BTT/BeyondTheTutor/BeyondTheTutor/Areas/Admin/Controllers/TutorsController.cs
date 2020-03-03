@@ -10,8 +10,8 @@
     using System.Web;
     using System.Web.Mvc;
     using BeyondTheTutor.DAL;
-    using BeyondTheTutor.Areas.Admin.Models;
     using BeyondTheTutor.Models;
+    using BeyondTheTutor.Models.ViewModels;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -30,14 +30,14 @@
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
-            List<CustomTutor> tutorsOut = new List<CustomTutor>();
+            List<CustomTutorViewModel> tutorsOut = new List<CustomTutorViewModel>();
 
             foreach (var i in tutorsIn)
             {
                 var account = await UserManager.FindByIdAsync(i.BTTUser.ASPNetIdentityID);
                 var accountRoles = await UserManager.GetRolesAsync(account.Id);
 
-                CustomTutor t = new CustomTutor
+                CustomTutorViewModel t = new CustomTutorViewModel
                 {
                     ID = i.ID,
                     FirstName = i.BTTUser.FirstName,
