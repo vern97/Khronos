@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace BeyondTheTutor.Models
@@ -71,25 +70,6 @@ namespace BeyondTheTutor.Models
         public string Email { get; set; }
 
         [Required]
-        [Display(Name = "First Name")]
-        [StringLength(50, MinimumLength = 2, ErrorMessage = "First name must have at least 2 characters")]
-        public string FirstName { get; set; }
-
-        [Required]
-        [Display(Name = "Last Name")]
-        [StringLength(50, MinimumLength = 2, ErrorMessage = "Last name must have at least 2 characters")]
-        public string LastName { get; set; }
-
-        [Required]
-        [Display(Name = "Class of")]
-        public Int16 GraduatingYear { get; set; }
-
-        [Required]
-        [Display(Name = "Class Standing")]
-        [StringLength(10, MinimumLength = 4, ErrorMessage = "Please make sure you entered your class correctly.")]
-        public string ClassStanding { get; set; }
-
-        [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
@@ -128,12 +108,5 @@ namespace BeyondTheTutor.Models
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
-    }
-
-    // For passing simple message data to the view
-    public enum AccountMessageId
-    {
-        EmailSentSuccess,
-        EmailConfirmationNeeded
     }
 }
