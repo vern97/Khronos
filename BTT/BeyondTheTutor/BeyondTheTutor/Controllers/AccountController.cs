@@ -58,6 +58,8 @@ namespace BeyondTheTutor.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
+
+
             return View();
         }
 
@@ -91,12 +93,14 @@ namespace BeyondTheTutor.Controllers
 
                     var confirmedByEmail = await UserManager.IsEmailConfirmedAsync(user.Id);
                     var confirmedByAdmin = false;
+                    var userID = UserManager.FindByName(model.Email).Id;
 
-                    if (!(roles.Contains("Student") || roles.Contains("Admin")))
-                    {
-                        //var t = db.BTTUsers.Select(m => m.ASPNetIdentityID = user.Id.ToString()).FirstOrDefault());
+                    var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
 
-                    }
+                    if (roles.Contains("Tutor"))
+                        confirmedByAdmin = db.Tutors.Find(currentUserID).AdminApproved;
+                     else if( roles.Contains("Professor"))
+                        confirmedByAdmin = db.Professors.Find(currentUserID).AdminApproved;
 
 
                     if (user != null)
@@ -107,7 +111,7 @@ namespace BeyondTheTutor.Controllers
                             ViewBag.error = "You must have a confirmed email to log on.";
                             return View();
                         }
-                        else if ((!roles.Contains("Admin") && !roles.Contains("Student") && !confirmedByEmail || !confirmedByAdmin) 
+                        else if (!(roles.Contains("Admin") || roles.Contains("Student")) && (!confirmedByEmail || !confirmedByAdmin)) 
                         {
                             ViewBag.error = "You must confirm your email and/or get special permission by emailing: Admin@BeyondTheTutor.com";
                             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
