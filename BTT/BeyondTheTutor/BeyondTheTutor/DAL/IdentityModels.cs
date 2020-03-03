@@ -22,8 +22,8 @@
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            //: base("BTTContext_Azure", throwIfV1Schema: false)
-            : base("BeyondTheTutorContext", throwIfV1Schema: false)
+            : base("BTTContext_Azure", throwIfV1Schema: false)
+            //: base("BeyondTheTutorContext", throwIfV1Schema: false)
         {
         }
 
