@@ -17,14 +17,14 @@
                 Scheduling
                 <i class="dropdown icon"></i>
                 <div class="menu">
-                    <a href="/Admin/TutorSchedules/UpdateSchedule" class="item">Edit Tutor Schedules</a>
+                    <a href="/Admin/TutorSchedules/UpdateSchedule" class="item">Manage</a>
                 </div>
-                @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <a href="javascript:document.getElementById('logoutForm').submit()" class="item">Sign out</a>
-                }
             </div>
+            @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
+            {
+                @Html.AntiForgeryToken()
+                <a href="javascript:document.getElementById('logoutForm').submit()" class="item">Sign out</a>
+            }
         </div>
     </div>
 

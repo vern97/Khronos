@@ -566,6 +566,7 @@
     <Content Include="Views\StudentResources\Details.cshtml" />
     <Content Include="Views\StudentResources\Edit.cshtml" />
     <Content Include="Views\StudentResources\Index.cshtml" />
+    <Content Include="Views\StudentResources\Manage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

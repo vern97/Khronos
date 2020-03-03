@@ -19,6 +19,11 @@ namespace BeyondTheTutor.Controllers
             return View(studentResources.ToList());
         }
 
+        public ActionResult Manage()
+        {
+            return View();
+        }
+
         // GET: StudentResources/Details/5
         public ActionResult Details(int? id)
         {

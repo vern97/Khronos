@@ -14,7 +14,7 @@ namespace BeyondTheTutor.Areas.Admin.Controllers
 
         public ActionResult UpdateSchedule()
         {
-            var tutorSchedules = db.TutorSchedules.Include(t => t.Tutor);
+            var tutorSchedules = db.TutorSchedules.Include(t => t.Tutor).OrderBy(t => t.StartTime);
             return View(tutorSchedules.ToList());
         }
 
