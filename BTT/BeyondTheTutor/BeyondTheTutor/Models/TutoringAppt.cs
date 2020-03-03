@@ -10,8 +10,10 @@ namespace BeyondTheTutor.Models
     {
         public int ID { get; set; }
 
+        [Required]
         public DateTime StartTime { get; set; }
 
+        [Required]
         public DateTime EndTime { get; set; }
 
         [Required]

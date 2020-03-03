@@ -9,7 +9,7 @@
             <div class="ui yellow message schedule">
                 <i class="close icon"></i>Select a date and time range for your tutoring session.
                 Then select the estimated length for your session.<br />
-                Start Date & Time and End Date & Time indicates you are available at any time within that range.
+                Start Range & End Range indicates you are available at any time within that range.
             </div>
         </div>
         <div class="ui form attached fluid segment">
@@ -27,33 +27,84 @@
                     <p>Fill out the form below to request a tutoring session.</p>
                 </div>
                 <form>
-                    <div class="four fields">
+                    <div class="five fields">
                         <div class="field">
-                            <h4>Start Date &amp; Time</h4>
-                            @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @type = "datetime-local", @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
+                            <h4>Date</h4>
+                            @Html.Editor("Date", null, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
                         </div>
                         <div class="field">
-                            <h4>End Date &amp; Time</h4>
-                            @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @type = "datetime-local", @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
+                            <h4>Start Range</h4>
+                            <div class="field">
+                                @Html.DropDownListFor(m => m.StartTime, new SelectListItem[] {
+                                    new SelectListItem() {Text = "9:00 AM", Value="9:00 AM"},
+                                    new SelectListItem() {Text = "9:30 AM", Value="9:30 AM"},
+                                    new SelectListItem() {Text = "10:00 AM", Value="10:00 AM"},
+                                    new SelectListItem() {Text = "10:30 AM", Value="10:30 AM"},
+                                    new SelectListItem() {Text = "11:00 AM", Value="11:00 AM"},
+                                    new SelectListItem() {Text = "11:30 AM", Value="11:30 AM"},
+                                    new SelectListItem() {Text = "12:00 PM", Value="12:00 PM"},
+                                    new SelectListItem() {Text = "12:30 PM", Value="12:30 PM"},
+                                    new SelectListItem() {Text = "1:00 PM", Value="1:00 PM"},
+                                    new SelectListItem() {Text = "1:30 PM", Value="1:30 PM"},
+                                    new SelectListItem() {Text = "2:00 PM", Value="2:00 PM"},
+                                    new SelectListItem() {Text = "2:30 PM", Value="2:30 PM"},
+                                    new SelectListItem() {Text = "3:00 PM", Value="3:00 PM"},
+                                    new SelectListItem() {Text = "3:30 PM", Value="3:30 PM"},
+                                    new SelectListItem() {Text = "4:00 PM", Value="4:00 PM"},
+                                    new SelectListItem() {Text = "4:30 PM", Value="4:30 PM"},
+                                    new SelectListItem() {Text = "5:00 PM", Value="5:00 PM"},
+                                    new SelectListItem() {Text = "5:30 PM", Value="5:30 PM"},
+                                    new SelectListItem() {Text = "6:00 PM", Value="6:00 PM"},
+                                    new SelectListItem() {Text = "6:30 PM", Value="6:30 PM"}
+                                 }, "Select")
+                                @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
+                            </div> 
+                        </div>
+                        <div class="field">
+                            <h4>End Range</h4>
+                            <div class="field">
+                                @Html.DropDownListFor(m => m.EndTime, new SelectListItem[]{
+                                    new SelectListItem() {Text = "9:00 AM", Value="9:00 AM"},
+                                    new SelectListItem() {Text = "9:30 AM", Value="9:30 AM"},
+                                    new SelectListItem() {Text = "10:00 AM", Value="10:00 AM"},
+                                    new SelectListItem() {Text = "10:30 AM", Value="10:30 AM"},
+                                    new SelectListItem() {Text = "11:00 AM", Value="11:00 AM"},
+                                    new SelectListItem() {Text = "11:30 AM", Value="11:30 AM"},
+                                    new SelectListItem() {Text = "12:00 PM", Value="12:00 PM"},
+                                    new SelectListItem() {Text = "12:30 PM", Value="12:30 PM"},
+                                    new SelectListItem() {Text = "1:00 PM", Value="1:00 PM"},
+                                    new SelectListItem() {Text = "1:30 PM", Value="1:30 PM"},
+                                    new SelectListItem() {Text = "2:00 PM", Value="2:00 PM"},
+                                    new SelectListItem() {Text = "2:30 PM", Value="2:30 PM"},
+                                    new SelectListItem() {Text = "3:00 PM", Value="3:00 PM"},
+                                    new SelectListItem() {Text = "3:30 PM", Value="3:30 PM"},
+                                    new SelectListItem() {Text = "4:00 PM", Value="4:00 PM"},
+                                    new SelectListItem() {Text = "4:30 PM", Value="4:30 PM"},
+                                    new SelectListItem() {Text = "5:00 PM", Value="5:00 PM"},
+                                    new SelectListItem() {Text = "5:30 PM", Value="5:30 PM"},
+                                    new SelectListItem() {Text = "6:00 PM", Value="6:00 PM"},
+                                    new SelectListItem() {Text = "6:30 PM", Value="6:30 PM"}
+                                 }, "Select")
+                                @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
+                            </div>
                         </div>
                         <div class="field">
                             <h4>Session Length</h4>
                             <div class="field">
                                 <select class="ui simple dropdown item" id="Length" name="Length">
-                                    <option type="text" value="15 minutes">15 minutes</option>
+                                    <option value="" disabled selected>Select</option>
                                     <option type="text" value="30 minutes">30 minutes</option>
-                                    <option type="text" value="45 minutes">45 minutes</option>
                                     <option type="text" value="1 hour">1 hour</option>
+                                    <option type="text" value="1 hour 30 minutes">1 hour 30 minutes</option>
                                     <option type="text" value="2 hours">2 hours</option>
+                                    <option type="text" value="2+ hours">2+ hours</option>
                                 </select>
                             </div>
                             @Html.ValidationMessageFor(model => model.Length, "", new { @class = "text-danger" })
                         </div>
                         <div class="field">
                             <h4>Class</h4>
-                            @Html.DropDownList("ClassID", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.DropDownList("ClassID", null, "Select", htmlAttributes: new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.ClassID, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -63,9 +114,3 @@
         </div>
     </div>
 </body>
-
-@section scripts
-{
-    <script src="~/Scripts/main.js"></script>
-}
-
