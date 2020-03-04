@@ -7,3 +7,7 @@
 
 $('.ui.accordion')
     .accordion();
+
+$(document).ready(function () {
+    $('.dropdown').dropdown();
+});
