@@ -117,3 +117,11 @@ textarea {
 .ui.one.column.stackable.page.grid.schedule {
     padding-top: 10px;
 }
+
+.ui.segments.background-color-white {
+    background-color: #ffffff;
+}
+
+.ui.secondary.large.pointing.menu.background-color-white {
+    background-color: #ffffff;
+}
