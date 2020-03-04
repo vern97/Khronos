@@ -5,14 +5,11 @@ namespace BeyondTheTutor.DAL
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
     using BeyondTheTutor.Models;
-
+    using BeyondTheTutor.DAL;
     public partial class BeyondTheTutorContext : DbContext
     {
-        private const string azure = "BTTContext_Azure";
-        private const string local = "BeyondTheTutorContext";
-
         public BeyondTheTutorContext()
-             : base(local)
+             : base(new ContextGetter().getContext)
         {
         }
 

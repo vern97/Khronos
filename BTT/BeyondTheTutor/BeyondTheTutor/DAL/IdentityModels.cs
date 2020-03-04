@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
-    using BeyondTheTutor.Models;
+    using BeyondTheTutor.DAL;
 
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
@@ -21,11 +21,8 @@
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        private const string azure = "BTTContext_Azure";
-        private const string local = "BeyondTheTutorContext";
         public ApplicationDbContext()
-            : base(local, throwIfV1Schema: false)
-            //: base("BeyondTheTutorContext", throwIfV1Schema: false)
+             : base(new ContextGetter().getContext, throwIfV1Schema: false)
         {
         }
 
