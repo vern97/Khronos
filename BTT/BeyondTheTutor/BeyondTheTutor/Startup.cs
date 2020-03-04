@@ -6,6 +6,10 @@ using BeyondTheTutor.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
 using System;
+using System.Threading.Tasks;
+using System.Web.Mvc.Routing;
+using System.Web.Mvc;
+using System.Web;
 
 [assembly: OwinStartupAttribute(typeof(BeyondTheTutor.Startup))]
 namespace BeyondTheTutor
@@ -81,7 +85,11 @@ namespace BeyondTheTutor
                     db.SaveChangesAsync();
                 }
 
-                if (res.Succeeded) { var result1 = UserManager.AddToRole(user.Id, ROLES[0]); }
+                if (res.Succeeded) 
+                { 
+                    var result1 = UserManager.AddToRole(user.Id, ROLES[0]);
+                }
+
             }
 
             // Do we need another role?  i.e. "User"
