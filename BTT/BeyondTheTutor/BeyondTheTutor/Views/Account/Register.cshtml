@@ -35,7 +35,7 @@
                                 </div>
                                 <div class="field">
                                     <label>Graduation Year</label>
-                                    <select class="ui simple dropdown item" data-val-required="The Class of field is required." id="studentVM_GraduatingYear" name="studentVM.GraduatingYear">
+                                    <select class="ui selection dropdown item" data-val-required="The Class of field is required." id="studentVM_GraduatingYear" name="studentVM.GraduatingYear">
                                         @{int year = DateTime.Today.Year.ToString().AsInt() - 1;}
                                         @for (int i = 0; i < 7; i++)
                                         {
@@ -94,7 +94,7 @@
                                 </div>
                                 <div class="field form-group">
                                     <label>Graduation Year</label>
-                                    <select class="ui simple dropdown item" data-val-required="The Class of field is required." id="tutorVM_ClassOf" name="tutorVM.ClassOf">
+                                    <select class="ui selection dropdown" data-val-required="The Class of field is required." id="tutorVM_ClassOf" name="tutorVM.ClassOf">
                                         @{int year = DateTime.Today.Year.ToString().AsInt() - 1;}
                                         @for (int i = 0; i < 7; i++)
                                         {

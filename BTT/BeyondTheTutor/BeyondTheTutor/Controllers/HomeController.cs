@@ -15,16 +15,19 @@ namespace BeyondTheTutor.Controllers
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
         public ActionResult Index()
         {
+            ViewBag.Current = "HomeIndex";
             return View();
         }
 
         public ActionResult FAQ()
         {
+            ViewBag.Current = "HomeFAQ";
             return View(); 
         }
 
         public  ActionResult Privacy()
         {
+            ViewBag.Current = "HomePrivacy";
             return View();
         }
 

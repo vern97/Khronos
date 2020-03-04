@@ -57,6 +57,7 @@ namespace BeyondTheTutor.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            ViewBag.Current = "AccountLogin";
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -163,6 +164,7 @@ namespace BeyondTheTutor.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewBag.Current = "AccountRegister";
             return View();
         }
 

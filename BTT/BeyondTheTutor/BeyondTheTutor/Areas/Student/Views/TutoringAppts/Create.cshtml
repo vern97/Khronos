@@ -56,9 +56,9 @@
                                     new SelectListItem() {Text = "5:30 PM", Value="5:30 PM"},
                                     new SelectListItem() {Text = "6:00 PM", Value="6:00 PM"},
                                     new SelectListItem() {Text = "6:30 PM", Value="6:30 PM"}
-                                 }, "Select")
+                                 }, "Select", htmlAttributes: new { @class = "ui selection dropdown form-control" })
                                 @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
-                            </div> 
+                            </div>
                         </div>
                         <div class="field">
                             <h4>End Range</h4>
@@ -84,14 +84,14 @@
                                     new SelectListItem() {Text = "5:30 PM", Value="5:30 PM"},
                                     new SelectListItem() {Text = "6:00 PM", Value="6:00 PM"},
                                     new SelectListItem() {Text = "6:30 PM", Value="6:30 PM"}
-                                 }, "Select")
+                                 }, "Select", htmlAttributes: new { @class = "ui selection dropdown form-control" })
                                 @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="field">
                             <h4>Session Length</h4>
                             <div class="field">
-                                <select class="ui simple dropdown item" id="Length" name="Length">
+                                <select class="ui selection dropdown" id="Length" name="Length">
                                     <option value="" disabled selected>Select</option>
                                     <option type="text" value="30 minutes">30 minutes</option>
                                     <option type="text" value="1 hour">1 hour</option>
@@ -104,7 +104,7 @@
                         </div>
                         <div class="field">
                             <h4>Class</h4>
-                            @Html.DropDownList("ClassID", null, "Select", htmlAttributes: new { @class = "form-control" })
+                            @Html.DropDownList("ClassID", null, "Select", htmlAttributes: new { @class = "ui selection dropdown form-control" })
                             @Html.ValidationMessageFor(model => model.ClassID, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -114,3 +114,8 @@
         </div>
     </div>
 </body>
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+}
