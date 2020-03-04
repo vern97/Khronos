@@ -1,0 +1,57 @@
+﻿@using BeyondTheTutor.Models.ViewModels
+@model List<CustomTutorViewModel>
+
+<h2>TutorsView</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Lastname
+        </th>
+        <th>
+            Firstname
+        </th>
+        <th>
+            VNumber
+        </th>
+        <th>
+            Admin Approved
+        </th>
+        <th>
+            Role
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.LastName
+            </td>
+            <td>
+                @item.FirstName
+            </td>
+            <td>
+                @item.vNumber
+            </td>
+            <td style="text-align: center">
+                @item.adminApproved
+            </td>
+            <td>
+                @item.role
+            </td>
+            <td>
+                @if (item.adminApproved)
+                {
+                    @Html.ActionLink("Disapprove", "Edit", new { id = item.ID })
+                }
+                else
+                {
+                    @Html.ActionLink("Approve", "Edit", new { id = item.ID })
+                }
+                | @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
