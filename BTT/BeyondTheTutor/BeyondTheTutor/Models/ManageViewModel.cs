@@ -1,8 +1,6 @@
-﻿
-namespace BeyondTheTutor.Models
+﻿namespace BeyondTheTutor.Models
 {
     using Microsoft.Owin.Security;
-
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using Microsoft.AspNet.Identity;
