@@ -16,6 +16,7 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
 
         public ActionResult UpdateSchedule()
         {
+            ViewBag.Current = "TutSchedUpdate";
             var userID = User.Identity.GetUserId();
             var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
             var scheduleList = db.TutorSchedules.Where(m => m.TutorID.Equals(currentUserID)).OrderBy(m => m.StartTime).ToList();
@@ -35,6 +36,7 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
         // GET: Tutor/TutorSchedules/Create
         public ActionResult Create()
         {
+            ViewBag.Current = "TutSchedCreate";
             var userID = User.Identity.GetUserId();
             ViewBag.CurrentTutorID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
 
