@@ -15,12 +15,14 @@ namespace BeyondTheTutor.Controllers
         // GET: StudentResources
         public ActionResult Index()
         {
+            ViewBag.Current = "StuResIndex";
             var studentResources = db.StudentResources.Include(s => s.BTTUser).OrderBy(s => s.Topic);
             return View(studentResources.ToList());
         }
 
         public ActionResult Manage()
         {
+            ViewBag.Current = "StuResManage";
             return View();
         }
 
