@@ -8,9 +8,11 @@ namespace BeyondTheTutor.DAL
 
     public partial class BeyondTheTutorContext : DbContext
     {
+        private const string azure = "BTTContext_Azure";
+        private const string local = "BeyondTheTutorContext";
+
         public BeyondTheTutorContext()
-             : base("name=BTTContext_Azure")
-             //: base("name=BeyondTheTutorContext")
+             : base(local)
         {
         }
 

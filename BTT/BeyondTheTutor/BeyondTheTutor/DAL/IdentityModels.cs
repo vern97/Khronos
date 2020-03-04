@@ -21,8 +21,10 @@
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        private const string azure = "BTTContext_Azure";
+        private const string local = "BeyondTheTutorContext";
         public ApplicationDbContext()
-            : base("BTTContext_Azure", throwIfV1Schema: false)
+            : base(local, throwIfV1Schema: false)
             //: base("BeyondTheTutorContext", throwIfV1Schema: false)
         {
         }
