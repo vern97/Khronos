@@ -10,7 +10,7 @@
 </head>
 <body>
 
-
+    <div class="ui segment">
         <div class="ui secondary large pointing menu">
             <a href="/Home/Index" class="item @(ViewBag.Current == "HomeIndex" ? "red active" : "")"><i class="home icon"></i>Beyond the Tutor</a>
             <div class="right menu">
@@ -20,8 +20,8 @@
                 <a href="/Account/Register" class="item @(ViewBag.Current == "AccountRegister" ? "red active" : "")">Register</a>
             </div>
         </div>
+    </div>
 
-    
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/fullcalendarjs")
