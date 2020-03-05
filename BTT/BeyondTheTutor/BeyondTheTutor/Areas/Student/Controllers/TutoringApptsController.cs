@@ -48,6 +48,7 @@ namespace BeyondTheTutor.Areas.Student.Controllers
         // GET: Student/TutoringAppts/Create
         public ActionResult Create()
         {
+            ViewBag.Current = "StuTutorAppCreate";
             var userID = User.Identity.GetUserId();
             ViewBag.CurrentStudentID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
             ViewBag.ClassID = new SelectList(db.Classes, "ID", "Name");
