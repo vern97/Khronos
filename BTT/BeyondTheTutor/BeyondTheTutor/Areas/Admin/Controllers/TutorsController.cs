@@ -23,6 +23,7 @@
         // GET: Admin/Tutors
         public async System.Threading.Tasks.Task<ActionResult> IndexAsync()
         {
+            ViewBag.Current = "AdminTutorsIndexAsync";
             var tutorsIn = db.Tutors.Include(t => t.BTTUser);
 
 
