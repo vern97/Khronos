@@ -15,7 +15,7 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
 
-    public class TutorsController : Controller
+    public class ElevatedAccountController : Controller
     {
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
 
@@ -24,25 +24,26 @@
         public async System.Threading.Tasks.Task<ActionResult> IndexAsync()
         {
             var tutorsIn = db.Tutors.Include(t => t.BTTUser);
+            var professorsIn = db.Professors.Include(t => t.BTTUser);
+
 
 
             ApplicationDbContext context = new ApplicationDbContext();
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
-            List<CustomTutorViewModel> tutorsOut = new List<CustomTutorViewModel>();
+            List<ElevatedAccountViewModel> tutorsOut = new List<ElevatedAccountViewModel>();
 
             foreach (var i in tutorsIn)
             {
                 var account = await UserManager.FindByIdAsync(i.BTTUser.ASPNetIdentityID);
                 var accountRoles = await UserManager.GetRolesAsync(account.Id);
 
-                CustomTutorViewModel t = new CustomTutorViewModel
+                ElevatedAccountViewModel t = new ElevatedAccountViewModel
                 {
                     ID = i.ID,
                     FirstName = i.BTTUser.FirstName,
                     LastName = i.BTTUser.LastName,
-                    vNumber = i.VNumber,
                     adminApproved = i.AdminApproved,
                     role = accountRoles.FirstOrDefault().ToString()
                 };
@@ -50,14 +51,33 @@
                 tutorsOut.Add(t);
             }
 
-            //var user = await UserManager.FindByNameAsync(item.BTTUser.ASPNetIdentityID);
-            // Resolve the user via their email
-            // var roles = await UserManager.GetRolesAsync(user.Id);
-            //var confirmedByEmail = await UserManager.IsEmailConfirmedAsync(user.Id);
-            //if (!confirmedByEmail && roles.Contains("Student"))
+            foreach (var i in professorsIn)
+            {
+                var account = await UserManager.FindByIdAsync(i.BTTUser.ASPNetIdentityID);
+                var accountRoles = await UserManager.GetRolesAsync(account.Id);
 
-            //var it = roleManager.Users.Find(item.BTTUser.ASPNetIdentityID).Roles.ToList();
+                ElevatedAccountViewModel t = new ElevatedAccountViewModel
+                {
+                    ID = i.ID,
+                    FirstName = i.BTTUser.FirstName,
+                    LastName = i.BTTUser.LastName,
+                    adminApproved = i.AdminApproved,
+                    role = accountRoles.FirstOrDefault().ToString()
+                };
 
+                tutorsOut.Add(t);
+            }
+
+            if (TempData["t"] != null)
+            {
+                ViewBag.T = TempData["t"].ToString();
+                TempData.Remove("t");
+            }
+            if (TempData["f"] != null)
+            {
+                ViewBag.F = TempData["f"].ToString();
+                TempData.Remove("f");
+            }
 
             return View(tutorsOut);
         }
@@ -103,7 +123,7 @@
         }
 
         // GET: Admin/Tutors/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult UpdateTutor(int? id)
         {
             if (id == null)
             {
@@ -115,6 +135,8 @@
                 return HttpNotFound();
             }
             ViewBag.ID = new SelectList(db.BTTUsers, "ID", "FirstName", tutor.ID);
+
+           
             return View(tutor);
         }
 
@@ -123,12 +145,27 @@
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,ClassOf,VNumber,AdminApproved")] Tutor tutor)
+        public ActionResult UpdateTutor([Bind(Include = "ID,ClassOf,VNumber,AdminApproved")] Tutor tutor)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(tutor).State = EntityState.Modified;
                 db.SaveChanges();
+
+                BTTUser them = db.BTTUsers.Find(tutor.ID);
+                string firstName = them.FirstName;
+                string lastName = them.LastName;
+
+                if (tutor.AdminApproved)
+                {
+                    TempData["t"] = "You have successfully approved " + firstName + " " + lastName + " as a tutor.";
+                }
+                else if(!tutor.AdminApproved)
+                {
+                    TempData["f"] = "You have successfully denied " + firstName + " " + lastName + " as a tutor.";
+                }
+
+
                 return RedirectToAction("IndexAsync");
             }
             ViewBag.ID = new SelectList(db.BTTUsers, "ID", "FirstName", tutor.ID);
@@ -150,6 +187,56 @@
             return View(tutor);
         }
 
+        // GET: Admin/Tutors/Edit/5
+        public ActionResult UpdateProfessor(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Professor professor = db.Professors.Find(id);
+            if (professor == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.ID = new SelectList(db.BTTUsers, "ID", "FirstName", professor.ID);
+
+
+            return View(professor);
+        }
+
+        // POST: Admin/Tutors/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateProfessor([Bind(Include = "ID,AdminApproved")] Professor professor)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(professor).State = EntityState.Modified;
+                db.SaveChanges();
+
+                BTTUser them = db.BTTUsers.Find(professor.ID);
+                string firstName = them.FirstName;
+                string lastName = them.LastName;
+
+                if (professor.AdminApproved)
+                {
+                    TempData["t"] = "You have successfully approved " + firstName + " " + lastName + " as a professor.";
+                }
+                else if (!professor.AdminApproved)
+                {
+                    TempData["f"] = "You have successfully denied " + firstName + " " + lastName + " as a professor.";
+                }
+
+
+                return RedirectToAction("IndexAsync");
+            }
+            ViewBag.ID = new SelectList(db.BTTUsers, "ID", "FirstName", professor.ID);
+            return View(professor);
+        }
+
         // POST: Admin/Tutors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -157,6 +244,32 @@
         {
             Tutor tutor = db.Tutors.Find(id);
             db.Tutors.Remove(tutor);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // GET: Admin/Tutors/DeleteProf/5
+        public ActionResult DeleteProf(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Professor professor = db.Professors.Find(id);
+            if (professor == null)
+            {
+                return HttpNotFound();
+            }
+            return View(professor);
+        }
+
+        // POST: Admin/Tutors/DeleteProf/5
+        [HttpPost, ActionName("DeleteProf")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmedProf(int id)
+        {
+            Professor professor = db.Professors.Find(id);
+            db.Professors.Remove(professor);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
