@@ -177,6 +177,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AllUsersController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\TutorSchedulesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ElevatedAccountController.cs" />
@@ -419,7 +420,10 @@
     <Content Include="Areas\Admin\Views\ElevatedAccount\UpdateTutor.cshtml" />
     <Content Include="Areas\Admin\Views\ElevatedAccount\IndexAsync.cshtml" />
     <Content Include="Areas\Admin\Views\ElevatedAccount\UpdateProfessor.cshtml" />
+    <Content Include="Areas\Admin\Views\AllUsers\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AllUsers\Delete.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Compile Include="Models\ViewModels\AllUsersViewModel.cs" />
     <Content Include="Scripts\displaytutors.js" />
     <Content Include="Scripts\fullcalendar.js" />
     <Content Include="Scripts\fullcalendar.min.js" />
