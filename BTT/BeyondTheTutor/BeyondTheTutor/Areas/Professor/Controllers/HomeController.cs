@@ -13,10 +13,12 @@ namespace BeyondTheTutor.Areas.Professor.Controllers
         // GET: Professor/Home
         public ActionResult Index()
         {
+            ViewBag.Current = "ProfHomeIndex";
             return View();
         }
         public ActionResult Guide()
         {
+            ViewBag.Current = "ProfHomeGuide";
             return View();
         }
     }
