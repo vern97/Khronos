@@ -216,6 +216,10 @@
   <ItemGroup>
     <Content Include="App_Data\AspDown.sql" />
     <Content Include="App_Data\AspUp.sql" />
+    <Content Include="App_Data\BeyondTheTutor.mdf" />
+    <Content Include="App_Data\BeyondTheTutor_log.ldf">
+      <DependentUpon>BeyondTheTutor.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\down.sql" />
     <Content Include="App_Data\queries.sql" />
     <Content Include="App_Data\up.sql" />
@@ -570,9 +574,10 @@
     <Content Include="Views\Home\Privacy.cshtml" />
     <Content Include="Views\StudentResources\Create.cshtml" />
     <Content Include="Views\StudentResources\Delete.cshtml" />
-    <Content Include="Views\StudentResources\Details.cshtml" />
     <Content Include="Views\StudentResources\Edit.cshtml" />
     <Content Include="Views\StudentResources\Index.cshtml" />
+    <Content Include="Views\StudentResources\ResourceSuccess.cshtml" />
+    <Content Include="Views\StudentResources\ManageResources.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

@@ -90,7 +90,7 @@ CREATE TABLE [dbo].[StudentResources]
 (
     [ID]				INT IDENTITY (1,1)	NOT NULL,
 	[Topic]				NVARCHAR(50)		NOT NULL,
-	[URL]				NVARCHAR(50)		NOT NULL,	
+	[URL]				NVARCHAR(100)		NOT NULL,	
 	[DisplayText]		NVARCHAR(50)		NOT NULL,
 	[UserID]			INT					NULL
 	CONSTRAINT [PK_dbo.StudentResources] PRIMARY KEY CLUSTERED ([ID] ASC)
@@ -122,17 +122,3 @@ INSERT INTO [dbo].[Classes](Name)
 	('IS 350'),
 	('IS 355'),
 	('IS 485');
-
-INSERT INTO [dbo].[StudentResources](Topic, URL, DisplayText)
-	VALUES
-	('JavaScript', 'https://www.w3schools.com/js/default.asp', 'JavaScript Tutorial'),
-	('CSS', 'https://www.w3schools.com/css/default.asp', 'CSS Tutorial'),
-	('HTML', 'https://www.w3schools.com/html/default.asp', 'HTML Tutorial'),
-	('Python', 'https://www.w3schools.com/python/default.asp', 'Python Tutorial'),
-	('PHP', 'https://www.w3schools.com/php/default.asp', 'PHP Tutorial'),
-	('Bootstrap', 'https://www.w3schools.com/bootstrap4/default.asp', 'Bootstrap 4 Tutorial'),
-	('JQuery', 'https://www.w3schools.com/jquery/default.asp', 'JQuery Tutorial'),
-	('SQL', 'https://www.w3schools.com/sql/default.asp', 'SQL Tutorial'),
-	('C#', 'https://www.w3schools.com/cs/default.asp', 'C# Tutorial'),
-	('Java', 'https://www.w3schools.com/java/default.asp', 'Java Tutorial');
-
