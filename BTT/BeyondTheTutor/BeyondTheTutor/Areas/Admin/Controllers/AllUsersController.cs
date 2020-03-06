@@ -11,6 +11,7 @@
     using System.Net;
     using System.Web.Security;
     using System.Threading.Tasks;
+    using System.Data.Entity;
 
     [Authorize(Roles = "Admin")]
     public class AllUsersController : Controller
@@ -38,10 +39,10 @@
                 TempData.Remove("message");
             }
 
-            var tutorsIn = db.Tutors;
-            var professorsIn = db.Professors;
-            var studentsIn = db.Students;
-            var adminsIn = db.Admins;
+            var tutorsIn = db.Tutors.Include(t => t.BTTUser);
+            var professorsIn = db.Professors.Include(t => t.BTTUser);
+            var studentsIn = db.Students.Include(t => t.BTTUser);
+            var adminsIn = db.Admins.Include(t => t.BTTUser);
 
             ApplicationDbContext context = new ApplicationDbContext();
 
