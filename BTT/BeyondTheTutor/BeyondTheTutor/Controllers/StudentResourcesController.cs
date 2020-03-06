@@ -14,6 +14,7 @@ namespace BeyondTheTutor.Controllers
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
 
         // GET: StudentResources
+        [Authorize(Roles = "Student, Tutor, Professor")]
         public ActionResult Index()
         {
             ViewBag.Current = "StuResIndex";
@@ -21,6 +22,7 @@ namespace BeyondTheTutor.Controllers
             return View(studentResources.ToList());
         }
 
+        [Authorize(Roles = "Tutor, Professor")]
         public ActionResult ManageResources()
         {
             ViewBag.Current = "StuResManage";
@@ -31,6 +33,7 @@ namespace BeyondTheTutor.Controllers
             return View(resourceList.ToList());
         }
 
+        [Authorize(Roles = "Tutor, Professor")]
         public ActionResult ResourceSuccess()
         {
             var userID = User.Identity.GetUserId();
@@ -40,6 +43,7 @@ namespace BeyondTheTutor.Controllers
         }
 
         // GET: StudentResources/Create
+        [Authorize(Roles = "Tutor, Professor")]
         public ActionResult Create()
         {
             ViewBag.Current = "StuResCreate";
@@ -51,6 +55,7 @@ namespace BeyondTheTutor.Controllers
         // POST: StudentResources/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Tutor, Professor")]
         public ActionResult Create([Bind(Include = "ID,Topic,URL,DisplayText,UserID")] StudentResource studentResource)
         {
             if (ModelState.IsValid)
@@ -65,6 +70,7 @@ namespace BeyondTheTutor.Controllers
         }
 
         // GET: StudentResources/Edit/5
+        [Authorize(Roles = "Tutor, Professor")]
         public ActionResult Edit(int? id)
         {
             var userID = User.Identity.GetUserId();
@@ -86,6 +92,7 @@ namespace BeyondTheTutor.Controllers
         // POST: StudentResources/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Tutor, Professor")]
         public ActionResult Edit([Bind(Include = "ID,Topic,URL,DisplayText,UserID")] StudentResource studentResource)
         {
             if (ModelState.IsValid)
@@ -99,6 +106,7 @@ namespace BeyondTheTutor.Controllers
         }
 
         // GET: StudentResources/Delete/5
+        [Authorize(Roles = "Tutor, Professor")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -114,6 +122,7 @@ namespace BeyondTheTutor.Controllers
         }
 
         // POST: StudentResources/Delete/5
+        [Authorize(Roles = "Tutor, Professor")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

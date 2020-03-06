@@ -160,3 +160,9 @@ textarea {
 .ui.small.warning.message {
     margin-bottom: 10px;
 }
+
+.ui.raised.fluid.card {
+    border: solid;
+    border-width: 1px;
+    border-color: rgb(196,198,200);
+}
