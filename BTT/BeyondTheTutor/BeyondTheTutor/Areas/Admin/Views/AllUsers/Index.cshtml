@@ -2,89 +2,101 @@
 @model List<AllUsersViewModel>
 
 @{
-    ViewBag.Placeholder = "Searching examples: \"V87654321\" \"Maksim Stoyanov\" \"Tutor\" \"SomeEmail@wou.edu\"";
+    ViewBag.Placeholder = "Searching examples: \"V87654321\", \"Maksim Stoyanov\", \"Tutor\", \"SomeEmail@wou.edu\"";
 }
 
 
 <body class="wou-silver-bg">
-    <div class="ui one column stackable page grid">
-        <br />
-        <div class="ui message column twenty wide" style="text-align: center;">
-            <i class="info icon" id="message"></i>Current users in the database. <br />
-            <i>@ViewBag.Placeholder</i>
-        </div>
+    <div class="ui grid">
+        <div class="one column row">
+            <div class="ui column center aligned stackable grid">
+                <div class="six wide column">
+                    <div class="ui message column" style="text-align: center;">
 
+                        <i class="info icon" id="message"></i>Current users in the database. <br />
+                    </div>
 
-        @if (ViewBag.message != null)
-        {
-            <div class="ui sixteen wide column" style="text-align: center;">
-                <div class="ui red message" style="text-align: center;">
-                    <i class="user times icon" id="message"></i>
+                    @if (ViewBag.message != null)
+                    {
+                        <div class="ui sixteen wide column" style="text-align: center;">
+                            <div class="ui red message" style="text-align: center;">
+                                <i class="user times icon" id="message"></i>
+                                <B>@ViewBag.message</B>
+                            </div>
+                        </div>
+                    }
 
-                    <B>@ViewBag.message</B>
+                    @if (ViewBag.created != null)
+                    {
+                        <div class="ui sixteen wide column" style="text-align: center;">
+                            <div class="ui green message" style="text-align: center;">
+                                <i class="user outline icon" id="created"></i>
+                                <B>@ViewBag.created</B>
+                            </div>
+                        </div>
+                    }
+
+                    @using (Html.BeginForm("Index", "AllUsers", FormMethod.Get))
+                    {
+                <div class="ui fluid action input">
+                        @if (ViewBag.searched != null)
+                        {
+                            <input type="text" style="color: #db0a29" value="@ViewBag.searched" name="search" id="search" placeholder="@ViewBag.Placeholder">
+                        }
+                        else
+                        {
+                            <input type="text" style="color: #db0a29" name="search" id="search" placeholder="@ViewBag.Placeholder">
+                        }
+                    <button class="ui button" style="background-color: #db0a29; color: white;">Search</button>
+                </div>
+                    }
                 </div>
             </div>
-        }
-
-        @if (ViewBag.created != null)
-        {
-            <div class="ui sixteen wide column" style="text-align: center;">
-                <div class="ui green message" style="text-align: center;">
-                    <i class="user outline icon" id="created"></i>
-                    <B>@ViewBag.created</B>
+            <div class="one column row">
+                <div class="ui column center aligned stackable grid">
+                    <div class="eight wide column">
+                        <table class="ui striped table ui selectable celled table table-schedule">
+                            <thead>
+                                <tr>
+                                    <th>LastName</th>
+                                    <th>FirstName</th>
+                                    <th>VNumber</th>
+                                    <th>Role</th>
+                                    <th>Email</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @item.LastName
+                                        </td>
+                                        <td>
+                                            @item.FirstName
+                                        </td>
+                                        <td>
+                                            @item.VNumber
+                                        </td>
+                                        <td>
+                                            @item.Role
+                                        </td>
+                                        <td>
+                                            @item.Email
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        }
-
-
-        <br />
-        <div class="form-horizontal" style="float: right;">
-            @using (Html.BeginForm("Index", "AllUsers", FormMethod.Get))
-            {
-                <div class="form-group form-horizontal">
-                    @Html.TextBox("search", null, new { @class = "form-control", type = "text", style = "float: right;" })
-                    <Button type="submit" class="button" style="float: right;">Search</Button>
-                </div>
-            }
         </div>
-        <table class="ui striped table ui selectable celled table table-schedule">
-            <thead>
-                <tr>
-                    <th>LastName</th>
-                    <th>FirstName</th>
-                    <th>VNumber</th>
-                    <th>Role</th>
-                    <th>Email</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @item.LastName
-                        </td>
-                        <td>
-                            @item.FirstName
-                        </td>
-                        <td>
-                            @item.VNumber
-                        </td>
-                        <td>
-                            @item.Role
-                        </td>
-                        <td>
-                            @item.Email
-                        </td>
-                        <td>
-                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
 </body>
+
 
 <script src="~/Scripts/main.js"></script>

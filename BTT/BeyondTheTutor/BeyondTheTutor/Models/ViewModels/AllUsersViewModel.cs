@@ -1,7 +1,5 @@
 ﻿namespace BeyondTheTutor.Models.ViewModels
 {
-    using System.Collections.Generic;
-
     public class AllUsersViewModel
     {
         public int ID { get; set; }
