@@ -1,96 +1,48 @@
 ﻿@model BeyondTheTutor.Models.TutoringAppt
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Delete Request";
 }
 
-<h2>Delete</h2>
+<body class="wou-silver-bg">
+    <div class="ui one column stackable page grid">
+        <div class="ui red message schedule"><i class="close icon"></i>Careful, this action is permanent! If you decide you want this tutoring appointment after it's deleted, you will need to request another</div>
+        <div class="ui form attached fluid segment">
+            <div class="three fields">
+                <div class="field">
+                    <h4>Class Requested For</h4>
+                    @Html.DisplayFor(model => model.Class.Name)
+                </div>
+                <div class="field">
+                    <h4>Range Start Time</h4>
+                    @Html.DisplayFor(model => model.StartTime)
+                </div>
+                <div class="field">
+                    <h4>Range End Time</h4>
+                    @Html.DisplayFor(model => model.EndTime)
+                </div>
+                <div class="field">
+                    <h4>Meeting Length</h4>
+                    @Html.DisplayFor(model => model.Length)
+                </div>
+                <div class="field">
+                    <h4>Type of Meeting</h4>
+                    @Html.DisplayFor(model => model.TypeOfMeeting)
+                </div>
+                <div class="field">
+                    <h4>Current Request Status</h4>
+                    @Html.DisplayFor(model => model.Status)
+                </div>
+            </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>TutoringAppt</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Class.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Class.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Student.ClassStanding)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Student.ClassStanding)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Tutor.VNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Tutor.VNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StartTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StartTime)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EndTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EndTime)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TypeOfMeeting)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TypeOfMeeting)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Length)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Length)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Note)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Note)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+                <div class="form-actions no-color">
+                    <button type="submit" value="Delete" class="fluid ui button schedule" style="margin-bottom: 3px;">DELETE REQUEST</button>
+                    <a href="/Student/TutoringAppts/Index" button class="fluid ui button schedule">Go Back to Requested Appointments</a>
+                </div>
+            }
         </div>
-    }
-</div>
+    </div>
+</body>

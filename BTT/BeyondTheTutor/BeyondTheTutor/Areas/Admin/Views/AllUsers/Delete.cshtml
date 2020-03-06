@@ -32,7 +32,7 @@
                 </div>
                 <div class="field">
                     <h4>Email</h4>
-                    @ViewBag.Email;
+                    @ViewBag.Email
                 </div>
             </div>
             @using (Html.BeginForm())
@@ -48,3 +48,7 @@
     </div>
 </body>
 
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+}

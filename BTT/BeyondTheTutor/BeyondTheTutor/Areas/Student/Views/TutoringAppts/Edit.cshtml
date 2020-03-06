@@ -9,7 +9,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>TutoringAppt</h4>
         <hr />
@@ -99,3 +99,8 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+}
