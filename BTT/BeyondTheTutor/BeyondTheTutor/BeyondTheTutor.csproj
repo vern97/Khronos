@@ -423,6 +423,7 @@
     <Content Include="Areas\Admin\Views\ElevatedAccount\UpdateProfessor.cshtml" />
     <Content Include="Areas\Admin\Views\AllUsers\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AllUsers\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\AllUsers\CreateAdmin.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Compile Include="Models\ViewModels\AllUsersViewModel.cs" />
     <Content Include="Scripts\displaytutors.js" />

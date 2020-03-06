@@ -4,7 +4,8 @@
 	[FirstName]			[NVARCHAR](50)		NOT NULL,
 	[LastName]			[NVARCHAR](50)		NOT NULL,
 	[ASPNetIdentityID]	NVARCHAR (128)		NOT NULL	
-	CONSTRAINT [PK_dbo.BTTBTTUsers] PRIMARY KEY CLUSTERED ([ID] ASC)
+	CONSTRAINT [PK_dbo.BTTUsers] PRIMARY KEY CLUSTERED ([ID] ASC)
+
 );
 
 
@@ -15,6 +16,7 @@ CREATE TABLE [dbo].[Students]
     [ClassStanding]     [NVARCHAR](10)      NOT NULL 
 	CONSTRAINT [PK_dbo.Students] PRIMARY KEY CLUSTERED ([ID] ASC)
 	CONSTRAINT [FK.dbo.Students_dbo.BTTUsers_ID] FOREIGN KEY ([ID]) REFERENCES [BTTUsers] ([ID])
+		ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -26,6 +28,7 @@ CREATE TABLE [dbo].[Tutors]
 	[AdminApproved]		BIT					NOT NULL
 	CONSTRAINT [PK_dbo.Tutors] PRIMARY KEY CLUSTERED ([ID] ASC)
 	CONSTRAINT [FK.dbo.Tutors_dbo.BTTUsers_ID] FOREIGN KEY ([ID]) REFERENCES [BTTUsers] ([ID])
+		ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -35,6 +38,7 @@ CREATE TABLE [dbo].[Professors]
 	[AdminApproved]		BIT					NOT NULL
 	CONSTRAINT [PK_dbo.Professors] PRIMARY KEY CLUSTERED ([ID] ASC)
 	CONSTRAINT [FK.dbo.Professors_dbo.BTTUsers_ID] FOREIGN KEY ([ID]) REFERENCES [BTTUsers] ([ID])
+		ON DELETE CASCADE ON UPDATE CASCADE
 
 );
 
@@ -43,6 +47,7 @@ CREATE TABLE [dbo].[Admins]
 	[ID]	INT		NOT NULL
 	CONSTRAINT [PK_dbo.Admins] PRIMARY KEY CLUSTERED ([ID] ASC)
 	CONSTRAINT [FK.dbo.Admins_dbo.BTTUsers_ID] FOREIGN KEY ([ID]) REFERENCES [BTTUsers] ([ID])
+		ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE [dbo].[TutorSchedule]
@@ -55,7 +60,8 @@ CREATE TABLE [dbo].[TutorSchedule]
 	[IsFullDay]			[BIT]				NULL,
 	[TutorID]			INT					NOT NULL,
 	CONSTRAINT [PK_dbo.TutorSchedule] PRIMARY KEY CLUSTERED ([ID] ASC),
-	CONSTRAINT [FK_dbo.TutorSchedule_dbo.Tutors_ID] FOREIGN KEY ([TutorID]) REFERENCES [dbo].[Tutors] ([ID]) ON DELETE CASCADE
+	CONSTRAINT [FK_dbo.TutorSchedule_dbo.Tutors_ID] FOREIGN KEY ([TutorID]) REFERENCES [dbo].[Tutors] ([ID])
+		ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE [dbo].[Classes]
@@ -83,7 +89,7 @@ CREATE TABLE [dbo].[TutoringAppts]
 	CONSTRAINT [FK_dbo.TutoringAppts_dbo.Students_ID] FOREIGN KEY ([StudentID]) 
 		REFERENCES [dbo].[Students] ([ID]) ON DELETE CASCADE,
 	CONSTRAINT [FK_dbo.TutoringAppts_dbo.Tutors_ID] FOREIGN KEY ([TutorID]) 
-		REFERENCES [dbo].[Tutors] ([ID]) ON DELETE CASCADE
+		REFERENCES [dbo].[Tutors] ([ID])
 );
 
 CREATE TABLE [dbo].[StudentResources]
@@ -95,7 +101,8 @@ CREATE TABLE [dbo].[StudentResources]
 	[UserID]			INT					NULL
 	CONSTRAINT [PK_dbo.StudentResources] PRIMARY KEY CLUSTERED ([ID] ASC)
 	CONSTRAINT [FK_dbo.StudentResources_dbo.BTTUsers_ID] FOREIGN KEY ([UserID]) 
-		REFERENCES [BTTUsers] ([ID]) ON DELETE CASCADE
+		REFERENCES [BTTUsers] ([ID])
+		ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 INSERT INTO [dbo].[Classes](Name)
