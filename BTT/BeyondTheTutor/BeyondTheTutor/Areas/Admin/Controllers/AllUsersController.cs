@@ -18,10 +18,13 @@
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
         private ApplicationDbContext context = new ApplicationDbContext();
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             if (!ModelState.IsValid)
+            {
                 return View();
+            }
+                
 
             ViewBag.Current = "AdminAllUsersIndex";
 
@@ -49,9 +52,9 @@
 
             foreach (var i in tutorsIn)
             {
-                var account = UserManager.FindById(i.BTTUser.ASPNetIdentityID);
-                var accountRoles = UserManager.GetRoles(account.Id);
-                var accountEmail = UserManager.GetEmail(account.Id);
+                var account = await UserManager.FindByIdAsync(i.BTTUser.ASPNetIdentityID);
+                var accountRoles = await UserManager.GetRolesAsync(account.Id);
+                var accountEmail = await UserManager.GetEmailAsync(account.Id);
 
                 AllUsersViewModel t = new AllUsersViewModel
                 {
@@ -68,9 +71,9 @@
 
             foreach (var i in professorsIn)
             {
-                var account = UserManager.FindById(i.BTTUser.ASPNetIdentityID);
-                var accountRoles = UserManager.GetRoles(account.Id);
-                var accountEmail = UserManager.GetEmail(account.Id);
+                var account = await UserManager.FindByIdAsync(i.BTTUser.ASPNetIdentityID);
+                var accountRoles = await UserManager.GetRolesAsync(account.Id);
+                var accountEmail = await UserManager.GetEmailAsync(account.Id);
 
                 AllUsersViewModel p = new AllUsersViewModel
                 {
@@ -86,9 +89,9 @@
 
             foreach (var i in studentsIn)
             {
-                var account = UserManager.FindById(i.BTTUser.ASPNetIdentityID);
-                var accountRoles = UserManager.GetRoles(account.Id);
-                var accountEmail = UserManager.GetEmail(account.Id);
+                var account = await UserManager.FindByIdAsync(i.BTTUser.ASPNetIdentityID);
+                var accountRoles = await UserManager.GetRolesAsync(account.Id);
+                var accountEmail = await UserManager.GetEmailAsync(account.Id);
 
                 AllUsersViewModel s = new AllUsersViewModel
                 {
@@ -104,9 +107,9 @@
 
             foreach (var i in adminsIn)
             {
-                var account = UserManager.FindById(i.BTTUser.ASPNetIdentityID);
-                var accountRoles = UserManager.GetRoles(account.Id);
-                var accountEmail = UserManager.GetEmail(account.Id);
+                var account = await UserManager.FindByIdAsync(i.BTTUser.ASPNetIdentityID);
+                var accountRoles = await UserManager.GetRolesAsync(account.Id);
+                var accountEmail = await UserManager.GetEmailAsync(account.Id);
 
                 AllUsersViewModel a = new AllUsersViewModel
                 {
