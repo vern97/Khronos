@@ -1,5 +1,7 @@
 ﻿namespace BeyondTheTutor.Models.ViewModels
 {
+    using System.Collections.Generic;
+
     public class ElevatedAccountViewModel
     {
         public int ID { get; set; }

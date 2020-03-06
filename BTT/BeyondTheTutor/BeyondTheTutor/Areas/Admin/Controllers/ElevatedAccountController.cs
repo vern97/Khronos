@@ -1,17 +1,19 @@
 ﻿namespace BeyondTheTutor.Areas.Admin.Controllers
 {
+    
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Data.Entity;
+    using System.Linq;
+    using System.Net;
+    using System.Web;
+    using System.Web.Mvc;
     using BeyondTheTutor.DAL;
+    using BeyondTheTutor.Models;
     using BeyondTheTutor.Models.ViewModels;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
-    using BeyondTheTutor.Models;
-    using System.Net;
-    using System.Web.Security;
-    using System.Threading.Tasks;
-    using System.Data.Entity;
 
     [Authorize(Roles = "Admin")]
     public class ElevatedAccountController : Controller
@@ -20,7 +22,7 @@
 
 
         // GET: Admin/Tutors
-        public async Task<ActionResult> IndexAsync()
+        public async System.Threading.Tasks.Task<ActionResult> IndexAsync()
         {
             ViewBag.Current = "AdminElevatedAccountIndexAsync";
             var tutorsIn = db.Tutors.Include(t => t.BTTUser);

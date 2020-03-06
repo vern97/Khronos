@@ -18,6 +18,7 @@ namespace BeyondTheTutor.DAL
             if (true)
             {
                 getContext = azure;
+
             }
             else
             {
