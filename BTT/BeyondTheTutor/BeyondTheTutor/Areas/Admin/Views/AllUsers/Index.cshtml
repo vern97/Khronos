@@ -1,7 +1,8 @@
-﻿@model IEnumerable<BeyondTheTutor.Models.ViewModels.AllUsersViewModel>
+﻿@using BeyondTheTutor.Models.ViewModels
+@model List<AllUsersViewModel>
 
 @{
-    ViewBag.Placeholder = "Searching examples: \"V87654321\" \"Maksim Stoyanov\" \"Tutor\" \"SomeEmail@wou.edu\"";
+    ViewBag.Placeholder = "Searching examples: \"V87654321\", \"Maksim Stoyanov\", \"Tutor\", \"SomeEmail@wou.edu\"";
 }
 
 
@@ -34,6 +35,16 @@
                 </div>
             </div>
         }
+
+                    @if (ViewBag.created != null)
+                    {
+                        <div class="ui sixteen wide column" style="text-align: center;">
+                            <div class="ui green message" style="text-align: center;">
+                                <i class="user outline icon" id="created"></i>
+                                <B>@ViewBag.created</B>
+                            </div>
+                        </div>
+                    }
 
 
         <br />

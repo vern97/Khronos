@@ -11,6 +11,7 @@
     using System.Net;
     using System.Web.Security;
     using System.Threading.Tasks;
+    using System.Data.Entity;
 
     [Authorize(Roles = "Admin")]
     public class AllUsersController : Controller
@@ -18,10 +19,14 @@
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
         private ApplicationDbContext context = new ApplicationDbContext();
 
-        public ActionResult Index()
+
+        public async Task<ActionResult> Index()
         {
             if (!ModelState.IsValid)
+            {
                 return View();
+            }
+                
 
             ViewBag.Current = "AdminAllUsersIndex";
 
@@ -36,10 +41,12 @@
                 TempData.Remove("message");
             }
 
-            var tutorsIn = db.Tutors;
-            var professorsIn = db.Professors;
-            var studentsIn = db.Students;
-            var adminsIn = db.Admins;
+
+            var tutorsIn = db.Tutors.Include(t => t.BTTUser);
+            var professorsIn = db.Professors.Include(t => t.BTTUser);
+            var studentsIn = db.Students.Include(t => t.BTTUser);
+            var adminsIn = db.Admins.Include(t => t.BTTUser);
+
 
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
@@ -49,9 +56,9 @@
 
             foreach (var i in tutorsIn)
             {
-                var account = UserManager.FindById(i.BTTUser.ASPNetIdentityID);
-                var accountRoles = UserManager.GetRoles(account.Id);
-                var accountEmail = UserManager.GetEmail(account.Id);
+                var account = await UserManager.FindByIdAsync(i.BTTUser.ASPNetIdentityID);
+                var accountRoles = await UserManager.GetRolesAsync(account.Id);
+                var accountEmail = await UserManager.GetEmailAsync(account.Id);
 
                 AllUsersViewModel t = new AllUsersViewModel
                 {
@@ -68,9 +75,9 @@
 
             foreach (var i in professorsIn)
             {
-                var account = UserManager.FindById(i.BTTUser.ASPNetIdentityID);
-                var accountRoles = UserManager.GetRoles(account.Id);
-                var accountEmail = UserManager.GetEmail(account.Id);
+                var account = await UserManager.FindByIdAsync(i.BTTUser.ASPNetIdentityID);
+                var accountRoles = await UserManager.GetRolesAsync(account.Id);
+                var accountEmail = await UserManager.GetEmailAsync(account.Id);
 
                 AllUsersViewModel p = new AllUsersViewModel
                 {
@@ -86,9 +93,9 @@
 
             foreach (var i in studentsIn)
             {
-                var account = UserManager.FindById(i.BTTUser.ASPNetIdentityID);
-                var accountRoles = UserManager.GetRoles(account.Id);
-                var accountEmail = UserManager.GetEmail(account.Id);
+                var account = await UserManager.FindByIdAsync(i.BTTUser.ASPNetIdentityID);
+                var accountRoles = await UserManager.GetRolesAsync(account.Id);
+                var accountEmail = await UserManager.GetEmailAsync(account.Id);
 
                 AllUsersViewModel s = new AllUsersViewModel
                 {
@@ -104,9 +111,9 @@
 
             foreach (var i in adminsIn)
             {
-                var account = UserManager.FindById(i.BTTUser.ASPNetIdentityID);
-                var accountRoles = UserManager.GetRoles(account.Id);
-                var accountEmail = UserManager.GetEmail(account.Id);
+                var account = await UserManager.FindByIdAsync(i.BTTUser.ASPNetIdentityID);
+                var accountRoles = await UserManager.GetRolesAsync(account.Id);
+                var accountEmail = await UserManager.GetEmailAsync(account.Id);
 
                 AllUsersViewModel a = new AllUsersViewModel
                 {
@@ -129,6 +136,8 @@
             }
             else
             {
+                ViewBag.searched = userInput;
+
                 userInput = userInput.ToLower();
                 var usersOutSearched = usersOut
                 .Where(s => s.LastName.ToLower().Contains(userInput)
@@ -136,6 +145,7 @@
                 || s.Email.ToLower().Contains(userInput)
                 || s.VNumber.ToLower().Contains(userInput)).ToList();
 
+                
                 return View(usersOutSearched);
             }
 
@@ -189,7 +199,7 @@
 
 
                 db.BTTUsers.Remove(user); //remove BeyondTheTutor Account's (DATA)
-                db.SaveChanges(); 
+                db.SaveChanges();
 
 
                 using (var transaction = context.Database.BeginTransaction())
@@ -242,6 +252,7 @@
                 var _password = model.Password;
                 var _email = model.Email;
                 var _confmessage = "Now the Admin will have to confirm their email and they will offically be admins.";
+
 
 
                 var user = new ApplicationUser
