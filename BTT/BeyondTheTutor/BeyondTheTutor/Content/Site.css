@@ -131,3 +131,28 @@ textarea {
     padding-top: 20px;
     margin-bottom: 10px;
 }
+
+#modal {
+    width: 100%;
+}
+
+#modal-1 {
+    width: 100%;
+}
+
+#modal-2 {
+    width: 100%;
+}
+
+.ui.floating.message.registration {
+    border-top: solid;
+    border-top-width: 3px;
+    border-top-color: #db0a29;
+    border-bottom: solid;
+    border-bottom-width: 3px;
+    border-bottom-color: rgb(196,198,200);
+}
+
+.ui.centered.header.registration {
+    background-color: rgb(196,198,200);
+}
