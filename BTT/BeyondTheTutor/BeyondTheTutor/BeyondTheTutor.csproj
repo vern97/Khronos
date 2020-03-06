@@ -370,7 +370,10 @@
     <Content Include="Content\images\BeyondtheTutor_Banner4.png" />
     <Content Include="Content\images\BeyondtheTutor_Logo.png" />
     <Content Include="Content\images\Campus.jpg" />
+    <Content Include="Content\images\daniel.jpg" />
+    <Content Include="Content\images\helen.jpg" />
     <Content Include="Content\images\KhronosLogo.png" />
+    <Content Include="Content\images\stevie.jpg" />
     <Content Include="Content\images\TutoringLogo.png" />
     <Content Include="Content\jquery.datetimepicker.css" />
     <Content Include="Content\semantic.css" />
