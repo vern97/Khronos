@@ -17,6 +17,8 @@
     public class AllUsersController : Controller
     {
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
+        private ApplicationDbContext context = new ApplicationDbContext();
+
 
         public async Task<ActionResult> Index()
         {
@@ -39,12 +41,12 @@
                 TempData.Remove("message");
             }
 
+
             var tutorsIn = db.Tutors.Include(t => t.BTTUser);
             var professorsIn = db.Professors.Include(t => t.BTTUser);
             var studentsIn = db.Students.Include(t => t.BTTUser);
             var adminsIn = db.Admins.Include(t => t.BTTUser);
 
-            ApplicationDbContext context = new ApplicationDbContext();
 
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
@@ -134,6 +136,8 @@
             }
             else
             {
+                ViewBag.searched = userInput;
+
                 userInput = userInput.ToLower();
                 var usersOutSearched = usersOut
                 .Where(s => s.LastName.ToLower().Contains(userInput)
@@ -141,6 +145,7 @@
                 || s.Email.ToLower().Contains(userInput)
                 || s.VNumber.ToLower().Contains(userInput)).ToList();
 
+                
                 return View(usersOutSearched);
             }
 
@@ -172,7 +177,6 @@
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                ApplicationDbContext context = new ApplicationDbContext();
 
                 //initialize a user manager
                 var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
@@ -249,7 +253,6 @@
                 var _email = model.Email;
                 var _confmessage = "Now the Admin will have to confirm their email and they will offically be admins.";
 
-                ApplicationDbContext context = new ApplicationDbContext();
 
 
                 var user = new ApplicationUser
@@ -307,7 +310,6 @@
 
         private async Task<string> SendEmailConfirmationTokenAsync(string userID, string subject, string name)
         {
-            ApplicationDbContext context = new ApplicationDbContext();
 
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
@@ -324,8 +326,6 @@
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
-            ApplicationDbContext context = new ApplicationDbContext();
-
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context)); 
 
             if (userId == null || code == null)
