@@ -156,3 +156,7 @@ textarea {
 .ui.centered.header.registration {
     background-color: rgb(196,198,200);
 }
+
+.ui.small.warning.message {
+    margin-bottom: 10px;
+}
