@@ -47,7 +47,7 @@ namespace BeyondTheTutor.Controllers
 
         public JsonResult GetTutors()
         {
-            var tutors = db.Tutors.Select(e => new
+            var tutors = db.Tutors.Where(e => e.AdminApproved == true).Select(e => new
             {
                 fName = e.BTTUser.FirstName,
                 lName = e.BTTUser.LastName,
