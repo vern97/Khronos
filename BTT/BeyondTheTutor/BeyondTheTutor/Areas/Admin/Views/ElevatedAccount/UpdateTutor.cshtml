@@ -2,15 +2,15 @@
 
 <script type="text/javascript">
     window.onload = function () {
-        
+
         var check = document.getElementById('AdminApproved');
-        
+
         check.click();
 
         var sub = document.getElementById('submitbtn');
 
         sub.click();
-}
+    }
 </script>
 <div hidden>
     @using (Html.BeginForm())
@@ -56,5 +56,10 @@
             </div>
         </div>
     }
-
 </div>
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+}
+
