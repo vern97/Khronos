@@ -131,3 +131,7 @@ textarea {
     padding-top: 20px;
     margin-bottom: 10px;
 }
+
+.ui.small.warning.message {
+    margin-bottom: 10px;
+}

@@ -193,6 +193,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\StudentResourcesController.cs" />
+    <Compile Include="Controllers\TutorAppointmentController.cs" />
     <Compile Include="DAL\ContextGetter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -426,6 +427,7 @@
     <Content Include="Areas\Admin\Views\AllUsers\CreateAdmin.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Compile Include="Models\ViewModels\AllUsersViewModel.cs" />
+    <Content Include="Scripts\displayrequestedappts.js" />
     <Content Include="Scripts\displaytutors.js" />
     <Content Include="Scripts\fullcalendar.js" />
     <Content Include="Scripts\fullcalendar.min.js" />
