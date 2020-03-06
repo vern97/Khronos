@@ -5,6 +5,7 @@ using System.Net;
 using System.Web.Mvc;
 using BeyondTheTutor.DAL;
 using BeyondTheTutor.Models;
+using Microsoft.AspNet.Identity;
 
 namespace BeyondTheTutor.Controllers
 {
@@ -20,31 +21,30 @@ namespace BeyondTheTutor.Controllers
             return View(studentResources.ToList());
         }
 
-        public ActionResult Manage()
+        public ActionResult ManageResources()
         {
             ViewBag.Current = "StuResManage";
-            return View();
+            var userID = User.Identity.GetUserId();
+            var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
+            ViewBag.currentUser = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().FirstName;
+            var resourceList = db.StudentResources.Where(m => m.UserID == currentUserID).OrderBy(m => m.Topic);
+            return View(resourceList.ToList());
         }
 
-        // GET: StudentResources/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult ResourceSuccess()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            StudentResource studentResource = db.StudentResources.Find(id);
-            if (studentResource == null)
-            {
-                return HttpNotFound();
-            }
-            return View(studentResource);
+            var userID = User.Identity.GetUserId();
+            var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
+            var resourceList = db.StudentResources.Where(m => m.UserID == currentUserID).OrderBy(m => m.Topic);
+            return View(resourceList.ToList());
         }
 
         // GET: StudentResources/Create
         public ActionResult Create()
         {
-            ViewBag.UserID = new SelectList(db.BTTUsers, "ID", "FirstName");
+            ViewBag.Current = "StuResCreate";
+            var userID = User.Identity.GetUserId();
+            ViewBag.CurrentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace BeyondTheTutor.Controllers
             {
                 db.StudentResources.Add(studentResource);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ResourceSuccess");
             }
 
             ViewBag.UserID = new SelectList(db.BTTUsers, "ID", "FirstName", studentResource.UserID);
@@ -67,6 +67,9 @@ namespace BeyondTheTutor.Controllers
         // GET: StudentResources/Edit/5
         public ActionResult Edit(int? id)
         {
+            var userID = User.Identity.GetUserId();
+            ViewBag.CurrentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -89,7 +92,7 @@ namespace BeyondTheTutor.Controllers
             {
                 db.Entry(studentResource).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ManageResources");
             }
             ViewBag.UserID = new SelectList(db.BTTUsers, "ID", "FirstName", studentResource.UserID);
             return View(studentResource);
@@ -118,7 +121,7 @@ namespace BeyondTheTutor.Controllers
             StudentResource studentResource = db.StudentResources.Find(id);
             db.StudentResources.Remove(studentResource);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("ManageResources");
         }
 
         protected override void Dispose(bool disposing)

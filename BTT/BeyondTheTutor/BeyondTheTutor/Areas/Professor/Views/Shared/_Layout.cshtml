@@ -16,8 +16,9 @@
                 Resources
                 <i class="dropdown icon"></i>
                 <div class="menu">
-                    @Html.ActionLink("View", "Index", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResIndex" ? "item red active" : "item") })
-                    @Html.ActionLink("Manage", "Manage", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResManage" ? "item red active" : "item") })
+                    @Html.ActionLink("Add New", "Create", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResCreate" ? "item red active" : "item") })
+                    @Html.ActionLink("Manage", "ManageResources", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResManage" ? "item red active" : "item") })
+                    @Html.ActionLink("View All", "Index", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResIndex" ? "item red active" : "item") })
                 </div>
             </div>
             @Html.ActionLink("User Guide", "Guide", "Home", new { area = "professor" }, htmlAttributes: new { @class = (ViewBag.Current == "ProfHomeGuide" ? "item red active" : "item") })

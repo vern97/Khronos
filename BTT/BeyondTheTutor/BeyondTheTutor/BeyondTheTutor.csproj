@@ -570,9 +570,10 @@
     <Content Include="Views\Home\Privacy.cshtml" />
     <Content Include="Views\StudentResources\Create.cshtml" />
     <Content Include="Views\StudentResources\Delete.cshtml" />
-    <Content Include="Views\StudentResources\Details.cshtml" />
     <Content Include="Views\StudentResources\Edit.cshtml" />
     <Content Include="Views\StudentResources\Index.cshtml" />
+    <Content Include="Views\StudentResources\ResourceSuccess.cshtml" />
+    <Content Include="Views\StudentResources\ManageResources.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

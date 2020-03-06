@@ -1,10 +1,6 @@
 namespace BeyondTheTutor.Models
 {
-    using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     public partial class StudentResource
     {
@@ -15,7 +11,7 @@ namespace BeyondTheTutor.Models
         public string Topic { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(100)]
         public string URL { get; set; }
 
         [Required]
