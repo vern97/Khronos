@@ -63,19 +63,19 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.LastName)
+                            @item.LastName
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.FirstName)
+                            @item.FirstName
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.VNumber)
+                            @item.VNumber
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Role)
+                            @item.Role
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Email)
+                            @item.Email
                         </td>
                         <td>
                             @Html.ActionLink("Delete", "Delete", new { id = item.ID })
@@ -86,3 +86,5 @@
         </table>
     </div>
 </body>
+
+<script src="~/Scripts/main.js"></script>
