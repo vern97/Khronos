@@ -15,6 +15,7 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
 
+    [Authorize(Roles = "Admin")]
     public class ElevatedAccountController : Controller
     {
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
@@ -23,7 +24,7 @@
         // GET: Admin/Tutors
         public async System.Threading.Tasks.Task<ActionResult> IndexAsync()
         {
-            ViewBag.Current = "AdminTutorsElevatedAccountIndexAsync";
+            ViewBag.Current = "AdminElevatedAccountIndexAsync";
             var tutorsIn = db.Tutors.Include(t => t.BTTUser);
             var professorsIn = db.Professors.Include(t => t.BTTUser);
 
@@ -33,7 +34,7 @@
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
-            List<ElevatedAccountViewModel> tutorsOut = new List<ElevatedAccountViewModel>();
+            List<ElevatedAccountViewModel> usersOut = new List<ElevatedAccountViewModel>();
 
             foreach (var i in tutorsIn)
             {
@@ -49,7 +50,7 @@
                     role = accountRoles.FirstOrDefault().ToString()
                 };
 
-                tutorsOut.Add(t);
+                usersOut.Add(t);
             }
 
             foreach (var i in professorsIn)
@@ -66,7 +67,7 @@
                     role = accountRoles.FirstOrDefault().ToString()
                 };
 
-                tutorsOut.Add(t);
+                usersOut.Add(t);
             }
 
             if (TempData["t"] != null)
@@ -80,7 +81,7 @@
                 TempData.Remove("f");
             }
 
-            return View(tutorsOut);
+            return View(usersOut);
         }
 
         // GET: Admin/Tutors/Details/5
