@@ -174,7 +174,7 @@ namespace BeyondTheTutor.Controllers
             }
         }
 
-        //
+        
         // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register()
@@ -183,7 +183,6 @@ namespace BeyondTheTutor.Controllers
             return View();
         }
 
-        //
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
@@ -352,8 +351,6 @@ namespace BeyondTheTutor.Controllers
 
         }
 
-
-        //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
@@ -365,7 +362,6 @@ namespace BeyondTheTutor.Controllers
             var result = await UserManager.ConfirmEmailAsync(userId, code);
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
-
 
 
         //

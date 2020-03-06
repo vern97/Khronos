@@ -1,16 +1,17 @@
-﻿using BeyondTheTutor.DAL;
-using BeyondTheTutor.Models.ViewModels;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using BeyondTheTutor.Models;
-using System.Net;
-using System.Web.Security;
-
-namespace BeyondTheTutor.Areas.Admin.Controllers
+﻿namespace BeyondTheTutor.Areas.Admin.Controllers
 {
+    using BeyondTheTutor.DAL;
+    using BeyondTheTutor.Models.ViewModels;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
+    using BeyondTheTutor.Models;
+    using System.Net;
+    using System.Web.Security;
+    using System.Threading.Tasks;
+
     [Authorize(Roles = "Admin")]
     public class AllUsersController : Controller
     {
@@ -24,7 +25,12 @@ namespace BeyondTheTutor.Areas.Admin.Controllers
 
             ViewBag.Current = "AdminAllUsersIndex";
 
-            if (TempData["message"] != null)
+            if (TempData["created"] != null)
+            {
+                ViewBag.created = TempData["created"].ToString();
+                TempData.Remove("created");
+            }
+            else if (TempData["message"] != null)
             {
                 ViewBag.message = TempData["message"].ToString();
                 TempData.Remove("message");
@@ -206,7 +212,7 @@ namespace BeyondTheTutor.Areas.Admin.Controllers
                     transaction.Commit();
                 }
 
-                TempData["message"] = "You have successfully removed a " + accountRole + ": " + firstName + " " + lastName + ", " + accountEmail;
+                TempData["message"] = "You have successfully removed a " + accountRole + ": " + firstName + " " + lastName + ", " + accountEmail + "";
 
                 return RedirectToAction("Index");
             }
@@ -215,6 +221,108 @@ namespace BeyondTheTutor.Areas.Admin.Controllers
                 ViewBag.message = "Something went wrong. Please make sure your action was valid.";
                 return View();
             }
+        }
+
+        // GET: /Account/Register
+        public ActionResult CreateAdmin()
+        {
+            ViewBag.Current = "CreateAdmin";
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> CreateAdmin(AdminRegistrationViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var _firstname = model.FirstName;
+                var _lastname = model.LastName;
+                var _password = model.Password;
+                var _email = model.Email;
+                var _confmessage = "Now the Admin will have to confirm their email and they will offically be admins.";
+
+
+                var user = new ApplicationUser
+                {
+                    UserName = _email,
+                    Email = _email
+                };
+
+                var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+                var result = await UserManager.CreateAsync(user, _password);
+
+                if (result.Succeeded)
+                {
+                    //string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, _confmessage, _firstname);
+
+                    var special_user = new BTTUser
+                    {
+                        FirstName = _firstname,
+                        LastName = _lastname,
+                        ASPNetIdentityID = user.Id
+                    };
+
+                    BeyondTheTutorContext db = new BeyondTheTutorContext();
+
+
+                    var sub_user = new Admin();
+                    sub_user.BTTUser = special_user;
+                    db.BTTUsers.Add(special_user);
+                    db.Admins.Add(sub_user);
+                    UserManager.AddToRole(user.Id, "Admin");
+                    
+                    await db.SaveChangesAsync();
+                    TempData["created"] = "You have successfully created an admin. They will have to confirm their email to access administrator privilages.";
+
+                    return RedirectToAction("Index", "AllUsers");
+                }
+
+                TempData["error"] = "Adding admin failed. Please check with the database administrator for further help!";
+                AddErrors(result);
+                return View(model);
+            }
+            // If we got this far, something failed, redisplay form
+            TempData["error"] = "Something went wrong! please check if you did everything correctly.";
+            return View(model);
+        }
+
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
+            }
+        }
+
+        private async Task<string> SendEmailConfirmationTokenAsync(string userID, string subject, string name)
+        {
+
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+            string code = await UserManager.GenerateEmailConfirmationTokenAsync(userID);
+            var callbackUrl = Url.Action("ConfirmEmail", "AllUsers", new { userId = userID, code = code }, protocol: Request.Url.Scheme);
+            string bodyOfEmail = "Hello " + name + ", please follow <a href=\"" + callbackUrl + "\">this link</a> to confirm your <i>Beyond The Tutor</i> ADMIN account";
+
+            await UserManager.SendEmailAsync(userID, subject, bodyOfEmail);
+
+            return callbackUrl;
+        }
+
+        // GET: /Account/ConfirmEmail
+        [AllowAnonymous]
+        public async Task<ActionResult> ConfirmEmail(string userId, string code)
+        {
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context)); 
+
+            if (userId == null || code == null)
+            {
+                return View("Error");
+            }
+            var result = await UserManager.ConfirmEmailAsync(userId, code);
+            return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
 
         protected override void Dispose(bool disposing)

@@ -1,0 +1,48 @@
+﻿@using BeyondTheTutor.Models
+@model AdminRegistrationViewModel
+
+
+<body class="wou-grey-bg">
+<div class="ui divided grid center aligned">
+    <div class="row ten wide column">
+        <div class="column">
+            <div class="ui grid registration">
+                <div class="ui attached fluid segment form">
+                    @using (Html.BeginForm("CreateAdmin", "AllUsers", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary("", new { @class = "text-danger" })
+                        <h4 class="ui dividing header">ADMIN ACCOUNT CREATION</h4>
+                        <div class="two fields">
+                            <div class="field form-group">
+                                <label>First Name</label>
+                                @Html.EditorFor(m => m.FirstName, new { htmlAttributes = new { placeholder = "First Name" } })
+                            </div>
+                            <div class="field form-group">
+                                <label>Last Name</label>
+                                @Html.EditorFor(m => m.LastName, new { htmlAttributes = new { placeholder = "Last Name" } })
+                            </div>
+                        </div>
+                        <div class="three fields">
+                            <div class="field form-group">
+                                <label>Email</label>
+                                @Html.EditorFor(m => m.Email, new { @class = "form-control" })
+                            </div>
+                            <div class="field form-group">
+                                <label>Password</label>
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            </div>
+                            <div class="field form-group">
+                                <label>Password Confirmation</label>
+                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <button class="fluid ui button schedule">Create Admin</button>
+                    }
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</body>
+
