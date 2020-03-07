@@ -423,11 +423,12 @@
     <Content Include="Areas\Student\Views\Home\Guide.cshtml" />
     <Content Include="Areas\Tutor\Views\Home\Guide.cshtml" />
     <Content Include="Areas\Admin\Views\ElevatedAccount\UpdateTutor.cshtml" />
-    <Content Include="Areas\Admin\Views\ElevatedAccount\IndexAsync.cshtml" />
+    <Content Include="Areas\Admin\Views\ElevatedAccount\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ElevatedAccount\UpdateProfessor.cshtml" />
     <Content Include="Areas\Admin\Views\AllUsers\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AllUsers\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\AllUsers\CreateAdmin.cshtml" />
+    <Content Include="Areas\Admin\Views\ElevatedAccount\Delete.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Compile Include="Models\ViewModels\AllUsersViewModel.cs" />
     <Content Include="Scripts\displayrequestedappts.js" />

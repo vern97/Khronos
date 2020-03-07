@@ -1,0 +1,53 @@
+﻿@using BeyondTheTutor.DAL;
+@using BeyondTheTutor.Models.ViewModels;
+@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.EntityFramework;
+@model BeyondTheTutor.Models.BTTUser
+
+@{
+    BeyondTheTutorContext db = new BeyondTheTutorContext();
+    ApplicationDbContext context = new ApplicationDbContext();
+
+    var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+    var accountEmail = UserManager.GetEmail(Model.ASPNetIdentityID);
+
+    ViewBag.First = Html.DisplayFor(model => model.FirstName);
+    ViewBag.Last = Html.DisplayFor(model => model.LastName);
+    ViewBag.Email = accountEmail.ToString();
+}
+
+<body class="wou-silver-bg">
+    <div class="ui one column stackable page grid">
+        <div class="ui red message schedule"><i class="close icon"></i>Careful! Once you delete this user, there's no turning back.</div>
+        <div class="ui form attached fluid segment">
+            <div class="three fields">
+                <div class="field">
+                    <h4>Firstname</h4>
+                    @Html.DisplayFor(model => model.FirstName)
+                </div>
+                <div class="field">
+                    <h4>Lastname</h4>
+                    @Html.DisplayFor(model => model.LastName)
+                </div>
+                <div class="field">
+                    <h4>Email</h4>
+                    @ViewBag.Email
+                </div>
+            </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <button type="submit" value="Delete" class="fluid ui button schedule" style="margin-bottom: 3px;">DELETE @ViewBag.First @ViewBag.Last</button>
+                    <a href="/Admin/ElevatedAccount/Index" button class="fluid ui button schedule">Go Back to List</a>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+}
