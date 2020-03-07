@@ -19,15 +19,24 @@
                 </div>
                 <div class="title">
                     <i class="dropdown icon"></i>
-                    Features to Come
+                    Adding and Managing Student Resources
                 </div>
                 <div class="content">
                     <p>
-                        Our team is currently working on professor features. You can look forward to giving your students
-                        a greater chance at success by sharing your favorite resources. You will also have access to data
-                        analysis based on tutoring data and more. These exciting insights will display student needs in
-                        easy-to-understand tables and graphs. You will be able to identify current student needs, trends,
-                        and predictions, allowing for a well-informed approach to course design and instruction.
+                        @Html.ActionLink("Student resources", "Index", "StudentResources", new { area = "" }, htmlAttributes:
+                        new { @class = (ViewBag.Current == "StuResIndex" ? "item red active" : "item") }) are an easy way to
+                        share helpful and interesting finds with your students. In the @Html.ActionLink("Add New", "Create", 
+                        "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResCreate" ? 
+                        "item red active" : "item") }) form you will enter a topic for your resource. Example topics are "Java", 
+                        "Semantic UI", "CSS Styling". Make the topic simple and searchable. You will provide the website URL for
+                        your resource by copying and pasting it into the appropropriate box. And you will decide how you want the 
+                        link displayed. Example displays are "Parse Trees - Wikipedia", "AJAX - CS 461", "HTML Tutorial". Make
+                        displays simple and searchable. 
+                    </p>
+                    <p>
+                        You may @Html.ActionLink("manage", "ManageResources", "StudentResources", new { area = "" }, htmlAttributes: 
+                        new { @class = (ViewBag.Current == "StuResManage" ? "item red active" : "item") }) your student resources
+                        at any time. You may change the topic, URL, display text, or delete. 
                     </p>
                 </div>
             </div>

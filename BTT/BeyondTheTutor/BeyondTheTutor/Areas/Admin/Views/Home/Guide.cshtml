@@ -12,9 +12,49 @@
                 </div>
                 <div class="content">
                     <p>
-                        Beyond the Tutor welcomes you to the administrator portal! We provide several resources to create a
+                        Beyond the Tutor welcomes you to the administrator portal. We provide several resources to create a
                         pleasant experience during your time as a Computer Science Department administrator. Browse our guide
                         to learn about features available to you.
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Adding Another Administrator
+                </div>
+                <div class="content">
+                    <p>
+                        Administrators may only be added to the system by another administrator.
+                        In the @Html.ActionLink("Create an Admin", "CreateAdmin", "AllUsers", new { area = "admin" }, 
+                        htmlAttributes: new { @class = (ViewBag.Current == "CreateAdmin" ? "item red active" : "item") }) 
+                        form you will enter the new administrator's first and last name, email,
+                        and assign them a temporary password of your choosing. Then simply give the new administrator
+                        their login information and remind them to change the temporary password.
+                    </p>
+                    
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Approving Professor and Tutor Accounts
+                </div>
+                <div class="content">
+                    <p>
+                        Professor and Tutor accounts must be @Html.ActionLink("approved", "IndexAsync", "ElevatedAccount", 
+                        new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminElevatedAccountIndexAsync" ? 
+                        "item red active" : "item") }) before accessing professor and tutor features. In the elevated user view you
+                        will see any pending accounts which you may approve or disapprove. These actions may be undone at any time. 
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Removing Users
+                </div>
+                <div class="content">
+                    <p>
+                        Although it is not required you may maintain the database by @Html.ActionLink("removing outdated user accounts", 
+                        "Index", "AllUsers", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminAllUsersIndex" ? "item red active" : "item") }). 
+                        Browse all users or search for specific accounts to remove. Removing a user from the database cannot be undone.
+                        Should you accidentally remove a user from the database the user would need to re-register to access features
+                        and may lose information associated with their account. 
                     </p>
                 </div>
                 <div class="title">
@@ -23,7 +63,7 @@
                 </div>
                 <div class="content">
                     <p>
-                        It's the responsibility of tutors to add current schedules and edit any longterm changes.
+                        It is the responsibility of tutors to add current schedules and edit any longterm changes.
                         However there are times when a tutor may be unable to edit this information themselves. In such a situation
                         you may access a list of all tutor schedules and <a href="/Admin/TutorSchedules/UpdateSchedule" target="_blank">edit or delete schedules</a> as needed.
                     </p>
