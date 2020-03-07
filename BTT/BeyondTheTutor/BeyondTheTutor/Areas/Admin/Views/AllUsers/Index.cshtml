@@ -2,25 +2,18 @@
 @model List<AllUsersViewModel>
 
 @{
-    ViewBag.Placeholder = "Searching examples: \"V87654321\", \"Maksim Stoyanov\", \"Tutor\", \"SomeEmail@wou.edu\"";
+    ViewBag.Placeholder = "Search: \"V87654321\", \"Maksim Stoyanov\", \"Tutor\", \"SomeEmail@wou.edu\"";
 }
-
 
 <body class="wou-silver-bg">
     <div class="ui one column stackable page grid">
         <br />
-        <div class="ui message column twenty wide" style="text-align: center;">
-            <i class="info icon" id="message"></i>Current users in the database. <br />
-            <i>@ViewBag.Placeholder</i>
-        </div>
-
 
         @if (ViewBag.message != null)
         {
             <div class="ui sixteen wide column" style="text-align: center;">
                 <div class="ui red message" style="text-align: center;">
                     <i class="user times icon" id="message"></i>
-
                     <B>@ViewBag.message</B>
                 </div>
             </div>
@@ -36,36 +29,34 @@
             </div>
         }
 
-                    @if (ViewBag.created != null)
-                    {
-                        <div class="ui sixteen wide column" style="text-align: center;">
-                            <div class="ui green message" style="text-align: center;">
-                                <i class="user outline icon" id="created"></i>
-                                <B>@ViewBag.created</B>
-                            </div>
-                        </div>
-                    }
-
-
         <br />
-        <div class="form-horizontal" style="float: right;">
-            @using (Html.BeginForm("Index", "AllUsers", FormMethod.Get))
-            {
-                <div class="form-group form-horizontal">
-                    @Html.TextBox("search", null, new { @class = "form-control", type = "text", style = "float: right;" })
-                    <Button type="submit" class="button" style="float: right;">Search</Button>
-                </div>
-            }
-        </div>
-        <table class="ui striped table ui selectable celled table table-schedule">
+
+        <table class="ui striped compact table table-schedule">
             <thead>
+                <tr>
+                    <th colspan="6">
+                        @using (Html.BeginForm("Index", "AllUsers", FormMethod.Get))
+                        {
+                            <div class="ui fluid action input">
+                                @if (ViewBag.searched != null)
+                                {
+                                    <input type="text" style="color: #db0a29" value="@ViewBag.searched" name="search" id="search" placeholder="@ViewBag.Placeholder">
+                                }
+                                else
+                                {
+                                    <input type="text" style="color: #db0a29" name="search" id="search" placeholder="@ViewBag.Placeholder">
+                                }
+                                <button class="ui button" style="background-color: #db0a29; color: white;">Search</button>
+                            </div>
+                        }
+                    </th>
+                </tr>
                 <tr>
                     <th>LastName</th>
                     <th>FirstName</th>
                     <th>VNumber</th>
                     <th>Role</th>
-                    <th>Email</th>
-                    <th>Action</th>
+                    <th colspan="2">Email</th>
                 </tr>
             </thead>
             <tbody>
@@ -73,19 +64,19 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.LastName)
+                            @item.LastName
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.FirstName)
+                            @item.FirstName
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.VNumber)
+                            @item.VNumber
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Role)
+                            @item.Role
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Email)
+                            @item.Email
                         </td>
                         <td>
                             <button class="ui basic button">
@@ -100,7 +91,11 @@
     </div>
 </body>
 
-@section scripts
-{
-    <script src="~/Scripts/main.js"></script>
-}
+
+<script src="~/Scripts/main.js"></script>
+
+
+
+
+
+
