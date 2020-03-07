@@ -19,6 +19,28 @@
                 </div>
                 <div class="title">
                     <i class="dropdown icon"></i>
+                    Adding and Managing Student Resources
+                </div>
+                <div class="content">
+                    <p>
+                        @Html.ActionLink("Student resources", "Index", "StudentResources", new { area = "" }, htmlAttributes:
+                        new { @class = (ViewBag.Current == "StuResIndex" ? "item red active" : "item") }) are an easy way to
+                        share helpful and interesting finds with your students. In the @Html.ActionLink("Add New", "Create", 
+                        "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResCreate" ? 
+                        "item red active" : "item") }) form you will enter a topic for your resource. Example topics are "Java", 
+                        "Semantic UI", "CSS Styling". Make the topic simple and searchable. You will provide the website URL for
+                        your resource by copying and pasting it into the appropropriate box. And you will decide how you want the 
+                        link displayed. Example displays are "Parse Trees - Wikipedia", "AJAX - CS 461", "HTML Tutorial". Make
+                        displays simple and searchable. 
+                    </p>
+                    <p>
+                        You may @Html.ActionLink("manage", "ManageResources", "StudentResources", new { area = "" }, htmlAttributes: 
+                        new { @class = (ViewBag.Current == "StuResManage" ? "item red active" : "item") }) your student resources
+                        at any time. You may change the topic, URL, display text, or delete. 
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
                     Discord Real-Time Chat
                 </div>
                 <div class="content">

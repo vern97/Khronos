@@ -10,61 +10,12 @@
         </div>
         <div class="ui three column grid">
             <div class="column">
-                <div class="ui grid registration">
-                    <div class="ui form attached fluid segment ui equal width form">
-                        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                        {
-                            @Html.AntiForgeryToken()
-                            @Html.ValidationSummary("", new { @class = "text-danger" })
-                            <h4 class="ui dividing header">STUDENT ACCOUNT REGISTRATION</h4>
-                            <div class="two fields">
-                                <div class="field">
-                                    <label>First Name</label>
-                                    @Html.EditorFor(m => m.studentVM.FirstName, new { htmlAttributes = new { placeholder = "First Name" } })
-                                </div>
-                                <div class="field">
-                                    <label>Last Name</label>
-                                    @Html.EditorFor(m => m.studentVM.LastName, new { htmlAttributes = new { placeholder = "Last Name" } })
-                                </div>
-                            </div>
-                            <div class="two fields">
-                                <div class="field">
-                                    <label>Class Standing</label>
-                                    <select class="ui selection dropdown item" id="studentVM_ClassStanding" name="studentVM.ClassStanding">
-                                        <option type="text" value="Freshman">Freshman</option>
-                                        <option type="text" value="Sophomore">Sophomore</option>
-                                        <option type="text" value="Junior">Junior</option>
-                                        <option type="text" value="Senior">Senior</option>
-                                    </select>
-                                </div>
-                                <div class="field">
-                                    <label>Graduation Year</label>
-                                    <select class="ui selection dropdown item" data-val-required="The Class of field is required." id="studentVM_GraduatingYear" name="studentVM.GraduatingYear">
-                                        @{int year = DateTime.Today.Year.ToString().AsInt() - 1;}
-                                        @for (int i = 0; i < 7; i++)
-                                        {
-                                            <option type="number" value="@year">@year</option>
-                                            year += 1;
-                                        }
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="three fields">
-                                <div class="field">
-                                    <label>Email</label>
-                                    @Html.EditorFor(m => m.studentVM.Email, new { @class = "form-control" })
-                                </div>
-                                <div class="field">
-                                    <label>Password</label>
-                                    @Html.PasswordFor(m => m.studentVM.Password, new { @class = "form-control" })
-                                </div>
-                                <div class="field">
-                                    <label>Password Confirmation</label>
-                                    @Html.PasswordFor(m => m.studentVM.ConfirmPassword, new { @class = "form-control" })
-                                </div>
-                            </div>
-                            <button class="fluid ui button schedule">Register Now</button>
-                        }
+                <div class="ui raised fluid card" button id="modal">
+                    <div class="image">
+                        <img src="../Content/images/stevie.jpg">
+                    </div>
+                    <div class="content">
+                        <h2 class="ui centered header">Professor</h2>
                     </div>
                 </div>
             </div>
