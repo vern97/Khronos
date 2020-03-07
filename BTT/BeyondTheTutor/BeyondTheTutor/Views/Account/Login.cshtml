@@ -24,7 +24,7 @@
                     @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal massive", role = "form" }))
                     {
                         <div class="ui placeholder segment">
-                            <div class="ui form massive">
+                            <div class="ui form large">
                                 @Html.AntiForgeryToken()
                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                 <div class="two fields">
@@ -63,7 +63,7 @@
                 </div>
             </div>
         </div>
-        <div class="ui container footer" style="position: fixed; bottom: 0">
+        <div class="ui container footer">
             <hr />
             <div class="ui vertical footer segment">
                 <div class="ui container">
