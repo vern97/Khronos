@@ -18,7 +18,7 @@
                 <i class="dropdown icon"></i>
                 <div class="menu">
                     @Html.ActionLink("Remove a User", "Index", "AllUsers", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminAllUsersIndex" ? "item red active" : "item") })
-                    @Html.ActionLink("Approval Pending Users", "IndexAsync", "ElevatedAccount", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminElevatedAccountIndexAsync" ? "item red active" : "item") })
+                    @Html.ActionLink("Approval Pending Users", "Index", "ElevatedAccount", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminElevatedAccountIndex" ? "item red active" : "item") })
                     @Html.ActionLink("Create an Admin", "CreateAdmin", "AllUsers", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "CreateAdmin" ? "item red active" : "item") })
                 </div>
             </div>
