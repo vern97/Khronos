@@ -1,15 +1,15 @@
 ﻿@model BeyondTheTutor.Models.StudentResource
 
-    <body class="wou-grey-bg">
-        <div class="ui one column stackable page grid">
-            <div class="ui red message schedule"><i class="close icon"></i>Careful! You may edit resources below.</div>
-            <div class="ui form attached fluid segment">
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    @Html.Hidden("UserID", (object)ViewBag.CurrentUserID)
-                    @Html.HiddenFor(model => model.ID)
+<body class="wou-grey-bg">
+    <div class="ui one column stackable page grid">
+        <div class="ui red message schedule"><i class="close icon"></i>Careful! You may edit resources below.</div>
+        <div class="ui form attached fluid segment">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.Hidden("UserID", (object)ViewBag.CurrentUserID)
+                @Html.HiddenFor(model => model.ID)
 
                 <form>
                     <div class="three fields">
@@ -32,7 +32,12 @@
                     <button class="fluid ui button schedule" style="margin-bottom: 3px;">Save Schedule Edits</button>
                     @Html.ActionLink("Go Back to List", "ManageResources", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResManage" ? "item red active" : "item fluid ui button schedule"), @style = "button" })
                 </form>
-                }
-            </div>
+            }
         </div>
-    </body>
+    </div>
+</body>
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+}

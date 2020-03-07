@@ -13,7 +13,7 @@
         @Html.ActionLink("Admin Portal", "Index", "Home", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminHomeIndex" ? "item red active" : "item") })
         <div class="right menu">
             @Html.ActionLink("User Guide", "Guide", "Home", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminHomeGuide" ? "item red active" : "item") })
-            <div class="ui simple dropdown item">
+            <div class="ui dropdown item">
                 User Management
                 <i class="dropdown icon"></i>
                 <div class="menu">
@@ -22,7 +22,7 @@
                     @Html.ActionLink("Create an Admin", "CreateAdmin", "AllUsers", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "CreateAdmin" ? "item red active" : "item") })
                 </div>
             </div>
-            <div class="ui simple dropdown item">
+            <div class="ui dropdown item">
                 Scheduling
                 <i class="dropdown icon"></i>
                 <div class="menu">

@@ -17,6 +17,7 @@ namespace BeyondTheTutor.Areas.Student.Controllers
         // GET: Student/TutoringAppts
         public ActionResult Index()
         {
+            ViewBag.Current = "StuTutorAppIndex";
             var tutoringAppts = db.TutoringAppts.Include(t => t.Class).Include(t => t.Student).Include(t => t.Tutor);
             return View(tutoringAppts.ToList());
         }

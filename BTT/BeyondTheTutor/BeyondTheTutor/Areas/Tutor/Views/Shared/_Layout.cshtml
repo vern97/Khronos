@@ -12,7 +12,7 @@
         @Html.ActionLink("Beyond the Tutor", "Index", "Home", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "HomeIndex" ? "item red active" : "item") })
         @Html.ActionLink("Tutor Portal", "Index", "Home", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutorHomeIndex" ? "item red active" : "item") })
         <div class="right menu">
-            <div class="ui simple dropdown item">
+            <div class="ui dropdown item">
                 Resources
                 <i class="dropdown icon"></i>
                 <div class="menu">
@@ -21,7 +21,7 @@
                     @Html.ActionLink("View All", "Index", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResIndex" ? "item red active" : "item") })
                 </div>
             </div>
-            <div class="ui simple dropdown item">
+            <div class="ui dropdown item">
                 Scheduling
                 <i class="dropdown icon"></i>
                 <div class="menu">

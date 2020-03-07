@@ -8,6 +8,7 @@ ViewBag.Placeholder = "Search: \"V87654321\", \"Maksim Stoyanov\", \"Tutor\", \"
 <body class="wou-silver-bg">
     <div class="ui one column stackable page grid">
         <br />
+<<<<<<< HEAD
 
         @if (ViewBag.message != null)
         {
@@ -19,6 +20,25 @@ ViewBag.Placeholder = "Search: \"V87654321\", \"Maksim Stoyanov\", \"Tutor\", \"
             </div>
         }
 
+=======
+        <div class="ui message column twenty wide" style="text-align: center;">
+            <i class="info icon" id="message"></i>Current users in the database. <br />
+            <i>@ViewBag.Placeholder</i>
+        </div>
+
+
+        @if (ViewBag.message != null)
+        {
+            <div class="ui sixteen wide column" style="text-align: center;">
+                <div class="ui red message" style="text-align: center;">
+                    <i class="user times icon" id="message"></i>
+
+                    <B>@ViewBag.message</B>
+                </div>
+            </div>
+        }
+
+>>>>>>> ba796aecddba1ac6e650bd35d7367a2758c51c94
         @if (ViewBag.created != null)
         {
             <div class="ui sixteen wide column" style="text-align: center;">
@@ -31,6 +51,7 @@ ViewBag.Placeholder = "Search: \"V87654321\", \"Maksim Stoyanov\", \"Tutor\", \"
 
         <br />
 
+<<<<<<< HEAD
         <table class="ui striped compact table table-schedule">
             <thead>
                 <tr>
@@ -52,6 +73,22 @@ ViewBag.Placeholder = "Search: \"V87654321\", \"Maksim Stoyanov\", \"Tutor\", \"
                     </th>
                 </tr>
                 <tr>
+=======
+
+        <br />
+        <div class="form-horizontal" style="float: right;">
+            @using (Html.BeginForm("Index", "AllUsers", FormMethod.Get))
+            {
+                <div class="form-group form-horizontal">
+                    @Html.TextBox("search", null, new { @class = "form-control", type = "text", style = "float: right;" })
+                    <Button type="submit" class="button" style="float: right;">Search</Button>
+                </div>
+            }
+        </div>
+        <table class="ui striped table ui selectable celled table table-schedule">
+            <thead>
+                <tr>
+>>>>>>> ba796aecddba1ac6e650bd35d7367a2758c51c94
                     <th>LastName</th>
                     <th>FirstName</th>
                     <th>VNumber</th>
@@ -65,6 +102,7 @@ ViewBag.Placeholder = "Search: \"V87654321\", \"Maksim Stoyanov\", \"Tutor\", \"
                 {
                     <tr>
                         <td>
+<<<<<<< HEAD
                             @item.LastName
                         </td>
                         <td>
@@ -81,6 +119,27 @@ ViewBag.Placeholder = "Search: \"V87654321\", \"Maksim Stoyanov\", \"Tutor\", \"
                         </td>
                         <td>
                             @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+=======
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Role)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            <button class="ui basic button">
+                                <i class="icon trash"></i>
+                                @Html.ActionLink("Delete User", "Delete", new { id = item.ID })
+                            </button>
+>>>>>>> ba796aecddba1ac6e650bd35d7367a2758c51c94
                         </td>
                     </tr>
                 }
@@ -89,7 +148,14 @@ ViewBag.Placeholder = "Search: \"V87654321\", \"Maksim Stoyanov\", \"Tutor\", \"
     </div>
 </body>
 
+<<<<<<< HEAD
 
 <script src="~/Scripts/main.js"></script>
 
 
+=======
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+}
+>>>>>>> ba796aecddba1ac6e650bd35d7367a2758c51c94

@@ -22,12 +22,17 @@
             {
                 @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <button class="fluid ui button schedule" style="margin-bottom: 3px;">Delete Resource Entry</button>
-            @Html.ActionLink("Go Back to List", "ManageResources", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResManage" ? "item red active" : "item fluid ui button schedule"), @style = "button"})
+                <div class="form-actions no-color">
+                    <button class="fluid ui button schedule" style="margin-bottom: 3px;">Delete Resource Entry</button>
+                    @Html.ActionLink("Go Back to List", "ManageResources", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResManage" ? "item red active" : "item fluid ui button schedule"), @style = "button" })
 
-        </div>
+                </div>
             }
         </div>
     </div>
 </body>
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+}
