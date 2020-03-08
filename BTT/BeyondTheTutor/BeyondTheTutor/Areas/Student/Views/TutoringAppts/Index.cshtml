@@ -25,10 +25,21 @@
                     <td>@Html.DisplayFor(modelItem => item.Status)</td>
                     <td>@Html.DisplayFor(modelItem => item.Note)</td>
                     <td>
-                        <button class="ui basic button">
-                            <i class="icon trash"></i>
-                            @Html.ActionLink("Cancel Session", "Edit", new { id = item.ID })
-                        </button>
+
+                            @if (item.Status == "Canceled")
+                            {
+                                <button class="ui disabled button">
+                                    <i class="icon trash"></i>
+                                    Cancel Session
+                                </button>
+                            }
+                            else
+                            {
+                                <button class="ui basic button">
+                                    <i class="icon trash"></i>
+                                    @Html.ActionLink("Cancel Session", "Edit", new { id = item.ID })
+                                </button>
+                            }
                     </td>
                 </tr>
                 }
