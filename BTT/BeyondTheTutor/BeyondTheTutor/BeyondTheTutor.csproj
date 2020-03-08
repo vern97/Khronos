@@ -187,11 +187,13 @@
     <Compile Include="Areas\Student\Controllers\TutoringApptsController.cs" />
     <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
     <Compile Include="Areas\Tutor\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Tutor\Controllers\TutoringApptsController.cs" />
     <Compile Include="Areas\Tutor\Controllers\TutorSchedulesController.cs" />
     <Compile Include="Areas\Tutor\TutorAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\StudentAppointmentController.cs" />
     <Compile Include="Controllers\StudentResourcesController.cs" />
     <Compile Include="Controllers\TutorAppointmentController.cs" />
     <Compile Include="DAL\ContextGetter.cs" />
@@ -373,6 +375,7 @@
     <Content Include="Content\images\daniel.jpg" />
     <Content Include="Content\images\helen.jpg" />
     <Content Include="Content\images\KhronosLogo.png" />
+    <Content Include="Content\images\Login_Logo.png" />
     <Content Include="Content\images\stevie.jpg" />
     <Content Include="Content\images\TutoringLogo.png" />
     <Content Include="Content\jquery.datetimepicker.css" />
@@ -429,9 +432,15 @@
     <Content Include="Areas\Admin\Views\AllUsers\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\AllUsers\CreateAdmin.cshtml" />
     <Content Include="Areas\Admin\Views\ElevatedAccount\Delete.cshtml" />
+    <Content Include="Areas\Tutor\Views\TutoringAppts\Create.cshtml" />
+    <Content Include="Areas\Tutor\Views\TutoringAppts\Delete.cshtml" />
+    <Content Include="Areas\Tutor\Views\TutoringAppts\Details.cshtml" />
+    <Content Include="Areas\Tutor\Views\TutoringAppts\Edit.cshtml" />
+    <Content Include="Areas\Tutor\Views\TutoringAppts\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Compile Include="Models\ViewModels\AllUsersViewModel.cs" />
     <Content Include="Scripts\displayrequestedappts.js" />
+    <Content Include="Scripts\displaystudentappts.js" />
     <Content Include="Scripts\displaytutors.js" />
     <Content Include="Scripts\fullcalendar.js" />
     <Content Include="Scripts\fullcalendar.min.js" />
@@ -591,6 +600,7 @@
     <Folder Include="Areas\Professor\Data\" />
     <Folder Include="Areas\Student\Data\" />
     <Folder Include="Areas\Tutor\Data\" />
+    <Folder Include="Views\StudentAppointment\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

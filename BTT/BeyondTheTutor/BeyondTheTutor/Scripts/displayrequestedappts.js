@@ -4,7 +4,7 @@
         $.ajax({
             type: 'GET',
             dataType: 'json',
-            url: 'TutorAppointment/GetRequestedTutoringAppts',
+            url: 'TutorAppointment/GetRequestedTutorAppts',
             success: displayNumRequestedAppts,
             error: errorOnAjax
         });
@@ -24,11 +24,10 @@
             $('#tutor_requests').append(`
                 <div class="ui small warning message">
                     <div class="ui center aligned header">
-                        There are currently ${data[0]} unattended tutoring requests. Click here to review them.
+                        There are currently ${data[0]} unattended tutoring requests. Click <a href="Tutor/TutoringAppts/Index">here</a> to review them.
                     </div>
                 </div>
             `)
         }
     }
-
 });

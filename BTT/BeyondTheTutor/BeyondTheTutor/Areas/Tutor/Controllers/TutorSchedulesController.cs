@@ -6,6 +6,7 @@ using BeyondTheTutor.DAL;
 using BeyondTheTutor.Models;
 using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
+using System;
 
 namespace BeyondTheTutor.Areas.Tutor.Controllers
 {
@@ -46,8 +47,20 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
         // POST: Tutor/TutorSchedules/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Description,StartTime,EndTime,ThemeColor,IsFullDay,TutorID")] TutorSchedule tutorSchedule)
+        public ActionResult Create([Bind(Include = "ID,Description,StartTime,EndTime,ThemeColor,IsFullDay,TutorID")] TutorSchedule tutorSchedule, DateTime? Date)
         {
+            if (Date == null)
+            {
+                Date = (DateTime.Now).AddDays(1);
+            }
+                
+            var date = Date?.ToString("yyyy-MM-dd");
+            var startTime = tutorSchedule.StartTime.ToString("HH:mm:ss tt");
+            var endTime = tutorSchedule.EndTime.ToString("HH:mm:ss tt");
+
+            tutorSchedule.StartTime = Convert.ToDateTime(date + " " + startTime);
+            tutorSchedule.EndTime = Convert.ToDateTime(date + " " + endTime);
+
             if (ModelState.IsValid)
             {
                 Dictionary<int, string> tutorColor = new Dictionary<int, string>()

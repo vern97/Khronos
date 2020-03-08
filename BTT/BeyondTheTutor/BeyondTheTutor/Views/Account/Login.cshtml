@@ -12,19 +12,15 @@
             </script>
         }
 
-
-        <div class="ui container">
-            <div class="ui two column centered grid">
-                <img src="../Content/images/BeyondtheTutor_Banner4.png" alt="Alternate Text">
-            </div>
-        </div>
         <div class="one column row">
             <div class="ui column center aligned stackable grid">
-                <div class="eight wide column segment">
+                <div class="ten wide column segment">
                     @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal massive", role = "form" }))
                     {
                         <div class="ui placeholder segment">
                             <div class="ui form large">
+                                <img src="../Content/images/Login_Logo.png" alt="Alternate Text">
+
                                 @Html.AntiForgeryToken()
                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                 <div class="two fields">
@@ -56,7 +52,7 @@
                                         <label>Remember Me</label>
                                     </div>
                                 </div>
-                                <button class="ui red submit button massive">Login</button>
+                                <button class="fluid ui button schedule" style="font-size: large;">Login My Account</button>
                             </div>
                         </div>
                     }

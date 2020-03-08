@@ -1,0 +1,90 @@
+﻿@model BeyondTheTutor.Models.TutoringAppt
+
+<body class="wou-silver-bg">
+    <div class="ui one column center aligned stackable page grid" style="padding-top:10px;">
+        <div class="ui icon message">
+            <i class="edit icon"></i>
+            <div class="content">
+                <div class="header">
+                    Edit Tutoring Request
+                </div>
+                <p>Here you can edit the tutoring request - be sure to update the status when finished, and add any notes to clarify information with the student</p>
+            </div>
+        </div>
+        <div class="ui form center aligned attached fluid segment">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("ID", (object)ViewBag.ID)
+                @Html.Hidden("StartTime", (object)ViewBag.StartTime)
+                @Html.Hidden("EndTime", (object)ViewBag.EndTime)
+                @Html.Hidden("TypeOfMeeting", (object)ViewBag.TypeOfMeeting)
+                @Html.Hidden("ClassID", (object)ViewBag.ClassID)
+                @Html.Hidden("Length", (object)ViewBag.Length)
+                @Html.Hidden("StudentID", (object)ViewBag.StudentID)
+                @Html.Hidden("TutorID", (object)ViewBag.TutorID)
+                <div class="four fields">
+                    <div class="field">
+                        <h4>Class Requested For</h4>
+                        @Html.DisplayFor(model => model.Class.Name)
+                    </div>
+                    <div class="field">
+                        <h4>Range Start Time</h4>
+                        @Html.DisplayFor(model => model.StartTime)
+                    </div>
+                    <div class="field">
+                        <h4>Range End Time</h4>
+                        @Html.DisplayFor(model => model.EndTime)
+                    </div>
+                    <div class="field">
+                        <h4>Meeting Length</h4>
+                        @Html.DisplayFor(model => model.Length)
+                    </div>
+                </div>
+                <div class="four fields">
+                    <div class="field">
+                        <h4>Type of Meeting</h4>
+                        @Html.DisplayFor(model => model.TypeOfMeeting)
+                    </div>
+                    <div class="field">
+                        <h4>Requestor</h4>
+                        @ViewBag.StudentName
+                    </div>
+                    <div class="field">
+                        <h4>Assigned Tutor</h4>
+                        @Html.DisplayFor(model => model.TutorID)
+                    </div>
+                    <div class="field">
+                        <h4>Current Request Status</h4>
+                        @Html.DisplayFor(model => model.Status)
+                    </div>
+                </div>
+                <div class="two fields">
+                    <div class="field">
+                        @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "control-label" })
+                        @Html.TextBoxFor(model => model.Note, new { htmlAttributes = new { @class = "form-control"} })
+                        @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="one field">
+                        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownListFor(m => m.Status, new SelectListItem[] {
+                                    new SelectListItem() {Text = "Requested", Value="Requested"},
+                                    new SelectListItem() {Text = "Cancel", Value="Canceled"},
+                                    new SelectListItem() {Text = "Approve", Value="Approved"},
+                                 }, "Select", htmlAttributes: new { @class = "ui selection dropdown form-control" })
+                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <form>
+                    <button class="fluid ui button schedule" style="margin-bottom: 3px;">Update Request</button>
+                    <a href="/Tutor/TutorSchedules/UpdateSchedule" button class="fluid ui button schedule">Go Back to List</a>
+                </form>
+            }
+        </div>
+    </div>
+</body>
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+}

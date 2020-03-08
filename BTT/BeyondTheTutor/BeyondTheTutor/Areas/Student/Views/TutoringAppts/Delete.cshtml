@@ -39,10 +39,15 @@
                 @Html.AntiForgeryToken()
 
                 <div class="form-actions no-color">
-                    <button type="submit" value="Delete" class="fluid ui button schedule" style="margin-bottom: 3px;">DELETE REQUEST</button>
+                    <button type="submit" value="Delete" class="fluid ui button schedule" style="margin-bottom: 3px;">CANCEL REQUEST</button>
                     <a href="/Student/TutoringAppts/Index" button class="fluid ui button schedule">Go Back to Requested Appointments</a>
                 </div>
             }
         </div>
     </div>
 </body>
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+}
