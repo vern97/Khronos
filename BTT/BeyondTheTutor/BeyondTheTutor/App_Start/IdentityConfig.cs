@@ -36,9 +36,8 @@
             myMessage.SetSubject(message.Subject);
             myMessage.AddContent(MimeType.Text, message.Body);
             myMessage.AddContent(MimeType.Html, message.Body);
-            string apiKey = "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"; 
+            string apiKey = System.Web.Configuration.WebConfigurationManager.AppSettings["BTTSendgrid"]; 
             var client = new SendGridClient(apiKey);
-
             var response = await client.SendEmailAsync(myMessage);
         }
     }
