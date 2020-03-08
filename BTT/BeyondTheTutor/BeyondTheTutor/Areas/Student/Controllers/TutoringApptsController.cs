@@ -18,8 +18,10 @@ namespace BeyondTheTutor.Areas.Student.Controllers
         public ActionResult Index()
         {
             ViewBag.Current = "StuTutorAppIndex";
-            var tutoringAppts = db.TutoringAppts.Include(t => t.Class).Include(t => t.Student).Include(t => t.Tutor);
-            return View(tutoringAppts.ToList());
+            var userID = User.Identity.GetUserId();
+            var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
+            var sessionList = db.TutoringAppts.Where(m => m.StudentID.Equals(currentUserID)).OrderBy(m => m.StartTime).ToList();
+            return View(sessionList);
         }
 
         public ActionResult SessionSuccess()

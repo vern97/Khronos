@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BeyondTheTutor.DAL;
+using Microsoft.AspNet.Identity;
 
 namespace BeyondTheTutor.Controllers
 {
@@ -14,7 +15,9 @@ namespace BeyondTheTutor.Controllers
         public JsonResult GetRequestedStudentAppts()
         {
             db.Configuration.ProxyCreationEnabled = false;
-            var requestedStudentAppts = db.TutoringAppts.Select(a => new
+            var userID = User.Identity.GetUserId();
+            var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
+            var requestedStudentAppts = db.TutoringAppts.Where(m => m.StudentID.Equals(currentUserID)).Select(a => new
             {
                 ClassName = a.Class,
                 StartTime = a.StartTime,
