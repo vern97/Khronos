@@ -33,6 +33,12 @@
         }
 
         for (var i = 0; i < numAppts; i++) {
+            if (data[i].CurrStatus == "Approved") {
+                numApptsAccepted += 1;
+            }
+        }
+
+        for (var i = 0; i < numAppts; i++) {
             if (data[i].CurrStatus == "Canceled") {
                 numApptsCanceled += 1;
             }
