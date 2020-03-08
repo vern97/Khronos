@@ -2,4 +2,4 @@
 
 SELECT * FROM Tutors
 
-SELECT * FROM StudentResources
+SELECT * FROM TutorSchedule

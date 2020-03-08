@@ -60,9 +60,14 @@ namespace BeyondTheTutor.Areas.Student.Controllers
         // POST: Student/TutoringAppts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,StartTime,EndTime,TypeOfMeeting,ClassID,Length,Status,Note,StudentID,TutorID")] TutoringAppt tutoringAppt, DateTime Date)
+        public ActionResult Create([Bind(Include = "ID,StartTime,EndTime,TypeOfMeeting,ClassID,Length,Status,Note,StudentID,TutorID")] TutoringAppt tutoringAppt, DateTime? Date)
         {
-            var date = Date.ToString("yyyy-MM-dd");
+            if (Date == null)
+            {
+                Date = (DateTime.Now).AddDays(1);
+            }
+
+            var date = Date?.ToString("yyyy-MM-dd");
             var startTime = tutoringAppt.StartTime.ToString("HH:mm:ss tt");
             var endTime = tutoringAppt.EndTime.ToString("HH:mm:ss tt");
 

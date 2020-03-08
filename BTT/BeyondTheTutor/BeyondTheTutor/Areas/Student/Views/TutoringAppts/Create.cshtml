@@ -30,7 +30,17 @@
                     <div class="five fields">
                         <div class="field">
                             <h4>Date</h4>
-                            @Html.Editor("Date", null, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
+                            <div class="field">
+                                @Html.DropDownList("Date", new SelectListItem[] {
+                                    new SelectListItem() {Text = ((DateTime.Now).AddDays(1)).ToString("MM-dd-yyyy") + " " + DateTime.Now.AddDays(1).DayOfWeek, Value=((DateTime.Now).AddDays(1)).ToString()},
+                                    new SelectListItem() {Text = ((DateTime.Now).AddDays(2)).ToString("MM-dd-yyyy") + " " + DateTime.Now.AddDays(2).DayOfWeek, Value=((DateTime.Now).AddDays(2)).ToString()},
+                                    new SelectListItem() {Text = ((DateTime.Now).AddDays(3)).ToString("MM-dd-yyyy") + " " + DateTime.Now.AddDays(3).DayOfWeek, Value=((DateTime.Now).AddDays(3)).ToString()},
+                                    new SelectListItem() {Text = ((DateTime.Now).AddDays(4)).ToString("MM-dd-yyyy") + " " + DateTime.Now.AddDays(4).DayOfWeek, Value=((DateTime.Now).AddDays(4)).ToString()},
+                                    new SelectListItem() {Text = ((DateTime.Now).AddDays(5)).ToString("MM-dd-yyyy") + " " + DateTime.Now.AddDays(5).DayOfWeek, Value=((DateTime.Now).AddDays(5)).ToString()},
+                                    new SelectListItem() {Text = ((DateTime.Now).AddDays(6)).ToString("MM-dd-yyyy") + " " + DateTime.Now.AddDays(6).DayOfWeek, Value=((DateTime.Now).AddDays(6)).ToString()},
+                                    new SelectListItem() {Text = ((DateTime.Now).AddDays(7)).ToString("MM-dd-yyyy") + " " + DateTime.Now.AddDays(7).DayOfWeek, Value=((DateTime.Now).AddDays(7)).ToString()}
+                                 }, "Select", htmlAttributes: new { @class = "ui selection dropdown form-control" })
+                            </div>
                         </div>
                         <div class="field">
                             <h4>Start Range</h4>
