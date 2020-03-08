@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<BeyondTheTutor.Models.TutoringAppt>
 
 <body class="wou-silver-bg">
-    <div class="ui one column stackable page grid">
-        <table class="ui striped table ui selectable celled table table-schedule">
+    <div class="ui one column stackable page grid" style="padding-top:10px;">
+        <table class="ui striped table stu-app">
             <thead>
                 <tr>
                     <th><h4>Class Requested For</h4></th>
@@ -10,25 +10,27 @@
                     <th><h4>End Date &amp; Time</h4></th>
                     <th><h4>Session Length</h4></th>
                     <th><h4>Current Status</h4></th>
+                    <th><h4>Notes</h4></th>
                     <th><h4>Action</h4></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>@Html.DisplayFor(modelItem => item.Class.Name)</td>
-                        <td>@Html.DisplayFor(modelItem => item.StartTime)</td>
-                        <td>@Html.DisplayFor(modelItem => item.EndTime)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Length)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Status)</td>
-                        <td>
-                            <button class="ui basic button">
-                                <i class="icon trash"></i>
-                                @Html.ActionLink("Cancel Session", "Delete", new { id = item.ID })
-                            </button>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Class.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.StartTime)</td>
+                    <td>@Html.DisplayFor(modelItem => item.EndTime)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Length)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Note)</td>
+                    <td>
+                        <button class="ui basic button">
+                            <i class="icon trash"></i>
+                            @Html.ActionLink("Cancel Session", "Edit", new { id = item.ID })
+                        </button>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>
