@@ -166,3 +166,7 @@ textarea {
     border-width: 1px;
     border-color: rgb(196,198,200);
 }
+
+.ui.striped.table.stu-app {
+    padding-top: 100px;
+}

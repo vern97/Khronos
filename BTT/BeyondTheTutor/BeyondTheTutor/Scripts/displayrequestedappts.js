@@ -4,7 +4,7 @@
         $.ajax({
             type: 'GET',
             dataType: 'json',
-            url: 'TutorAppointment/GetRequestedTutoringAppts',
+            url: 'TutorAppointment/GetRequestedTutorAppts',
             success: displayNumRequestedAppts,
             error: errorOnAjax
         });
@@ -30,5 +30,4 @@
             `)
         }
     }
-
 });

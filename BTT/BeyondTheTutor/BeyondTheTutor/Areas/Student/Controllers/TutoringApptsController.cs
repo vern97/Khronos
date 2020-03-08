@@ -89,13 +89,20 @@ namespace BeyondTheTutor.Areas.Student.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             TutoringAppt tutoringAppt = db.TutoringAppts.Find(id);
+            var studentInfo = db.TutoringAppts.Where(a => a.ID == id).ToList();
+            ViewBag.StartTime = studentInfo.Select(a => a.StartTime).FirstOrDefault();
+            ViewBag.EndTime = studentInfo.Select(a => a.EndTime).FirstOrDefault();
+            ViewBag.TypeOfMeeting = studentInfo.Select(a => a.TypeOfMeeting).FirstOrDefault();
+            ViewBag.ClassID = studentInfo.Select(a => a.ClassID).FirstOrDefault();
+            ViewBag.Length = studentInfo.Select(a => a.Length).FirstOrDefault();
+            ViewBag.Note = studentInfo.Select(a => a.Note).FirstOrDefault();
+            ViewBag.StudentID = studentInfo.Select(a => a.StudentID).FirstOrDefault();
+            ViewBag.TutorID = studentInfo.Select(a => a.TutorID).FirstOrDefault();
+            ViewBag.ID = studentInfo.Select(a => a.ID).FirstOrDefault();
             if (tutoringAppt == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ClassID = new SelectList(db.Classes, "ID", "Name", tutoringAppt.ClassID);
-            ViewBag.StudentID = new SelectList(db.Students, "ID", "ClassStanding", tutoringAppt.StudentID);
-            ViewBag.TutorID = new SelectList(db.Tutors, "ID", "VNumber", tutoringAppt.TutorID);
             return View(tutoringAppt);
         }
 
@@ -110,9 +117,6 @@ namespace BeyondTheTutor.Areas.Student.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ClassID = new SelectList(db.Classes, "ID", "Name", tutoringAppt.ClassID);
-            ViewBag.StudentID = new SelectList(db.Students, "ID", "ClassStanding", tutoringAppt.StudentID);
-            ViewBag.TutorID = new SelectList(db.Tutors, "ID", "VNumber", tutoringAppt.TutorID);
             return View(tutoringAppt);
         }
 

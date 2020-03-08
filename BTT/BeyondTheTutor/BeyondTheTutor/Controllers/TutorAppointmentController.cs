@@ -12,7 +12,7 @@ namespace BeyondTheTutor.Controllers
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
 
         [Authorize(Roles = "Tutor")]
-        public JsonResult GetRequestedTutoringAppts()
+        public JsonResult GetRequestedTutorAppts()
         {
             var requestedAppts = db.TutoringAppts.Where(a => a.Status == "Requested").Count();
 
