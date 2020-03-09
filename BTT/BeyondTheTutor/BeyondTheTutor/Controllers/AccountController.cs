@@ -228,7 +228,6 @@ namespace BeyondTheTutor.Controllers
                     _class_standing = model.studentVM.ClassStanding;
                     _classof = model.studentVM.GraduatingYear;
                     _email = model.studentVM.Email;
-
                 }
                 if (model.tutorVM != null)
                 {
@@ -249,7 +248,7 @@ namespace BeyondTheTutor.Controllers
                     _email = model.professorVM.Email;
                 }
 
-                if(isTutor || isProfessor)
+                if (isTutor || isProfessor)
                 {
                     _confmessage = "Confirm your account email and wait for admin approval";
                     ViewBag.Message = "Once you've confirmed that " + _email + " is your email address and recieved admin approval, you'll be able to use your account.";
@@ -305,7 +304,6 @@ namespace BeyondTheTutor.Controllers
                         db.BTTUsers.Add(special_user);
                         db.Students.Add(sub_user);
                         UserManager.AddToRole(user.Id, "Student");
-
                     }
                     if (model.tutorVM != null)
                     {
@@ -319,7 +317,6 @@ namespace BeyondTheTutor.Controllers
                         db.BTTUsers.Add(special_user);
                         db.Tutors.Add(sub_user);
                         UserManager.AddToRole(user.Id, "Tutor");
-
                     }
                     if (model.professorVM != null)
                     {
@@ -344,6 +341,13 @@ namespace BeyondTheTutor.Controllers
             }
 
             // If we got this far, something failed, redisplay form
+            if (model.professorVM != null)
+                ViewBag.validationError = "professor";
+            else if (model.tutorVM != null)
+                ViewBag.validationError = "tutor";
+            else if (model.studentVM != null)
+                ViewBag.validationError = "student";
+            
             return View(model);
         }
 

@@ -206,7 +206,22 @@
 </body>
 
 
+
 @section scripts
 {
     <script src="~/Scripts/main.js"></script>
+
+    @if (@ViewBag.validationError != null)
+    {
+    <script type="text/javascript">
+        var whichForm = "@ViewBag.validationError";
+
+        if (whichForm == "professor")
+            $('#modalid').modal('show');
+        else if (whichForm == "student")
+            $('#modalid-1').modal('show');
+        else if (whichForm == "tutor")
+            $('#modalid-2').modal('show');
+    </script>
+    }
 }
