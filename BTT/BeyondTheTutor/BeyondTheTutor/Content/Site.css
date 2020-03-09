@@ -166,3 +166,9 @@ textarea {
     border-width: 1px;
     border-color: rgb(196,198,200);
 }
+
+.ui.placeholder.segment.login {
+    border-top: solid;
+    border-top-width: 3px;
+    border-top-color: #db0a29;
+}
