@@ -342,11 +342,11 @@ namespace BeyondTheTutor.Controllers
 
             // If we got this far, something failed, redisplay form
             if (model.professorVM != null)
-                ViewBag.oops = "professor";
+                ViewBag.validationError = "professor";
             else if (model.tutorVM != null)
-                ViewBag.oops = "tutor";
+                ViewBag.validationError = "tutor";
             else if (model.studentVM != null)
-                ViewBag.oops = "student";
+                ViewBag.validationError = "student";
             
             return View(model);
         }

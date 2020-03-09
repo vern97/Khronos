@@ -211,16 +211,16 @@
 {
     <script src="~/Scripts/main.js"></script>
 
-    @if (@ViewBag.oops != null)
+    @if (@ViewBag.validationError != null)
     {
     <script type="text/javascript">
-        var m = "@ViewBag.oops";
+        var whichForm = "@ViewBag.validationError";
 
-        if (m == "professor")
+        if (whichForm == "professor")
             $('#modalid').modal('show');
-        else if (m == "student")
+        else if (whichForm == "student")
             $('#modalid-1').modal('show');
-        else if (m == "tutor")
+        else if (whichForm == "tutor")
             $('#modalid-2').modal('show');
     </script>
     }
