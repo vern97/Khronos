@@ -38,10 +38,9 @@
                 </div>
                 <div class="content">
                     <p>
-                        Professor and Tutor accounts must be @Html.ActionLink("approved", "IndexAsync", "ElevatedAccount", 
-                        new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminElevatedAccountIndexAsync" ? 
-                        "item red active" : "item") }) before accessing professor and tutor features. In the elevated user view you
-                        will see any pending accounts which you may approve or disapprove. These actions may be undone at any time. 
+                        Professor and Tutor accounts must be @Html.ActionLink("approved", "Index", "ElevatedAccount", 
+                        new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminElevatedAccountIndex" ? "item red active" : "item") }) 
+                        before accessing professor and tutor features. In the elevated user view you will see any pending accounts which you may approve or disapprove. These actions may be undone at any time.
                     </p>
                 </div>
                 <div class="title">

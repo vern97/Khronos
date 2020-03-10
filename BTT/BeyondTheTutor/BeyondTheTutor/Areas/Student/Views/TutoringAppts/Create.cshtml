@@ -9,7 +9,7 @@
             <div class="ui yellow message schedule">
                 <i class="close icon"></i>Select a date and time range for your tutoring session.
                 Then select the estimated length for your session.<br />
-                Start Range & End Range indicates you are available at any time within that range.
+                Availability range indicates you are available at any time within that range.
             </div>
         </div>
         <div class="ui form attached fluid segment">
@@ -32,18 +32,18 @@
                             <h4>Date</h4>
                             <div class="field">
                                 @Html.DropDownList("Date", new SelectListItem[] {
+                                    new SelectListItem() {Text = ((DateTime.Now).AddDays(0)).ToString("MM-dd-yyyy") + " " + DateTime.Now.AddDays(0).DayOfWeek, Value=((DateTime.Now).AddDays(0)).ToString()},
                                     new SelectListItem() {Text = ((DateTime.Now).AddDays(1)).ToString("MM-dd-yyyy") + " " + DateTime.Now.AddDays(1).DayOfWeek, Value=((DateTime.Now).AddDays(1)).ToString()},
                                     new SelectListItem() {Text = ((DateTime.Now).AddDays(2)).ToString("MM-dd-yyyy") + " " + DateTime.Now.AddDays(2).DayOfWeek, Value=((DateTime.Now).AddDays(2)).ToString()},
                                     new SelectListItem() {Text = ((DateTime.Now).AddDays(3)).ToString("MM-dd-yyyy") + " " + DateTime.Now.AddDays(3).DayOfWeek, Value=((DateTime.Now).AddDays(3)).ToString()},
                                     new SelectListItem() {Text = ((DateTime.Now).AddDays(4)).ToString("MM-dd-yyyy") + " " + DateTime.Now.AddDays(4).DayOfWeek, Value=((DateTime.Now).AddDays(4)).ToString()},
                                     new SelectListItem() {Text = ((DateTime.Now).AddDays(5)).ToString("MM-dd-yyyy") + " " + DateTime.Now.AddDays(5).DayOfWeek, Value=((DateTime.Now).AddDays(5)).ToString()},
-                                    new SelectListItem() {Text = ((DateTime.Now).AddDays(6)).ToString("MM-dd-yyyy") + " " + DateTime.Now.AddDays(6).DayOfWeek, Value=((DateTime.Now).AddDays(6)).ToString()},
-                                    new SelectListItem() {Text = ((DateTime.Now).AddDays(7)).ToString("MM-dd-yyyy") + " " + DateTime.Now.AddDays(7).DayOfWeek, Value=((DateTime.Now).AddDays(7)).ToString()}
+                                    new SelectListItem() {Text = ((DateTime.Now).AddDays(6)).ToString("MM-dd-yyyy") + " " + DateTime.Now.AddDays(6).DayOfWeek, Value=((DateTime.Now).AddDays(6)).ToString()}
                                  }, "Select", htmlAttributes: new { @class = "ui selection dropdown form-control" })
                             </div>
                         </div>
                         <div class="field">
-                            <h4>Start Range</h4>
+                            <h4>Availablility Start</h4>
                             <div class="field">
                                 @Html.DropDownListFor(m => m.StartTime, new SelectListItem[] {
                                     new SelectListItem() {Text = "9:00 AM", Value="9:00 AM"},
@@ -71,7 +71,7 @@
                             </div>
                         </div>
                         <div class="field">
-                            <h4>End Range</h4>
+                            <h4>Availablility End </h4>
                             <div class="field">
                                 @Html.DropDownListFor(m => m.EndTime, new SelectListItem[]{
                                     new SelectListItem() {Text = "9:00 AM", Value="9:00 AM"},
