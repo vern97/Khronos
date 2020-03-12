@@ -24,6 +24,8 @@
                             <h4>Start Time</h4>
                             <div class="field">
                                 @Html.DropDownListFor(m => m.StartTime, new SelectListItem[] {
+                                    new SelectListItem() {Text = "8:00 AM", Value="8:00 AM"},
+                                    new SelectListItem() {Text = "8:30 AM", Value="8:30 AM"},
                                     new SelectListItem() {Text = "9:00 AM", Value="9:00 AM"},
                                     new SelectListItem() {Text = "9:30 AM", Value="9:30 AM"},
                                     new SelectListItem() {Text = "10:00 AM", Value="10:00 AM"},
@@ -48,6 +50,8 @@
                             <h4>End Time</h4>
                             <div class="field">
                                 @Html.DropDownListFor(m => m.EndTime, new SelectListItem[]{
+                                    new SelectListItem() {Text = "8:00 AM", Value="8:00 AM"},
+                                    new SelectListItem() {Text = "8:30 AM", Value="8:30 AM"},
                                     new SelectListItem() {Text = "9:00 AM", Value="9:00 AM"},
                                     new SelectListItem() {Text = "9:30 AM", Value="9:30 AM"},
                                     new SelectListItem() {Text = "10:00 AM", Value="10:00 AM"},
