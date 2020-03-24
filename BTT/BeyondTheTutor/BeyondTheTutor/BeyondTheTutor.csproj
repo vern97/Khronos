@@ -220,6 +220,10 @@
   <ItemGroup>
     <Content Include="App_Data\AspDown.sql" />
     <Content Include="App_Data\AspUp.sql" />
+    <Content Include="App_Data\BeyondTheTutor.mdf" />
+    <Content Include="App_Data\BeyondTheTutor_log.ldf">
+      <DependentUpon>BeyondTheTutor.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\down.sql" />
     <Content Include="App_Data\queries.sql" />
     <Content Include="App_Data\up.sql" />
@@ -378,6 +382,7 @@
     <Content Include="Content\images\Login_Logo.png" />
     <Content Include="Content\images\stevie.jpg" />
     <Content Include="Content\images\TutoringLogo.png" />
+    <Content Include="Content\images\Tutoring_Banner.png" />
     <Content Include="Content\jquery.datetimepicker.css" />
     <Content Include="Content\semantic.css" />
     <Content Include="Content\semantic.min.css" />

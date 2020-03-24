@@ -50,7 +50,6 @@
                             <h4>End Time</h4>
                             <div class="field">
                                 @Html.DropDownListFor(m => m.EndTime, new SelectListItem[]{
-                                    new SelectListItem() {Text = "8:00 AM", Value="8:00 AM"},
                                     new SelectListItem() {Text = "8:30 AM", Value="8:30 AM"},
                                     new SelectListItem() {Text = "9:00 AM", Value="9:00 AM"},
                                     new SelectListItem() {Text = "9:30 AM", Value="9:30 AM"},
@@ -67,7 +66,8 @@
                                     new SelectListItem() {Text = "3:00 PM", Value="3:00 PM"},
                                     new SelectListItem() {Text = "3:30 PM", Value="3:30 PM"},
                                     new SelectListItem() {Text = "4:00 PM", Value="4:00 PM"},
-                                    new SelectListItem() {Text = "4:30 PM", Value="4:30 PM"}
+                                    new SelectListItem() {Text = "4:30 PM", Value="4:30 PM"},
+                                    new SelectListItem() {Text = "5:00 PM", Value="5:00 PM"}
                                  }, "Select", htmlAttributes: new { @class = "ui selection dropdown form-control" })
                                 @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
                             </div>

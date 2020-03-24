@@ -68,7 +68,7 @@ textarea {
 }
 
 .tutor-bg {
-    background-image: linear-gradient(#403B4A, #E7E9BB);
+    background-image: linear-gradient(#C4E0E5, #4CA1AF);
 }
 
 .wou-grey-bg {
@@ -171,4 +171,8 @@ textarea {
     border-top: solid;
     border-top-width: 3px;
     border-top-color: #db0a29;
+}
+
+.ui.one.column.stackable.page.grid.schedule {
+    margin-top: 10px;
 }
