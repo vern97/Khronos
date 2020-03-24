@@ -15,7 +15,7 @@ namespace BeyondTheTutor.DAL
         {
             //if false fire local database
             //if true fire azure database
-            if (false)
+            if (true)
             {
                 getContext = azure;
             }
