@@ -3,6 +3,24 @@
     padding-bottom: 20px;
 }
 
+/* Backgrounds for web pages*/
+.campus-bg {
+    background: url('../Content/images/Campus.jpg');
+    background-size: cover;
+}
+
+.tutor-bg {
+    background-image: linear-gradient(#C4E0E5, #4CA1AF);
+}
+
+.wou-grey-bg {
+    background-color: rgb(196,198,200);
+}
+
+.wou-silver-bg {
+    background-color: rgb(167,169,172);
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -60,23 +78,6 @@ textarea {
     width: 100%;
     background-color: rgb(167,169,172);
     color: #FFFFFF;
-}
-
-.campus-bg {
-    background: url('../Content/images/Campus.jpg');
-    background-size: cover;
-}
-
-.tutor-bg {
-    background-image: linear-gradient(#C4E0E5, #4CA1AF);
-}
-
-.wou-grey-bg {
-    background-color: rgb(196,198,200);
-}
-
-.wou-silver-bg {
-    background-color: rgb(167,169,172);
 }
 
 #tutors_container {
@@ -176,3 +177,19 @@ textarea {
 .ui.one.column.stackable.page.grid.schedule {
     margin-top: 10px;
 }
+
+/* Customizations for admin home page */
+.ui.centered.image.admin {
+    border-top: solid;
+    border-top-width: 3px;
+    border-top-color: #db0a29;
+}
+
+.ten.wide.column.admin {
+    border: solid;
+    border-width: 3px;
+    border-color: #db0a29;
+    background-color: #FFFFFF;
+}
+
+
