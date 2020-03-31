@@ -370,6 +370,8 @@
     <Content Include="Content\images\BeyondtheTutor_Banner4.png" />
     <Content Include="Content\images\BeyondtheTutor_Logo.png" />
     <Content Include="Content\images\Campus.jpg" />
+    <Content Include="Content\images\campus_map_1.jpg" />
+    <Content Include="Content\images\campus_map_2.jpg" />
     <Content Include="Content\images\daniel.jpg" />
     <Content Include="Content\images\helen.jpg" />
     <Content Include="Content\images\KhronosLogo.png" />
@@ -405,6 +407,7 @@
     <Content Include="Content\images\landscapes_images\8.jpg" />
     <Content Include="Content\images\landscapes_images\9.jpg" />
     <Content Include="Content\images\Login_Logo.png" />
+    <Content Include="Content\images\Logo_Stacked.jpg" />
     <Content Include="Content\images\stevie.jpg" />
     <Content Include="Content\images\TutoringLogo.png" />
     <Content Include="Content\images\Tutoring_Red_Banner.png" />

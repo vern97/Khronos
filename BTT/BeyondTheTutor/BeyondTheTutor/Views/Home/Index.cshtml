@@ -52,24 +52,38 @@
 
         <div class="ui segments background-color-white">
             <div class="ui horizontal segments">
-                <div class="ui red segment">
+
+                <div class="ui red very padded segment">
                     <h3 class="ui center aligned header"><i class="thumbs up icon"></i>What classes can we help with?</h3>
                     <hr />
-                    <p><i>CS 122, 133, 160, 161, 162, 260, 271, 340, 360, 361, 363, 364, 365, 434, 465</i></p>
-                    <p><i>IS 240, 278, 340, 345, 350, 355, 485</i></p>
+                    @foreach (var className in ViewBag.csList)
+                    {
+                        <i>@className.Name </i>
+                    }
+                    <div class="ui hidden divider"></div>
+                    @foreach (var className in ViewBag.isList)
+                    {
+                        <i>@className.Name </i>
+                    }
                 </div>
-                <div class="ui red segment">
+
+                <div class="ui red very padded segment">
                     <h3 class="ui center aligned header"><i class="map pin icon"></i>Where are we located?</h3>
                     <hr />
-                    <p>We’ve moved to the Old Education Building, across from the WUC.</p>
                     <p>The tutoring room is located on the 2nd floor, south corner, room <b>OED 230</b>.</p>
-                    <p>We are open during weeks 2 – 10 each term.</p>
+                    <p>We are open starting April 1st, 2020.</p>
+                </div>
+
+                <div class="ui red very padded segment">
+                    <img class="ui large image" src="../Content/images/Logo_Stacked.jpg" alt="Alternate Text" />
+                </div>
+
+            </div>
+                <div class="ui secondary center aligned segment">
+                    <p>Want more information? Visit our <a href="/Home/FAQ" target="_blank">FAQ</a>.</p>
                 </div>
             </div>
-            <div class="ui secondary center aligned segment">
-                <p>Want more information? Visit our <a href="/Home/FAQ" target="_blank">FAQ</a>.</p>
-            </div>
-        </div>
+
     </div>
 
     <div class="ui container footer">

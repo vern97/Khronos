@@ -1,11 +1,8 @@
 ﻿using BeyondTheTutor.DAL;
 using BeyondTheTutor.Models;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace BeyondTheTutor.Controllers
@@ -15,7 +12,12 @@ namespace BeyondTheTutor.Controllers
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
         public ActionResult Index()
         {
+
             ViewBag.Current = "HomeIndex";
+
+            ViewBag.csList = db.Classes.Where(c => c.Name.Contains("CS")).ToList();
+            ViewBag.isList = db.Classes.Where(c => c.Name.Contains("IS")).ToList();
+
             return View();
         }
 
