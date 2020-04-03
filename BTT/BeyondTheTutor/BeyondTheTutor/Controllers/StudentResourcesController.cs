@@ -18,6 +18,54 @@ namespace BeyondTheTutor.Controllers
         public ActionResult Index()
         {
             ViewBag.Current = "StuResIndex";
+
+            string userInput = Request.QueryString["search"];
+            string userSelection = Request.QueryString["selection"];
+            ViewBag.message = null;
+            ViewBag.check = true;
+
+            if (userInput == null && userSelection == null)
+            {
+                ViewBag.check = true;
+                ViewBag.Topics = db.StudentResources.Select(t => t.Topic).Distinct().ToList();
+
+                return View();
+            }
+            else if (userInput != null && userSelection == null)
+            {
+                ViewBag.check = false;
+                var studentResources = db.StudentResources.Include(s => s.BTTUser).OrderBy(s => s.Topic);
+
+                var resourceList = studentResources
+                    .Where(s => s.BTTUser.FirstName.Contains(userInput)
+                    || s.BTTUser.LastName.Contains(userInput)
+                    || s.Topic.Contains(userInput)
+                    || s.DisplayText.Contains(userInput)).ToList();
+
+                ViewBag.Topics = resourceList;
+
+                if (resourceList.Count == 0)
+                {
+                    ViewBag.message = "No results for " + userInput + " found";
+                }
+
+                return View();
+            }
+            else
+            {
+                ViewBag.check = false;
+                var studentResources = db.StudentResources.Include(s => s.BTTUser)
+                    .Where(s => s.Topic == userSelection).OrderBy(s => s.Topic).ToList();
+
+                ViewBag.Topics = studentResources;
+
+                return View();
+            }
+        }
+
+        [Authorize(Roles = "Student, Tutor, Professor")]
+        public ActionResult ViewAll()
+        {
             var studentResources = db.StudentResources.Include(s => s.BTTUser).OrderBy(s => s.Topic);
             return View(studentResources.ToList());
         }

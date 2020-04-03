@@ -192,4 +192,57 @@ textarea {
     background-color: #FFFFFF;
 }
 
+/* Customizations for student resources */
+.column.resources {
+    border: solid;
+    border-width: 1px;
+    border-color: #db0a29;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.fluid.ui.button.resources {
+    width: 100%;
+    background-color: transparent;
+    color: #231f20;
+    font-size: large;
+    text-align: center;
+    text-shadow: inherit;
+}
+
+.fluid.ui.button.resources:hover {
+    color: #db0a29;
+}
+
+.resources-link {
+    color: #231f20;
+    font-size: large;
+}
+
+.resources-link:hover {
+    color: #db0a29;
+}
+
+.all-resources-link {
+    color: #db0a29;
+}
+
+.all-resources-link:hover {
+    color: #231f20;
+}
+
+.ui.striped.padded.table.resources {
+    border-top: solid;
+    border-top-width: 3px;
+    border-top-color: #db0a29;
+}
+
+#resources th {
+    background-color: #808080;
+    color: #FFFFFF;
+}
+
+
 

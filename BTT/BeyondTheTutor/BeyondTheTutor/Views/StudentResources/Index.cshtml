@@ -1,32 +1,93 @@
-﻿@model IEnumerable<BeyondTheTutor.Models.StudentResource>
+﻿@{
+    int count = 0;
+    string color = "#FFFFFF";
+    ViewBag.Placeholder = "Search: \"CS 365\", \"Morgan\", \"Victoria\", \"CSS\"";
+}
 
 <body class="wou-silver-bg">
-    <div class="ui grid">
-        <div class="three wide column"></div>
-        <div class="ten wide column">
-            <table class="ui striped selectable celled table resources">
-                <thead>
-                    <tr>
-                        <th><h1 class="ui centered header">Topic</h1></th>
-                        <th><h1 class="ui centered header">Resource List</h1></th>
-                    </tr>
-                </thead>
-                @foreach (var item in Model)
-                {
-                    <tbody>
-                        <tr>
-                            <td><b>@Html.DisplayFor(modelItem => item.Topic)</b></td>
-                            <td><a href="@Html.DisplayFor(modelItem => item.URL)" target="_blank">@Html.DisplayFor(modelItem => item.DisplayText)</a></td>
-                        </tr>
-                    </tbody>
+    <div class="ui two column centered grid">
+        <div class="two column centered row">
+            <div class="column">
+                @{ 
+                    if (ViewBag.message != null)
+                    {
+                        <div class="ui raised secondary segment">
+                            <p>@ViewBag.message</p>
+                        </div>
+                    }
                 }
-            </table>
+                <table class="ui striped compact table table-schedule">
+                    <thead>
+                        <tr>
+                            <th colspan="6">
+                                @using (Html.BeginForm("Index", "StudentResources", FormMethod.Get))
+                                {
+                                <div class="ui fluid action input">
+                                    <button class="ui button" style="background-color: #db0a29; color: white;">Search</button>
+                                    <input type="text" style="color: #db0a29" value="@ViewBag.searched" name="search" id="search" placeholder="@ViewBag.Placeholder">
+
+                                </div>
+                                }
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+                @{ 
+                    if (ViewBag.check == false)
+                    {
+                        <a href="/StudentResources/Index" button class="fluid ui button schedule">Return to Resources Home</a>
+                    }
+                }
+            </div>
         </div>
-        <div class="three wide column"></div>
+    </div>
+
+    <div class="ui relaxed grid">
+        <div class="four column centered row">
+            @if (ViewBag.check == true)
+            {
+                <div class="column resources" style="background-color: @color;">
+                    <a href="/StudentResources/ViewAll" class="fluid ui button resources">Browse All</a>
+                </div>
+                foreach (var item in ViewBag.Topics)
+                {
+                    count = count + 1;
+                    if ((count % 2) == 1)
+                    {
+                        color = "#c4c6c8";
+                    }
+                    else
+                    {
+                        color = "#d5d8db";
+                    }
+                    <div class="column resources" style="background-color: @color;">
+                        @using (Html.BeginForm("Index", "StudentResources", FormMethod.Get))
+                        {
+                            <button class="fluid ui button resources" id="selection" name="selection" value="@item"><b>@item</b></button>
+                        }
+                    </div>
+                }
+            }
+            else
+            {
+                foreach (var item in ViewBag.Topics)
+                {
+                    count = count + 1;
+                    if ((count % 2) == 1)
+                    {
+                        color = "#c4c6c8";
+                    }
+                    else
+                    {
+                        color = "#d5d8db";
+                    }
+                    <div class="column resources" style="background-color: @color;">
+                        <a href="@item.URL" target="_blank" class="resources-link"><b>@item.DisplayText</b></a>
+                    </div>
+                }
+            }
+        </div>
     </div>
 </body>
 
-@section scripts
-{
-    <script src="~/Scripts/main.js"></script>
-}
+<script src="~/Scripts/main.js"></script>
