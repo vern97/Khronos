@@ -12,7 +12,6 @@ namespace BeyondTheTutor.Controllers
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
         public ActionResult Index()
         {
-
             ViewBag.Current = "HomeIndex";
 
             ViewBag.csList = db.Classes.Where(c => c.Name.Contains("CS")).ToList();
@@ -27,9 +26,22 @@ namespace BeyondTheTutor.Controllers
             return View(); 
         }
 
-        public  ActionResult Privacy()
+        public ActionResult Privacy()
         {
             ViewBag.Current = "HomePrivacy";
+            return View();
+        }
+
+        [Authorize(Roles = "Student, Tutor")]
+        public ActionResult Calculators()
+        {
+            ViewBag.Current = "Calculators";
+
+            return View();
+        }
+
+        public ActionResult WeightedGradeCalculator()
+        {
             return View();
         }
 

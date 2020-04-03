@@ -9,8 +9,9 @@
     background-size: cover;
 }
 
-.tutor-bg {
-    background-image: linear-gradient(#C4E0E5, #4CA1AF);
+.library-bg {
+    background: url('../Content/images/Library_Photo.jpg');
+    background-size: cover;
 }
 
 .wou-grey-bg {
