@@ -222,6 +222,7 @@
     <Content Include="App_Data\AspUp.sql" />
     <Content Include="App_Data\down.sql" />
     <Content Include="App_Data\queries.sql" />
+    <Content Include="App_Data\seed.sql" />
     <Content Include="App_Data\up.sql" />
     <Content Include="Content\components\accordion.css" />
     <Content Include="Content\components\accordion.js" />
@@ -408,6 +409,7 @@
     <Content Include="Content\images\landscapes_images\9.jpg" />
     <Content Include="Content\images\Login_Logo.png" />
     <Content Include="Content\images\Logo_Stacked.jpg" />
+    <Content Include="Content\images\Resources_Owl_Logo.png" />
     <Content Include="Content\images\stevie.jpg" />
     <Content Include="Content\images\TutoringLogo.png" />
     <Content Include="Content\images\Tutoring_Red_Banner.png" />
@@ -627,6 +629,7 @@
     <Content Include="Views\StudentResources\Index.cshtml" />
     <Content Include="Views\StudentResources\ResourceSuccess.cshtml" />
     <Content Include="Views\StudentResources\ManageResources.cshtml" />
+    <Content Include="Views\StudentResources\ViewAll.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
