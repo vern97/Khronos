@@ -407,6 +407,7 @@
     <Content Include="Content\images\landscapes_images\7.jpg" />
     <Content Include="Content\images\landscapes_images\8.jpg" />
     <Content Include="Content\images\landscapes_images\9.jpg" />
+    <Content Include="Content\images\Library_Photo.jpg" />
     <Content Include="Content\images\Login_Logo.png" />
     <Content Include="Content\images\Logo_Stacked.jpg" />
     <Content Include="Content\images\Resources_Owl_Logo.png" />
@@ -630,6 +631,7 @@
     <Content Include="Views\StudentResources\ResourceSuccess.cshtml" />
     <Content Include="Views\StudentResources\ManageResources.cshtml" />
     <Content Include="Views\StudentResources\ViewAll.cshtml" />
+    <Content Include="Views\Home\Calculators.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

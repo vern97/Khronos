@@ -29,3 +29,6 @@ $(document).ready(function () {
         $('#modalid-2').modal('show');
     });
 });
+
+$('.menu .item')
+    .tab();
