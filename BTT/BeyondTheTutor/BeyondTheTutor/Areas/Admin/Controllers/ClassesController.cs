@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using BeyondTheTutor.DAL;
@@ -15,6 +16,8 @@ namespace BeyondTheTutor.Areas.Admin.Controllers
     public class ClassesController : Controller
     {
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
+        private ApplicationDbContext context = new ApplicationDbContext();
+
 
         // GET: Admin/Classes
         public ActionResult Index()
@@ -25,7 +28,26 @@ namespace BeyondTheTutor.Areas.Admin.Controllers
             var currentUser = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().FirstName;
             ViewBag.FirstName = currentUser;
 
-            return View(db.Classes.ToList());
+            string userInput = Request.QueryString["search"];
+
+            if (userInput == null)
+            {
+                return View(db.Classes.OrderBy(c => c.Name).ToList());
+            }
+            else
+            {
+                ViewBag.searched = userInput;
+                var replaceWith = Regex.Match(userInput, @"(?=[a-zA-Z])([^ ])(?=\d)([^ ]{1})").ToString();
+                replaceWith = replaceWith.Insert(1, " ");
+                var temp = Regex.Replace(userInput, @"(?=[a-zA-Z])([^ ])(?=\d)([^ ]{1})", replaceWith).ToLower();
+
+                userInput = userInput.ToLower();
+                var searchedClasses = db.Classes.OrderBy(c => c.Name)
+                .Where(c => c.Name.ToLower().Contains(userInput) || c.Name.ToLower().Contains(temp)).ToList();
+
+
+                return View(searchedClasses);
+            }
         }
 
         // GET: Admin/Classes/Details/5
