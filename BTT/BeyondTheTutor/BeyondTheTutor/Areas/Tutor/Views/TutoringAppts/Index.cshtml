@@ -1,39 +1,57 @@
 ﻿@model IEnumerable<BeyondTheTutor.Models.TutoringAppt>
 
 <body class="wou-silver-bg">
-    <div class="ui one column stackable page grid" style="padding-top:10px;">
-        <table class="ui striped table stu-app">
-            <thead>
-                <tr>
-                    <th><h4>Class Requested For</h4></th>
-                    <th><h4>Start Date &amp; Time</h4></th>
-                    <th><h4>End Date &amp; Time</h4></th>
-                    <th><h4>Session Length</h4></th>
-                    <th><h4>Current Status</h4></th>
-                    <th><h4>Notes</h4></th>
-                    <th><h4>Action</h4></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
+    <div class="ui one column centered padded grid" style="padding-top:10px;">
+        <div class="ui red centered segment">
+            <div class="ui horizontal divider">
+                <h2 class="ui centered header">Tutoring Requests</h2>
+            </div>
+            <table class="ui center aligned striped table">
+                <thead>
                     <tr>
-                        <td>@Html.DisplayFor(modelItem => item.Class.Name)</td>
-                        <td>@Html.DisplayFor(modelItem => item.StartTime)</td>
-                        <td>@Html.DisplayFor(modelItem => item.EndTime)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Length)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Status)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Note)</td>
-                        <td>
-                            <button class="ui basic button">
-                                <i class="edit icon"></i>
-                                @Html.ActionLink("Updated Request", "Edit", new { id = item.ID })
-                            </button>
-                        </td>
+                        <th><h4>Requested For</h4></th>
+                        <th><h4>Date</h4></th>
+                        <th><h4>Start Time</h4></th>
+                        <th><h4>End Time</h4></th>
+                        <th><h4>Session Length</h4></th>
+                        <th><h4>Requestor</h4></th>
+                        <th><h4>Assigned Tutor</h4></th>
+                        <th><h4>Current Status</h4></th>
+                        <th><h4>Action</h4></th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        var dateItem = item.StartTime.ToShortDateString();
+                        var startTimeItem = item.StartTime.ToShortTimeString();
+                        var endTimeItem = item.EndTime.ToShortTimeString();
+                        var requestorItem = item.Student.BTTUser.FirstName + " " + item.Student.BTTUser.LastName;
+                        var assignedTutorItem = " ";
+                        if (item.TutorID != null)
+                        {
+                            assignedTutorItem = item.Tutor.BTTUser.FirstName + " " + item.Tutor.BTTUser.LastName;
+                        }
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Class.Name)</td>
+                            <td>@Html.DisplayFor(modelItem => dateItem)</td>
+                            <td>@Html.DisplayFor(modelItem => startTimeItem)</td>
+                            <td>@Html.DisplayFor(modelItem => endTimeItem)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Length)</td>
+                            <td>@Html.DisplayFor(modelItem => requestorItem)</td>
+                            <td>@Html.DisplayFor(modelItem => assignedTutorItem)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                            <td>
+                                <button class="ui basic button">
+                                    <i class="edit icon"></i>
+                                    @Html.ActionLink("Update Request", "Edit", new { id = item.ID })
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 
