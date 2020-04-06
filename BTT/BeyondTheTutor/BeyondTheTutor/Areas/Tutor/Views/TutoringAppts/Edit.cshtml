@@ -116,14 +116,17 @@
                         <h4>Status</h4>
                         @Html.DropDownListFor(model => model.Status, new SelectListItem[] {
                                     new SelectListItem() {Text = "Requested", Value="Requested", Selected = true},
-                                    new SelectListItem() {Text = "Cancel", Value="Canceled"},
                                     new SelectListItem() {Text = "Approve", Value="Approved"},
+                                    new SelectListItem() {Text = "Decline", Value="Declined"},
+                                    new SelectListItem() {Text = "Cancel", Value="Canceled"},
+                                    new SelectListItem() {Text = "Completed", Value="Completed"},
+                                    new SelectListItem() {Text = "No Show", Value="No Show"},
                                  }, "Select", htmlAttributes: new { @class = "ui selection dropdown form-control" })
                         @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
                     </div>
                     <div class="field">
                         <h4>Assigned Tutor</h4>
-                        @Html.DropDownListFor(model => model.TutorID, new SelectList(ViewBag.Tutors, "ID", "Name", "true"), htmlAttributes: new { @class = "ui selection dropdown form-control" })
+                        @Html.DropDownListFor(model => model.TutorID, new SelectList(ViewBag.Tutors, "ID", "Name", "true"), "Assign Tutor", htmlAttributes: new { @class = "ui selection dropdown form-control" })
                         @Html.ValidationMessageFor(model => model.TutorID, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -138,7 +141,7 @@
 
                 <form>
                     <button class="fluid ui button schedule" style="margin-bottom: 3px;">Update Request</button>
-                    <a href="/Tutor/TutorAppts/Index" button class="fluid ui button schedule">Go Back to List</a>
+                    <a href="/Tutor/TutoringAppts/Index" button class="fluid ui button schedule">Go Back to List</a>
                 </form>
             }
         </div>
