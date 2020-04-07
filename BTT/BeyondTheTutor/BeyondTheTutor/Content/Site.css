@@ -245,23 +245,5 @@ textarea {
     color: #FFFFFF;
 }
 
-/* Customizations for calculators */
-table#weighted {
-    font-size: large;
-    color: #231f20;
-    margin-top: 5px;
-    width: 100%;
-    padding: 5px;
-}
-
-table#weighted tr {
-    background-color: rgb(196,198,200);
-    font-size: large;
-    color: #231f20;
-    margin-top: 5px;
-    width: 100%;
-    padding: 5px;
-}
-
 
 
