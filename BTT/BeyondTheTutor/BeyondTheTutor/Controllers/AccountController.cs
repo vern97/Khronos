@@ -452,6 +452,7 @@ namespace BeyondTheTutor.Controllers
                 return View(model);
             }
             var user = await UserManager.FindByNameAsync(model.Email);
+            ViewBag.Current = "AdminClassesIndex";
             if (user == null)
             {
                 // Don't reveal that the user does not exist

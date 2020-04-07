@@ -80,19 +80,35 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
             {
                 return HttpNotFound();
             }
+
             var stuID = db.TutoringAppts.Where(a => a.ID == id).Select(a => a.StudentID).FirstOrDefault();
             var stuFName = db.BTTUsers.Where(a => a.ID == stuID).Select(a => a.FirstName).FirstOrDefault();
             var stuLName = db.BTTUsers.Where(a => a.ID == stuID).Select(a => a.LastName).FirstOrDefault();
             var stuName = stuFName + " " + stuLName;
             ViewBag.StudentName = stuName;
+
             var studentInfo = db.TutoringAppts.Where(a => a.ID == id).ToList();
-            ViewBag.StartTime = studentInfo.Select(a => a.StartTime).FirstOrDefault();
-            ViewBag.EndTime = studentInfo.Select(a => a.EndTime).FirstOrDefault();
+
+            var startTime = studentInfo.Select(a => a.StartTime).FirstOrDefault();
+            ViewBag.modelDate = startTime.ToShortDateString();
+            ViewBag.modelStartTime = startTime.ToShortTimeString();
+
+            var endTime = studentInfo.Select(a => a.EndTime).FirstOrDefault();
+            ViewBag.modelEndTime = endTime.ToShortTimeString();
+
             ViewBag.TypeOfMeeting = studentInfo.Select(a => a.TypeOfMeeting).FirstOrDefault();
             ViewBag.ClassID = studentInfo.Select(a => a.ClassID).FirstOrDefault();
             ViewBag.Length = studentInfo.Select(a => a.Length).FirstOrDefault();
             ViewBag.StudentID = studentInfo.Select(a => a.StudentID).FirstOrDefault();
-            ViewBag.TutorID = studentInfo.Select(a => a.TutorID).FirstOrDefault();
+
+            var Tutors = db.BTTUsers.Where(a => a.ID == a.Tutor.ID)
+                .Select(a => new
+                {
+                    ID = a.ID,
+                    Name = a.FirstName + " " + a.LastName
+                });
+            ViewBag.Tutors = Tutors;
+
             ViewBag.ID = studentInfo.Select(a => a.ID).FirstOrDefault();
             return View(tutoringAppt);
         }

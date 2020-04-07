@@ -1,8 +1,18 @@
-﻿<!DOCTYPE html>
+﻿@using BeyondTheTutor.DAL;
+@using Microsoft.AspNet.Identity;
+@{
+    BeyondTheTutorContext db = new BeyondTheTutorContext();
+
+    var userID = User.Identity.GetUserId();
+    var currentUser = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().FirstName;
+    ViewBag.FirstName = currentUser;
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../../../../Content/images/favicon/favicon-16x16.png" sizes="16x16" />
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/fullcalendarcss")
     <link rel="stylesheet" type="text/css" href="~/Content/semantic.min.css">
@@ -12,7 +22,14 @@
         @Html.ActionLink("Beyond the Tutor", "Index", "Home", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "HomeIndex" ? "item red active" : "item") })
         @Html.ActionLink("Admin Portal", "Index", "Home", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminHomeIndex" ? "item red active" : "item") })
         <div class="right menu">
-            @Html.ActionLink("User Guide", "Guide", "Home", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminHomeGuide" ? "item red active" : "item") })
+            <div class="ui dropdown item">
+                Misc. Management
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    @Html.ActionLink("Courses", "Index", "Classes", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminClassesIndex" ? "item red active" : "item") })
+                    <a class="item">Other</a>
+                </div>
+            </div>
             <div class="ui dropdown item">
                 User Management
                 <i class="dropdown icon"></i>
@@ -29,16 +46,27 @@
                     @Html.ActionLink("Edit Tutor Schedules", "UpdateSchedule", "TutorSchedules", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminTutorSchedUpdateSchedule" ? "item red active" : "item") })
                 </div>
             </div>
-            @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
-            {
-                @Html.AntiForgeryToken()
-                <a href="javascript:document.getElementById('logoutForm').submit()" class="item">Sign out</a>
-            }
-        </div>
+                @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
+                {
+                    <div class="ui dropdown item">
+                        @ViewBag.FirstName
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <div style="text-align: left;">
+                            @Html.ActionLink("Change Password", "ChangePassword", "Manage", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "ChangePassword" ? "item red active" : "item") })
+                            @Html.ActionLink("User Guide", "Guide", "Home", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminHomeGuide" ? "item red active" : "item") })
+                            @Html.AntiForgeryToken()
+                            <a href="javascript:document.getElementById('logoutForm').submit()" class="item">Sign out</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/fullcalendarjs")
+
     <script src="~/Scripts/semantic.min.js"></script>
 
     <div class="container body-content">
