@@ -1,63 +1,29 @@
 ﻿<body class="library-bg">
+
     <div class="ui two column centered grid">
         <div class="column">
+
             <div class="ui top attached tabular menu">
                 <a class="active item" data-tab="first"><b>Weighted Grade Calculator</b></a>
                 <a class="item" data-tab="second"><b>Cumulative GPA Calculator</b></a>
                 <a class="item" data-tab="third"><b>Final Grade Calculator</b></a>
             </div>
+
             @*Weighted Grade Calculator Section*@
             <div class="ui bottom attached active tab segment" data-tab="first">
-                <div class="ui equal width form">
-                    <div class="two fields">
-                        <div class="field">
-                            <div class="ui red ribbon medium label">
-                                Grade
-                            </div>
-                            @{ int j = 1;
-                                for (int i = 0; i < 10; i++)
-                                {
-                                    <div class="ui right labeled input">
-                                        <label class="ui label">@j</label>
-                                        <input type="number" step="0.01" min="0" class="grades">
-                                        <div class="ui basic label">%</div>
-                                    </div>
-                                    j++;
-                                }
-                            }
+
+                <div class="ui icon message">
+                    <i class="notched circle loading icon"></i>
+                    <div class="content">
+                        <div class="header">
+                            Just one second
                         </div>
-                        <div class="field">
-                            <div class="ui red right ribbon medium label">
-                                Weight
-                            </div>
-                            @{ int k = 1;
-                                for (int i = 0; i < 10; i++)
-                                {
-                                    <div class="ui right labeled input">
-                                        <label class="ui label">@k</label>
-                                        <input type="number" step="0.1" min="0" max="100" class="weights">
-                                        <div class="ui basic label">%</div>
-                                    </div>
-                                    k++;
-                                }
-                            }
-                        </div>
-                    </div>
-                    <div class="two buttons">
-                        <button onclick="getResults()" class="ui right labeled icon button">
-                            <i class="calculator icon"></i>
-                            Calculate
-                        </button>
-                        <button class="ui right labeled icon button" id="reset">
-                            <i class="undo icon"></i>
-                            Reset
-                        </button>
-                    </div>
-                    <div id="weightedTable">
-                        <table id="weighted"></table>
+                        <p>We're working on it now :)</p>
                     </div>
                 </div>
+
             </div>
+
             @*Cumulative Grade Calculator Section*@
             <div class="ui bottom attached tab segment" data-tab="second">
 
@@ -90,10 +56,7 @@
 
         </div>
     </div>
+
 </body>
 
-@section scripts
-{
-    <script src="~/Scripts/main.js"></script>
-}
-
+<script src="~/Scripts/main.js"></script>
