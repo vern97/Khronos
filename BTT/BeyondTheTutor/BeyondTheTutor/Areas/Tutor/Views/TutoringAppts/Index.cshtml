@@ -14,6 +14,7 @@
                         <th><h4>Start Time</h4></th>
                         <th><h4>End Time</h4></th>
                         <th><h4>Session Length</h4></th>
+                        <th><h4>Meeting Type</h4></th>
                         <th><h4>Requestor</h4></th>
                         <th><h4>Assigned Tutor</h4></th>
                         <th><h4>Current Status</h4></th>
@@ -38,6 +39,7 @@
                             <td>@Html.DisplayFor(modelItem => startTimeItem)</td>
                             <td>@Html.DisplayFor(modelItem => endTimeItem)</td>
                             <td>@Html.DisplayFor(modelItem => item.Length)</td>
+                            <td>@Html.DisplayFor(modelItem => item.TypeOfMeeting)</td>
                             <td>@Html.DisplayFor(modelItem => requestorItem)</td>
                             <td>@Html.DisplayFor(modelItem => assignedTutorItem)</td>
                             <td>@Html.DisplayFor(modelItem => item.Status)</td>
