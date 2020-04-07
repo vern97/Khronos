@@ -13,6 +13,8 @@ using Microsoft.AspNet.Identity;
 
 namespace BeyondTheTutor.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
+
     public class ClassesController : Controller
     {
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
