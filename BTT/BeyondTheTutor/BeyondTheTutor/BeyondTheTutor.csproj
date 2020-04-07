@@ -375,8 +375,6 @@
     <Content Include="Content\images\campus_map_1.jpg" />
     <Content Include="Content\images\campus_map_2.jpg" />
     <Content Include="Content\images\daniel.jpg" />
-    <Content Include="Content\images\favicon\favicon-16x16.png" />
-    <Content Include="Content\images\favicon\favicon-32x32.png" />
     <Content Include="Content\images\helen.jpg" />
     <Content Include="Content\images\KhronosLogo.png" />
     <Content Include="Content\images\landscapes_images\1.jpg" />
@@ -422,6 +420,7 @@
     <Content Include="Content\semantic.min.css" />
     <Content Include="Content\themes\default\assets\fonts\icons.svg" />
     <Content Include="Content\themes\default\assets\images\flags.png" />
+    <Content Include="favicon-32x32.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
