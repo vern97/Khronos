@@ -93,7 +93,7 @@ namespace BeyondTheTutor.Controllers
 
                 for (int i = 0; i < grades.Count(); i++)
                 {
-                    total += grades[i] * weights[i];
+                    total = total +  (grades[i] * weights[i]);
                 }
 
                 double firstNumber = total;
