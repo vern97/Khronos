@@ -44,19 +44,7 @@ namespace BeyondTheTutor.Controllers
 
         [Authorize(Roles = "Student, Tutor")]
         public ActionResult WeightedGradeResults()
-        {        
-            double getmultipliedGradesandWeight(double[] gradesArray, double[] weightsArray)
-            {
-                double total = 0;
-
-                for (int i = 0; i < gradesArray.Count(); i++)
-                {
-                    total += gradesArray[i] * weightsArray[i];
-                }
-
-                return total;
-            };     
-
+        {      
             string requestGrades = Request.QueryString["gradesArray"];
             string requestWeights = Request.QueryString["weightsArray"];
 
@@ -101,7 +89,14 @@ namespace BeyondTheTutor.Controllers
                     weights[i] = double.Parse(weightsString[i]);
                 }
 
-                double firstNumber = getmultipliedGradesandWeight(grades, weights);
+                double total = 0;
+
+                for (int i = 0; i < grades.Count(); i++)
+                {
+                    total += grades[i] * weights[i];
+                }
+
+                double firstNumber = total;
                 double secondNumber = weights.Sum();
 
                 if (secondNumber > 100)
