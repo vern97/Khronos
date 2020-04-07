@@ -476,7 +476,6 @@
     <Content Include="Areas\Tutor\Views\TutoringAppts\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Classes\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Classes\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Classes\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Classes\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Classes\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />

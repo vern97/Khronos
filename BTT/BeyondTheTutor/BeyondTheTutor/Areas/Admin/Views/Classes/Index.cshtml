@@ -3,6 +3,19 @@
     ViewBag.Placeholder = "Search: \"CS260\", \"161\"";
 }
 
+@if (ViewBag.StatusMessage != null)
+{
+    <div class="ui green message" style="text-align: center;">
+        <B>@ViewBag.StatusMessage</B>
+    </div>
+}
+@if (ViewBag.Err != null)
+{
+    <div class="ui red message" style="text-align: center;">
+        <B>@ViewBag.Err</B>
+    </div>
+}
+
 <body class="wou-silver-bg">
     <div class="ui one column center aligned stackable page grid">
         <br />
@@ -79,7 +92,7 @@
                         </td>
                         <td>
                             <button class="ui basic button">
-                                <i class="edit icon"></i>                                
+                                <i class="edit icon"></i>
                                 @Html.ActionLink("Rename", "Edit", new { id = item.ID })
                             </button>
                             <button class="ui basic button">
@@ -89,7 +102,7 @@
                         </td>
                     </tr>
                 }
-</table>
+        </table>
     </div>
 </body>
 

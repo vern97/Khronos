@@ -30,6 +30,18 @@ namespace BeyondTheTutor.Areas.Admin.Controllers
 
             string userInput = Request.QueryString["search"];
 
+            if(TempData["msg"] != null)
+            {
+                ViewBag.StatusMessage = TempData["msg"].ToString();
+                TempData.Remove("msg");
+            }
+            if(TempData["err"] != null)
+            {
+                ViewBag.Err = TempData["err"].ToString();
+                TempData.Remove("err");
+            }
+
+
             if (userInput == null)
             {
                 return View(db.Classes.OrderBy(c => c.Name).ToList());
@@ -38,7 +50,8 @@ namespace BeyondTheTutor.Areas.Admin.Controllers
             {
                 ViewBag.searched = userInput;
                 var replaceWith = Regex.Match(userInput, @"(?=[a-zA-Z])([^ ])(?=\d)([^ ]{1})").ToString();
-                replaceWith = replaceWith.Insert(1, " ");
+                if (replaceWith.Length >= 2)
+                { replaceWith = replaceWith.Insert(1, " "); }
                 var temp = Regex.Replace(userInput, @"(?=[a-zA-Z])([^ ])(?=\d)([^ ]{1})", replaceWith).ToLower();
 
                 userInput = userInput.ToLower();
@@ -114,8 +127,12 @@ namespace BeyondTheTutor.Areas.Admin.Controllers
             {
                 db.Entry(@class).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["msg"] = "You have successfully created " + @class.Name.ToString();
                 return RedirectToAction("Index");
             }
+
+            TempData["err"] = "Your change has not been saved";
+
             return View(@class);
         }
 
