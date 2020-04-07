@@ -44,10 +44,7 @@
                             <td>@Html.DisplayFor(modelItem => assignedTutorItem)</td>
                             <td>@Html.DisplayFor(modelItem => item.Status)</td>
                             <td>
-                                <button class="ui basic button">
-                                    <i class="edit icon"></i>
-                                    @Html.ActionLink("Update Request", "Edit", new { id = item.ID })
-                                </button>
+                                @Html.ActionLink("Update Request", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "ui basic blue button" })
                             </td>
                         </tr>
                     }
