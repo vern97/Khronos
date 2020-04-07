@@ -178,6 +178,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AllUsersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ClassesController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\TutorSchedulesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ElevatedAccountController.cs" />
@@ -473,6 +474,10 @@
     <Content Include="Areas\Tutor\Views\TutoringAppts\Details.cshtml" />
     <Content Include="Areas\Tutor\Views\TutoringAppts\Edit.cshtml" />
     <Content Include="Areas\Tutor\Views\TutoringAppts\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Classes\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Classes\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Classes\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Classes\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Compile Include="Models\ViewModels\AllUsersViewModel.cs" />
     <Content Include="Scripts\displayrequestedappts.js" />

@@ -219,6 +219,7 @@ namespace BeyondTheTutor.Controllers
         // GET: /Manage/ChangePassword
         public ActionResult ChangePassword()
         {
+            ViewBag.Current = "ChangePassword";
             return View();
         }
 
