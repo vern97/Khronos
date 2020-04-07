@@ -1,5 +1,6 @@
 ﻿using BeyondTheTutor.DAL;
 using BeyondTheTutor.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,7 @@ namespace BeyondTheTutor.Controllers
             return View();
         }
 
+        [HttpGet] 
         [Authorize(Roles = "Student, Tutor")]
         public ActionResult Calculators()
         {
@@ -40,9 +42,91 @@ namespace BeyondTheTutor.Controllers
             return View();
         }
 
-        public ActionResult WeightedGradeCalculator()
+        [Authorize(Roles = "Student, Tutor")]
+        public ActionResult WeightedGradeResults()
         {
-            return View();
+            double getmultipliedGradesandWeight(double[] gradesArray, double[] weightsArray)
+            {
+                double total = 0;
+
+                for (int i = 0; i < gradesArray.Count(); i++)
+                {
+                    total += gradesArray[i] * weightsArray[i];
+                }
+
+                return total;
+            }
+
+            string requestGrades = Request.QueryString["gradesArray"];
+            string requestWeights = Request.QueryString["weightsArray"];
+
+            string[] gradesString = requestGrades.Split(',');
+            string[] weightsString = requestWeights.Split(',');
+
+            gradesString = gradesString.Where(x => !string.IsNullOrEmpty(x)).ToArray();
+            weightsString = weightsString.Where(x => !string.IsNullOrEmpty(x)).ToArray();
+
+            if (gradesString.Length == 0 && weightsString.Length == 0)
+            {
+                string jsonString = JsonConvert.SerializeObject("must enter grades and weights for results", Formatting.Indented);
+                return new ContentResult
+                {
+                    Content = jsonString,
+                    ContentType = "application/json",
+                    ContentEncoding = System.Text.Encoding.UTF8
+                };
+            }
+            else if (gradesString.Length != weightsString.Length)
+            {
+                string jsonString = JsonConvert.SerializeObject("equal number grades and weights required", Formatting.Indented);
+                return new ContentResult
+                {
+                    Content = jsonString,
+                    ContentType = "application/json",
+                    ContentEncoding = System.Text.Encoding.UTF8
+                };
+            }
+            else
+            {
+                double[] grades = new double[gradesString.Length];
+                double[] weights = new double[weightsString.Length];
+
+                for (int i = 0; i < gradesString.Length; i++)
+                {
+                    grades[i] = double.Parse(gradesString[i]);
+                }
+
+                for (int i = 0; i < weightsString.Length; i++)
+                {
+                    weights[i] = double.Parse(weightsString[i]);
+                }
+
+                double firstNumber = getmultipliedGradesandWeight(grades, weights);
+                double secondNumber = weights.Sum();
+
+                if (secondNumber > 100)
+                {
+                    string jsonString = JsonConvert.SerializeObject("totals weights may not exceed 100", Formatting.Indented);
+                    return new ContentResult
+                    {
+                        Content = jsonString,
+                        ContentType = "application/json",
+                        ContentEncoding = System.Text.Encoding.UTF8
+                    };
+                }
+                else
+                {
+                    double weightedGrade = Math.Round((firstNumber / secondNumber), 2);
+
+                    string jsonString = JsonConvert.SerializeObject("Calculated Weighted Grade: " + weightedGrade + "%", Formatting.Indented);
+                    return new ContentResult
+                    {
+                        Content = jsonString,
+                        ContentType = "application/json",
+                        ContentEncoding = System.Text.Encoding.UTF8
+                    };
+                }
+            }
         }
 
         public ActionResult GetTutorSchedules()
