@@ -6,12 +6,12 @@
 
 <body class="wou-silver-bg">
     <div class="ui one column center aligned stackable page grid">
-        <table class="ui striped four wide column center aligned table table-schedule">
-            <thead>
-                <tr>
-                    <th >
-                        @using (Html.BeginForm())
-                        {
+        @using (Html.BeginForm())
+        {
+            <table class="ui striped four wide column center aligned table table-schedule">
+                <thead>
+                    <tr>
+                        <th>
                             @Html.AntiForgeryToken()
 
                             <div class="form-horizontal">
@@ -24,26 +24,25 @@
                                     </div>
                                 </div>
                             </div>
-                        }
-                    </th>
+                        </th>
                     </tr>
-                <tr>
-                    <th>
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <button class="fluid ui button schedule">Create</button>
+                    <tr>
+                        <th>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <button class="fluid ui button schedule">Create</button>
 
+                                </div>
                             </div>
-                        </div>
-                    </th>
-                </tr>
-            </thead>
-        </table>
-        </div></body>
 
-        <div>
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+                            <br />
+                            @Html.ActionLink("Back to List", "Index")
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+            }
+        </div></body>
 
         @section scripts
 {

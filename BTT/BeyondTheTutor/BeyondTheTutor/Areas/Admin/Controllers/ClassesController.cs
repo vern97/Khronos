@@ -97,6 +97,8 @@ namespace BeyondTheTutor.Areas.Admin.Controllers
             {
                 db.Classes.Add(@class);
                 db.SaveChanges();
+                TempData["msg"] = "You have successfully created " + @class.Name.ToString();
+
                 return RedirectToAction("Index");
             }
 
@@ -129,7 +131,7 @@ namespace BeyondTheTutor.Areas.Admin.Controllers
             {
                 db.Entry(@class).State = EntityState.Modified;
                 db.SaveChanges();
-                TempData["msg"] = "You have successfully created " + @class.Name.ToString();
+                TempData["msg"] = "You have successfully renamed a class to " + @class.Name.ToString();
                 return RedirectToAction("Index");
             }
 
@@ -159,8 +161,11 @@ namespace BeyondTheTutor.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Class @class = db.Classes.Find(id);
+            string deleted = @class.Name.ToString();
             db.Classes.Remove(@class);
             db.SaveChanges();
+            TempData["err"] = "Your have successfully deleted " + deleted;
+
             return RedirectToAction("Index");
         }
 
