@@ -26,7 +26,7 @@
                     <td>@Html.DisplayFor(modelItem => item.Note)</td>
                     <td>
 
-                            @if (item.Status == "Canceled")
+                            @if (item.Status == "Canceled" || item.Status == "Completed")
                             {
                                 <button class="ui disabled button">
                                     <i class="icon trash"></i>
