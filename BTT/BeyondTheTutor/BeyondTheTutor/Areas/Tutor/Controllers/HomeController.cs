@@ -1,5 +1,8 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Data.Entity;
+using System.Web.Mvc;
 using BeyondTheTutor.DAL;
+using BeyondTheTutor.Models;
 
 namespace BeyondTheTutor.Areas.Tutor.Controllers
 {
@@ -12,6 +15,24 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
         public ActionResult Index()
         {
             ViewBag.Current = "TutorHomeIndex";
+
+            var allTutoringAppts = db.TutoringAppts;
+            foreach (var appt in allTutoringAppts)
+            {
+                if (DateTime.Now > appt.EndTime.AddMinutes(30) && (appt.Status == "Approved"))
+                {
+                    var currentItem = appt.ID;
+                    TutoringAppt tutoringAppt = db.TutoringAppts.Find(currentItem);
+
+                    tutoringAppt.Status = "Completed";
+
+                    db.Entry(tutoringAppt).State = EntityState.Modified;
+
+                }
+            }
+
+            db.SaveChanges();
+
             return View();
         }
         public ActionResult Guide()

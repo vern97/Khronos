@@ -46,40 +46,33 @@
 
         if (numApptsUnderReview > 0) {
             $('#student_requests').append(`
-                <div class="ui small blue message" id="approved_requests">
-                    <div class="ui center aligned header">
-                        You have ${numApptsUnderReview} tutoring requests <i>pending</i>
-                    </div>
+                <div class="ui top attached blue block header" style="width:800px;">
+                    You have ${numApptsUnderReview} tutoring requests <i>pending</i>
                 </div>
             `)
         }
 
         if (numApptsAccepted > 0) {
-            $('#approved_requests').append(`
-                <div class="ui center aligned header">
-                    and ${numApptsUnderReview} <i>approved</i>
-                </div>
-            `)
-        }
-
-        if (numApptsUnderReview > 0) {
-            $('#approved_requests').append(`
-                <div class="ui center aligned text">
-                    Please check the status for any approved requests <a href="/Student/TutoringAppts"><u>here</u></a> for the agreed time and any notes from the tutor
-                </div>
+            $('#student_requests').append(`
+                    <div class="ui attached green block header">
+                        You have ${numApptsAccepted} upcoming tutoring requests
+                    </div>
             `)
         }
 
         if (numApptsCanceled > 0) {
             $('#student_requests').append(`
-                <div class="ui small red message" id="approved_requests">
-                    <div class="ui center aligned header">
+                    <div class="ui attached red block header">
                         You have ${numApptsCanceled} tutoring requests marked as <i>canceled</i>
                     </div>
-                    <div class="ui center aligned text">
-                        Please check the status for any canceled requests <a href="/Student/TutoringAppts"><u>here</u></a>
+            `)
+        }
+
+        if (numApptsAccepted > 0 || numApptsCanceled > 0) {
+            $('#student_requests').append(`
+                    <div class="ui attached segment">
+                        Please check the status for any canceled or approved requests <a href="/Student/TutoringAppts"><u>here</u></a>
                     </div>
-                </div>
             `)
         }
     }
