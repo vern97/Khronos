@@ -34,7 +34,15 @@ namespace BeyondTheTutor.Areas.Student.Controllers
                     tutoringAppt.Status = "Completed";
 
                     db.Entry(tutoringAppt).State = EntityState.Modified;
-                    
+                } 
+                else if (DateTime.Now > appt.EndTime.AddMinutes(30) && (appt.Status == "Requested"))
+                {
+                    var currentItem = appt.ID;
+                    TutoringAppt tutoringAppt = db.TutoringAppts.Find(currentItem);
+
+                    tutoringAppt.Status = "Declined";
+
+                    db.Entry(tutoringAppt).State = EntityState.Modified;
                 }
             }
 
