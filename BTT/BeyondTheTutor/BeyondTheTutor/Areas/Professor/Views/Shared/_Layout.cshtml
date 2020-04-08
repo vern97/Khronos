@@ -1,4 +1,14 @@
-﻿<!DOCTYPE html>
+﻿@using BeyondTheTutor.DAL;
+@using Microsoft.AspNet.Identity;
+@{
+    BeyondTheTutorContext db = new BeyondTheTutorContext();
+
+    var userID = User.Identity.GetUserId();
+    var currentUser = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().FirstName;
+    ViewBag.FirstName = currentUser; 
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -22,14 +32,22 @@
                     @Html.ActionLink("View All", "Index", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResIndex" ? "item red active" : "item") })
                 </div>
             </div>
-            @Html.ActionLink("User Guide", "Guide", "Home", new { area = "professor" }, htmlAttributes: new { @class = (ViewBag.Current == "ProfHomeGuide" ? "item red active" : "item") })
-            @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
-            {
-                @Html.AntiForgeryToken()
-                <a href="javascript:document.getElementById('logoutForm').submit()" class="item">Sign out</a>
-            }
         </div>
-
+        @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
+        {
+            <div class="ui dropdown item">
+                @ViewBag.FirstName
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <div style="text-align: left;">
+                        @Html.ActionLink("Change Password", "ChangePassword", "Manage", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "ChangePassword" ? "item red active" : "item") })
+                        @Html.ActionLink("User Guide", "Guide", "Home", new { area = "professor" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminHomeGuide" ? "item red active" : "item") })
+                        @Html.AntiForgeryToken()
+                        <a href="javascript:document.getElementById('logoutForm').submit()" class="item">Sign out</a>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
 
     @Scripts.Render("~/bundles/jquery")
