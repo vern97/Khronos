@@ -152,12 +152,21 @@ namespace BeyondTheTutor.Controllers
 
         public JsonResult GetServiceAlerts()
         {
-            var serviceAlerts = db.TutoringServiceAlerts.Where(e => e.EndTime > DateTime.Now).Select(e => new
+            var serviceAlerts = db.TutoringServiceAlerts.Select(e => new
             {
+                ID = e.ID,
                 status = e.Status,
                 endTime = e.EndTime,
                 tutorName = e.Tutor.BTTUser.FirstName + " " + e.Tutor.BTTUser.LastName
             }).ToList();
+
+            for (var i = 0; i < serviceAlerts.Count(); i++)
+            {
+                if (DateTime.Now > serviceAlerts[i].endTime)
+                {
+                    serviceAlerts.RemoveAt(i);
+                }
+            }
 
             return Json(serviceAlerts, JsonRequestBehavior.AllowGet);
         }
