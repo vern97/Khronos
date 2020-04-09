@@ -29,7 +29,7 @@
                 <i class="dropdown icon"></i>
                 <div class="menu">
                     @Html.ActionLink("Request Session", "Create", "TutoringAppts", new { area = "student" }, htmlAttributes: new { @class = (ViewBag.Current == "StuTutorAppCreate" ? "item red active" : "item") })
-                    @Html.ActionLink("View Requested Tutoring Sessions", "Index", "TutoringAppts", new { area = "student" }, htmlAttributes: new { @class = (ViewBag.Current == "StuTutorAppIndex" ? "item red active" : "item") })
+                    @Html.ActionLink("View Tutoring Sessions", "Index", "TutoringAppts", new { area = "student" }, htmlAttributes: new { @class = (ViewBag.Current == "StuTutorAppIndex" ? "item red active" : "item") })
                 </div>
             </div>
         </div>

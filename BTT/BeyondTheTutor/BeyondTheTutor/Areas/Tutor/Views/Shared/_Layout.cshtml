@@ -45,6 +45,7 @@
                 Tutoring Requests
                 <i class="dropdown icon"></i>
                 <div class="menu">
+                    @Html.ActionLink("Input Request", "Create", "TutoringAppts", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutTutorAppCreate" ? "item red active" : "item") })
                     @Html.ActionLink("View Requests", "Index", "TutoringAppts", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutApptsIndex" ? "item red active" : "item") })
                 </div>
             </div>
