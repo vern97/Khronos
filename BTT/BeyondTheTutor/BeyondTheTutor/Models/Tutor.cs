@@ -25,7 +25,7 @@ namespace BeyondTheTutor.Models
         [StringLength(9)]
         public string VNumber { get; set; }
 
-        public bool AdminApproved { get; set; }
+        public bool AdminApproved { get; set; } = false;
 
         public virtual BTTUser BTTUser { get; set; }
 
