@@ -14,7 +14,7 @@ function errorOnAjax() {
 
 function displayTutors(data) {
     $('#display_tutors').append(`
-        <div class="ui cards" id="tutor_cards"></div>
+        <div class="ui three stackable cards" id="tutor_cards"></div>
     `)
     for (var i = 0; i < data.length; i++) {
         $('#tutor_cards').append(`
