@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using BeyondTheTutor.DAL;
 using BeyondTheTutor.Models;
+using Microsoft.AspNet.Identity;
 
 namespace BeyondTheTutor.Areas.Tutor.Controllers
 {
@@ -41,9 +42,19 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
         // GET: Tutor/TutoringAppts/Create
         public ActionResult Create()
         {
+            ViewBag.Current = "TutTutorAppCreate";
+            var students = db.BTTUsers.Where(a => a.ID == a.Student.ID).Select(a => new
+            {
+                ID = a.ID,
+                Name = a.FirstName + " " + a.LastName
+            }).OrderBy(a => a.Name);
+            ViewBag.StudentsItem = students;
+
+            var userID = User.Identity.GetUserId();
+            ViewBag.CurrentTutorID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
+
             ViewBag.ClassID = new SelectList(db.Classes, "ID", "Name");
-            ViewBag.StudentID = new SelectList(db.Students, "ID", "ClassStanding");
-            ViewBag.TutorID = new SelectList(db.Tutors, "ID", "VNumber");
+
             return View();
         }
 
@@ -52,8 +63,20 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,StartTime,EndTime,TypeOfMeeting,ClassID,Length,Status,Note,StudentID,TutorID")] TutoringAppt tutoringAppt)
+        public ActionResult Create([Bind(Include = "ID,StartTime,EndTime,TypeOfMeeting,ClassID,Length,Status,Note,StudentID,TutorID")] TutoringAppt tutoringAppt, DateTime? Date)
         {
+            if (Date == null)
+            {
+                Date = (DateTime.Now).AddDays(1);
+            }
+
+            var date = Date?.ToString("yyyy-MM-dd");
+            var startTime = tutoringAppt.StartTime.ToString("HH:mm:ss tt");
+            var endTime = tutoringAppt.EndTime.ToString("HH:mm:ss tt");
+
+            tutoringAppt.StartTime = Convert.ToDateTime(date + " " + startTime);
+            tutoringAppt.EndTime = Convert.ToDateTime(date + " " + endTime);
+
             if (ModelState.IsValid)
             {
                 db.TutoringAppts.Add(tutoringAppt);
@@ -62,8 +85,7 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
             }
 
             ViewBag.ClassID = new SelectList(db.Classes, "ID", "Name", tutoringAppt.ClassID);
-            ViewBag.StudentID = new SelectList(db.Students, "ID", "ClassStanding", tutoringAppt.StudentID);
-            ViewBag.TutorID = new SelectList(db.Tutors, "ID", "VNumber", tutoringAppt.TutorID);
+
             return View(tutoringAppt);
         }
 
