@@ -12,6 +12,7 @@ namespace BeyondTheTutor.Models
         public Tutor()
         {
             TutoringAppts = new HashSet<TutoringAppt>();
+            TutoringServiceAlerts = new HashSet<TutoringServiceAlert>();
             TutorSchedules = new HashSet<TutorSchedule>();
         }
 
@@ -24,12 +25,15 @@ namespace BeyondTheTutor.Models
         [StringLength(9)]
         public string VNumber { get; set; }
 
-        public bool AdminApproved { get; set; } = false;
+        public bool AdminApproved { get; set; }
 
         public virtual BTTUser BTTUser { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TutoringAppt> TutoringAppts { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TutoringServiceAlert> TutoringServiceAlerts { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TutorSchedule> TutorSchedules { get; set; }

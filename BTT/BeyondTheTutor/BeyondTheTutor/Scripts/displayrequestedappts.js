@@ -18,7 +18,6 @@
     }
 
     function displayNumRequestedAppts(data) {
-        console.log('success');
         $('#tutor_requests').empty();
         if (data[0] > 0) {
             $('#tutor_requests').append(`

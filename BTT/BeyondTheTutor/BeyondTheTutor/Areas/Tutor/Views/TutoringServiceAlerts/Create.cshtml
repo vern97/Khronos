@@ -1,0 +1,68 @@
+﻿@model BeyondTheTutor.Models.TutoringServiceAlert
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<body class="wou-silver-bg">
+    <div class="ui one column centered padded grid schedule">
+        <div class="ui form centered segment">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.Hidden("TutorID", (object)ViewBag.CurrentTutorID)
+                <form>
+                    <div class="two fields">
+                        <div class="field">
+                            <h4>Alert Reason</h4>
+                        </div>
+                        <div class="field">
+                            <h4>Expected Arrival</h4>
+                        </div>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            @Html.DropDownListFor(m => m.Status, new SelectListItem[] {
+                                new SelectListItem() {Text = "Running Late", Value="Late"},
+                                new SelectListItem() {Text = "Wont Be In Today", Value="Absent"},
+                                }, new { @id = "statusDropDown", @class = "ui selection dropdown form-control" })
+                            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="field">
+                            @Html.DropDownListFor(m => m.EndTime, new SelectListItem[]{
+                                new SelectListItem() {Text = "8:30 AM", Value="8:30 AM"},
+                                new SelectListItem() {Text = "9:00 AM", Value="9:00 AM"},
+                                new SelectListItem() {Text = "9:30 AM", Value="9:30 AM"},
+                                new SelectListItem() {Text = "10:00 AM", Value="10:00 AM"},
+                                new SelectListItem() {Text = "10:30 AM", Value="10:30 AM"},
+                                new SelectListItem() {Text = "11:00 AM", Value="11:00 AM"},
+                                new SelectListItem() {Text = "11:30 AM", Value="11:30 AM"},
+                                new SelectListItem() {Text = "12:00 PM", Value="12:00 PM"},
+                                new SelectListItem() {Text = "12:30 PM", Value="12:30 PM"},
+                                new SelectListItem() {Text = "1:00 PM", Value="1:00 PM"},
+                                new SelectListItem() {Text = "1:30 PM", Value="1:30 PM"},
+                                new SelectListItem() {Text = "2:00 PM", Value="2:00 PM"},
+                                new SelectListItem() {Text = "2:30 PM", Value="2:30 PM"},
+                                new SelectListItem() {Text = "3:00 PM", Value="3:00 PM"},
+                                new SelectListItem() {Text = "3:30 PM", Value="3:30 PM"},
+                                new SelectListItem() {Text = "4:00 PM", Value="4:00 PM"},
+                                new SelectListItem() {Text = "4:30 PM", Value="4:30 PM"},
+                                new SelectListItem() {Text = "5:00 PM", Value="5:00 PM"}
+                                }, new { @class = "ui endTimeDropDown selection dropdown form-control" })
+                            @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="ui hidden divider"></div>
+                    <button class="fluid ui button schedule">Submit Service Alert</button>
+                </form>
+            }
+        </div>
+    </div>
+</body>
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+    <script src="~/Scripts/disable-service-alert-dropdown.js"></script>
+}

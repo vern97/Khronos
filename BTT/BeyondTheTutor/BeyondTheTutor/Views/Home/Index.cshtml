@@ -25,6 +25,10 @@
             </div>
         }
 
+        <div id="display_service_alerts">
+
+        </div>
+
         <div class="ui two column centered grid">
             <img src="../Content/images/BeyondtheTutor_Banner4.png" alt="Alternate Text" />
         </div>
@@ -127,6 +131,7 @@
 
 @section scripts
 {
+    <script src="~/Scripts/service-alert.js"></script>
     <script src="~/Scripts/schedulecalendar.js"></script>
     <script src="~/Scripts/displaytutors.js"></script>
     @if (User.IsInRole("Tutor"))

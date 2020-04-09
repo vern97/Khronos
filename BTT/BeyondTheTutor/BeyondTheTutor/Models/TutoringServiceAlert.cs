@@ -6,13 +6,18 @@ namespace BeyondTheTutor.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Professor
+    public partial class TutoringServiceAlert
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
-        public bool AdminApproved { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string Status { get; set; }
 
-        public virtual BTTUser BTTUser { get; set; }
+        public DateTime EndTime { get; set; }
+
+        public int TutorID { get; set; }
+
+        public virtual Tutor Tutor { get; set; }
     }
 }
