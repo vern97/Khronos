@@ -105,6 +105,18 @@ CREATE TABLE [dbo].[StudentResources]
 		ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE TABLE [dbo].[TutoringServiceAlerts]
+(
+	[ID]		INT IDENTITY (1,1)		NOT NULL,
+	[Status]	NVARCHAR(50)			NOT NULL,
+	[EndTime]	DATETIME				NOT NULL,
+	[TutorID]	INT						NOT NULL
+	CONSTRAINT [PK_dbo.TutoringServiceAlerts] PRIMARY KEY CLUSTERED ([ID] ASC)
+	CONSTRAINT [FK_dbo.TutoringServiceAlerts_dbo.Tutors_ID] FOREIGN KEY ([TutorID]) 
+		REFERENCES [dbo].[Tutors] ([ID])
+		ON DELETE CASCADE ON UPDATE CASCADE
+);
+
 INSERT INTO [dbo].[Classes](Name)
 	VALUES
 	('CS 122'),

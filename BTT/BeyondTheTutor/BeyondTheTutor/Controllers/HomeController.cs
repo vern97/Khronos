@@ -149,5 +149,17 @@ namespace BeyondTheTutor.Controllers
 
             return Json(tutors, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetServiceAlerts()
+        {
+            var serviceAlerts = db.TutoringServiceAlerts.Where(e => e.EndTime > DateTime.Now).Select(e => new
+            {
+                status = e.Status,
+                endTime = e.EndTime,
+                tutorName = e.Tutor.BTTUser.FirstName + " " + e.Tutor.BTTUser.LastName
+            }).ToList();
+
+            return Json(serviceAlerts, JsonRequestBehavior.AllowGet);
+        }
     }
 }

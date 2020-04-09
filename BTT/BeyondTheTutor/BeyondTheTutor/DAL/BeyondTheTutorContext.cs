@@ -20,6 +20,7 @@ namespace BeyondTheTutor.DAL
         public virtual DbSet<StudentResource> StudentResources { get; set; }
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<TutoringAppt> TutoringAppts { get; set; }
+        public virtual DbSet<TutoringServiceAlert> TutoringServiceAlerts { get; set; }
         public virtual DbSet<Tutor> Tutors { get; set; }
         public virtual DbSet<TutorSchedule> TutorSchedules { get; set; }
 
@@ -27,19 +28,23 @@ namespace BeyondTheTutor.DAL
         {
             modelBuilder.Entity<BTTUser>()
                 .HasOptional(e => e.Admin)
-                .WithRequired(e => e.BTTUser);
+                .WithRequired(e => e.BTTUser)
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<BTTUser>()
                 .HasOptional(e => e.Professor)
-                .WithRequired(e => e.BTTUser);
+                .WithRequired(e => e.BTTUser)
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<BTTUser>()
                 .HasOptional(e => e.Student)
-                .WithRequired(e => e.BTTUser);
+                .WithRequired(e => e.BTTUser)
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<BTTUser>()
                 .HasOptional(e => e.Tutor)
-                .WithRequired(e => e.BTTUser);
+                .WithRequired(e => e.BTTUser)
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<BTTUser>()
                 .HasMany(e => e.StudentResources)
@@ -50,11 +55,6 @@ namespace BeyondTheTutor.DAL
             modelBuilder.Entity<TutoringAppt>()
                 .Property(e => e.Note)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Tutor>()
-                .HasMany(e => e.TutoringAppts)
-                .WithOptional(e => e.Tutor)
-                .WillCascadeOnDelete();
         }
 
     }

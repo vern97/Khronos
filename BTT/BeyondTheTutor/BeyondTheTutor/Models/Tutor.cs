@@ -12,6 +12,7 @@ namespace BeyondTheTutor.Models
         public Tutor()
         {
             TutoringAppts = new HashSet<TutoringAppt>();
+            TutoringServiceAlerts = new HashSet<TutoringServiceAlert>();
             TutorSchedules = new HashSet<TutorSchedule>();
         }
 
@@ -30,6 +31,9 @@ namespace BeyondTheTutor.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TutoringAppt> TutoringAppts { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TutoringServiceAlert> TutoringServiceAlerts { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TutorSchedule> TutorSchedules { get; set; }
