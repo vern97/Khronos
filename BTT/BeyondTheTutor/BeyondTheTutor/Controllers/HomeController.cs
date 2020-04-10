@@ -44,15 +44,12 @@ namespace BeyondTheTutor.Controllers
 
         [Authorize(Roles = "Student, Tutor")]
         public ActionResult WeightedGradeResults()
-        {      
+        {
             string requestGrades = Request.QueryString["gradesArray"];
             string requestWeights = Request.QueryString["weightsArray"];
 
-            string[] gradesString = requestGrades.Split(',');
-            string[] weightsString = requestWeights.Split(',');
-
-            gradesString = gradesString.Where(x => !string.IsNullOrEmpty(x)).ToArray();
-            weightsString = weightsString.Where(x => !string.IsNullOrEmpty(x)).ToArray();
+            string[] gradesString = GetStringArrayForGrades(requestGrades);
+            string[] weightsString = GetStringArrayForWeights(requestWeights);
 
             if (gradesString.Length == 0 && weightsString.Length == 0)
             {
@@ -76,27 +73,10 @@ namespace BeyondTheTutor.Controllers
             }
             else
             {
-                double[] grades = new double[gradesString.Length];
-                double[] weights = new double[weightsString.Length];
+                double[] grades = ConvertGradesToDoubleArray(gradesString);
+                double[] weights = ConvertWeightsToDoubleArray(weightsString);
 
-                for (int i = 0; i < gradesString.Length; i++)
-                {
-                    grades[i] = double.Parse(gradesString[i]);
-                }
-
-                for (int i = 0; i < weightsString.Length; i++)
-                {
-                    weights[i] = double.Parse(weightsString[i]);
-                }
-
-                double total = 0;
-
-                for (int i = 0; i < grades.Count(); i++)
-                {
-                    total = total +  (grades[i] * weights[i]);
-                }
-
-                double firstNumber = total;
+                double firstNumber = MultiplyGradesandWeights(grades, weights);
                 double secondNumber = weights.Sum();
 
                 if (secondNumber > 100)
@@ -169,6 +149,61 @@ namespace BeyondTheTutor.Controllers
             }
 
             return Json(serviceAlerts, JsonRequestBehavior.AllowGet);
+        }
+
+        /* These are the functions for the weighted grade calculator*/
+        // function to multiply grades and their weights
+        public double MultiplyGradesandWeights(double[] gradesArray, double[] weightsArray)
+        {
+            double total = 0;
+
+            for (int i = 0; i < gradesArray.Count(); i++)
+            {
+                total += (gradesArray[i] * weightsArray[i]);
+            }
+
+            return total;
+        }
+
+        // function to get grades info from ajax call, split the string, and remove null or empty values
+        public string[] GetStringArrayForGrades(string grades)
+        {
+            string[] gradesString = grades.Split(',');
+            gradesString = gradesString.Where(x => !string.IsNullOrEmpty(x)).ToArray();
+
+            return gradesString;
+        }
+
+        // function to get weights info from ajax call, split the string, and remove null or empty values
+        public string[] GetStringArrayForWeights(string weights)
+        {
+            string[] weightsString = weights.Split(',');
+            weightsString = weightsString.Where(x => !string.IsNullOrEmpty(x)).ToArray();
+
+            return weightsString;
+        }
+
+        // functions to convert the string arrays to double arrays
+        public double[] ConvertGradesToDoubleArray(string[] gradesArray)
+        {
+            double[] grades = new double[gradesArray.Length];
+            for (int i = 0; i < gradesArray.Length; i++)
+            {
+                grades[i] = double.Parse(gradesArray[i]);
+            }
+
+            return grades;
+        }
+
+        public double[] ConvertWeightsToDoubleArray(string[] weightsArray)
+        {
+            double[] weights = new double[weightsArray.Length];
+            for (int i = 0; i < weightsArray.Length; i++)
+            {
+                weights[i] = double.Parse(weightsArray[i]);
+            }
+
+            return weights;
         }
     }
 }
