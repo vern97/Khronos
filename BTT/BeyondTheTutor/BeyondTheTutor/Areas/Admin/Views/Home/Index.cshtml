@@ -1,28 +1,217 @@
-﻿@{
+﻿@model IEnumerable<BeyondTheTutor.Models.TutorSchedule>
+
+@{
     string dayOfTheMonth = (DateTime.Now.Day).ToString();
 }
 
-    <body class="wou-silver-bg">
+<body class="wou-silver-bg">
+    <h2 class="ui top attached center aligned icon header">
+        <i class="user circle icon"></i>
+        Hello, @ViewBag.User
+    </h2>
+    <div class="ui internally celled grid">
+        <div class="row">
+            <div class="three wide column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header"><a href="/Admin/ElevatedAccount/Index">User Management</a></div>
+                    </div>
+                    <div class="content">
+                        <h4 class="ui sub header">Unconfirmed Elevated Users</h4>
+                        <div class="ui small feed">
+                            <div class="event">
+                                <div class="content">
+                                    <div class="summary">
+                                        <div class="ui compact menu">
+                                            <a class="item">
+                                                <i class="icon exclamation"></i> Unapproved Tutors
+                                                <div class="floating ui red label">@ViewBag.tutorsFalse</div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="event">
+                                <div class="content">
+                                    <div class="summary">
+                                        <div class="ui compact menu">
+                                            <a class="item">
+                                                <i class="icon exclamation"></i> Unapproved Professors
+                                                <div class="floating ui red label">@ViewBag.professorsFalse</div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <h4 class="ui sub header">Confirmed Elevated Users</h4>
+                        <div class="ui small feed">
+                            <div class="event">
+                                <div class="content">
+                                    <div class="summary">
+                                        <div class="ui compact menu">
+                                            <a class="item">
+                                                <i class="icon thumbs up"></i> Approved Tutors
+                                                <div class="floating ui green label">@ViewBag.tutorsTrue</div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="event">
+                                <div class="content">
+                                    <div class="summary">
+                                        <div class="ui compact menu">
+                                            <a class="item">
+                                                <i class="icon thumbs up"></i> Approved Professors
+                                                <div class="floating ui green label">@ViewBag.professorsTrue</div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ten wide column">
+                <img src="@Url.Content("~/Content/images/landscapes_images/" + dayOfTheMonth + ".jpg")" />
+            </div>
+            <div class="three wide column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="ui big label">@DateTime.Now.DayOfWeek, @DateTime.Now.Date.ToString("dd/MM/yyyy")</div>
+                    </div>
+                    <div class="content">
+                        <h4 class="ui sub header">Tutoring Schedules</h4>
+                        <div class="ui small feed">
+                            @foreach (var item in Model)
+                            {
+                                <div class="event">
+                                    <div class="content">
+                                        <div class="summary">
+                                            <div class="item">
+                                                <div class="content">
+                                                    <div class="header">@Html.DisplayFor(modelItem => item.Tutor.BTTUser.FirstName)</div>
+                                                    <div class="description">
+                                                        @Html.ValueFor(modelItem => item.StartTime)
+                                                    </div>
+                                                    <div class="description">
+                                                        @Html.DisplayFor(modelItem => item.EndTime)
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
 
-        <div class="ui two column centered grid">
-            <div class="column">
-                <div class="ui huge message page grid">
-                    <h3 class="ui huge header">Hello, @ViewBag.User</h3>
+                          </div>
+                    </div>
+                    <div class="extra content">
+                        <div class="ui compact menu">
+                            <a class="item">
+                                <i class="icon thumbs up"></i> View All Schedules
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div class="ui grid">
-            <div class="sixteen wide column">
-                <img class="ui centered image admin" src="@Url.Content("~/Content/images/landscapes_images/" + dayOfTheMonth + ".jpg")" />
+        <div class="row">
+            <div class="three wide column">
+                <div class="ui cards">
+                    <div class="card">
+                        <div class="content">
+                            <div class="header"><a href="/Admin/Home/Guide">User Guide</a></div>
+                            <div class="meta">Administrator</div>
+                            <div class="description">
+                                Lost? Our guide can help.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ten wide column">
+                <div class="ui four statistics">
+                    <div class="statistic">
+                        <div class="value">
+                            @ViewBag.resourceCount
+                        </div>
+                        <div class="label">
+                            Resources
+                        </div>
+                    </div>
+                    <div class="statistic">
+                        <div class="value">
+                            @ViewBag.usersCount
+                        </div>
+                        <div class="label">
+                            Signups
+                        </div>
+                    </div>
+                    <div class="statistic">
+                        <div class="value">
+                            <i class="laptop icon"></i> @ViewBag.studentCount
+                        </div>
+                        <div class="label">
+                            Students
+                        </div>
+                    </div>
+                    <div class="statistic">
+                        <div class="value">
+                            @ViewBag.sessionCount
+                        </div>
+                        <div class="label">
+                            Sessions Completed
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="three wide column">
+                <div class="ui icon message">
+                    <i class="notched circle loading icon"></i>
+                    <div class="content">
+                        <div class="header">
+                            Coming Soon
+                        </div>
+                        <p>Access to professor insights.</p>
+                    </div>
+                </div>
             </div>
         </div>
-
-    </body>
+        <div class="row">
+            <div class="three wide column">
+                <div class="ui cards">
+                    <div class="card">
+                        <div class="content">
+                            <div class="header"><a>Questions or Concerns?</a></div>
+                            <div class="meta">Contact</div>
+                            <div class="description">
+                                Email <b>beyondthetutor[at]gmail[dot]com</b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ten wide column">
+                <a class="weatherwidget-io" href="https://forecast7.com/en/44d85n123d23/monmouth/?unit=us" data-label_1="Western Oregon University" data-label_2="WEATHER" data-font="Ubuntu" data-icons="Climacons Animated" data-mode="Forecast" data-theme="original" data-highcolor="#c37a7a">MONMOUTH WEATHER</a>
+            </div>
+            <div class="three wide column">
+                <img class="ui medium image" src="@Url.Content("~/Content/images/corner_succeed.png")" />
+            </div>
+        </div>
+    </div>
+</body>
 
 @section scripts
 {
     <script src="~/Scripts/main.js"></script>
+    <script>
+        !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'weatherwidget-io-js');
+    </script>
 }
 
 
