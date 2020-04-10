@@ -1,55 +1,580 @@
 ﻿@model IEnumerable<BeyondTheTutor.Models.TutoringAppt>
 
 <body class="wou-silver-bg">
-    <div class="ui one column centered padded grid" style="padding-top:10px;">
-        <div class="ui red centered segment">
-            <div class="ui horizontal divider">
-                <h2 class="ui centered header">Tutoring Requests</h2>
+    <div class="ui one column centered padded grid">
+        <div class="ui centered vertical segment">
+
+            <div class="ui top attached tabular large menu">
+                <a class="active item red" data-tab="BacklogButton"><b>Tutor Backlog</b></a>
+                <a class="item red" data-tab="RequestedButton"><b>Requested</b> </a>
+                <a class="item red" data-tab="ApprovedButton"><b>Approved</b> </a>
+                <a class="item red" data-tab="DeclinedButton"><b>Declined</b></a>
+                <a class="item red" data-tab="CompletedButton"><b>Completed</b></a>
+                <a class="item red" data-tab="CanceledButton"><b>Canceled</b></a>
+                <a class="item red" data-tab="NoShowButton"><b>No Shows</b></a>
+                <a class="item red" data-tab="OwnedButton"><b>Owned By Tutor</b></a>
+                <a class="item red" data-tab="AllButton"><b>All Requests</b></a>
             </div>
-            <table class="ui center aligned striped table">
-                <thead>
-                    <tr>
-                        <th><h4>Requested For</h4></th>
-                        <th><h4>Date</h4></th>
-                        <th><h4>Start Time</h4></th>
-                        <th><h4>End Time</h4></th>
-                        <th><h4>Session Length</h4></th>
-                        <th><h4>Meeting Type</h4></th>
-                        <th><h4>Requestor</h4></th>
-                        <th><h4>Assigned Tutor</h4></th>
-                        <th><h4>Current Status</h4></th>
-                        <th><h4>Action</h4></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        var dateItem = item.StartTime.ToShortDateString();
-                        var startTimeItem = item.StartTime.ToShortTimeString();
-                        var endTimeItem = item.EndTime.ToShortTimeString();
-                        var requestorItem = item.Student.BTTUser.FirstName + " " + item.Student.BTTUser.LastName;
-                        var assignedTutorItem = " ";
-                        if (item.TutorID != null)
-                        {
-                            assignedTutorItem = item.Tutor.BTTUser.FirstName + " " + item.Tutor.BTTUser.LastName;
-                        }
-                        <tr>
-                            <td>@Html.DisplayFor(modelItem => item.Class.Name)</td>
-                            <td>@Html.DisplayFor(modelItem => dateItem)</td>
-                            <td>@Html.DisplayFor(modelItem => startTimeItem)</td>
-                            <td>@Html.DisplayFor(modelItem => endTimeItem)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Length)</td>
-                            <td>@Html.DisplayFor(modelItem => item.TypeOfMeeting)</td>
-                            <td>@Html.DisplayFor(modelItem => requestorItem)</td>
-                            <td>@Html.DisplayFor(modelItem => assignedTutorItem)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Status)</td>
-                            <td>
-                                @Html.ActionLink("Update Request", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "ui basic blue button" })
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+
+            <div class="ui bottom attached active tab segment" data-tab="BacklogButton">
+                @if (ViewBag.AnyRequested == true)
+                {
+                    <div class="ui red centered segment">
+                        <div class="ui horizontal divider">
+                            <h3 class="ui centered header">Requests Awaiting Approval</h3>
+                        </div>
+                        <table class="ui center aligned striped table">
+                            <thead>
+                                <tr>
+                                    <th><h4>Requested For</h4></th>
+                                    <th><h4>Date</h4></th>
+                                    <th><h4>Start Time</h4></th>
+                                    <th><h4>End Time</h4></th>
+                                    <th><h4>Session Length</h4></th>
+                                    <th><h4>Meeting Type</h4></th>
+                                    <th><h4>Requestor</h4></th>
+                                    <th><h4>Assigned Tutor</h4></th>
+                                    <th><h4>Current Status</h4></th>
+                                    <th><h4>Action</h4></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    var dateItem = item.StartTime.ToShortDateString();
+                                    var startTimeItem = item.StartTime.ToShortTimeString();
+                                    var endTimeItem = item.EndTime.ToShortTimeString();
+                                    var requestorItem = item.Student.BTTUser.FirstName + " " + item.Student.BTTUser.LastName;
+                                    var assignedTutorItem = " ";
+                                    if (item.TutorID != null)
+                                    {
+                                        assignedTutorItem = item.Tutor.BTTUser.FirstName + " " + item.Tutor.BTTUser.LastName;
+                                    }
+                                    if (item.Status == "Requested")
+                                    {
+                                        <tr>
+                                            <td>@Html.DisplayFor(modelItem => item.Class.Name)</td>
+                                            <td>@Html.DisplayFor(modelItem => dateItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => startTimeItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => endTimeItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Length)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.TypeOfMeeting)</td>
+                                            <td>@Html.DisplayFor(modelItem => requestorItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => assignedTutorItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                                            <td>
+                                                @Html.ActionLink("Update Request", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "ui basic blue button" })
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+
+                @if (ViewBag.AnyApproved == true && ViewBag.AnyTutorOwns == true)
+                {
+                    <div class="ui red centered segment">
+                        <div class="ui horizontal divider">
+                            <h3 class="ui centered header">Accepted Requests</h3>
+                        </div>
+                        <table class="ui center aligned striped table">
+                            <thead>
+                                <tr>
+                                    <th><h4>Requested For</h4></th>
+                                    <th><h4>Date</h4></th>
+                                    <th><h4>Start Time</h4></th>
+                                    <th><h4>End Time</h4></th>
+                                    <th><h4>Session Length</h4></th>
+                                    <th><h4>Meeting Type</h4></th>
+                                    <th><h4>Requestor</h4></th>
+                                    <th><h4>Assigned Tutor</h4></th>
+                                    <th><h4>Current Status</h4></th>
+                                    <th><h4>Action</h4></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    var dateItem = item.StartTime.ToShortDateString();
+                                    var startTimeItem = item.StartTime.ToShortTimeString();
+                                    var endTimeItem = item.EndTime.ToShortTimeString();
+                                    var requestorItem = item.Student.BTTUser.FirstName + " " + item.Student.BTTUser.LastName;
+                                    var assignedTutorItem = " ";
+                                    if (item.TutorID != null)
+                                    {
+                                        assignedTutorItem = item.Tutor.BTTUser.FirstName + " " + item.Tutor.BTTUser.LastName;
+                                    }
+                                    if (item.Status == "Approved" && assignedTutorItem == ViewBag.TutorName)
+                                    {
+                                        <tr>
+                                            <td>@Html.DisplayFor(modelItem => item.Class.Name)</td>
+                                            <td>@Html.DisplayFor(modelItem => dateItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => startTimeItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => endTimeItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Length)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.TypeOfMeeting)</td>
+                                            <td>@Html.DisplayFor(modelItem => requestorItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => assignedTutorItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                                            <td>
+                                                @Html.ActionLink("Update Request", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "ui basic blue button" })
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            </div>
+
+            <div class="ui bottom attached tab segment" data-tab="RequestedButton">
+                @if (ViewBag.AnyRequested == true)
+                {
+                    <div class="ui red centered segment">
+                        <div class="ui horizontal divider">
+                            <h3 class="ui centered header">Requests Awaiting Approval</h3>
+                        </div>
+                        <table class="ui center aligned striped table">
+                            <thead>
+                                <tr>
+                                    <th><h4>Requested For</h4></th>
+                                    <th><h4>Date</h4></th>
+                                    <th><h4>Start Time</h4></th>
+                                    <th><h4>End Time</h4></th>
+                                    <th><h4>Session Length</h4></th>
+                                    <th><h4>Meeting Type</h4></th>
+                                    <th><h4>Requestor</h4></th>
+                                    <th><h4>Assigned Tutor</h4></th>
+                                    <th><h4>Current Status</h4></th>
+                                    <th><h4>Action</h4></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    var dateItem = item.StartTime.ToShortDateString();
+                                    var startTimeItem = item.StartTime.ToShortTimeString();
+                                    var endTimeItem = item.EndTime.ToShortTimeString();
+                                    var requestorItem = item.Student.BTTUser.FirstName + " " + item.Student.BTTUser.LastName;
+                                    var assignedTutorItem = " ";
+                                    if (item.TutorID != null)
+                                    {
+                                        assignedTutorItem = item.Tutor.BTTUser.FirstName + " " + item.Tutor.BTTUser.LastName;
+                                    }
+                                    if (item.Status == "Requested")
+                                    {
+                                        <tr>
+                                            <td>@Html.DisplayFor(modelItem => item.Class.Name)</td>
+                                            <td>@Html.DisplayFor(modelItem => dateItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => startTimeItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => endTimeItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Length)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.TypeOfMeeting)</td>
+                                            <td>@Html.DisplayFor(modelItem => requestorItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => assignedTutorItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                                            <td>
+                                                @Html.ActionLink("Update Request", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "ui basic blue button" })
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            </div>
+
+            <div class="ui bottom attached tab segment" data-tab="ApprovedButton">
+                @if (ViewBag.AnyApproved == true)
+                {
+                    <div class="ui red centered segment">
+                        <div class="ui horizontal divider">
+                            <h3 class="ui centered header">Approved Requests</h3>
+                        </div>
+                        <table class="ui center aligned striped table">
+                            <thead>
+                                <tr>
+                                    <th><h4>Requested For</h4></th>
+                                    <th><h4>Date</h4></th>
+                                    <th><h4>Start Time</h4></th>
+                                    <th><h4>End Time</h4></th>
+                                    <th><h4>Session Length</h4></th>
+                                    <th><h4>Meeting Type</h4></th>
+                                    <th><h4>Requestor</h4></th>
+                                    <th><h4>Assigned Tutor</h4></th>
+                                    <th><h4>Current Status</h4></th>
+                                    <th><h4>Action</h4></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    var dateItem = item.StartTime.ToShortDateString();
+                                    var startTimeItem = item.StartTime.ToShortTimeString();
+                                    var endTimeItem = item.EndTime.ToShortTimeString();
+                                    var requestorItem = item.Student.BTTUser.FirstName + " " + item.Student.BTTUser.LastName;
+                                    var assignedTutorItem = " ";
+                                    if (item.TutorID != null)
+                                    {
+                                        assignedTutorItem = item.Tutor.BTTUser.FirstName + " " + item.Tutor.BTTUser.LastName;
+                                    }
+                                    if (item.Status == "Approved")
+                                    {
+                                        <tr>
+                                            <td>@Html.DisplayFor(modelItem => item.Class.Name)</td>
+                                            <td>@Html.DisplayFor(modelItem => dateItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => startTimeItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => endTimeItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Length)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.TypeOfMeeting)</td>
+                                            <td>@Html.DisplayFor(modelItem => requestorItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => assignedTutorItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                                            <td>
+                                                @Html.ActionLink("Update Request", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "ui basic blue button" })
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            </div>
+
+            <div class="ui bottom attached tab segment" data-tab="DeclinedButton">
+                @if (ViewBag.AnyApproved == true)
+                {
+                    <div class="ui red centered segment">
+                        <div class="ui horizontal divider">
+                            <h3 class="ui centered header">Approved Requests</h3>
+                        </div>
+                        <table class="ui center aligned striped table">
+                            <thead>
+                                <tr>
+                                    <th><h4>Requested For</h4></th>
+                                    <th><h4>Date</h4></th>
+                                    <th><h4>Start Time</h4></th>
+                                    <th><h4>End Time</h4></th>
+                                    <th><h4>Session Length</h4></th>
+                                    <th><h4>Meeting Type</h4></th>
+                                    <th><h4>Requestor</h4></th>
+                                    <th><h4>Assigned Tutor</h4></th>
+                                    <th><h4>Current Status</h4></th>
+                                    <th><h4>Action</h4></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    var dateItem = item.StartTime.ToShortDateString();
+                                    var startTimeItem = item.StartTime.ToShortTimeString();
+                                    var endTimeItem = item.EndTime.ToShortTimeString();
+                                    var requestorItem = item.Student.BTTUser.FirstName + " " + item.Student.BTTUser.LastName;
+                                    var assignedTutorItem = " ";
+                                    if (item.TutorID != null)
+                                    {
+                                        assignedTutorItem = item.Tutor.BTTUser.FirstName + " " + item.Tutor.BTTUser.LastName;
+                                    }
+                                    if (item.Status == "Declined")
+                                    {
+                                        <tr>
+                                            <td>@Html.DisplayFor(modelItem => item.Class.Name)</td>
+                                            <td>@Html.DisplayFor(modelItem => dateItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => startTimeItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => endTimeItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Length)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.TypeOfMeeting)</td>
+                                            <td>@Html.DisplayFor(modelItem => requestorItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => assignedTutorItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                                            <td>
+                                                @Html.ActionLink("Update Request", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "ui basic blue button" })
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            </div>
+
+            <div class="ui bottom attached tab segment" data-tab="CompletedButton">
+                <div class="ui red centered segment">
+                    <div class="ui horizontal divider">
+                        <h3 class="ui centered header">Completed Requests</h3>
+                    </div>
+                    <table class="ui center aligned striped table">
+                        <thead>
+                            <tr>
+                                <th><h4>Requested For</h4></th>
+                                <th><h4>Date</h4></th>
+                                <th><h4>Start Time</h4></th>
+                                <th><h4>End Time</h4></th>
+                                <th><h4>Session Length</h4></th>
+                                <th><h4>Meeting Type</h4></th>
+                                <th><h4>Requestor</h4></th>
+                                <th><h4>Assigned Tutor</h4></th>
+                                <th><h4>Current Status</h4></th>
+                                <th><h4>Action</h4></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                var dateItem = item.StartTime.ToShortDateString();
+                                var startTimeItem = item.StartTime.ToShortTimeString();
+                                var endTimeItem = item.EndTime.ToShortTimeString();
+                                var requestorItem = item.Student.BTTUser.FirstName + " " + item.Student.BTTUser.LastName;
+                                var assignedTutorItem = " ";
+                                if (item.TutorID != null)
+                                {
+                                    assignedTutorItem = item.Tutor.BTTUser.FirstName + " " + item.Tutor.BTTUser.LastName;
+                                }
+                                if (item.Status == "Completed")
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.Class.Name)</td>
+                                        <td>@Html.DisplayFor(modelItem => dateItem)</td>
+                                        <td>@Html.DisplayFor(modelItem => startTimeItem)</td>
+                                        <td>@Html.DisplayFor(modelItem => endTimeItem)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Length)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.TypeOfMeeting)</td>
+                                        <td>@Html.DisplayFor(modelItem => requestorItem)</td>
+                                        <td>@Html.DisplayFor(modelItem => assignedTutorItem)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                                        <td>
+                                            @Html.ActionLink("Update Request", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "ui basic blue button" })
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="ui bottom attached tab segment" data-tab="CanceledButton">
+                <div class="ui red centered segment">
+                    <div class="ui horizontal divider">
+                        <h3 class="ui centered header">Canceled Requests</h3>
+                    </div>
+                    <table class="ui center aligned striped table">
+                        <thead>
+                            <tr>
+                                <th><h4>Requested For</h4></th>
+                                <th><h4>Date</h4></th>
+                                <th><h4>Start Time</h4></th>
+                                <th><h4>End Time</h4></th>
+                                <th><h4>Session Length</h4></th>
+                                <th><h4>Meeting Type</h4></th>
+                                <th><h4>Requestor</h4></th>
+                                <th><h4>Assigned Tutor</h4></th>
+                                <th><h4>Current Status</h4></th>
+                                <th><h4>Action</h4></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                var dateItem = item.StartTime.ToShortDateString();
+                                var startTimeItem = item.StartTime.ToShortTimeString();
+                                var endTimeItem = item.EndTime.ToShortTimeString();
+                                var requestorItem = item.Student.BTTUser.FirstName + " " + item.Student.BTTUser.LastName;
+                                var assignedTutorItem = " ";
+                                if (item.TutorID != null)
+                                {
+                                    assignedTutorItem = item.Tutor.BTTUser.FirstName + " " + item.Tutor.BTTUser.LastName;
+                                }
+                                if (item.Status == "Canceled")
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.Class.Name)</td>
+                                        <td>@Html.DisplayFor(modelItem => dateItem)</td>
+                                        <td>@Html.DisplayFor(modelItem => startTimeItem)</td>
+                                        <td>@Html.DisplayFor(modelItem => endTimeItem)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Length)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.TypeOfMeeting)</td>
+                                        <td>@Html.DisplayFor(modelItem => requestorItem)</td>
+                                        <td>@Html.DisplayFor(modelItem => assignedTutorItem)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                                        <td>
+                                            @Html.ActionLink("Update Request", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "ui basic blue button" })
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="ui bottom attached tab segment" data-tab="NoShowButton">
+                <div class="ui red centered segment">
+                    <div class="ui horizontal divider">
+                        <h3 class="ui centered header">Canceled Requests</h3>
+                    </div>
+                    <table class="ui center aligned striped table">
+                        <thead>
+                            <tr>
+                                <th><h4>Requested For</h4></th>
+                                <th><h4>Date</h4></th>
+                                <th><h4>Start Time</h4></th>
+                                <th><h4>End Time</h4></th>
+                                <th><h4>Session Length</h4></th>
+                                <th><h4>Meeting Type</h4></th>
+                                <th><h4>Requestor</h4></th>
+                                <th><h4>Assigned Tutor</h4></th>
+                                <th><h4>Current Status</h4></th>
+                                <th><h4>Action</h4></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                var dateItem = item.StartTime.ToShortDateString();
+                                var startTimeItem = item.StartTime.ToShortTimeString();
+                                var endTimeItem = item.EndTime.ToShortTimeString();
+                                var requestorItem = item.Student.BTTUser.FirstName + " " + item.Student.BTTUser.LastName;
+                                var assignedTutorItem = " ";
+                                if (item.TutorID != null)
+                                {
+                                    assignedTutorItem = item.Tutor.BTTUser.FirstName + " " + item.Tutor.BTTUser.LastName;
+                                }
+                                if (item.Status == "No Show")
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.Class.Name)</td>
+                                        <td>@Html.DisplayFor(modelItem => dateItem)</td>
+                                        <td>@Html.DisplayFor(modelItem => startTimeItem)</td>
+                                        <td>@Html.DisplayFor(modelItem => endTimeItem)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Length)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.TypeOfMeeting)</td>
+                                        <td>@Html.DisplayFor(modelItem => requestorItem)</td>
+                                        <td>@Html.DisplayFor(modelItem => assignedTutorItem)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                                        <td>
+                                            @Html.ActionLink("Update Request", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "ui basic blue button" })
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="ui bottom attached tab segment" data-tab="OwnedButton">
+                <div class="ui red centered segment">
+                    <div class="ui horizontal divider">
+                        <h3 class="ui centered header">Requests Owned By Tutor</h3>
+                    </div>
+                    <table class="ui center aligned striped table">
+                        <thead>
+                            <tr>
+                                <th><h4>Requested For</h4></th>
+                                <th><h4>Date</h4></th>
+                                <th><h4>Start Time</h4></th>
+                                <th><h4>End Time</h4></th>
+                                <th><h4>Session Length</h4></th>
+                                <th><h4>Meeting Type</h4></th>
+                                <th><h4>Requestor</h4></th>
+                                <th><h4>Assigned Tutor</h4></th>
+                                <th><h4>Current Status</h4></th>
+                                <th><h4>Action</h4></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                var dateItem = item.StartTime.ToShortDateString();
+                                var startTimeItem = item.StartTime.ToShortTimeString();
+                                var endTimeItem = item.EndTime.ToShortTimeString();
+                                var requestorItem = item.Student.BTTUser.FirstName + " " + item.Student.BTTUser.LastName;
+                                var assignedTutorItem = " ";
+                                if (item.TutorID != null)
+                                {
+                                    assignedTutorItem = item.Tutor.BTTUser.FirstName + " " + item.Tutor.BTTUser.LastName;
+                                }
+                                if (item.TutorID == ViewBag.TutorID)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.Class.Name)</td>
+                                        <td>@Html.DisplayFor(modelItem => dateItem)</td>
+                                        <td>@Html.DisplayFor(modelItem => startTimeItem)</td>
+                                        <td>@Html.DisplayFor(modelItem => endTimeItem)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Length)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.TypeOfMeeting)</td>
+                                        <td>@Html.DisplayFor(modelItem => requestorItem)</td>
+                                        <td>@Html.DisplayFor(modelItem => assignedTutorItem)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                                        <td>
+                                            @Html.ActionLink("Update Request", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "ui basic blue button" })
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="ui bottom attached tab segment" data-tab="AllButton">
+                <div class="ui red centered segment">
+                    <div class="ui horizontal divider">
+                        <h3 class="ui centered header">All Requests</h3>
+                    </div>
+                    <table class="ui center aligned striped table">
+                        <thead>
+                            <tr>
+                                <th><h4>Requested For</h4></th>
+                                <th><h4>Date</h4></th>
+                                <th><h4>Start Time</h4></th>
+                                <th><h4>End Time</h4></th>
+                                <th><h4>Session Length</h4></th>
+                                <th><h4>Meeting Type</h4></th>
+                                <th><h4>Requestor</h4></th>
+                                <th><h4>Assigned Tutor</h4></th>
+                                <th><h4>Current Status</h4></th>
+                                <th><h4>Action</h4></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                var dateItem = item.StartTime.ToShortDateString();
+                                var startTimeItem = item.StartTime.ToShortTimeString();
+                                var endTimeItem = item.EndTime.ToShortTimeString();
+                                var requestorItem = item.Student.BTTUser.FirstName + " " + item.Student.BTTUser.LastName;
+                                var assignedTutorItem = " ";
+                                if (item.TutorID != null)
+                                {
+                                    assignedTutorItem = item.Tutor.BTTUser.FirstName + " " + item.Tutor.BTTUser.LastName;
+                                }
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.Class.Name)</td>
+                                    <td>@Html.DisplayFor(modelItem => dateItem)</td>
+                                    <td>@Html.DisplayFor(modelItem => startTimeItem)</td>
+                                    <td>@Html.DisplayFor(modelItem => endTimeItem)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Length)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.TypeOfMeeting)</td>
+                                    <td>@Html.DisplayFor(modelItem => requestorItem)</td>
+                                    <td>@Html.DisplayFor(modelItem => assignedTutorItem)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                                    <td>
+                                        @Html.ActionLink("Update Request", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "ui basic blue button" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </body>

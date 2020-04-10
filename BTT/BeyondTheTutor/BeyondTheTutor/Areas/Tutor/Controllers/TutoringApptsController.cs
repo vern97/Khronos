@@ -20,7 +20,16 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
         public ActionResult Index()
         {
             ViewBag.Current = "TutApptsIndex";
-            var tutoringAppts = db.TutoringAppts.Include(t => t.Class).Include(t => t.Student).Include(t => t.Tutor);
+            var tutoringAppts = db.TutoringAppts.OrderBy(t => t.StartTime).ThenBy(t => t.Class.Name).ThenBy(t => t.EndTime).Include(t => t.Class).Include(t => t.Student).Include(t => t.Tutor);
+
+            var userID = User.Identity.GetUserId();
+            var currentTutorID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
+            ViewBag.TutorID = currentTutorID;
+            ViewBag.TutorName = db.BTTUsers.Where(m => m.ID == currentTutorID).Select(m => m.FirstName + " " + m.LastName).FirstOrDefault();
+            ViewBag.AnyTutorOwns = db.TutoringAppts.Where(a => a.TutorID == currentTutorID).Any(a => a.Status == "Approved");
+
+            ViewBag.AnyRequested = db.TutoringAppts.Any(a => a.Status == "Requested");
+            ViewBag.AnyApproved = db.TutoringAppts.Any(a => a.Status == "Approved");
             return View(tutoringAppts.ToList());
         }
 
