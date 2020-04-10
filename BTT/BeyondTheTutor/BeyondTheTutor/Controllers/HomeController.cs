@@ -160,7 +160,7 @@ namespace BeyondTheTutor.Controllers
                 tutorName = e.Tutor.BTTUser.FirstName + " " + e.Tutor.BTTUser.LastName
             }).ToList();
 
-            for (var i = 0; i < serviceAlerts.Count(); i++)
+            for (var i = 0; i <= serviceAlerts.Count(); i++)
             {
                 if (DateTime.Now > serviceAlerts[i].endTime)
                 {
