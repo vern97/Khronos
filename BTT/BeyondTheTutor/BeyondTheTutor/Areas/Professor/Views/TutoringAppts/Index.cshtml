@@ -1,0 +1,42 @@
+﻿@model IEnumerable<BeyondTheTutor.Models.TutoringAppt>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<body class="wou-silver-bg">
+    <div class="ui one column centered padded grid" style="padding-top:10px;">
+        <div class="ui red centered segment">
+            <div class="ui horizontal divider">
+                <h2 class="ui centered header">All Tutoring Requests</h2>
+            </div>
+            <table class="ui center aligned striped table">
+                <thead>
+                    <tr>
+                        <th><h4>Requested For</h4></th>
+                        <th><h4>On Date</h4></th>
+                        <th><h4>Session Length</h4></th>
+                        <th><h4>Meeting Type</h4></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        var dateItem = item.StartTime.ToShortDateString();
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Class.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => dateItem)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Length)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TypeOfMeeting)</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+}
