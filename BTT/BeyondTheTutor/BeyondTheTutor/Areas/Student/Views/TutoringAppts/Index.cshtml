@@ -1,54 +1,89 @@
 ﻿@model IEnumerable<BeyondTheTutor.Models.TutoringAppt>
+@using BeyondTheTutor.DAL;
 
-<body class="wou-silver-bg">
-    <div class="ui one column stackable page grid" style="padding-top:10px;">
-        <table class="ui striped table stu-app">
-            <thead>
-                <tr>
-                    <th><h4>Class Requested For</h4></th>
-                    <th><h4>Start Date &amp; Time</h4></th>
-                    <th><h4>End Date &amp; Time</h4></th>
-                    <th><h4>Session Length</h4></th>
-                    <th><h4>Current Status</h4></th>
-                    <th><h4>Notes</h4></th>
-                    <th><h4>Action</h4></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                <tr>
-                    <td>@Html.DisplayFor(modelItem => item.Class.Name)</td>
-                    <td>@Html.DisplayFor(modelItem => item.StartTime)</td>
-                    <td>@Html.DisplayFor(modelItem => item.EndTime)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Length)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Status)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Note)</td>
-                    <td>
+@{
+    BeyondTheTutorContext db = new BeyondTheTutorContext();
 
-                            @if (item.Status == "Canceled" || item.Status == "Completed")
-                            {
-                                <button class="ui disabled button">
-                                    <i class="icon trash"></i>
-                                    Cancel Session
-                                </button>
-                            }
-                            else
-                            {
-                                <button class="ui basic button">
-                                    <i class="icon trash"></i>
-                                    @Html.ActionLink("Cancel Session", "Edit", new { id = item.ID })
-                                </button>
-                            }
-                    </td>
-                </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-</body>
-
-@section scripts
-{
-    <script src="~/Scripts/main.js"></script>
 }
+
+    <body class="wou-silver-bg">
+        <div class="ui one column center aligned stackable page grid " style="padding-top:10px;">
+            <table class="ui compact table stu-app" style="text-align: center; white-space:nowrap;">
+                <thead>
+                    <tr>
+                        <th><h4>Class Requested For</h4></th>
+                        <th><h4>Start Date &amp; Time</h4></th>
+                        <th><h4>End Date &amp; Time</h4></th>
+                        <th><h4>Session Length</h4></th>
+                        <th><h4>Current Status</h4></th>
+                        <th><h4>Notes</h4></th>
+                        <th colspan="2"><h4>Action</h4></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        bool valid2 = false;
+                        var valid = db.Surveys.Where(surv => surv.ClassID == item.ClassID).Count() > 0;
+                        if (valid)
+                        {
+                            if (db.Surveys.Where(surv => surv.ClassID == item.ClassID).FirstOrDefault() != null)
+                            {
+                                valid2 = db.Surveys.Where(surv => surv.ClassID == item.ClassID).FirstOrDefault().Questions.Count() > 0;
+                            }
+                        }
+
+                        <tr style="text-align: center;">
+                            <td>@Html.DisplayFor(modelItem => item.Class.Name)</td>
+                            <td>@Html.DisplayFor(modelItem => item.StartTime)</td>
+                            <td>@Html.DisplayFor(modelItem => item.EndTime)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Length)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Note)</td>
+                            <td>
+
+                                @if (item.Status == "Canceled" || item.Status == "Completed")
+                                {
+                                    <button class="ui disabled fluid button">
+                                        <i class="icon trash"></i>
+                                        Cancel
+                                    </button>
+                                }
+                                else
+                                {
+                                    <button class="ui basic fluid button">
+                                        <i class="icon trash"></i>
+                                        @Html.ActionLink("Cancel", "Edit", new { id = item.ID })
+                                    </button>
+                                }
+                            </td>
+                            <td>
+                                @if (valid && valid2)
+                                {
+                                    int sid = db.Surveys.Where(surv => surv.ClassID == item.ClassID).FirstOrDefault().ID;
+                                    int questionId = db.Questions.Where(question => question.SurveyID == sid && question.Survey.Questions.Count() > 0).FirstOrDefault().ID;
+                                <button class="ui basic fluid green button">
+                                    <i class="icon newspaper"></i>
+                                    @Html.RouteLink("Take Survey", new { controller = "Answers", action = "Create", qid = questionId, sid = sid, Area = ""})
+                                </button>
+                                }
+                                else
+                                {
+                                    <button class="ui basic fluid disabled button">
+                                        <i class="icon newspaper"></i>
+                                        Take Survey
+                                    </button>
+                                }
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </body>
+
+    @section scripts
+{
+        <script src="~/Scripts/main.js"></script>
+    }

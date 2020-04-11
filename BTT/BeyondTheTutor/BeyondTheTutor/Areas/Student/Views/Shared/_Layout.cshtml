@@ -24,6 +24,7 @@
         @Html.ActionLink("Student Portal", "Index", "Home", new { area = "student" }, htmlAttributes: new { @class = (ViewBag.Current == "StuHomeIndex" ? "item red active" : "item") })
         <div class="right menu">
             @Html.ActionLink("Calculators", "Calculators", "Home", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "Calculators" ? "item red active" : "item") })
+            @Html.ActionLink("Resources", "Index", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResIndex" ? "item red active" : "item") })
             <div class="ui dropdown item">
                 Tutoring
                 <i class="dropdown icon"></i>

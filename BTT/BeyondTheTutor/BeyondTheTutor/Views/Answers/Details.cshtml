@@ -1,0 +1,42 @@
+﻿@model BeyondTheTutor.Models.SurveyModels.Answer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Answer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Question.AskingQuestion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Question.AskingQuestion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Survey.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Survey.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAnswer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserAnswer)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
