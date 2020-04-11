@@ -19,6 +19,7 @@ namespace BeyondTheTutor.Controllers
             ViewBag.csList = db.Classes.Where(c => c.Name.Contains("CS")).ToList();
             ViewBag.isList = db.Classes.Where(c => c.Name.Contains("IS")).ToList();
 
+            // Remove out-dated Service Alerts
             var allServiceAppts = db.TutoringServiceAlerts;
             foreach (var alert in allServiceAppts)
             {
@@ -28,8 +29,6 @@ namespace BeyondTheTutor.Controllers
                     TutoringServiceAlert serviceAlert = db.TutoringServiceAlerts.Find(currentItem);
 
                     db.TutoringServiceAlerts.Remove(serviceAlert);
-
-                    
                 }
             }
 
@@ -147,6 +146,7 @@ namespace BeyondTheTutor.Controllers
             return Json(tutors, JsonRequestBehavior.AllowGet);
         }
 
+        // Create Json to be used by service-alert.js based on db.TutoringServiceAlerts to display banners on Index
         public JsonResult GetServiceAlerts()
         {
             var serviceAlerts = db.TutoringServiceAlerts.Select(e => new
