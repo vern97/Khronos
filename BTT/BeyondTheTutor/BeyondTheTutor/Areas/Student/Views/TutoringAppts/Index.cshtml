@@ -5,97 +5,117 @@
     BeyondTheTutorContext db = new BeyondTheTutorContext();
 }
 
-    <body class="wou-silver-bg">
-        <div class="ui one column center aligned stackable page grid " style="padding-top:10px;">
-            <table class="ui compact table stu-app" style="text-align: center; white-space:nowrap;">
-                <thead>
-                    <tr>
-                        <th><h4>Class Requested For</h4></th>
-                        <th><h4>Start Date &amp; Time</h4></th>
-                        <th><h4>End Date &amp; Time</h4></th>
-                        <th><h4>Session Length</h4></th>
-                        <th><h4>Current Status</h4></th>
-                        <th><h4>Notes</h4></th>
-                        <th colspan="2"><h4>Action</h4></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
+<body class="wou-silver-bg">
+    <div class="ui one column center aligned stackable page grid " style="padding-top:10px;">
+        <table class="ui compact table stu-app" style="text-align: center; white-space:nowrap;">
+            <thead>
+                <tr>
+                    <th><h4>Class Requested For</h4></th>
+                    <th><h4>Start Date &amp; Time</h4></th>
+                    <th><h4>End Date &amp; Time</h4></th>
+                    <th><h4>Session Length</h4></th>
+                    <th><h4>Current Status</h4></th>
+                    <th><h4>Notes</h4></th>
+                    <th colspan="2"><h4>Action</h4></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    bool valid2 = false;
+                    var valid = db.Surveys.Where(surv => surv.ClassID == item.ClassID).Count() > 0;
+                    if (valid)
                     {
-                        bool valid2 = false;
-                        var valid = db.Surveys.Where(surv => surv.ClassID == item.ClassID).Count() > 0;
-                        if (valid)
+                        if (db.Surveys.Where(surv => surv.ClassID == item.ClassID).FirstOrDefault() != null)
                         {
-                            if (db.Surveys.Where(surv => surv.ClassID == item.ClassID).FirstOrDefault() != null)
+                            var survey = db.Surveys.Where(surv => surv.ClassID == item.ClassID).FirstOrDefault();
+                            var numberOfQuestions = survey.Questions.Count();
+                            var numberOfAnswers = survey.Answers.Where(m => m.UserID == ViewBag.UID).Count();
+                            valid2 = numberOfQuestions > 0 && numberOfAnswers < numberOfQuestions;
+                        }
+                    }
+
+                    <tr style="text-align: center;">
+                        <td>@Html.DisplayFor(modelItem => item.Class.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.StartTime)</td>
+                        <td>@Html.DisplayFor(modelItem => item.EndTime)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Length)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Note)</td>
+                        <td>
+
+                            @if (item.Status == "Canceled" || item.Status == "Completed")
+                            {
+                                <button class="ui disabled fluid button">
+                                    <i class="icon trash"></i>
+                                    Cancel
+                                </button>
+                            }
+                            else
+                            {
+                                <button class="ui fluid  button">
+                                    <i class="icon trash"></i>
+                                    @Html.ActionLink("Cancel", "Edit", new { id = item.ID })
+                                </button>
+                            }
+                        </td>
+                        <td>
+                            @if (valid && valid2)
                             {
                                 var survey = db.Surveys.Where(surv => surv.ClassID == item.ClassID).FirstOrDefault();
-                                var numberOfQuestions = survey.Questions.Count();
-                                var numberOfAnswers = survey.Answers.Where(m => m.UserID == ViewBag.UID).Count();
-                                valid2 = numberOfQuestions > 0 && numberOfAnswers < numberOfQuestions;
-                            }
-                        }
-
-                        <tr style="text-align: center;">
-                            <td>@Html.DisplayFor(modelItem => item.Class.Name)</td>
-                            <td>@Html.DisplayFor(modelItem => item.StartTime)</td>
-                            <td>@Html.DisplayFor(modelItem => item.EndTime)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Length)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Status)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Note)</td>
-                            <td>
-
-                                @if (item.Status == "Canceled" || item.Status == "Completed")
+                                var sid = survey.ID;
+                                var questions = survey.Questions;
+                                int startingQuestion = 0;
+                                foreach (var q in questions)
                                 {
-                                    <button class="ui disabled fluid button">
-                                        <i class="icon trash"></i>
-                                        Cancel
-                                    </button>
-                                }
-                                else
-                                {
-                                    <button class="ui fluid  button">
-                                        <i class="icon trash"></i>
-                                        @Html.ActionLink("Cancel", "Edit", new { id = item.ID })
-                                    </button>
-                                }
-                            </td>
-                            <td>
-                                @if (valid && valid2)
-                                {
-                                    var survey = db.Surveys.Where(surv => surv.ClassID == item.ClassID).FirstOrDefault();
-                                    var sid = survey.ID;
-                                    var questions = survey.Questions;
-                                    int startingQuestion = 0;
-                                    foreach(var q in questions)
+                                    var answerList = q.Answers.Where(m => m.UserID == ViewBag.UID).ToList();
+                                    if (answerList.Count() < 1)
                                     {
-                                        var answerList = q.Answers.Where(m => m.UserID == ViewBag.UID).ToList();
-                                        if(answerList.Count() < 1)
-                                        {
-                                            startingQuestion = q.ID;
-                                        }
+                                        startingQuestion = q.ID;
                                     }
-                                    <button class="positive ui fluid basic button">
+                                }
+                                <button class="positive ui fluid basic button">
                                     <i class="icon newspaper"></i>
                                     @Html.RouteLink("Take Survey", new { controller = "Answers", action = "Create", qid = startingQuestion, sid = sid, Area = "" })
                                 </button>
-                                }
-                                else
-                                {
-                                    <button class="positive ui disabled fluid basic button">
-                                        <i class="icon newspaper"></i>
-                                        Take Survey
-                                    </button>
-                                }
+                            }
+                            else
+                            {
+                                <button class="positive ui disabled fluid basic button">
+                                    <i class="icon newspaper"></i>
+                                    Take Survey
+                                </button>
+                            }
 
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </body>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
 
-    @section scripts
+@if(ViewBag.ThankYou != null)
 {
-        <script src="~/Scripts/main.js"></script>
-    }
+    <div class="ui tiny modal">
+        <div class="header" style="text-align: center;">
+            @ViewBag.ThankYou
+        </div>
+        <div class="content actions" style="text-align: center;">
+            <div class="negative ui button">Move On</div>
+        </div>
+    </div>
+}
+
+
+
+@section scripts
+{
+    <script>
+        $('.ui.tiny.modal')
+            .modal('show')
+            ;
+    </script>
+
+    <script src="~/Scripts/main.js"></script>
+}

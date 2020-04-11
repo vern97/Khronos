@@ -78,6 +78,7 @@ namespace BeyondTheTutor.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "UserID,SurveyID,QuestionID,UserAnswer")] Answer answer)
         {
+            
             var userID = User.Identity.GetUserId();
             var currentUser = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
 
@@ -104,7 +105,8 @@ namespace BeyondTheTutor.Controllers
 
                 if (listOfQuestions.Count() == listOfAnswers.Count() + 1)
                 {
-                    return RedirectToAction("Index");
+                    TempData["thankyou"] = answer.SurveyID;
+                    return RedirectToAction("TutoringAppts", "student", null);
                 }
                 else
                 {

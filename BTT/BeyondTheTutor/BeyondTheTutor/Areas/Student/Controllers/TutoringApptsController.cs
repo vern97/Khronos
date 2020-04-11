@@ -22,6 +22,14 @@ namespace BeyondTheTutor.Areas.Student.Controllers
             var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
             ViewBag.UID = currentUserID;
             var sessionList = db.TutoringAppts.Where(m => m.StudentID.Equals(currentUserID)).OrderBy(m => m.StartTime).ToList();
+
+            if (TempData["thankyou"] != null)
+            {
+                var sid = Int32.Parse(TempData["thankyou"].ToString());
+                var inClass = db.Classes.Find(db.Surveys.Find(sid).ClassID).Name;
+                ViewBag.ThankYou = "Thank you for taking the " + inClass + " survey!";
+            }
+
             return View(sessionList);
         }
 
