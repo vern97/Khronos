@@ -14,11 +14,11 @@ function errorOnAjax() {
 
 function displayTutors(data) {
     $('#display_tutors').append(`
-        <div class="ui cards" id="tutor_cards"></div>
+        <div class="ui three stackable centered cards" id="tutor_cards"></div>
     `)
     for (var i = 0; i < data.length; i++) {
         $('#tutor_cards').append(`
-            <div class="red card">
+            <div class="red centered card">
                 <div class="image">
                     <img src="../Content/images/BeyondtheTutor_Logo.png" alt="Alternate Text" />
                 </div>

@@ -180,17 +180,18 @@ textarea {
 }
 
 /* Customizations for admin home page */
-.ui.centered.image.admin {
-    border-top: solid;
-    border-top-width: 3px;
-    border-top-color: #db0a29;
-}
-
 .ten.wide.column.admin {
     border: solid;
     border-width: 3px;
     border-color: #db0a29;
     background-color: #FFFFFF;
+}
+
+.ui.top.attached.center.aligned.icon.header {
+    background-color: #c4c1c1;
+    border: groove;
+    border-width: 2px;
+    border-color: #db0a29;
 }
 
 /* Customizations for student resources */

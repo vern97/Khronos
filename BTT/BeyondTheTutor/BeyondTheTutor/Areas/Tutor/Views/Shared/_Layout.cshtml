@@ -24,7 +24,7 @@
         @Html.ActionLink("Tutor Portal", "Index", "Home", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutorHomeIndex" ? "item red active" : "item") })
         <div class="right menu">
             @Html.ActionLink("Calculators", "Calculators", "Home", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "Calculators" ? "item red active" : "item") })
-            @Html.ActionLink("Service Alert", "Create", "TutoringServiceAlerts", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutServiceAlert" ? "item red active" : "item") })
+
             <div class="ui dropdown item">
                 Resources
                 <i class="dropdown icon"></i>
@@ -42,6 +42,7 @@
                     @Html.ActionLink("Manage", "UpdateSchedule", "TutorSchedules", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutSchedUpdate" ? "item red active" : "item") })
                 </div>
             </div>
+            @Html.ActionLink("Service Alert", "Create", "TutoringServiceAlerts", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutServiceAlert" ? "item red active" : "item") })
             <div class="ui dropdown item">
                 Tutoring Requests
                 <i class="dropdown icon"></i>
