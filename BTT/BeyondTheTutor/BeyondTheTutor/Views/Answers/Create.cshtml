@@ -10,25 +10,27 @@
     @Html.Hidden("SurveyID", (object)ViewBag.SID)
     @Html.Hidden("QuestionID", (object)ViewBag.QID)
     @Html.Hidden("UserID", (object)ViewBag.UID)
-
     <div class="form-horizontal" style="text-align: center;">
         <b>@ViewBag.name</b>
-        <br/><br/>
+        <br /><br />
         <b>@ViewBag.question</b>
-        <br/><br/>
+        <br /><br />
 
         <div class="form-group">
-            @Html.LabelFor(model => model.UserAnswer, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.UserAnswer, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UserAnswer, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.UserAnswer, new { htmlAttributes = new { @class = "form-control" } })
+                <div  class="ui massive star rating" data-rating="1" data-max-rating="5"></div>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="@ViewBag.textBox" class="btn btn-default" />
+                <button class="ui button schedule" onclick="validate()">@ViewBag.ButtonText</button>
             </div>
+        </div>
+
+        <div style="text-align: center;">
+            @ViewBag.QuestionsAnswered
         </div>
     </div>
 }
@@ -37,6 +39,26 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+
+    <script>
+        validate = function () {
+            var rating = $('.ui.rating').rating('get rating');
+            document.getElementById("UserAnswer").value = rating;
+        }
+    </script>
+
+    <script type="text/javascript">
+        $('.ui.rating')
+            .rating({
+                initialRating: 3,
+                maxRating: 5,
+                onRate: validate
+            })
+            ;
+    </script>
+
 }

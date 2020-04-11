@@ -46,6 +46,9 @@ namespace BeyondTheTutor.Controllers
             var userID = User.Identity.GetUserId();
             var currentUser = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
 
+            var listOfQuestions = db.Surveys.Find(sid).Questions.ToList();
+            var listOfAnswers = db.Surveys.Find(sid).Answers.Where(a => a.UserID == currentUser).ToList();
+
 
             ViewBag.question = db.Questions.Find(qid).AskingQuestion;
             ViewBag.name = db.Surveys.Find(sid).Name;
@@ -53,6 +56,18 @@ namespace BeyondTheTutor.Controllers
             ViewBag.QID = qid;
             ViewBag.SID = sid;
             ViewBag.UID = currentUser;
+
+            ViewBag.QuestionsAnswered = listOfAnswers.Count() + " out of " + listOfQuestions.Count() + " questions answered.";
+
+            if (listOfQuestions.Count() == listOfAnswers.Count() + 1)
+            {
+                ViewBag.ButtonText = "Submit Survey";
+            }
+            else
+            {
+                ViewBag.ButtonText = "Next Question";
+            }
+
             return View();
         }
 
@@ -63,28 +78,38 @@ namespace BeyondTheTutor.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "UserID,SurveyID,QuestionID,UserAnswer")] Answer answer)
         {
-            var listOfQuestions = db.Surveys.Find(answer.SurveyID).Questions.ToList();
+            var userID = User.Identity.GetUserId();
+            var currentUser = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
 
-            var lastQuestion = listOfQuestions.Last().ID;
+            var listOfQuestions = db.Surveys.Find(answer.SurveyID).Questions.ToList();
+            var listOfAnswers = db.Surveys.Find(answer.SurveyID).Answers.Where(a => a.UserID == currentUser).ToList();
 
             if (ModelState.IsValid)
             {
                 db.Answers.Add(answer);
                 db.SaveChanges();
-                if (answer.QuestionID == lastQuestion)
+
+                //listOfQuestions.Where(m => m.ID == answer.Question
+                //var j = listOfQuestions.FindIndex(m => m.ID == answer.QuestionID);
+                //var nextQuestion = listOfQuestions.LastOrDefault().ID;
+                int QID = 0;
+                foreach (var q in listOfQuestions)
                 {
-                    ViewBag.textBox = "Next Question";
-                    return RedirectToAction("Index"); 
+                    if (q.Answers.Count() < 1)
+                    {
+                        //var nextQuestion = listOfQuestions.FindIndex(m => m.ID == q.QuestionID);
+                        QID = q.ID;
+                    }
                 }
-                else 
+
+                if (listOfQuestions.Count() == listOfAnswers.Count() + 1)
                 {
-                    ViewBag.textBox = "Finish Survey";
-                    //listOfQuestions.Where(m => m.ID == answer.Question
-                    var j = listOfQuestions.FindIndex(m => m.ID == answer.QuestionID);
-                    var nextQuestion = listOfQuestions.ElementAt(j + 1).ID;
-                    return RedirectToAction("Create", new { qid = nextQuestion, sid = answer.SurveyID }); //fix this 
+                    return RedirectToAction("Index");
                 }
-                 
+                else
+                {
+                    return RedirectToAction("Create", new { qid = QID, sid = answer.SurveyID });
+                }
             }
 
             ViewBag.QuestionID = new SelectList(db.Questions, "ID", "AskingQuestion", answer.QuestionID);

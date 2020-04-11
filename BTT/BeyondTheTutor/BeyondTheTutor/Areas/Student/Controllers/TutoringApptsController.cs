@@ -20,6 +20,7 @@ namespace BeyondTheTutor.Areas.Student.Controllers
             ViewBag.Current = "StuTutorAppIndex";
             var userID = User.Identity.GetUserId();
             var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
+            ViewBag.UID = currentUserID;
             var sessionList = db.TutoringAppts.Where(m => m.StudentID.Equals(currentUserID)).OrderBy(m => m.StartTime).ToList();
             return View(sessionList);
         }

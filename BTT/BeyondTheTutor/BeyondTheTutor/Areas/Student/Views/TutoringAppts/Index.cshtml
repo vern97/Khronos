@@ -3,7 +3,6 @@
 
 @{
     BeyondTheTutorContext db = new BeyondTheTutorContext();
-
 }
 
     <body class="wou-silver-bg">
@@ -29,7 +28,10 @@
                         {
                             if (db.Surveys.Where(surv => surv.ClassID == item.ClassID).FirstOrDefault() != null)
                             {
-                                valid2 = db.Surveys.Where(surv => surv.ClassID == item.ClassID).FirstOrDefault().Questions.Count() > 0;
+                                var survey = db.Surveys.Where(surv => surv.ClassID == item.ClassID).FirstOrDefault();
+                                var numberOfQuestions = survey.Questions.Count();
+                                var numberOfAnswers = survey.Answers.Where(m => m.UserID == ViewBag.UID).Count();
+                                valid2 = numberOfQuestions > 0 && numberOfAnswers < numberOfQuestions;
                             }
                         }
 
@@ -51,7 +53,7 @@
                                 }
                                 else
                                 {
-                                    <button class="ui basic fluid button">
+                                    <button class="ui fluid  button">
                                         <i class="icon trash"></i>
                                         @Html.ActionLink("Cancel", "Edit", new { id = item.ID })
                                     </button>
@@ -60,16 +62,26 @@
                             <td>
                                 @if (valid && valid2)
                                 {
-                                    int sid = db.Surveys.Where(surv => surv.ClassID == item.ClassID).FirstOrDefault().ID;
-                                    int questionId = db.Questions.Where(question => question.SurveyID == sid && question.Survey.Questions.Count() > 0).FirstOrDefault().ID;
-                                <button class="ui basic fluid green button">
+                                    var survey = db.Surveys.Where(surv => surv.ClassID == item.ClassID).FirstOrDefault();
+                                    var sid = survey.ID;
+                                    var questions = survey.Questions;
+                                    int startingQuestion = 0;
+                                    foreach(var q in questions)
+                                    {
+                                        var answerList = q.Answers.Where(m => m.UserID == ViewBag.UID).ToList();
+                                        if(answerList.Count() < 1)
+                                        {
+                                            startingQuestion = q.ID;
+                                        }
+                                    }
+                                    <button class="positive ui fluid basic button">
                                     <i class="icon newspaper"></i>
-                                    @Html.RouteLink("Take Survey", new { controller = "Answers", action = "Create", qid = questionId, sid = sid, Area = ""})
+                                    @Html.RouteLink("Take Survey", new { controller = "Answers", action = "Create", qid = startingQuestion, sid = sid, Area = "" })
                                 </button>
                                 }
                                 else
                                 {
-                                    <button class="ui basic fluid disabled button">
+                                    <button class="positive ui disabled fluid basic button">
                                         <i class="icon newspaper"></i>
                                         Take Survey
                                     </button>
