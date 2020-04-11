@@ -66,7 +66,7 @@ namespace BeyondTheTutor.DAL
             modelBuilder.Entity<Question>()
                 .HasMany(e => e.Answers)
                 .WithRequired(e => e.Question)
-                .WillCascadeOnDelete(true);
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<Survey>()
                 .Property(e => e.Description)
@@ -75,12 +75,12 @@ namespace BeyondTheTutor.DAL
             modelBuilder.Entity<Survey>()
                 .HasMany(e => e.Answers)
                 .WithRequired(e => e.Survey)
-                .WillCascadeOnDelete(true);
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<Survey>()
                 .HasMany(e => e.Questions)
                 .WithRequired(e => e.Survey)
-                .WillCascadeOnDelete(true);
+                .WillCascadeOnDelete();
         }
 
     }

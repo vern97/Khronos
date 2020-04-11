@@ -35,9 +35,9 @@
             @Html.DisplayFor(modelItem => item.UserAnswer)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "Edit", new { /* composite key */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.composite key */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.composite key */ })
         </td>
     </tr>
 }

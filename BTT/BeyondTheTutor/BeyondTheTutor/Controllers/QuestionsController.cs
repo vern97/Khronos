@@ -11,6 +11,7 @@ using BeyondTheTutor.Models.SurveyModels;
 
 namespace BeyondTheTutor.Controllers
 {
+    [Authorize]
     public class QuestionsController : Controller
     {
         private BeyondTheTutorContext db = new BeyondTheTutorContext();

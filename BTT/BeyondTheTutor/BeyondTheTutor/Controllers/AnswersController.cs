@@ -12,6 +12,8 @@ using Microsoft.AspNet.Identity;
 
 namespace BeyondTheTutor.Controllers
 {
+    [Authorize]
+
     public class AnswersController : Controller
     {
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
