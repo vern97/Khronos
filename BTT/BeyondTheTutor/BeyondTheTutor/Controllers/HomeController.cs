@@ -2,6 +2,7 @@
 using BeyondTheTutor.Models;
 using Newtonsoft.Json;
 using System;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -17,6 +18,22 @@ namespace BeyondTheTutor.Controllers
 
             ViewBag.csList = db.Classes.Where(c => c.Name.Contains("CS")).ToList();
             ViewBag.isList = db.Classes.Where(c => c.Name.Contains("IS")).ToList();
+
+            var allServiceAppts = db.TutoringServiceAlerts;
+            foreach (var alert in allServiceAppts)
+            {
+                if (DateTime.Now > alert.EndTime)
+                {
+                    var currentItem = alert.ID;
+                    TutoringServiceAlert serviceAlert = db.TutoringServiceAlerts.Find(currentItem);
+
+                    db.TutoringServiceAlerts.Remove(serviceAlert);
+
+                    
+                }
+            }
+
+            db.SaveChanges();
 
             return View();
         }
@@ -139,14 +156,6 @@ namespace BeyondTheTutor.Controllers
                 endTime = e.EndTime,
                 tutorName = e.Tutor.BTTUser.FirstName + " " + e.Tutor.BTTUser.LastName
             }).ToList();
-
-            for (var i = 0; i < serviceAlerts.Count(); i++)
-            {
-                if (DateTime.Now > serviceAlerts[i].endTime)
-                {
-                    serviceAlerts.RemoveAt(i);
-                }
-            }
 
             return Json(serviceAlerts, JsonRequestBehavior.AllowGet);
         }
