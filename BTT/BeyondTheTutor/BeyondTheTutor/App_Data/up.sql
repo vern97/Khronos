@@ -133,7 +133,7 @@ CREATE TABLE [dbo].[Surveys]
 CREATE TABLE [dbo].[Questions]
 (
 	[ID]				INT IDENTITY (1,1)	NOT NULL,
-	[AskingQuestion]	TEXT			NOT NULL,
+	[AskingQuestion]	TEXT				NOT NULL,
 	[SurveyID]			INT					NOT NULL
 	CONSTRAINT [PK_dbo.Questions] PRIMARY KEY CLUSTERED ([ID] ASC)
 	CONSTRAINT [FK_dbo.Qusetions_dbo.SurveyID_SurveyID] FOREIGN KEY ([SurveyID]) 
