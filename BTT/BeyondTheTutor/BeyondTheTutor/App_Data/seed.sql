@@ -30,3 +30,28 @@
 	('Kotlin', 'https://kotlinlang.org/', 'Kotlin Documentation', '5'),
 	('Kotlin', 'https://en.wikipedia.org/wiki/Kotlin_(programming_language)', 'Kotlin - Wikipedia', '5'),
 	('Kotlin', 'https://developer.android.com/kotlin', 'Android Apps with Kotlin', '5');
+
+INSERT INTO [dbo].[Classes](Name)
+	VALUES
+	('CS 122'),
+	('CS 133'),
+	('CS 160'),
+	('CS 161'),
+	('CS 162'),
+	('CS 260'),
+	('CS 271'),
+	('CS 340'),
+	('CS 360'),
+	('CS 361'),
+	('CS 363'),
+	('CS 364'),
+	('CS 365'),
+	('CS 434'),
+	('CS 465'),
+	('IS 240'),
+	('IS 278'),
+	('IS 340'),
+	('IS 345'),
+	('IS 350'),
+	('IS 355'),
+	('IS 485');
