@@ -31,6 +31,12 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
 
             ViewBag.AnyRequested = db.TutoringAppts.Any(a => a.Status == "Requested");
             ViewBag.AnyApproved = db.TutoringAppts.Any(a => a.Status == "Approved");
+            ViewBag.AnyDeclined = db.TutoringAppts.Any(a => a.Status == "Declined");
+            ViewBag.AnyCompleted = db.TutoringAppts.Any(a => a.Status == "Completed");
+            ViewBag.AnyCanceled = db.TutoringAppts.Any(a => a.Status == "Canceled");
+            ViewBag.AnyNoShows = db.TutoringAppts.Any(a => a.Status == "No Show");
+            ViewBag.AnyOwned = db.TutoringAppts.Any(a => a.TutorID == currentTutorID);
+            ViewBag.AnyRequests = db.TutoringAppts.Any();
             return View(tutoringAppts.ToList());
         }
 
