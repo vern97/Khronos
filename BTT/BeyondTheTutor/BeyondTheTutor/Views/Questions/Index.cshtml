@@ -4,36 +4,61 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<body class="wou-silver-bg">
+    <div class="ui one column center aligned stackable page grid">
+        <br />
+        <table class="ui striped compact table compact table-schedule">
+            <thead>
+                <tr>
+                    <th colspan="2"><h1 class="ui centered header">@ViewBag.name</h1></th>
+                </tr>
+                <tr>
+                    <th colspan="2" style="text-align: center; color: red">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Survey.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AskingQuestion)
-        </th>
-        <th></th>
-    </tr>
+                        <div class="ui buttons">
+                            <button class="ui button active">
+                                @Html.RouteLink("Back to Surveys", new { controller = "Surveys", action = "Index" })
+                            </button>
+                            <div class="or"></div>
+                            <button class="ui yellow button">
+                                <i class="icon plus"></i>
+                                @Html.RouteLink("Add Another Question", new { controller = "Questions", action = "Create", id = ViewBag.SID })
+                            </button>
+                        </div>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AskingQuestion)
+                    </th>
+                    <th style="text-align: center;">
+                        Actions
+                    </th>
+                </tr>
+            </thead>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Survey.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AskingQuestion)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
+
+            <br />
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AskingQuestion)
+                    </td>
+                    <td style="white-space:nowrap; text-align: center;">
+                        <button class="ui basic button">
+                            <i class="icon trash"></i>
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                        </button>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
 }
-
-</table>

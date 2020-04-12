@@ -40,6 +40,8 @@ namespace BeyondTheTutor.Controllers
         // GET: Surveys/Create
         public ActionResult Create()
         {
+            ViewBag.ClassID = new SelectList(db.Classes.OrderBy(c => c.Name), "ID", "Name");
+
             return View();
         }
 

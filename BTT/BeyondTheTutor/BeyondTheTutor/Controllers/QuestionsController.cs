@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BeyondTheTutor.DAL;
+using Microsoft.AspNet.Identity;
 using BeyondTheTutor.Models.SurveyModels;
 
 namespace BeyondTheTutor.Controllers
@@ -17,9 +18,24 @@ namespace BeyondTheTutor.Controllers
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
 
         // GET: Questions
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
             var questions = db.Questions.Include(q => q.Survey);
+
+            if (id != null)
+            {
+
+                var userID = User.Identity.GetUserId();
+                var currentUser = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
+                var survey = db.Surveys.Find(id);
+                var listOfQuestions = survey.Questions;
+
+                ViewBag.name = survey.Name;
+                ViewBag.SID = id;
+
+                return View(listOfQuestions.ToList());
+
+            }
             return View(questions.ToList());
         }
 
@@ -41,7 +57,6 @@ namespace BeyondTheTutor.Controllers
         // GET: Questions/Create
         public ActionResult Create(int? id)
         {
-            //ViewBag.SurveyID = new SelectList(db.Surveys, "ID", "Name");
             
             if (id == null)
             {
@@ -67,7 +82,7 @@ namespace BeyondTheTutor.Controllers
             {
                 db.Questions.Add(question);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { id = question.SurveyID});
             }
 
             ViewBag.SurveyID = new SelectList(db.Surveys, "ID", "Name", question.SurveyID);
