@@ -20,7 +20,7 @@ namespace BeyondTheTutor.Controllers
         public ActionResult Index()
         {
             ViewBag.Current = "ProfSurveyIndex";
-            return View(db.Surveys.ToList());
+            return View(db.Surveys.Reverse().ToList());
         }
 
         // GET: Surveys/Create
