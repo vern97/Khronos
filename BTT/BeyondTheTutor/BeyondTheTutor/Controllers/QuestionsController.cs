@@ -7,8 +7,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BeyondTheTutor.DAL;
-using Microsoft.AspNet.Identity;
 using BeyondTheTutor.Models.SurveyModels;
+using Microsoft.AspNet.Identity;
+
 
 namespace BeyondTheTutor.Controllers
 {
@@ -39,20 +40,6 @@ namespace BeyondTheTutor.Controllers
             return View(questions.ToList());
         }
 
-        // GET: Questions/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Question question = db.Questions.Find(id);
-            if (question == null)
-            {
-                return HttpNotFound();
-            }
-            return View(question);
-        }
 
         // GET: Questions/Create
         public ActionResult Create(int? id)
@@ -89,38 +76,6 @@ namespace BeyondTheTutor.Controllers
             return View(question);
         }
 
-        // GET: Questions/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Question question = db.Questions.Find(id);
-            if (question == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.SurveyID = new SelectList(db.Surveys, "ID", "Name", question.SurveyID);
-            return View(question);
-        }
-
-        // POST: Questions/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,AskingQuestion,SurveyID")] Question question)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(question).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.SurveyID = new SelectList(db.Surveys, "ID", "Name", question.SurveyID);
-            return View(question);
-        }
 
         // GET: Questions/Delete/5
         public ActionResult Delete(int? id)

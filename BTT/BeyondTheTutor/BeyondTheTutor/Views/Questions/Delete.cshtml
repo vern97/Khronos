@@ -29,7 +29,8 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
@@ -38,3 +39,9 @@
         </div>
     }
 </div>
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+}

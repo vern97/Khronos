@@ -18,27 +18,6 @@ namespace BeyondTheTutor.Controllers
     {
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
 
-        // GET: Answers
-        public ActionResult Index()
-        {
-            var answers = db.Answers.Include(a => a.Question).Include(a => a.Survey);
-            return View(answers.ToList());
-        }
-
-        // GET: Answers/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Answer answer = db.Answers.Find(id);
-            if (answer == null)
-            {
-                return HttpNotFound();
-            }
-            return View(answer);
-        }
 
         // GET: Answers/Create
         public ActionResult Create(int? qid, int? sid)
@@ -119,66 +98,7 @@ namespace BeyondTheTutor.Controllers
             return View(answer);
         }
 
-        // GET: Answers/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Answer answer = db.Answers.Find(id);
-            if (answer == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.QuestionID = new SelectList(db.Questions, "ID", "AskingQuestion", answer.QuestionID);
-            ViewBag.SurveyID = new SelectList(db.Surveys, "ID", "Name", answer.SurveyID);
-            return View(answer);
-        }
-
-        // POST: Answers/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserID,SurveyID,QuestionID,UserAnswer")] Answer answer)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(answer).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.QuestionID = new SelectList(db.Questions, "ID", "AskingQuestion", answer.QuestionID);
-            ViewBag.SurveyID = new SelectList(db.Surveys, "ID", "Name", answer.SurveyID);
-            return View(answer);
-        }
-
-        // GET: Answers/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Answer answer = db.Answers.Find(id);
-            if (answer == null)
-            {
-                return HttpNotFound();
-            }
-            return View(answer);
-        }
-
-        // POST: Answers/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Answer answer = db.Answers.Find(id);
-            db.Answers.Remove(answer);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+     
 
         protected override void Dispose(bool disposing)
         {

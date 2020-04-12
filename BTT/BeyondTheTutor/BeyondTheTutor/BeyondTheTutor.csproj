@@ -231,10 +231,6 @@
   <ItemGroup>
     <Content Include="App_Data\AspDown.sql" />
     <Content Include="App_Data\AspUp.sql" />
-    <Content Include="App_Data\BeyondTheTutor.mdf" />
-    <Content Include="App_Data\BeyondTheTutor_log.ldf">
-      <DependentUpon>BeyondTheTutor.mdf</DependentUpon>
-    </Content>
     <Content Include="App_Data\down.sql" />
     <Content Include="App_Data\queries.sql" />
     <Content Include="App_Data\seed.sql" />
@@ -667,17 +663,11 @@
     <Content Include="Views\Home\Calculators.cshtml" />
     <Content Include="Views\Surveys\Create.cshtml" />
     <Content Include="Views\Surveys\Delete.cshtml" />
-    <Content Include="Views\Surveys\Details.cshtml" />
-    <Content Include="Views\Surveys\Edit.cshtml" />
     <Content Include="Views\Surveys\Index.cshtml" />
     <Content Include="Views\Questions\Create.cshtml" />
     <Content Include="Views\Questions\Delete.cshtml" />
     <Content Include="Views\Questions\Index.cshtml" />
     <Content Include="Views\Answers\Create.cshtml" />
-    <Content Include="Views\Answers\Delete.cshtml" />
-    <Content Include="Views\Answers\Details.cshtml" />
-    <Content Include="Views\Answers\Edit.cshtml" />
-    <Content Include="Views\Answers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

@@ -9,4 +9,7 @@ DROP TABLE dbo.Tutors;
 DROP TABLE dbo.Professors;
 DROP TABLE dbo.BTTUsers;
 
+DROP TABLE dbo.Answers;
+DROP TABLE dbo.Questions;
+DROP TABLE dbo.Surveys;
 
