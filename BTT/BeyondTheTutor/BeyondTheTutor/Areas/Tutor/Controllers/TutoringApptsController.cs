@@ -156,8 +156,20 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,StartTime,EndTime,TypeOfMeeting,ClassID,Length,Status,Note,StudentID,TutorID")] TutoringAppt tutoringAppt)
+        public ActionResult Edit([Bind(Include = "ID,StartTime,EndTime,TypeOfMeeting,ClassID,Length,Status,Note,StudentID,TutorID")] TutoringAppt tutoringAppt, DateTime? Date)
         {
+            if (Date == null)
+            {
+                Date = (DateTime.Now).AddDays(1);
+            }
+
+            var date = Date?.ToString("yyyy-MM-dd");
+            var startTime = tutoringAppt.StartTime.ToString("HH:mm:ss tt");
+            var endTime = tutoringAppt.EndTime.ToString("HH:mm:ss tt");
+
+            tutoringAppt.StartTime = Convert.ToDateTime(date + " " + startTime);
+            tutoringAppt.EndTime = Convert.ToDateTime(date + " " + endTime);
+
             if (ModelState.IsValid)
             {
                 db.Entry(tutoringAppt).State = EntityState.Modified;
