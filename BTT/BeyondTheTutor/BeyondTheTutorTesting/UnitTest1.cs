@@ -31,6 +31,30 @@ namespace BeyondTheTutorTesting
             Assert.AreEqual(results, 6681);
         }
 
+        [TestMethod]
+        // This function takes string array, splits the string, then removes null or empty values
+        public void TestGetStringArrayForGradesFunction()
+        {
+            string gradesArray = "90,,85,,88.9";
+            string[] expectedResults = new string[3] { "90", "85", "88.9" };
+            BeyondTheTutor.Controllers.HomeController obj = new BeyondTheTutor.Controllers.HomeController();
+            string[] results = obj.GetStringArrayForGrades(gradesArray);
+
+            CollectionAssert.AreEqual(results, expectedResults);
+        }
+
+        [TestMethod]
+        // This function takes string array, splits the string, then removes null or empty values
+        public void TestGetStringArrayForWeightsFunction()
+        {
+            string weightsArray = "40,,10,,20";
+            string[] expectedResults = new string[3] { "40", "10", "20" };
+            BeyondTheTutor.Controllers.HomeController obj = new BeyondTheTutor.Controllers.HomeController();
+            string[] results = obj.GetStringArrayForWeights(weightsArray);
+
+            CollectionAssert.AreEqual(results, expectedResults);
+        }
+
     }
 
 }
