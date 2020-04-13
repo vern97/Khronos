@@ -1,34 +1,94 @@
 ﻿@model IEnumerable<BeyondTheTutor.Models.TutoringAppt>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "All Tutoring Requests";
+    ViewBag.Placeholder = "Search here for class, date, time, session length, class standing, graduation year and status!";
 }
 
 <body class="wou-silver-bg">
     <div class="ui one column centered padded grid" style="padding-top:10px;">
         <div class="ui red centered segment">
             <div class="ui horizontal divider">
-                <h2 class="ui centered header">All Tutoring Requests</h2>
+                <h2 class="ui centered header">@ViewBag.Title</h2>
             </div>
             <table class="ui center aligned striped table">
                 <thead>
+                    <tr>
+                        <th colspan="9">
+                            @using (Html.BeginForm("Index", "TutoringAppts", FormMethod.Get))
+                            {
+                                <div class="ui fluid action input">
+                                    @if (ViewBag.searched != null)
+                                    {
+                                        <input type="text" style="color: #db0a29" value="@ViewBag.searched" name="search" id="search" placeholder="@ViewBag.Placeholder">
+                                    }
+                                    else
+                                    {
+                                        <input type="text" style="color: #db0a29" name="search" id="search" placeholder="@ViewBag.Placeholder">
+                                    }
+                                    <button class="ui button" style="background-color: #db0a29; color: white;">Search</button>
+                                </div>
+                            }
+                        </th>
+                    </tr>
                     <tr>
                         <th><h4>Requested For</h4></th>
                         <th><h4>On Date</h4></th>
                         <th><h4>Session Length</h4></th>
                         <th><h4>Meeting Type</h4></th>
+                        <th><h4>Student Class Standing</h4></th>
+                        <th><h4>Graduation Year</h4></th>
+                        <th><h4>Tutor-On-Call</h4></th>
+                        <th><h4>Status</h4></th>
+                        <th><h4>Notes</h4></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
+                    @if (Model.Count() < 1)
                     {
-                        var dateItem = item.StartTime.ToShortDateString();
-                    <tr>
-                        <td>@Html.DisplayFor(modelItem => item.Class.Name)</td>
-                        <td>@Html.DisplayFor(modelItem => dateItem)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Length)</td>
-                        <td>@Html.DisplayFor(modelItem => item.TypeOfMeeting)</td>
-                    </tr>
+                        <tr>
+                            <th colspan="9" style="text-align: center; font-size: medium;">
+                                <div style="color: red;">No results found for @ViewBag.searched</div>
+                            </th>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var item in Model)
+                        {
+                            var dateItem = item.StartTime.ToShortDateString();
+                            string tutorAssigned = "";
+                            string apptNotes = "";
+
+                            if (item.Tutor != null) { tutorAssigned = item.Tutor.BTTUser.FirstName.ToString(); }
+                            if (item.Note != null) { apptNotes = item.Note.ToString(); }
+
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Class.Name)</td>
+                                <td>@Html.DisplayFor(modelItem => dateItem)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Length)</td>
+                                <td>@Html.DisplayFor(modelItem => item.TypeOfMeeting)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Student.ClassStanding)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Student.GraduatingYear)</td>
+                                @if (tutorAssigned == null || tutorAssigned.IsEmpty())
+                                {
+                                    <td>- - -</td>
+                                }
+                                else
+                                {
+                                    <td>@tutorAssigned</td>
+                                }
+                                <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                                @if (apptNotes == null || apptNotes.IsEmpty())
+                                {
+                                    <td>- - -</td>
+                                }
+                                else
+                                {
+                                    <td>@apptNotes</td>
+                                }
+                            </tr>
+                        }
                     }
                 </tbody>
             </table>

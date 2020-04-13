@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using BeyondTheTutor.DAL;
@@ -20,9 +21,48 @@ namespace BeyondTheTutor.Areas.Professor.Controllers
         // GET: Professor/TutoringAppts
         public ActionResult Index()
         {
+            string userInput = Request.QueryString["search"];
             ViewBag.Current = "ProfApptsIndex";
-            var tutoringAppts = db.TutoringAppts.OrderBy(a => a.StartTime).Include(t => t.Class).OrderBy(a => a.Class.Name).Include(t => t.Student).Include(t => t.Tutor);
-            return View(tutoringAppts.ToList());
+
+            var tutoringAppts = db.TutoringAppts
+                .OrderBy(a => a.StartTime)
+                .Include(t => t.Class)
+                .OrderBy(a => a.Class.Name)
+                .Include(t => t.Student)
+                .Include(t => t.Tutor).ToList();
+
+            if (userInput == null)
+            {
+                return View(tutoringAppts);
+            }
+            else
+            {
+                ViewBag.searched = userInput;
+
+                var replaceWith = Regex.Match(userInput, @"(?=[a-zA-Z])([^ ])(?=\d)([^ ]{1})").ToString();
+                if (replaceWith.Length >= 2)
+                { replaceWith = replaceWith.Insert(1, " "); }
+                var temp = Regex.Replace(userInput, @"(?=[a-zA-Z])([^ ])(?=\d)([^ ]{1})", replaceWith).ToLower();
+                var userInput2 = userInput.ToLower();
+
+                if(userInput2 == null || temp == null || userInput2.Length + temp.Length >= 50){   userInput2 = temp = ""; }//clears any weird output
+
+                userInput = userInput.ToLower();
+                var usersOutSearched = tutoringAppts.OrderBy(s => s.StartTime)
+                .Where(s => s.Class.Name.ToLower().Contains(userInput2) 
+                || s.Class.Name.ToLower().Contains(temp)
+                || s.Class.Name.ToLower().Contains(userInput2)
+                || s.StartTime.ToShortDateString().Contains(userInput)
+                || s.Length.ToLower().Contains(userInput)
+                || s.TypeOfMeeting.ToLower().Contains(userInput)
+                || s.Student.ClassStanding.ToLower().Contains(userInput)
+                || s.Student.ClassStanding.Contains(userInput)
+                || s.Status.ToLower().Contains(userInput)).ToList();
+
+                //usersOutSearched.Where(s => s.Tutor != null).Where(s => s.Tutor.BTTUser.FirstName.Contains(userInput)).ToList();
+
+                return View(usersOutSearched);
+            }
         }
 
         // GET: Professor/TutoringAppts/Details/5

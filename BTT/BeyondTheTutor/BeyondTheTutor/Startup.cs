@@ -128,7 +128,7 @@ namespace BeyondTheTutor
                     var sub_user = new Professor
                     {
                         ID = special_user.ID,
-                        AdminApproved = false
+                        AdminApproved = true
                     };
 
                     sub_user.BTTUser = special_user;
@@ -174,7 +174,7 @@ namespace BeyondTheTutor
                     var sub_user = new Student
                     {
                         ID = special_user.ID,
-                        ClassStanding = "default",
+                        ClassStanding = "Junior",
                         GraduatingYear = 2022
                     };
 

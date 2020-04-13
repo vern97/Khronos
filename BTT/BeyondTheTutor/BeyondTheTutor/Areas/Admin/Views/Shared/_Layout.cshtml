@@ -4,7 +4,7 @@
     BeyondTheTutorContext db = new BeyondTheTutorContext();
 
     var userID = User.Identity.GetUserId();
-    var currentUser = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().FirstName;
+    var currentUser = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault()?.FirstName;
     ViewBag.FirstName = currentUser;
 }
 <!DOCTYPE html>
