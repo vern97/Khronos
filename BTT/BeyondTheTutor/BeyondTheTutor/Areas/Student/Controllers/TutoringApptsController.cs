@@ -20,7 +20,24 @@ namespace BeyondTheTutor.Areas.Student.Controllers
             ViewBag.Current = "StuTutorAppIndex";
             var userID = User.Identity.GetUserId();
             var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
-            var sessionList = db.TutoringAppts.Where(m => m.StudentID.Equals(currentUserID)).OrderBy(m => m.StartTime).ToList();
+            ViewBag.UID = currentUserID;
+            var sessionList = db.TutoringAppts.Where(m => m.StudentID.Equals(currentUserID)).OrderBy(t => t.StartTime).ThenBy(t => t.Class.Name).ThenBy(t => t.EndTime).ToList();
+
+            if (TempData["thankyou"] != null)
+            {
+                var sid = Int32.Parse(TempData["thankyou"].ToString());
+                var inClass = db.Classes.Find(db.Surveys.Find(sid).ClassID).Name;
+                ViewBag.ThankYou = "Thank you for taking the " + inClass + " survey!";
+            }
+
+            ViewBag.AnyRequests = sessionList.Any();
+            ViewBag.AnyRequested = sessionList.Any(a => a.Status == "Requested");
+            ViewBag.AnyApproved = sessionList.Any(a => a.Status == "Approved");
+            ViewBag.AnyDeclined = sessionList.Any(a => a.Status == "Declined");
+            ViewBag.AnyCompleted = sessionList.Any(a => a.Status == "Completed");
+            ViewBag.AnyCanceled = sessionList.Any(a => a.Status == "Canceled");
+            ViewBag.AnyNoShows = sessionList.Any(a => a.Status == "No Show");
+
             return View(sessionList);
         }
 

@@ -117,27 +117,48 @@ CREATE TABLE [dbo].[TutoringServiceAlerts]
 		ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-INSERT INTO [dbo].[Classes](Name)
-	VALUES
-	('CS 122'),
-	('CS 133'),
-	('CS 160'),
-	('CS 161'),
-	('CS 162'),
-	('CS 260'),
-	('CS 271'),
-	('CS 340'),
-	('CS 360'),
-	('CS 361'),
-	('CS 363'),
-	('CS 364'),
-	('CS 365'),
-	('CS 434'),
-	('CS 465'),
-	('IS 240'),
-	('IS 278'),
-	('IS 340'),
-	('IS 345'),
-	('IS 350'),
-	('IS 355'),
-	('IS 485');
+
+CREATE TABLE [dbo].[Surveys]
+(
+	[ID]				INT IDENTITY (1,1)	NOT NULL,
+	[Name]				NVARCHAR(20)		NOT NULL,
+	[Description]		TEXT,
+	[ClassID]			INT					NOT NULL,
+	CONSTRAINT [PK_dbo.Surveys] PRIMARY KEY CLUSTERED ([ID] ASC),
+	CONSTRAINT [FK_dbo.Surveys_dbo.Classes_ClassID] FOREIGN KEY ([ClassID]) 
+		REFERENCES [dbo].[Classes] ([ID])
+		ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE [dbo].[Questions]
+(
+	[ID]				INT IDENTITY (1,1)	NOT NULL,
+	[AskingQuestion]	TEXT				NOT NULL,
+	[SurveyID]			INT					NOT NULL
+	CONSTRAINT [PK_dbo.Questions] PRIMARY KEY CLUSTERED ([ID] ASC)
+	CONSTRAINT [FK_dbo.Qusetions_dbo.SurveyID_SurveyID] FOREIGN KEY ([SurveyID]) 
+		REFERENCES [dbo].[Surveys] ([ID])
+	ON DELETE CASCADE ON UPDATE CASCADE
+
+);
+
+CREATE TABLE [dbo].[Answers]
+(
+	[UserID]			INT,
+	[SurveyID]			INT,
+	[QuestionID]		INT,
+	[UserAnswer]		SMALLINT,
+	CONSTRAINT [PK_dbo.Answers] PRIMARY KEY ([UserID], [SurveyID], [QuestionID]),
+
+	CONSTRAINT [FK_dbo.Answers_dbo.BTTUsers_UserID] FOREIGN KEY ([UserID]) 
+		REFERENCES [dbo].[BTTUsers] ([ID]),
+
+	CONSTRAINT [FK_dbo.Answers_dbo.Surveys_SurveyID] FOREIGN KEY ([SurveyID]) 
+		REFERENCES [dbo].[Surveys] ([ID]),
+
+	CONSTRAINT [FK_dbo.Answers_dbo.Questions_QuestionID] FOREIGN KEY ([QuestionID]) 
+		REFERENCES [dbo].[Questions] ([ID])
+	ON DELETE CASCADE ON UPDATE CASCADE
+
+);
+

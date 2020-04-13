@@ -1,0 +1,104 @@
+﻿@model IEnumerable<BeyondTheTutor.Models.SurveyModels.Survey>
+@using BeyondTheTutor.DAL;
+@{
+    BeyondTheTutorContext db = new BeyondTheTutorContext();
+}
+
+
+<body class="wou-silver-bg">
+    <div class="ui one column center aligned stackable page grid">
+        <br />
+        <table class="ui striped compact table table-schedule" style="white-space:nowrap;">
+            <thead>
+                <tr>
+                    <th colspan="6">
+                        @using (Html.BeginForm("Index", "AllUsers", FormMethod.Get))
+                        {
+                            <div class="ui fluid action input">
+                                @if (ViewBag.searched != null)
+                                {
+                                    <input type="text" style="color: #db0a29" value="@ViewBag.searched" name="search" id="search" placeholder="@ViewBag.Placeholder">
+                                }
+                                else
+                                {
+                                    <input type="text" style="color: #db0a29" name="search" id="search" placeholder="@ViewBag.Placeholder">
+                                }
+                                <button class="ui button" style="        background-color: #db0a29; color: white;">Search</button>
+                            </div>
+                        }
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan="6" style="text-align: center;">
+                        @using (Html.BeginForm("Create", "Surveys", FormMethod.Get))
+                        {
+                            <button class="ui button" style="background-color: #084b00; color: white;">Create a Survey</button>
+                        }
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        Class
+                    </th>
+                    <th style="text-align: center;">
+                        Total Questions
+                    </th>
+                    <th colspan="2" style="text-align: center;">
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    var surveyClass = db.Classes.Find(item.ClassID).Name.ToString();
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @surveyClass
+                        </td>
+                        <td style="text-align: center;">
+                            @Html.DisplayFor(modelItem => item.Questions.Count)
+                        </td>
+                        <td>
+                            <button class="ui button">
+                                <i class="icon trash"></i>
+                                @Html.ActionLink("Delete Survey", "Delete", new { id = item.ID })
+                            </button>
+                        </td>
+                        <td>
+                            <div class="ui buttons">
+                                <button class="ui button active">
+                                    @Html.RouteLink("View Questions", new { controller = "Questions", action = "Index", id = item.ID })
+                                </button>
+                                <div class="or"></div>
+                                <button class="ui yellow button">
+                                    <i class="icon plus"></i>
+                                    @Html.RouteLink("Add Question", new { controller = "Questions", action = "Create", id = item.ID })
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+}

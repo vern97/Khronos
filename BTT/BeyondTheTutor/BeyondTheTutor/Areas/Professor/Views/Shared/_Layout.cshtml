@@ -24,6 +24,7 @@
         @Html.ActionLink("Professor Portal", "Index", "Home", new { area = "professor" }, htmlAttributes: new { @class = (ViewBag.Current == "ProfHomeIndex" ? "item red active" : "item") })
         <div class="right menu">
             @Html.ActionLink("Analyze Tutoring Requests", "Index", "TutoringAppts", new { area = "professor" }, htmlAttributes: new { @class = (ViewBag.Current == "ProfApptsIndex" ? "item red active" : "item") })
+            @Html.ActionLink("Surveys", "Index", "Surveys", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "ProfSurveyIndex" ? "item red active" : "item") })
             <div class="ui dropdown item">
                 Resources
                 <i class="dropdown icon"></i>
@@ -42,7 +43,7 @@
                 <div class="menu">
                     <div style="text-align: left;">
                         @Html.ActionLink("Change Password", "ChangePassword", "Manage", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "ChangePassword" ? "item red active" : "item") })
-                        @Html.ActionLink("User Guide", "Guide", "Home", new { area = "professor" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminHomeGuide" ? "item red active" : "item") })
+                        @Html.ActionLink("User Guide", "Guide", "Home", new { area = "professor" }, htmlAttributes: new { @class = (ViewBag.Current == "ProfHomeGuide" ? "item red active" : "item") })
                         @Html.AntiForgeryToken()
                         <a href="javascript:document.getElementById('logoutForm').submit()" class="item">Sign out</a>
                     </div>
