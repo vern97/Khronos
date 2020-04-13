@@ -131,7 +131,16 @@ namespace BeyondTheTutor.Controllers
                 backgroundColor = e.ThemeColor
             }).ToList();
 
-            return Json(events, JsonRequestBehavior.AllowGet);
+            var convertedEvents = events.Select(e => new
+            {
+                id = e.id,
+                title = e.title,
+                start = e.start.ToString("s"),
+                end = e.end.ToString("s"),
+                backgroundColor = e.backgroundColor
+            });
+
+            return Json(convertedEvents, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetTutors()
