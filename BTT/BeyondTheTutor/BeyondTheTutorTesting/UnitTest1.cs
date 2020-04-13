@@ -55,6 +55,30 @@ namespace BeyondTheTutorTesting
             CollectionAssert.AreEqual(results, expectedResults);
         }
 
+        [TestMethod]
+        // This function takes string array the converts it to double array taking account correct length
+        public void TestConvertGradesStringArrayToDoubleArrayFunction()
+        {
+            string[] startingArray = new string[3] { "90", "85.91", "78.52" };
+            double[] expectedResults = { 90, 85.91, 78.52 };
+            BeyondTheTutor.Controllers.HomeController obj = new BeyondTheTutor.Controllers.HomeController();
+            double[] results = obj.ConvertGradesToDoubleArray(startingArray);
+
+            CollectionAssert.AreEqual(results, expectedResults);
+        }
+
+        [TestMethod]
+        // This function takes string array the converts it to double array taking account correct length
+        public void TestConvertWeightsStringArrayToDoubleArrayFunction()
+        {
+            string[] startingArray = new string[3] { "40", "20", "10" };
+            double[] expectedResults = { 40, 20, 10 };
+            BeyondTheTutor.Controllers.HomeController obj = new BeyondTheTutor.Controllers.HomeController();
+            double[] results = obj.ConvertWeightsToDoubleArray(startingArray);
+
+            CollectionAssert.AreEqual(results, expectedResults);
+        }
+
     }
 
 }
