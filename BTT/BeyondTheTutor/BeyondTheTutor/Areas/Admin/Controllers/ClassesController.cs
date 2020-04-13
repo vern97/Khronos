@@ -20,6 +20,14 @@ namespace BeyondTheTutor.Areas.Admin.Controllers
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
         private ApplicationDbContext context = new ApplicationDbContext();
 
+        public string CourseSpaceRegex(string s)
+        {
+            var replaceWith = Regex.Match(s, @"(?=[a-zA-Z])([^ ])(?=\d)([^ ]{1})").ToString();
+            if (replaceWith.Length >= 2)
+            { replaceWith = replaceWith.Insert(1, " "); }
+            replaceWith = Regex.Replace(s, @"(?=[a-zA-Z])([^ ])(?=\d)([^ ]{1})", replaceWith).ToLower();
+            return replaceWith;
+        }
 
         // GET: Admin/Classes
         public ActionResult Index()
@@ -51,14 +59,12 @@ namespace BeyondTheTutor.Areas.Admin.Controllers
             else
             {
                 ViewBag.searched = userInput;
-                var replaceWith = Regex.Match(userInput, @"(?=[a-zA-Z])([^ ])(?=\d)([^ ]{1})").ToString();
-                if (replaceWith.Length >= 2)
-                { replaceWith = replaceWith.Insert(1, " "); }
-                var temp = Regex.Replace(userInput, @"(?=[a-zA-Z])([^ ])(?=\d)([^ ]{1})", replaceWith).ToLower();
 
+                var replaceWith = CourseSpaceRegex(userInput); 
+                
                 userInput = userInput.ToLower();
                 var searchedClasses = db.Classes.OrderBy(c => c.Name)
-                .Where(c => c.Name.ToLower().Contains(userInput) || c.Name.ToLower().Contains(temp)).ToList();
+                .Where(c => c.Name.ToLower().Contains(userInput) || c.Name.ToLower().Contains(replaceWith)).ToList();
 
 
                 return View(searchedClasses);
