@@ -37,7 +37,7 @@ namespace BeyondTheTutor.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,IsComplete,Description,ClassID")] Survey survey)
+        public ActionResult Create([Bind(Include = "ID,Name,Description,ClassID")] Survey survey)
         {
             if (ModelState.IsValid)
             {
