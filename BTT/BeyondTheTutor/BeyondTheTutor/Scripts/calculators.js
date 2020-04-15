@@ -1,7 +1,4 @@
-﻿$('.menu .item')
-    .tab();
-
-function getWeightedGrade() {
+﻿function getWeightedGrade() {
     jQuery.ajaxSettings.traditional = true
 
     gradesArray = [];
