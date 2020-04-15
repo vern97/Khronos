@@ -3,15 +3,24 @@
         <div class="column">
             <div class="ui top attached tabular menu">
                 <a class="active item" data-tab="first"><b>Weighted Grade Calculator</b></a>
-                <a class="item" data-tab="second"><b>Cumulative GPA Calculator</b></a>
-                <a class="item" data-tab="third"><b>Final Grade Calculator</b></a>
+                <a class="item" data-tab="second"><b>Final Grade Calculator</b></a>
+                <a class="item" data-tab="third"><b>Cumulative GPA Calculator</b></a>
             </div>
             @*Weighted Grade Calculator Section*@
             <div class="ui bottom attached active tab segment" data-tab="first">
                 <div class="ui equal width form">
+                    <div class="ui icon message">
+                        <i class="bullhorn icon"></i>
+                        <div class="content">
+                            <div class="header">
+                                Find out the grade of a course based on weighted averages
+                            </div>
+                            <p>You may save results for grades tracking</p>
+                        </div>
+                    </div>
                     <div class="two fields">
                         <div class="field">
-                            <div class="ui red ribbon medium label">
+                            <div class="ui red ribbon large label">
                                 Grade
                             </div>
                             @{ int j = 1;
@@ -27,7 +36,7 @@
                             }
                         </div>
                         <div class="field">
-                            <div class="ui red right ribbon medium label">
+                            <div class="ui red right ribbon large label">
                                 Weight
                             </div>
                             @{ int k = 1;
@@ -35,7 +44,7 @@
                                 {
                                     <div class="ui right labeled input">
                                         <label class="ui label">@k</label>
-                                        <input type="number" step="0.1" min="0" max="100" class="weights">
+                                        <input type="number" step="1" min="0" max="100" class="weights">
                                         <div class="ui basic label">%</div>
                                     </div>
                                     k++;
@@ -44,11 +53,11 @@
                         </div>
                     </div>
                     <div class="two buttons">
-                        <button onclick="getResults()" class="ui right labeled icon button">
+                        <button onclick="getWeightedGrade()" class="ui right labeled icon button">
                             <i class="calculator icon"></i>
                             Calculate
                         </button>
-                        <button class="ui right labeled icon button" id="reset">
+                        <button class="ui right labeled icon button" id="resetWeighted">
                             <i class="undo icon"></i>
                             Reset
                         </button>
@@ -58,8 +67,71 @@
                     </div>
                 </div>
             </div>
-            @*Cumulative Grade Calculator Section*@
+            @*Final Grade Calculator Section*@
             <div class="ui bottom attached tab segment" data-tab="second">
+                <div class="ui equal width form">
+                    <div class="ui icon message">
+                        <i class="bullhorn icon"></i>
+                        <div class="content">
+                            <div class="header">
+                                Find out what grade you need on your final to get a certain grade in a class
+                            </div>
+                            <p>You may save results for grades tracking</p>
+                        </div>
+                    </div>
+                    <div class="one fields">
+                        <div class="field">
+                            <div class="ui red ribbon large label">
+                                Current Grade
+                            </div>
+                            <div class="ui right labeled input">
+                                <label class="ui label">1</label>
+                                <input type="number" step="0.01" min="0" id="currentGrade" placeholder="(e.g. 90.5)">
+                                <div class="ui basic label">%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="one fields">
+                        <div class="field">
+                            <div class="ui red ribbon large label">
+                                Goal Grade
+                            </div>
+                            <div class="ui right labeled input">
+                                <label class="ui label">2</label>
+                                <input type="number" step="1" min="0" id="goalGrade" placeholder="(e.g. 93)">
+                                <div class="ui basic label">%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="one fields">
+                        <div class="field">
+                            <div class="ui red ribbon large label">
+                                Weight of Final
+                            </div>
+                            <div class="ui right labeled input">
+                                <label class="ui label">3</label>
+                                <input type="number" step="1" min="0" id="finalWeight" placeholder="(e.g. 40)">
+                                <div class="ui basic label">%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="two buttons">
+                        <button onclick="getFinalGrade()" class="ui right labeled icon button">
+                            <i class="calculator icon"></i>
+                            Calculate
+                        </button>
+                        <button class="ui right labeled icon button" id="resetFinal">
+                            <i class="undo icon"></i>
+                            Reset
+                        </button>
+                    </div>
+                    <div id="finalTable">
+                        <table id="final"></table>
+                    </div>
+                </div>
+            </div>
+            @*Cumulative Grade Calculator Section*@
+            <div class="ui bottom attached tab segment" data-tab="third">
 
                 <div class="ui icon message">
                     <i class="notched circle loading icon"></i>
@@ -73,20 +145,6 @@
 
             </div>
 
-            @*Final Grade Calculator Section*@
-            <div class="ui bottom attached tab segment" data-tab="third">
-
-                <div class="ui icon message">
-                    <i class="notched circle loading icon"></i>
-                    <div class="content">
-                        <div class="header">
-                            Just one second
-                        </div>
-                        <p>Hey hey it's coming along soon.</p>
-                    </div>
-                </div>
-
-            </div>
 
         </div>
     </div>
@@ -94,6 +152,7 @@
 
 @section scripts
 {
+    <script src="~/Scripts/calculators.js"></script>
     <script src="~/Scripts/main.js"></script>
 }
 
