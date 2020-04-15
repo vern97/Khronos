@@ -120,6 +120,51 @@ namespace BeyondTheTutor.Controllers
             }
         }
 
+        [Authorize(Roles = "Student, Tutor")]
+        public ActionResult FinalGradeResults()
+        {
+            string grade1 = Request.QueryString["currentGrade"];
+            string grade2 = Request.QueryString["goalGrade"];
+            string weight = Request.QueryString["finalWeight"];
+
+            if (grade1 == "" || grade2 == "" || weight == "")
+            {
+                string jsonString = JsonConvert.SerializeObject("must enter all values for results", Formatting.Indented);
+                return new ContentResult
+                {
+                    Content = jsonString,
+                    ContentType = "application/json",
+                    ContentEncoding = System.Text.Encoding.UTF8
+                };
+            }
+
+            double currentGrade = Convert.ToDouble(grade1);
+            double goalGrade = Convert.ToDouble(grade2);
+            double finalWeight = Convert.ToDouble(weight);
+
+            if (currentGrade > 100 || currentGrade < 0 || goalGrade > 100 || goalGrade < 0 || finalWeight > 100 || finalWeight < 0)
+            {
+                string jsonString = JsonConvert.SerializeObject("values must be between 1-100", Formatting.Indented);
+                return new ContentResult
+                {
+                    Content = jsonString,
+                    ContentType = "application/json",
+                    ContentEncoding = System.Text.Encoding.UTF8
+                };
+            }
+            else
+            {
+                double result = CalculateWhatIsNeededOnFinal(currentGrade, goalGrade, finalWeight);
+                string jsonString = JsonConvert.SerializeObject("You need to score at least " + result + "%" + " on the final", Formatting.Indented);
+                return new ContentResult
+                {
+                    Content = jsonString,
+                    ContentType = "application/json",
+                    ContentEncoding = System.Text.Encoding.UTF8
+                };
+            }
+        }
+
         public ActionResult GetTutorSchedules()
         {
             var events = db.TutorSchedules.Select(e => new
@@ -222,6 +267,14 @@ namespace BeyondTheTutor.Controllers
             }
 
             return weights;
+        }
+
+        // function to calculate what is needed on the final exam to reach goal 
+        public double CalculateWhatIsNeededOnFinal(double current, double goal, double weight)
+        {
+            double result = Math.Round((goal - current * (1 - weight / 100)) / (weight / 100), 2);
+
+            return result;
         }
     }
 }
