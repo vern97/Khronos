@@ -1,9 +1,6 @@
 ﻿using BeyondTheTutor.DAL;
 using BeyondTheTutor.Models;
-using Newtonsoft.Json;
 using System;
-using System.Data.Entity;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -40,7 +37,7 @@ namespace BeyondTheTutor.Controllers
         public ActionResult FAQ()
         {
             ViewBag.Current = "HomeFAQ";
-            return View(); 
+            return View();
         }
 
         public ActionResult Privacy()
@@ -48,123 +45,7 @@ namespace BeyondTheTutor.Controllers
             ViewBag.Current = "HomePrivacy";
             return View();
         }
-
-        [HttpGet] 
-        [Authorize(Roles = "Student, Tutor")]
-        public ActionResult Calculators()
-        {
-            ViewBag.Current = "Calculators";
-
-            return View();
-        }
-
-        [Authorize(Roles = "Student, Tutor")]
-        public ActionResult WeightedGradeResults()
-        {
-            string requestGrades = Request.QueryString["gradesArray"];
-            string requestWeights = Request.QueryString["weightsArray"];
-
-            string[] gradesString = GetStringArrayForGrades(requestGrades);
-            string[] weightsString = GetStringArrayForWeights(requestWeights);
-
-            if (gradesString.Length == 0 && weightsString.Length == 0)
-            {
-                string jsonString = JsonConvert.SerializeObject("must enter grades and weights for results", Formatting.Indented);
-                return new ContentResult
-                {
-                    Content = jsonString,
-                    ContentType = "application/json",
-                    ContentEncoding = System.Text.Encoding.UTF8
-                };
-            }
-            else if (gradesString.Length != weightsString.Length)
-            {
-                string jsonString = JsonConvert.SerializeObject("equal number grades and weights required", Formatting.Indented);
-                return new ContentResult
-                {
-                    Content = jsonString,
-                    ContentType = "application/json",
-                    ContentEncoding = System.Text.Encoding.UTF8
-                };
-            }
-            else
-            {
-                double[] grades = ConvertGradesToDoubleArray(gradesString);
-                double[] weights = ConvertWeightsToDoubleArray(weightsString);
-
-                double firstNumber = MultiplyGradesandWeights(grades, weights);
-                double secondNumber = weights.Sum();
-
-                if (secondNumber > 100)
-                {
-                    string jsonString = JsonConvert.SerializeObject("totals weights may not exceed 100", Formatting.Indented);
-                    return new ContentResult
-                    {
-                        Content = jsonString,
-                        ContentType = "application/json",
-                        ContentEncoding = System.Text.Encoding.UTF8
-                    };
-                }
-                else
-                {
-                    double weightedGrade = Math.Round((firstNumber / secondNumber), 2);
-
-                    string jsonString = JsonConvert.SerializeObject("Calculated Weighted Grade: " + weightedGrade + "%", Formatting.Indented);
-                    return new ContentResult
-                    {
-                        Content = jsonString,
-                        ContentType = "application/json",
-                        ContentEncoding = System.Text.Encoding.UTF8
-                    };
-                }
-            }
-        }
-
-        [Authorize(Roles = "Student, Tutor")]
-        public ActionResult FinalGradeResults()
-        {
-            string grade1 = Request.QueryString["currentGrade"];
-            string grade2 = Request.QueryString["goalGrade"];
-            string weight = Request.QueryString["finalWeight"];
-
-            if (grade1 == "" || grade2 == "" || weight == "")
-            {
-                string jsonString = JsonConvert.SerializeObject("must enter all values for results", Formatting.Indented);
-                return new ContentResult
-                {
-                    Content = jsonString,
-                    ContentType = "application/json",
-                    ContentEncoding = System.Text.Encoding.UTF8
-                };
-            }
-
-            double currentGrade = Convert.ToDouble(grade1);
-            double goalGrade = Convert.ToDouble(grade2);
-            double finalWeight = Convert.ToDouble(weight);
-
-            if (currentGrade > 100 || currentGrade < 0 || goalGrade > 100 || goalGrade < 0 || finalWeight > 100 || finalWeight < 0)
-            {
-                string jsonString = JsonConvert.SerializeObject("values must be between 1-100", Formatting.Indented);
-                return new ContentResult
-                {
-                    Content = jsonString,
-                    ContentType = "application/json",
-                    ContentEncoding = System.Text.Encoding.UTF8
-                };
-            }
-            else
-            {
-                double result = CalculateWhatIsNeededOnFinal(currentGrade, goalGrade, finalWeight);
-                string jsonString = JsonConvert.SerializeObject("You need to score at least " + result + "%" + " on the final", Formatting.Indented);
-                return new ContentResult
-                {
-                    Content = jsonString,
-                    ContentType = "application/json",
-                    ContentEncoding = System.Text.Encoding.UTF8
-                };
-            }
-        }
-
+        
         public ActionResult GetTutorSchedules()
         {
             var events = db.TutorSchedules.Select(e => new
@@ -212,69 +93,6 @@ namespace BeyondTheTutor.Controllers
             }).ToList();
 
             return Json(serviceAlerts, JsonRequestBehavior.AllowGet);
-        }
-
-        /* These are the functions for the weighted grade calculator*/
-        // function to multiply grades and their weights
-        public double MultiplyGradesandWeights(double[] gradesArray, double[] weightsArray)
-        {
-            double total = 0;
-
-            for (int i = 0; i < gradesArray.Count(); i++)
-            {
-                total += (gradesArray[i] * weightsArray[i]);
-            }
-
-            return total;
-        }
-
-        // function to get grades info from ajax call, split the string, and remove null or empty values
-        public string[] GetStringArrayForGrades(string grades)
-        {
-            string[] gradesString = grades.Split(',');
-            gradesString = gradesString.Where(x => !string.IsNullOrEmpty(x)).ToArray();
-
-            return gradesString;
-        }
-
-        // function to get weights info from ajax call, split the string, and remove null or empty values
-        public string[] GetStringArrayForWeights(string weights)
-        {
-            string[] weightsString = weights.Split(',');
-            weightsString = weightsString.Where(x => !string.IsNullOrEmpty(x)).ToArray();
-
-            return weightsString;
-        }
-
-        // functions to convert the string arrays to double arrays
-        public double[] ConvertGradesToDoubleArray(string[] gradesArray)
-        {
-            double[] grades = new double[gradesArray.Length];
-            for (int i = 0; i < gradesArray.Length; i++)
-            {
-                grades[i] = double.Parse(gradesArray[i]);
-            }
-
-            return grades;
-        }
-
-        public double[] ConvertWeightsToDoubleArray(string[] weightsArray)
-        {
-            double[] weights = new double[weightsArray.Length];
-            for (int i = 0; i < weightsArray.Length; i++)
-            {
-                weights[i] = double.Parse(weightsArray[i]);
-            }
-
-            return weights;
-        }
-
-        // function to calculate what is needed on the final exam to reach goal 
-        public double CalculateWhatIsNeededOnFinal(double current, double goal, double weight)
-        {
-            double result = Math.Round((goal - current * (1 - weight / 100)) / (weight / 100), 2);
-
-            return result;
         }
     }
 }
