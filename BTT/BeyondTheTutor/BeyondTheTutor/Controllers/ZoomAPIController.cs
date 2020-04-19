@@ -16,7 +16,7 @@ namespace BeyondTheTutor.Controllers
 {
     public class ZoomAPIController : Controller
     {
-        string apiKey = "";
+        string apiKey = System.Web.Configuration.WebConfigurationManager.AppSettings["ZoomAPI_Key"];
         public JsonResult Meetings()
         {
             string uri = "https://api.zoom.us/v2/users/R3FaGcfjRda8dVl7FB3Lhg/meetings?page_number=1&page_size=30&type=live";
