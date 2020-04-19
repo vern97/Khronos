@@ -281,3 +281,37 @@ table#final tr {
     padding: 5px;
 }
 
+table#currentGPA {
+    font-size: large;
+    color: #231f20;
+    margin-top: 5px;
+    width: 100%;
+    padding: 5px;
+}
+
+table#currentGPA tr {
+    background-color: rgb(196,198,200);
+    font-size: large;
+    color: #231f20;
+    margin-top: 5px;
+    width: 100%;
+    padding: 5px;
+}
+
+table#cumulative {
+    font-size: large;
+    color: #231f20;
+    margin-top: 5px;
+    width: 100%;
+    padding: 5px;
+}
+
+table#cumulative tr {
+    background-color: rgb(196,198,200);
+    font-size: large;
+    color: #231f20;
+    margin-top: 5px;
+    width: 100%;
+    padding: 5px;
+}
+
