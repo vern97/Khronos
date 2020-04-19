@@ -20,6 +20,11 @@ namespace BeyondTheTutor.Controllers
         public ActionResult Index()
         {
             ViewBag.Current = "ProfSurveyIndex";
+            if (TempData["err"] != null)
+            {
+                ViewBag.Error = "Something went wrong! please try again later.";
+                
+            }
             
             return View(db.Surveys.ToList());
         }
@@ -46,7 +51,8 @@ namespace BeyondTheTutor.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(survey);
+            TempData["err"] = "error";
+            return RedirectToAction("Index");
         }
 
 

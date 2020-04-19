@@ -74,7 +74,17 @@ namespace BeyondTheTutor.DAL
                 .WithRequired(e => e.BTTUser)
                 .HasForeignKey(e => e.UserID);
 
-            modelBuilder.Entity<Question>() 
+            modelBuilder.Entity<TutoringAppt>()
+                .Property(e => e.Note)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<BTTUser>()
+                .HasMany(e => e.Answers)
+                .WithRequired(e => e.BTTUser)
+                .HasForeignKey(e => e.UserID)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Question>()
                 .Property(e => e.AskingQuestion)
                 .IsUnicode(false);
 
@@ -87,19 +97,7 @@ namespace BeyondTheTutor.DAL
                 .WithRequired(e => e.Survey)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<TutoringAppt>()
-                .Property(e => e.Note)
-                .IsUnicode(false);
 
-            modelBuilder.Entity<Question>()
-                .HasMany(e => e.Answers)
-                .WithRequired(e => e.Question)
-                .WillCascadeOnDelete();
-
-            modelBuilder.Entity<Survey>()
-                .HasMany(e => e.Questions)
-                .WithRequired(e => e.Survey)
-                .WillCascadeOnDelete();
         }
     }
 }

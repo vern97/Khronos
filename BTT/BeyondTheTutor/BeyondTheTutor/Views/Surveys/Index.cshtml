@@ -8,6 +8,15 @@
 <body class="wou-silver-bg">
     <div class="ui one column center aligned stackable page grid">
         <br />
+        @if (ViewBag.Error != null)
+        {
+            <div class="ui sixteen wide column" style="text-align: center;">
+                <div class="ui red message" style="text-align: center;">
+                    <B>@ViewBag.Error</B>
+                </div>
+            </div>
+        }
+
         <table class="ui striped compact table table-schedule" style="white-space:nowrap;">
             <thead>
                 <tr>

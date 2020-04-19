@@ -25,6 +25,8 @@ namespace BeyondTheTutor.Models.SurveyModels
 
         public short? UserAnswer { get; set; }
 
+        public virtual BTTUser BTTUser { get; set; }
+
         public virtual Question Question { get; set; }
 
         public virtual Survey Survey { get; set; }

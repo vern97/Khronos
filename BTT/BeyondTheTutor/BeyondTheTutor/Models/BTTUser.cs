@@ -5,6 +5,7 @@ namespace BeyondTheTutor.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using BeyondTheTutor.Models.SurveyModels;
 
     public partial class BTTUser
     {
@@ -15,6 +16,7 @@ namespace BeyondTheTutor.Models
             FinalGrades = new HashSet<FinalGrade>();
             StudentResources = new HashSet<StudentResource>();
             WeightedGrades = new HashSet<WeightedGrade>();
+            Answers = new HashSet<Answer>();
         }
 
         public int ID { get; set; }
@@ -40,6 +42,9 @@ namespace BeyondTheTutor.Models
         public virtual Student Student { get; set; }
 
         public virtual Tutor Tutor { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Answer> Answers { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CumulativeGPA> CumulativeGPAs { get; set; }

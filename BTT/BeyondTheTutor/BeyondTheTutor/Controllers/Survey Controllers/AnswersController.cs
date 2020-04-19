@@ -75,7 +75,7 @@ namespace BeyondTheTutor.Controllers
                 int QID = 0;
                 foreach (var q in listOfQuestions)
                 {
-                    if (q.Answers.Count() < 1)
+                    if (q.Answers.Count(a => a.UserID == currentUser) < 1)
                     {
                         //var nextQuestion = listOfQuestions.FindIndex(m => m.ID == q.QuestionID);
                         QID = q.ID;
