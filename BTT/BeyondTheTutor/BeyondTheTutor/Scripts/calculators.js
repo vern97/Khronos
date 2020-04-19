@@ -143,6 +143,21 @@ function saveFinalGrade() {
     });
 };
 
+function saveFinalGPA() {
+    selectCumulativeGPA = document.querySelector('#calculatedFinalGPA');
+
+    cumulativeGPA = selectCumulativeGPA.value;
+
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: "/CumulativeGPAs/SaveCumulativeGPA",
+        data: { 'cumulativeGPA': cumulativeGPA },
+        success: showSuccessfulFinalGPA,
+        error: errorOnAjax
+    });
+};
+
 function errorOnAjax() {
     console.log("ERROR in ajax request.");
 }
@@ -228,6 +243,24 @@ function showSuccessfulFinalGrade(data) {
     var row = table.insertRow(1);
     var cell = row.insertCell(0);
     if (data == "must enter values to view results") {
+        cell.innerHTML = '<center>' + data;
+    }
+    else {
+        cell.innerHTML = '<center>' + data + '<a href="" target="_blank">Click here </a>' + 'to view saved results';
+    }
+}
+
+function showSuccessfulFinalGPA(data) {
+    document.getElementById("savedFinalGPA").remove();
+    $('#savedFinalGPATable').append($('<table id=\"savedFinalGPA\">'));
+    $('#savedFinalGPA').append($('<tr id=\"tableTr\">'));
+    $('#savedFinalGPA').append($('</tr>'));
+    $('#savedFinalGPATable').append($('</table>'));
+
+    var table = document.getElementById("savedFinalGPA");
+    var row = table.insertRow(1);
+    var cell = row.insertCell(0);
+    if (data == "must enter value to view results") {
         cell.innerHTML = '<center>' + data;
     }
     else {

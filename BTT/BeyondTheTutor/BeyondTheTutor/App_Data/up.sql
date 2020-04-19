@@ -191,7 +191,7 @@ CREATE TABLE [dbo].[FinalGrades]
 CREATE TABLE [dbo].[CumulativeGPAs]
 (
     [ID]				INT IDENTITY (1,1)	NOT NULL,
-	[RecordedDate]		[DATETIME]			NOT NULL,	
+	[RecordedDate]		[DATETIME]			NOT NULL,
 	[CumulativeGPA]		FLOAT				NOT NULL,
 	[UserID]			INT					NOT NULL
 	CONSTRAINT [PK_dbo.CumulativeGPAs] PRIMARY KEY CLUSTERED ([ID] ASC)

@@ -23,7 +23,15 @@
         @Html.ActionLink("Beyond the Tutor", "Index", "Home", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "HomeIndex" ? "item red active" : "item") })
         @Html.ActionLink("Tutor Portal", "Index", "Home", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutorHomeIndex" ? "item red active" : "item") })
         <div class="right menu">
-            @Html.ActionLink("Calculators", "Calculators", "Calculators", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "Calculators" ? "item red active" : "item") })
+
+            <div class="ui dropdown item">
+                Calculators
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    @Html.ActionLink("Calculators", "Calculators", "Calculators", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "Calculators" ? "item red active" : "item") })
+                    @Html.ActionLink("Saved Results", "SavedResults", "Calculators", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "SavedResults" ? "item red active" : "item") })
+                </div>
+            </div>
 
             <div class="ui dropdown item">
                 Resources

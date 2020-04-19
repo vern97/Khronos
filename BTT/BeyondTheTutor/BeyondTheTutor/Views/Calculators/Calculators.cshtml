@@ -1,12 +1,10 @@
-﻿@model BeyondTheTutor.Models.WeightedGrade
-
-<body class="library-bg">
+﻿<body class="wou-silver-bg">
     <div class="ui two column centered grid">
         <div class="column">
-            <div class="ui top attached tabular menu">
+            <div class="ui top attached tabular menu custom">
                 <a class="active item" data-tab="first"><b>Weighted Grade Calculator</b></a>
                 <a class="item" data-tab="second"><b>Final Grade Calculator</b></a>
-                <a class="item" data-tab="third"><b>Cumulative GPA Calculator</b></a>
+                <a class="item" data-tab="third"><b>GPA Calculator</b></a>
             </div>
             @*Weighted Grade Calculator Section*@
             <div class="ui bottom attached active tab segment" data-tab="first">
@@ -22,7 +20,7 @@
                     </div>
                     <div class="two fields">
                         <div class="field">
-                            <div class="ui red ribbon medium label">
+                            <div class="ui grey ribbon medium label">
                                 Grade
                             </div>
                             @{ int j = 1;
@@ -38,7 +36,7 @@
                             }
                         </div>
                         <div class="field">
-                            <div class="ui red right ribbon medium label">
+                            <div class="ui grey right ribbon medium label">
                                 Weight
                             </div>
                             @{ int k = 1;
@@ -55,7 +53,7 @@
                         </div>
                     </div>
                     <div class="fluid ui buttons">
-                        <button onclick="getWeightedGrade()" class="ui grey button">Submit</button>
+                        <button onclick="getWeightedGrade()" class="ui red button">Submit</button>
                         <div class="or"></div>
                         <button class="ui button" id="resetWeighted">Reset</button>
                     </div>
@@ -73,18 +71,19 @@
                     </div>
                     <div class="two fields">
                         <div class="field">
-                            <div class="ui grey ribbon medium label">
-                                Course
+                            <div class="ui labeled input">
+                                <div class="ui label">
+                                    Course
+                                </div>
+                                @Html.DropDownList("ClassID", null, "Select", htmlAttributes: new { @class = "ui selection dropdown form-control", @id = "classForWeightedGrade" })
                             </div>
-                            @Html.DropDownList("ClassID", null, htmlAttributes: new { @class = "ui selection dropdown form-control", @id = "classForWeightedGrade" })
                         </div>
                         <div class="field">
-                            <div class="ui grey right ribbon medium label">
-                                Grade
-                            </div>
-                            <div class="ui left icon input">
+                            <div class="ui labeled input">
+                                <div class="ui label">
+                                    Grade
+                                </div>
                                 <input type="number" step="0.01" min="0" max="100" id="calculatedWeightedGrade" placeholder="(e.g. 90.5)">
-                                <i class="vertical ellipsis icon"></i>
                             </div>
                         </div>
                     </div>
@@ -110,11 +109,10 @@
                     </div>
                     <div class="one fields">
                         <div class="field">
-                            <div class="ui red ribbon medium label">
+                            <div class="ui grey ribbon medium label">
                                 Current Grade
                             </div>
-                            <div class="ui right labeled input">
-                                <label class="ui label">1</label>
+                            <div class="ui right labeled input"> 
                                 <input type="number" step="0.01" min="0" id="currentGrade" placeholder="(e.g. 90.5)">
                                 <div class="ui basic label">%</div>
                             </div>
@@ -122,11 +120,10 @@
                     </div>
                     <div class="one fields">
                         <div class="field">
-                            <div class="ui red ribbon medium label">
+                            <div class="ui grey ribbon medium label">
                                 Goal Grade
                             </div>
-                            <div class="ui right labeled input">
-                                <label class="ui label">2</label>
+                            <div class="ui right labeled input">             
                                 <input type="number" step="1" min="0" id="goalGrade" placeholder="(e.g. 93)">
                                 <div class="ui basic label">%</div>
                             </div>
@@ -134,18 +131,17 @@
                     </div>
                     <div class="one fields">
                         <div class="field">
-                            <div class="ui red ribbon medium label">
+                            <div class="ui grey ribbon medium label">
                                 Weight of Final
                             </div>
                             <div class="ui right labeled input">
-                                <label class="ui label">3</label>
                                 <input type="number" step="1" min="0" id="finalWeight" placeholder="(e.g. 40)">
                                 <div class="ui basic label">%</div>
                             </div>
                         </div>
                     </div>
                     <div class="fluid ui buttons">
-                        <button onclick="getFinalGrade()" class="ui grey button">Submit</button>
+                        <button onclick="getFinalGrade()" class="ui red button">Submit</button>
                         <div class="or"></div>
                         <button class="ui button" id="resetFinal">Reset</button>
                     </div>
@@ -163,18 +159,19 @@
                     </div>
                     <div class="two fields">
                         <div class="field">
-                            <div class="ui grey ribbon medium label">
-                                Course
+                            <div class="ui labeled input">
+                                <div class="ui label">
+                                    Course
+                                </div>
+                                @Html.DropDownList("ClassID", null, "Select", htmlAttributes: new { @class = "ui selection dropdown form-control", @id = "classForFinalGrade" })
                             </div>
-                            @Html.DropDownList("ClassID", null, htmlAttributes: new { @class = "ui selection dropdown form-control", @id = "classForFinalGrade" })
                         </div>
                         <div class="field">
-                            <div class="ui grey right ribbon medium label">
-                                Final Goal
-                            </div>
-                            <div class="ui left icon input">
+                            <div class="ui labeled input">
+                                <div class="ui label">
+                                    Needed
+                                </div>
                                 <input type="number" step="0.01" min="0" max="100" id="calculatedFinalGrade" placeholder="(e.g. 90.5)">
-                                <i class="vertical ellipsis icon"></i>
                             </div>
                         </div>
                     </div>
@@ -200,7 +197,7 @@
                     </div>
                     <div class="two fields">
                         <div class="field">
-                            <div class="ui red ribbon large label">
+                            <div class="ui grey ribbon medium label">
                                 Current Semester Letter Grade
                             </div>
                             @{
@@ -214,7 +211,7 @@
                             }
                         </div>
                         <div class="field">
-                            <div class="ui red right ribbon large label">
+                            <div class="ui grey right ribbon medium label">
                                 Credit Hours
                             </div>
                             @{
@@ -228,15 +225,10 @@
                             }
                         </div>
                     </div>
-                    <div class="two buttons">
-                        <button onclick="getCurrentGPA()" class="ui right labeled icon button">
-                            <i class="calculator icon"></i>
-                            Calculate Current GPA
-                        </button>
-                        <button class="ui right labeled icon button" id="resetCurrentGPA">
-                            <i class="undo icon"></i>
-                            Reset
-                        </button>
+                    <div class="fluid ui buttons">
+                        <button onclick="getCurrentGPA()" class="ui red button">Submit</button>
+                        <div class="or"></div>
+                        <button class="ui button" id="resetCurrentGPA">Reset</button>
                     </div>
                     <div id="currentGPATable">
                         <table id="currentGPA"></table>
@@ -244,34 +236,31 @@
                     <div class="ui horizontal divider"></div>
                     <div class="one fields">
                         <div class="field">
-                            <div class="ui red ribbon large label">
-                                Result from Part One
-                            </div>
-                            <div class="ui left icon input">
+                            <div class="ui labeled input">
+                                <div class="ui label">
+                                    Result From Part One
+                                </div>
                                 <input type="number" step="0.01" min="0" max="4" id="calculated" placeholder="(e.g. 3.77)">
-                                <i class="ellipsis vertical icon"></i>
                             </div>
                         </div>
                     </div>
                     <div class="one field">
                         <div class="field">
-                            <div class="ui red ribbon large label">
-                                Previous GPA
-                            </div>
-                            <div class="ui left icon input">
+                            <div class="ui labeled input">
+                                <div class="ui label">
+                                    Previous GPA
+                                </div>
                                 <input type="number" step="0.01" min="0" max="4" id="previousGPA" placeholder="(e.g. 3.83)">
-                                <i class="ellipsis vertical icon"></i>
                             </div>
                         </div>
                     </div>
                     <div class="one field">
                         <div class="field">
-                            <div class="ui red ribbon large label">
-                                Previous Total Credits
-                            </div>
-                            <div class="ui left icon input">
+                            <div class="ui labeled input">
+                                <div class="ui label">
+                                    Previous Total Credits
+                                </div>
                                 <input type="number" step="1" min="1" max="200" id="previousCredits" placeholder="(e.g. 84)">
-                                <i class="ellipsis vertical icon"></i>
                             </div>
                         </div>
                     </div>
@@ -281,18 +270,38 @@
                         Calculate New Cumulative GPA, your new cumulative GPA will be shown based
                         on your previous GPA and the current semester's GPA.
                     </div>
-                    <div class="two buttons">
-                        <button onclick="getCumulativeGPA()" class="ui right labeled icon button">
-                            <i class="calculator icon"></i>
-                            Calculate New Cumulative GPA
-                        </button>
-                        <button class="ui right labeled icon button" id="resetCumulativeGPA">
-                            <i class="undo icon"></i>
-                            Reset
-                        </button>
-                        <div id="cumulativeTable">
-                            <table id="cumulative"></table>
+                    <div class="fluid ui buttons">
+                        <button onclick="getCumulativeGPA()" class="ui red button">Submit</button>
+                        <div class="or"></div>
+                        <button class="ui button" id="resetCumulativeGPA">Reset</button>
+                    </div>
+                    <div id="cumulativeTable">
+                        <table id="cumulative"></table>
+                    </div>
+                    <div class="ui icon message">
+                        <i class="chart bar outline icon"></i>
+                        <div class="content">
+                            <div class="header">
+                                Track your progress
+                            </div>
+                            <p>To save your cumulative GPA enter value, then save.</p>
                         </div>
+                    </div>
+                    <div class="one field">
+                        <div class="field">
+                            <div class="ui labeled input">
+                                <div class="ui label">
+                                    Calculated Total GPA
+                                </div>
+                                <input type="number" step="0.01" min="0" max="5" id="calculatedFinalGPA" placeholder="(e.g. 3.48)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fluid ui buttons">
+                        <button onclick="saveFinalGPA()" class="ui red button">Save My Cumulative GPA</button>
+                    </div>
+                    <div id="savedFinalGPATable">
+                        <table id="savedFinalGPA"></table>
                     </div>
                 </div>
             </div>

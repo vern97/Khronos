@@ -349,3 +349,33 @@ table#savedFinal tr {
     padding: 5px;
 }
 
+table#savedFinalGPA {
+    font-size: large;
+    color: #231f20;
+    margin-top: 5px;
+    width: 100%;
+    padding: 5px;
+}
+
+table#savedFinalGPA tr {
+    background-color: rgb(196,198,200);
+    font-size: large;
+    color: #231f20;
+    margin-top: 5px;
+    width: 100%;
+    padding: 5px;
+}
+
+.ui.top.attached.tabular.menu.custom .item {
+    background-color: #d8d8d8;
+    border: ridge;
+    border-width: 1px;
+    border-color: rgb(167,169,172);
+}
+
+.ui.top.attached.tabular.menu.custom .active.item {
+    background-color: #FFFFFF;
+    border: ridge;
+    border-width: 1px;
+    border-color: rgb(167,169,172);
+}

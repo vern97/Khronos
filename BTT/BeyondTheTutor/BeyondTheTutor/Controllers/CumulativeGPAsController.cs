@@ -1,7 +1,11 @@
-﻿using System.Net;
+﻿using System;
+using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 using BeyondTheTutor.DAL;
 using BeyondTheTutor.Models;
+using Microsoft.AspNet.Identity;
+using Newtonsoft.Json;
 
 namespace BeyondTheTutor.Controllers
 {
@@ -9,27 +13,48 @@ namespace BeyondTheTutor.Controllers
     {
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
 
-        // GET: CumulativeGPAs/Create
-        public ActionResult Create()
+        public ActionResult SaveCumulativeGPA()
         {
-            ViewBag.UserID = new SelectList(db.BTTUsers, "ID", "FirstName");
-            return View();
-        }
+            string jsonString;
+            string cumulativeGPAResult = Request.QueryString["cumulativeGPA"];
 
-        // POST: CumulativeGPAs/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,RecordedDate,CumulativeGPA1,UserID")] CumulativeGPA cumulativeGPA)
-        {
-            if (ModelState.IsValid)
+            if (cumulativeGPAResult == "")
             {
-                db.CumulativeGPAs.Add(cumulativeGPA);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                jsonString = JsonConvert.SerializeObject("must enter value to view results", Formatting.Indented);
+            }
+            else
+            {
+                double cumulativeGPAValue = Convert.ToDouble(cumulativeGPAResult);
+
+                var userID = User.Identity.GetUserId();
+                var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
+
+                CumulativeGPA cumulativeGPA = new CumulativeGPA
+                {
+                    RecordedDate = DateTime.Now,
+                    CumulativeGPA1 = cumulativeGPAValue,
+                    UserID = currentUserID
+                };
+
+                if (ModelState.IsValid)
+                {
+                    db.CumulativeGPAs.Add(cumulativeGPA);
+                    db.SaveChanges();
+
+                    jsonString = JsonConvert.SerializeObject("Success! ", Formatting.Indented);
+                }
+                else
+                {
+                    jsonString = JsonConvert.SerializeObject("Oops! Something went wrong! ", Formatting.Indented);
+                }
             }
 
-            ViewBag.UserID = new SelectList(db.BTTUsers, "ID", "FirstName", cumulativeGPA.UserID);
-            return View(cumulativeGPA);
+            return new ContentResult
+            {
+                Content = jsonString,
+                ContentType = "application/json",
+                ContentEncoding = System.Text.Encoding.UTF8
+            };
         }
 
         // GET: CumulativeGPAs/Delete/5

@@ -10,8 +10,9 @@ namespace BeyondTheTutor.Controllers
     {
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
 
-        public ActionResult SavedGrades()
+        public ActionResult SavedResults()
         {
+            ViewBag.Current = "SavedResults";
             return View();
         }
 
