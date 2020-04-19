@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -60,37 +59,6 @@ namespace BeyondTheTutor.Controllers
                 ContentType = "application/json",
                 ContentEncoding = System.Text.Encoding.UTF8
             };
-        }
-
-        // GET: WeightedGrades/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            WeightedGrade weightedGrade = db.WeightedGrades.Find(id);
-            if (weightedGrade == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.UserID = new SelectList(db.BTTUsers, "ID", "FirstName", weightedGrade.UserID);
-            return View(weightedGrade);
-        }
-
-        // POST: WeightedGrades/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,RecordedDate,ClassName,Grade,UserID")] WeightedGrade weightedGrade)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(weightedGrade).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.UserID = new SelectList(db.BTTUsers, "ID", "FirstName", weightedGrade.UserID);
-            return View(weightedGrade);
         }
 
         // GET: WeightedGrades/Delete/5

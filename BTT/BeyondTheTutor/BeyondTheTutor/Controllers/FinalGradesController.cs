@@ -62,37 +62,6 @@ namespace BeyondTheTutor.Controllers
             };
         }
 
-        // GET: FinalGrades/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            FinalGrade finalGrade = db.FinalGrades.Find(id);
-            if (finalGrade == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.UserID = new SelectList(db.BTTUsers, "ID", "FirstName", finalGrade.UserID);
-            return View(finalGrade);
-        }
-
-        // POST: FinalGrades/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,RecordedDate,ClassName,Grade,UserID")] FinalGrade finalGrade)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(finalGrade).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.UserID = new SelectList(db.BTTUsers, "ID", "FirstName", finalGrade.UserID);
-            return View(finalGrade);
-        }
-
         // GET: FinalGrades/Delete/5
         public ActionResult Delete(int? id)
         {
