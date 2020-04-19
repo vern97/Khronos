@@ -205,11 +205,8 @@
     <Compile Include="Controllers\StudentResourcesController.cs" />
     <Compile Include="Controllers\SurveysController.cs" />
     <Compile Include="Controllers\TutorAppointmentController.cs" />
-
     <Compile Include="Controllers\WeightedGradesController.cs" />
-
     <Compile Include="Controllers\ZoomAPIController.cs" />
-
     <Compile Include="DAL\ContextGetter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -685,10 +682,10 @@
     <Content Include="Views\Questions\Index.cshtml" />
     <Content Include="Views\Answers\Create.cshtml" />
     <Content Include="Views\WeightedGrades\Delete.cshtml" />
-    <Content Include="Views\CumulativeGPAs\Create.cshtml" />
     <Content Include="Views\CumulativeGPAs\Delete.cshtml" />
     <Content Include="Views\Calculators\Calculators.cshtml" />
     <Content Include="Views\FinalGrades\Delete.cshtml" />
+    <Content Include="Views\Calculators\SavedResults.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
