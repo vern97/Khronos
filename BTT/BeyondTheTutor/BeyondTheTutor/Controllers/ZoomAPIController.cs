@@ -16,7 +16,7 @@ namespace BeyondTheTutor.Controllers
 {
     public class ZoomAPIController : Controller
     {
-        string apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6InZBU2Z1c2cxU3FTMWpkazV4b1hraWciLCJleHAiOjE1ODc3ODg1NjUsImlhdCI6MTU4NzE4Mzc3Nn0.bXTBsZrUlDCdA0tQsb-n3Ro6QcVzfn30dfYgUilUd1M";
+        string apiKey = "";
         public JsonResult Meetings()
         {
             string uri = "https://api.zoom.us/v2/users/R3FaGcfjRda8dVl7FB3Lhg/meetings?page_number=1&page_size=30&type=live";
