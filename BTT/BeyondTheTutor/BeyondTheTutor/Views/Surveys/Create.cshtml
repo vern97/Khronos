@@ -2,6 +2,7 @@
 
 <body class="wou-silver-bg">
     <div class="ui one column center aligned stackable page grid">
+        <br />
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
@@ -9,7 +10,7 @@
                 <thead style="text-align: center;">
                     <tr>
                         <th>
-                            <b >Create an experianced-based survey where students can only use a 1-5 STAR rating to answers questions</b>
+                            <b>Create an experianced-based survey where students can only use a 1-5 STAR rating to answers questions</b>
                             <br /><i style="font-size: 10px">There will be no short answers or any form of textual input for the students</i>
                         </th>
                     </tr>
@@ -19,14 +20,15 @@
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="form-group">
                                 <div class="col-md-10">
+
                                     <div class="ui fluid input">
-                                        <input class="form-control text-box single-line" data-val="true" style="color: red"
-                                               data-val-required="The AskingQuestion field is required."
-                                               id="Name" name="Name" type="text"
-                                               placeholder="Example: Becka's CS360 Survey">
+                                        @Html.TextBoxFor(model => model.Name, new { placeholder = "Example: Becka's CS360 Survey", @class = "form-control text-box single-line", style = "color: red" })
+
+                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                                     </div>
-                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                                 </div>
+                            </div>
+
                         </th>
                     </tr>
                     <br />
@@ -36,12 +38,10 @@
                             <div class="form-group">
                                 <div class="col-md-10">
                                     <div class="ui fluid input">
-                                        <input class="form-control text-box single-line" data-val="true"
-                                               data-val-required="The AskingQuestion field is required."
-                                               id="Description" name="Description" type="text"
-                                               placeholder="Example: Survey for gauging the students' experiance">
+                                        @Html.TextBoxFor(model => model.Description, new { placeholder = "Example: Survey for gauging the students' experiance", @class = "form-control text-box single-line", style = "color: red" })
+
+                                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                                     </div>
-                                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                                 </div>
                         </th>
 

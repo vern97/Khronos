@@ -20,17 +20,11 @@
                     </tr>
                     <tr>
                         <th>
-                            @using (Html.BeginForm())
-                            {
-                                @Html.AntiForgeryToken()
-
                                 <div class="form-actions no-color">
                                     <input type="submit" value="Delete" class="ui fluid button schedule" />
                                 </div>
                                 <br />
                                 @Html.ActionLink("Return", "Index")
-
-                            }
                         </th>
                     </tr>
                 </thead>
