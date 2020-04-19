@@ -132,20 +132,114 @@
             </div>
             @*Cumulative Grade Calculator Section*@
             <div class="ui bottom attached tab segment" data-tab="third">
-
-                <div class="ui icon message">
-                    <i class="notched circle loading icon"></i>
-                    <div class="content">
-                        <div class="header">
-                            Just one second
+                <div class="ui equal width form">
+                    <div class="ui icon message">
+                        <i class="bullhorn icon"></i>
+                        <div class="content">
+                            <div class="header">
+                                Find out your current and cumulative GPA
+                            </div>
+                            <p>You may save results for grades tracking</p>
                         </div>
-                        <p>This is an upcoming feature.</p>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <div class="ui red ribbon large label">
+                                Current Semester Letter Grade
+                            </div>
+                            @{
+                                for (int i = 0; i < 6; i++)
+                                {
+                                    <div class="ui left icon input">
+                                        <input type="text" class="currentSemesterGrades" placeholder="(e.g. A, B+, C)">
+                                        <i class="vertical ellipsis icon"></i>
+                                    </div>
+                                }
+                            }
+                        </div>
+                        <div class="field">
+                            <div class="ui red right ribbon large label">
+                                Credit Hours
+                            </div>
+                            @{
+                                for (int i = 0; i < 6; i++)
+                                {
+                                    <div class="ui left icon input">
+                                        <input type="number" min="1" max="5" step="1" class="currentSemesterCredits" placeholder="(e.g. 4)">
+                                        <i class="vertical ellipsis icon"></i>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="two buttons">
+                        <button onclick="getCurrentGPA()" class="ui right labeled icon button">
+                            <i class="calculator icon"></i>
+                            Calculate Current GPA
+                        </button>
+                        <button class="ui right labeled icon button" id="resetCurrentGPA">
+                            <i class="undo icon"></i>
+                            Reset
+                        </button>
+                    </div>
+                    <div id="currentGPATable">
+                        <table id="currentGPA"></table>
+                    </div>
+                    <div class="ui horizontal divider"></div>
+                    <div class="one fields">
+                        <div class="field">
+                            <div class="ui red ribbon large label">
+                                Result from Part One
+                            </div>
+                            <div class="ui left icon input">
+                                <input type="number" step="0.01" min="0" max="4" id="calculated" placeholder="(e.g. 3.77)">
+                                <i class="ellipsis vertical icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="one field">
+                        <div class="field">
+                            <div class="ui red ribbon large label">
+                                Previous GPA
+                            </div>
+                            <div class="ui left icon input">
+                                <input type="number" step="0.01" min="0" max="4" id="previousGPA" placeholder="(e.g. 3.83)">
+                                <i class="ellipsis vertical icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="one field">
+                        <div class="field">
+                            <div class="ui red ribbon large label">
+                                Previous Total Credits
+                            </div>
+                            <div class="ui left icon input">
+                                <input type="number" step="1" min="1" max="200" id="previousCredits" placeholder="(e.g. 84)">
+                                <i class="ellipsis vertical icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui medium message">
+                        Enter your cumulative GPA prior to this semester as well as the total
+                        number of graded credits earned prior to this semester. When you select
+                        Calculate New Cumulative GPA, your new cumulative GPA will be shown based
+                        on your previous GPA and the current semester's GPA.
+                    </div>
+                    <div class="two buttons">
+                        <button onclick="getCumulativeGPA()" class="ui right labeled icon button">
+                            <i class="calculator icon"></i>
+                            Calculate New Cumulative GPA
+                        </button>
+                        <button class="ui right labeled icon button" id="resetCumulativeGPA">
+                            <i class="undo icon"></i>
+                            Reset
+                        </button>
+                        <div id="cumulativeTable">
+                            <table id="cumulative"></table>
+                        </div>
                     </div>
                 </div>
-
             </div>
-
-
         </div>
     </div>
 </body>
@@ -155,4 +249,5 @@
     <script src="~/Scripts/calculators.js"></script>
     <script src="~/Scripts/main.js"></script>
 }
+
 

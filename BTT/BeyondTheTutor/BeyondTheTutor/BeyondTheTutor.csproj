@@ -197,6 +197,7 @@
     <Compile Include="Controllers\AnswersController.cs" />
     <Compile Include="Controllers\CumulativeGPAsController.cs" />
     <Compile Include="Controllers\FinalGradesController.cs" />
+    <Compile Include="Controllers\CalculatorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
@@ -668,7 +669,6 @@
     <Content Include="Views\StudentResources\ResourceSuccess.cshtml" />
     <Content Include="Views\StudentResources\ManageResources.cshtml" />
     <Content Include="Views\StudentResources\ViewAll.cshtml" />
-    <Content Include="Views\Home\Calculators.cshtml" />
     <Content Include="Views\Surveys\Create.cshtml" />
     <Content Include="Views\Surveys\Delete.cshtml" />
     <Content Include="Views\Surveys\Index.cshtml" />
@@ -688,6 +688,7 @@
     <Content Include="Views\CumulativeGPAs\Delete.cshtml" />
     <Content Include="Views\CumulativeGPAs\Edit.cshtml" />
     <Content Include="Views\CumulativeGPAs\Index.cshtml" />
+    <Content Include="Views\Calculators\Calculators.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
