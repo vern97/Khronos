@@ -6,18 +6,17 @@ namespace BeyondTheTutor.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class TutoringServiceAlert
+    public partial class CumulativeGPA
     {
         public int ID { get; set; }
 
-        [Required]
-        [StringLength(50)]
-        public string Status { get; set; }
+        public DateTime RecordedDate { get; set; }
 
-        public DateTime EndTime { get; set; }
+        [Column("CumulativeGPA")]
+        public double CumulativeGPA1 { get; set; }
 
-        public int TutorID { get; set; }
+        public int UserID { get; set; }
 
-        public virtual Tutor Tutor { get; set; }
+        public virtual BTTUser BTTUser { get; set; }
     }
 }

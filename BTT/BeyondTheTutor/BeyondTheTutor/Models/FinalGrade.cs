@@ -6,23 +6,19 @@ namespace BeyondTheTutor.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class StudentResource
+    public partial class FinalGrade
     {
         public int ID { get; set; }
 
-        [Required]
-        [StringLength(50)]
-        public string Topic { get; set; }
-
-        [Required]
-        [StringLength(100)]
-        public string URL { get; set; }
+        public DateTime RecordedDate { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string DisplayText { get; set; }
+        public string ClassName { get; set; }
 
-        public int? UserID { get; set; }
+        public double Grade { get; set; }
+
+        public int UserID { get; set; }
 
         public virtual BTTUser BTTUser { get; set; }
     }

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using BeyondTheTutor.DAL;
+using Newtonsoft.Json;
 using System;
 using System.Linq;
 using System.Web.Mvc;
@@ -7,11 +8,20 @@ namespace BeyondTheTutor.Controllers
 {
     public class CalculatorsController : Controller
     {
+        private BeyondTheTutorContext db = new BeyondTheTutorContext();
+
+        public ActionResult SavedGrades()
+        {
+            return View();
+        }
+
         [HttpGet]
         [Authorize(Roles = "Student, Tutor")]
         public ActionResult Calculators()
         {
             ViewBag.Current = "Calculators";
+
+            ViewBag.ClassID = new SelectList(db.Classes, "ID", "Name");
 
             return View();
         }

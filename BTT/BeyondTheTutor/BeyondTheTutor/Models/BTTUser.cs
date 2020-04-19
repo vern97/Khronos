@@ -11,7 +11,10 @@ namespace BeyondTheTutor.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public BTTUser()
         {
+            CumulativeGPAs = new HashSet<CumulativeGPA>();
+            FinalGrades = new HashSet<FinalGrade>();
             StudentResources = new HashSet<StudentResource>();
+            WeightedGrades = new HashSet<WeightedGrade>();
         }
 
         public int ID { get; set; }
@@ -30,6 +33,8 @@ namespace BeyondTheTutor.Models
 
         public virtual Admin Admin { get; set; }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
         public virtual Professor Professor { get; set; }
 
         public virtual Student Student { get; set; }
@@ -37,6 +42,15 @@ namespace BeyondTheTutor.Models
         public virtual Tutor Tutor { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CumulativeGPA> CumulativeGPAs { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FinalGrade> FinalGrades { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StudentResource> StudentResources { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WeightedGrade> WeightedGrades { get; set; }
     }
 }

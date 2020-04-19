@@ -1,4 +1,7 @@
-﻿DROP TABLE dbo.StudentResources;
+﻿DROP TABLE dbo.WeightedGrades;
+DROP TABLE dbo.FinalGrades;
+DROP TABLE dbo.CumulativeGPAs;
+DROP TABLE dbo.StudentResources;
 DROP TABLE dbo.TutoringAppts;
 DROP TABLE dbo.TutoringServiceAlerts;
 DROP TABLE dbo.TutorSchedule;
@@ -11,7 +14,6 @@ DROP TABLE dbo.Questions;
 DROP TABLE dbo.Surveys;
 DROP TABLE dbo.BTTUsers;
 DROP TABLE dbo.Classes;
-
 
 
 
