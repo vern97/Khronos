@@ -1,4 +1,6 @@
-﻿<body class="library-bg">
+﻿@model BeyondTheTutor.Models.WeightedGrade
+
+<body class="library-bg">
     <div class="ui two column centered grid">
         <div class="column">
             <div class="ui top attached tabular menu">
@@ -52,18 +54,45 @@
                             }
                         </div>
                     </div>
-                    <div class="two buttons">
-                        <button onclick="getWeightedGrade()" class="ui right labeled icon button">
-                            <i class="calculator icon"></i>
-                            Calculate
-                        </button>
-                        <button class="ui right labeled icon button" id="resetWeighted">
-                            <i class="undo icon"></i>
-                            Reset
-                        </button>
+                    <div class="fluid ui buttons">
+                        <button onclick="getWeightedGrade()" class="ui grey button">Submit</button>
+                        <div class="or"></div>
+                        <button class="ui button" id="resetWeighted">Reset</button>
                     </div>
                     <div id="weightedTable">
                         <table id="weighted"></table>
+                    </div>
+                    <div class="ui icon message">
+                        <i class="chart bar outline icon"></i>
+                        <div class="content">
+                            <div class="header">
+                                Track your progress
+                            </div>
+                            <p>To save your weighted grade select a course, enter grade, then save.</p>
+                        </div>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <div class="ui red ribbon large label">
+                                Course
+                            </div>
+                            @Html.DropDownList("ClassID", null, htmlAttributes: new { @class = "ui selection dropdown form-control", @id = "classForWeightedGrade" })
+                        </div>
+                        <div class="field">
+                            <div class="ui red right ribbon large label">
+                                Grade
+                            </div>
+                            <div class="ui left icon input">
+                                <input type="number" step="0.01" min="0" max="100" id="calculatedWeightedGrade" placeholder="(e.g. 90.5)">
+                                <i class="vertical ellipsis icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fluid ui buttons">
+                        <button onclick="saveWeightedGrade()" class="ui grey button">Save My Grade</button>
+                    </div>
+                    <div id="savedGradeTable">
+                        <table id="savedGrade"></table>
                     </div>
                 </div>
             </div>

@@ -109,6 +109,23 @@ function getCumulativeGPA() {
     });
 };
 
+function saveWeightedGrade() {
+    selectGrade = document.querySelector('#calculatedWeightedGrade');
+    selectClass = document.querySelector('#classForWeightedGrade');
+
+    currentGrade = selectGrade.value;
+    currentClass = selectClass.value;
+
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: "/WeightedGrades/SaveWeightedGrade",
+        data: { 'currentGrade': currentGrade, 'currentClass': currentClass },
+        success: showSuccessfulSavedGrade,
+        error: errorOnAjax
+    });
+};
+
 function errorOnAjax() {
     console.log("ERROR in ajax request.");
 }
@@ -165,6 +182,25 @@ function showCumulativeGPAResults(data) {
     cell.innerHTML = '<center>' + data;
 }
 
+function showSuccessfulSavedGrade(data) {
+    document.getElementById("savedGrade").remove();
+    $('#savedGradeTable').append($('<table id=\"savedGrade\">'));
+    $('#savedGrade').append($('<tr id=\"tableTr\">'));
+    $('#savedGrade').append($('</tr>'));
+    $('#savedGradeTable').append($('</table>'));
+
+    var table = document.getElementById("savedGrade");
+    var row = table.insertRow(1);
+    var cell = row.insertCell(0);
+    if (data == "must enter values to view results") {
+        cell.innerHTML = '<center>' + data;
+    }
+    else {
+        cell.innerHTML = '<center>' + data + '<a href="" target="_blank">click here </a>' + 'to view saved grades';
+    }  
+}
+
+
 $(function () {
     $('#resetWeighted').on('click', function () {
         $('input[type="number"]').val('');
@@ -193,4 +229,3 @@ $(function () {
         $('input[id="previousCredits"]').val('');
     });
 });
-

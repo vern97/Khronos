@@ -315,3 +315,19 @@ table#cumulative tr {
     padding: 5px;
 }
 
+table#savedGrade {
+    font-size: large;
+    color: #231f20;
+    margin-top: 5px;
+    width: 100%;
+    padding: 5px;
+}
+
+table#savedGrade tr {
+    background-color: rgb(196,198,200);
+    font-size: large;
+    color: #231f20;
+    margin-top: 5px;
+    width: 100%;
+    padding: 5px;
+}

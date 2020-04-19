@@ -238,6 +238,10 @@
   <ItemGroup>
     <Content Include="App_Data\AspDown.sql" />
     <Content Include="App_Data\AspUp.sql" />
+    <Content Include="App_Data\BeyondTheTutor.mdf" />
+    <Content Include="App_Data\BeyondTheTutor_log.ldf">
+      <DependentUpon>BeyondTheTutor.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\down.sql" />
     <Content Include="App_Data\queries.sql" />
     <Content Include="App_Data\seed.sql" />
