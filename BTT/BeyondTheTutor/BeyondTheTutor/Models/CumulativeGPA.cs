@@ -6,12 +6,16 @@ namespace BeyondTheTutor.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Professor
+    public partial class CumulativeGPA
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
-        public bool AdminApproved { get; set; }
+        public DateTime RecordedDate { get; set; }
+
+        [Column("CumulativeGPA")]
+        public double CumulativeGPA1 { get; set; }
+
+        public int UserID { get; set; }
 
         public virtual BTTUser BTTUser { get; set; }
     }

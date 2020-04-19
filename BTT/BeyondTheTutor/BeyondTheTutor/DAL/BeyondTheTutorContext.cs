@@ -15,18 +15,22 @@ namespace BeyondTheTutor.DAL
         }
 
         public virtual DbSet<Admin> Admins { get; set; }
+        public virtual DbSet<Answer> Answers { get; set; }
         public virtual DbSet<BTTUser> BTTUsers { get; set; }
         public virtual DbSet<Class> Classes { get; set; }
+        public virtual DbSet<CumulativeGPA> CumulativeGPAs { get; set; }
+        public virtual DbSet<FinalGrade> FinalGrades { get; set; }
         public virtual DbSet<Professor> Professors { get; set; }
+        public virtual DbSet<Question> Questions { get; set; }
         public virtual DbSet<StudentResource> StudentResources { get; set; }
         public virtual DbSet<Student> Students { get; set; }
+        public virtual DbSet<Survey> Surveys { get; set; }
         public virtual DbSet<TutoringAppt> TutoringAppts { get; set; }
         public virtual DbSet<TutoringServiceAlert> TutoringServiceAlerts { get; set; }
         public virtual DbSet<Tutor> Tutors { get; set; }
         public virtual DbSet<TutorSchedule> TutorSchedules { get; set; }
-        public virtual DbSet<Answer> Answers { get; set; }
-        public virtual DbSet<Question> Questions { get; set; }
-        public virtual DbSet<Survey> Surveys { get; set; }
+        public virtual DbSet<WeightedGrade> WeightedGrades { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<BTTUser>()
@@ -50,23 +54,29 @@ namespace BeyondTheTutor.DAL
                 .WillCascadeOnDelete();
 
             modelBuilder.Entity<BTTUser>()
+                .HasMany(e => e.CumulativeGPAs)
+                .WithRequired(e => e.BTTUser)
+                .HasForeignKey(e => e.UserID);
+
+            modelBuilder.Entity<BTTUser>()
+                .HasMany(e => e.FinalGrades)
+                .WithRequired(e => e.BTTUser)
+                .HasForeignKey(e => e.UserID);
+
+            modelBuilder.Entity<BTTUser>()
                 .HasMany(e => e.StudentResources)
                 .WithOptional(e => e.BTTUser)
                 .HasForeignKey(e => e.UserID)
                 .WillCascadeOnDelete();
 
-            modelBuilder.Entity<TutoringAppt>()
-                .Property(e => e.Note)
-                .IsUnicode(false);
-            
-            modelBuilder.Entity<Question>()
+            modelBuilder.Entity<BTTUser>()
+                .HasMany(e => e.WeightedGrades)
+                .WithRequired(e => e.BTTUser)
+                .HasForeignKey(e => e.UserID);
+
+            modelBuilder.Entity<Question>() 
                 .Property(e => e.AskingQuestion)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Question>()
-                .HasMany(e => e.Answers)
-                .WithRequired(e => e.Question)
-                .WillCascadeOnDelete();
 
             modelBuilder.Entity<Survey>()
                 .Property(e => e.Description)
@@ -75,6 +85,15 @@ namespace BeyondTheTutor.DAL
             modelBuilder.Entity<Survey>()
                 .HasMany(e => e.Answers)
                 .WithRequired(e => e.Survey)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<TutoringAppt>()
+                .Property(e => e.Note)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Question>()
+                .HasMany(e => e.Answers)
+                .WithRequired(e => e.Question)
                 .WillCascadeOnDelete();
 
             modelBuilder.Entity<Survey>()
@@ -82,6 +101,5 @@ namespace BeyondTheTutor.DAL
                 .WithRequired(e => e.Survey)
                 .WillCascadeOnDelete();
         }
-
     }
 }

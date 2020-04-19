@@ -162,3 +162,41 @@ CREATE TABLE [dbo].[Answers]
 
 );
 
+CREATE TABLE [dbo].[WeightedGrades]
+(
+    [ID]				INT IDENTITY (1,1)	NOT NULL,
+	[RecordedDate]		[DATETIME]			NOT NULL,
+	[ClassName]			NVARCHAR(50)		NOT NULL,	
+	[Grade]				FLOAT				NOT NULL,
+	[UserID]			INT					NOT NULL
+	CONSTRAINT [PK_dbo.WeightedGrades] PRIMARY KEY CLUSTERED ([ID] ASC)
+	CONSTRAINT [FK_dbo.WeightedGrades_dbo.BTTUsers_ID] FOREIGN KEY ([UserID]) 
+		REFERENCES [BTTUsers] ([ID])
+		ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE [dbo].[FinalGrades]
+(
+    [ID]				INT IDENTITY (1,1)	NOT NULL,
+	[RecordedDate]		[DATETIME]			NOT NULL,
+	[ClassName]			NVARCHAR(50)		NOT NULL,	
+	[Grade]				FLOAT				NOT NULL,
+	[UserID]			INT					NOT NULL
+	CONSTRAINT [PK_dbo.FinalGrades] PRIMARY KEY CLUSTERED ([ID] ASC)
+	CONSTRAINT [FK_dbo.FinalGrades_dbo.BTTUsers_ID] FOREIGN KEY ([UserID]) 
+		REFERENCES [BTTUsers] ([ID])
+		ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE [dbo].[CumulativeGPAs]
+(
+    [ID]				INT IDENTITY (1,1)	NOT NULL,
+	[RecordedDate]		[DATETIME]			NOT NULL,	
+	[CumulativeGPA]		FLOAT				NOT NULL,
+	[UserID]			INT					NOT NULL
+	CONSTRAINT [PK_dbo.CumulativeGPAs] PRIMARY KEY CLUSTERED ([ID] ASC)
+	CONSTRAINT [FK_dbo.CumulativeGPAs_dbo.BTTUsers_ID] FOREIGN KEY ([UserID]) 
+		REFERENCES [BTTUsers] ([ID])
+		ON DELETE CASCADE ON UPDATE CASCADE
+);
+

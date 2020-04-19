@@ -195,6 +195,8 @@
     <Compile Include="Areas\Tutor\TutorAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnswersController.cs" />
+    <Compile Include="Controllers\CumulativeGPAsController.cs" />
+    <Compile Include="Controllers\FinalGradesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
@@ -202,29 +204,33 @@
     <Compile Include="Controllers\StudentResourcesController.cs" />
     <Compile Include="Controllers\SurveysController.cs" />
     <Compile Include="Controllers\TutorAppointmentController.cs" />
+    <Compile Include="Controllers\WeightedGradesController.cs" />
     <Compile Include="DAL\ContextGetter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
+    <Compile Include="Models\SurveyModels\Answer.cs" />
     <Compile Include="DAL\BeyondTheTutorContext.cs" />
     <Compile Include="Models\BTTUser.cs" />
     <Compile Include="Models\Class.cs" />
+    <Compile Include="Models\CumulativeGPA.cs" />
+    <Compile Include="Models\FinalGrade.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="DAL\IdentityModels.cs" />
     <Compile Include="Models\Professor.cs" />
+    <Compile Include="Models\SurveyModels\Question.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\StudentResource.cs" />
-    <Compile Include="Models\SurveyModels\Answer.cs" />
-    <Compile Include="Models\SurveyModels\Question.cs" />
     <Compile Include="Models\SurveyModels\Survey.cs" />
     <Compile Include="Models\Tutor.cs" />
     <Compile Include="Models\TutoringAppt.cs" />
     <Compile Include="Models\TutoringServiceAlert.cs" />
     <Compile Include="Models\TutorSchedule.cs" />
-    <Compile Include="DAL\IdentityModels.cs" />
     <Compile Include="Models\ViewModels\ElevatedAccountViewModel.cs" />
     <Compile Include="Models\ViewModels\TutoringApptInfoViewModel.cs" />
+    <Compile Include="Models\WeightedGrade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -670,6 +676,18 @@
     <Content Include="Views\Questions\Delete.cshtml" />
     <Content Include="Views\Questions\Index.cshtml" />
     <Content Include="Views\Answers\Create.cshtml" />
+    <Content Include="Views\WeightedGrades\Create.cshtml" />
+    <Content Include="Views\WeightedGrades\Delete.cshtml" />
+    <Content Include="Views\WeightedGrades\Edit.cshtml" />
+    <Content Include="Views\WeightedGrades\Index.cshtml" />
+    <Content Include="Views\FinalGrades\Create.cshtml" />
+    <Content Include="Views\FinalGrades\Delete.cshtml" />
+    <Content Include="Views\FinalGrades\Edit.cshtml" />
+    <Content Include="Views\FinalGrades\Index.cshtml" />
+    <Content Include="Views\CumulativeGPAs\Create.cshtml" />
+    <Content Include="Views\CumulativeGPAs\Delete.cshtml" />
+    <Content Include="Views\CumulativeGPAs\Edit.cshtml" />
+    <Content Include="Views\CumulativeGPAs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
