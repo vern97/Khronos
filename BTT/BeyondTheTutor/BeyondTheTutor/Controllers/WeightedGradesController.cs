@@ -14,13 +14,6 @@ namespace BeyondTheTutor.Controllers
     {
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
 
-        // GET: WeightedGrades
-        public ActionResult Index()
-        {
-            var weightedGrades = db.WeightedGrades.Include(w => w.BTTUser);
-            return View(weightedGrades.ToList());
-        }
-
         public ActionResult SaveWeightedGrade()
         {
             string jsonString;
@@ -67,29 +60,6 @@ namespace BeyondTheTutor.Controllers
                 ContentType = "application/json",
                 ContentEncoding = System.Text.Encoding.UTF8
             };
-        }
-
-        // GET: WeightedGrades/Create
-        public ActionResult Create()
-        {
-            ViewBag.UserID = new SelectList(db.BTTUsers, "ID", "FirstName");
-            return View();
-        }
-
-        // POST: WeightedGrades/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,RecordedDate,ClassName,Grade,UserID")] WeightedGrade weightedGrade)
-        {
-            if (ModelState.IsValid)
-            {
-                db.WeightedGrades.Add(weightedGrade);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.UserID = new SelectList(db.BTTUsers, "ID", "FirstName", weightedGrade.UserID);
-            return View(weightedGrade);
         }
 
         // GET: WeightedGrades/Edit/5

@@ -62,36 +62,6 @@ namespace BeyondTheTutor.Controllers
             };
         }
 
-            // GET: FinalGrades
-            public ActionResult Index()
-        {
-            var finalGrades = db.FinalGrades.Include(f => f.BTTUser);
-            return View(finalGrades.ToList());
-        }
-
-        // GET: FinalGrades/Create
-        public ActionResult Create()
-        {
-            ViewBag.UserID = new SelectList(db.BTTUsers, "ID", "FirstName");
-            return View();
-        }
-
-        // POST: FinalGrades/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,RecordedDate,ClassName,Grade,UserID")] FinalGrade finalGrade)
-        {
-            if (ModelState.IsValid)
-            {
-                db.FinalGrades.Add(finalGrade);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.UserID = new SelectList(db.BTTUsers, "ID", "FirstName", finalGrade.UserID);
-            return View(finalGrade);
-        }
-
         // GET: FinalGrades/Edit/5
         public ActionResult Edit(int? id)
         {
