@@ -53,11 +53,11 @@ namespace BeyondTheTutor.Controllers
                     db.WeightedGrades.Add(weightedGrade);
                     db.SaveChanges();
 
-                    jsonString = JsonConvert.SerializeObject("success! ", Formatting.Indented);
+                    jsonString = JsonConvert.SerializeObject("Success! ", Formatting.Indented);
                 }
                 else
                 {
-                    jsonString = JsonConvert.SerializeObject("oops! something went wrong! ", Formatting.Indented);
+                    jsonString = JsonConvert.SerializeObject("Oops! Something went wrong! ", Formatting.Indented);
                 }
             }
 

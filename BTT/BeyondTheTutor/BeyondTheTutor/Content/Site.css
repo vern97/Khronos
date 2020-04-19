@@ -331,3 +331,21 @@ table#savedGrade tr {
     width: 100%;
     padding: 5px;
 }
+
+table#savedFinal {
+    font-size: large;
+    color: #231f20;
+    margin-top: 5px;
+    width: 100%;
+    padding: 5px;
+}
+
+table#savedFinal tr {
+    background-color: rgb(196,198,200);
+    font-size: large;
+    color: #231f20;
+    margin-top: 5px;
+    width: 100%;
+    padding: 5px;
+}
+

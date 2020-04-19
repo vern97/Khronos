@@ -144,18 +144,45 @@
                             </div>
                         </div>
                     </div>
-                    <div class="two buttons">
-                        <button onclick="getFinalGrade()" class="ui right labeled icon button">
-                            <i class="calculator icon"></i>
-                            Calculate
-                        </button>
-                        <button class="ui right labeled icon button" id="resetFinal">
-                            <i class="undo icon"></i>
-                            Reset
-                        </button>
+                    <div class="fluid ui buttons">
+                        <button onclick="getFinalGrade()" class="ui grey button">Submit</button>
+                        <div class="or"></div>
+                        <button class="ui button" id="resetFinal">Reset</button>
                     </div>
                     <div id="finalTable">
                         <table id="final"></table>
+                    </div>
+                    <div class="ui icon message">
+                        <i class="chart bar outline icon"></i>
+                        <div class="content">
+                            <div class="header">
+                                Track your progress
+                            </div>
+                            <p>To save what you need on the final select a course, enter grade, then save.</p>
+                        </div>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <div class="ui red ribbon large label">
+                                Course
+                            </div>
+                            @Html.DropDownList("ClassID", null, htmlAttributes: new { @class = "ui selection dropdown form-control", @id = "classForFinalGrade" })
+                        </div>
+                        <div class="field">
+                            <div class="ui red right ribbon large label">
+                                Final Goal
+                            </div>
+                            <div class="ui left icon input">
+                                <input type="number" step="0.01" min="0" max="100" id="calculatedFinalGrade" placeholder="(e.g. 90.5)">
+                                <i class="vertical ellipsis icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fluid ui buttons">
+                        <button onclick="saveFinalGrade()" class="ui grey button">Save What I Need On My Final</button>
+                    </div>
+                    <div id="savedFinalTable">
+                        <table id="savedFinal"></table>
                     </div>
                 </div>
             </div>

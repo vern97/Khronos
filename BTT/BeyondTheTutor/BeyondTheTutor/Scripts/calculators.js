@@ -126,6 +126,23 @@ function saveWeightedGrade() {
     });
 };
 
+function saveFinalGrade() {
+    selectGrade = document.querySelector('#calculatedFinalGrade');
+    selectClass = document.querySelector('#classForFinalGrade');
+
+    currentGrade = selectGrade.value;
+    currentClass = selectClass.value;
+
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: "/FinalGrades/SaveFinalGrade",
+        data: { 'currentGrade': currentGrade, 'currentClass': currentClass },
+        success: showSuccessfulFinalGrade,
+        error: errorOnAjax
+    });
+};
+
 function errorOnAjax() {
     console.log("ERROR in ajax request.");
 }
@@ -196,8 +213,26 @@ function showSuccessfulSavedGrade(data) {
         cell.innerHTML = '<center>' + data;
     }
     else {
-        cell.innerHTML = '<center>' + data + '<a href="" target="_blank">click here </a>' + 'to view saved grades';
+        cell.innerHTML = '<center>' + data + '<a href="" target="_blank">Click here </a>' + 'to view saved grades';
     }  
+}
+
+function showSuccessfulFinalGrade(data) {
+    document.getElementById("savedFinal").remove();
+    $('#savedFinalTable').append($('<table id=\"savedFinal\">'));
+    $('#savedFinal').append($('<tr id=\"tableTr\">'));
+    $('#savedFinal').append($('</tr>'));
+    $('#savedFinalTable').append($('</table>'));
+
+    var table = document.getElementById("savedFinal");
+    var row = table.insertRow(1);
+    var cell = row.insertCell(0);
+    if (data == "must enter values to view results") {
+        cell.innerHTML = '<center>' + data;
+    }
+    else {
+        cell.innerHTML = '<center>' + data + '<a href="" target="_blank">Click here </a>' + 'to view saved results';
+    }
 }
 
 
