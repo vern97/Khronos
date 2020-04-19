@@ -22,7 +22,7 @@
                     </div>
                     <div class="two fields">
                         <div class="field">
-                            <div class="ui red ribbon large label">
+                            <div class="ui red ribbon medium label">
                                 Grade
                             </div>
                             @{ int j = 1;
@@ -38,7 +38,7 @@
                             }
                         </div>
                         <div class="field">
-                            <div class="ui red right ribbon large label">
+                            <div class="ui red right ribbon medium label">
                                 Weight
                             </div>
                             @{ int k = 1;
@@ -73,13 +73,13 @@
                     </div>
                     <div class="two fields">
                         <div class="field">
-                            <div class="ui red ribbon large label">
+                            <div class="ui grey ribbon medium label">
                                 Course
                             </div>
                             @Html.DropDownList("ClassID", null, htmlAttributes: new { @class = "ui selection dropdown form-control", @id = "classForWeightedGrade" })
                         </div>
                         <div class="field">
-                            <div class="ui red right ribbon large label">
+                            <div class="ui grey right ribbon medium label">
                                 Grade
                             </div>
                             <div class="ui left icon input">
@@ -89,7 +89,7 @@
                         </div>
                     </div>
                     <div class="fluid ui buttons">
-                        <button onclick="saveWeightedGrade()" class="ui grey button">Save My Grade</button>
+                        <button onclick="saveWeightedGrade()" class="ui red button">Save My Grade</button>
                     </div>
                     <div id="savedGradeTable">
                         <table id="savedGrade"></table>
@@ -110,7 +110,7 @@
                     </div>
                     <div class="one fields">
                         <div class="field">
-                            <div class="ui red ribbon large label">
+                            <div class="ui red ribbon medium label">
                                 Current Grade
                             </div>
                             <div class="ui right labeled input">
@@ -122,7 +122,7 @@
                     </div>
                     <div class="one fields">
                         <div class="field">
-                            <div class="ui red ribbon large label">
+                            <div class="ui red ribbon medium label">
                                 Goal Grade
                             </div>
                             <div class="ui right labeled input">
@@ -134,7 +134,7 @@
                     </div>
                     <div class="one fields">
                         <div class="field">
-                            <div class="ui red ribbon large label">
+                            <div class="ui red ribbon medium label">
                                 Weight of Final
                             </div>
                             <div class="ui right labeled input">
@@ -163,13 +163,13 @@
                     </div>
                     <div class="two fields">
                         <div class="field">
-                            <div class="ui red ribbon large label">
+                            <div class="ui grey ribbon medium label">
                                 Course
                             </div>
                             @Html.DropDownList("ClassID", null, htmlAttributes: new { @class = "ui selection dropdown form-control", @id = "classForFinalGrade" })
                         </div>
                         <div class="field">
-                            <div class="ui red right ribbon large label">
+                            <div class="ui grey right ribbon medium label">
                                 Final Goal
                             </div>
                             <div class="ui left icon input">
@@ -179,7 +179,7 @@
                         </div>
                     </div>
                     <div class="fluid ui buttons">
-                        <button onclick="saveFinalGrade()" class="ui grey button">Save What I Need On My Final</button>
+                        <button onclick="saveFinalGrade()" class="ui red button">Save What I Need On My Final</button>
                     </div>
                     <div id="savedFinalTable">
                         <table id="savedFinal"></table>
