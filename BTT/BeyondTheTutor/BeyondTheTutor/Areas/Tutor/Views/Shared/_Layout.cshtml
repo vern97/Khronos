@@ -59,6 +59,7 @@
                     @Html.ActionLink("View Requests", "Index", "TutoringAppts", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutApptsIndex" ? "item red active" : "item") })
                 </div>
             </div>
+            @Html.ActionLink("Zoom", "Index", "Zoom", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutZoomIndex" ? "item red active" : "item") })
         </div>
         @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
         {

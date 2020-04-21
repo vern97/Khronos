@@ -192,21 +192,22 @@
     <Compile Include="Areas\Tutor\Controllers\TutoringApptsController.cs" />
     <Compile Include="Areas\Tutor\Controllers\TutoringServiceAlertsController.cs" />
     <Compile Include="Areas\Tutor\Controllers\TutorSchedulesController.cs" />
+    <Compile Include="Areas\Tutor\Controllers\ZoomController.cs" />
     <Compile Include="Areas\Tutor\TutorAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\Survey Controllers\AnswersController.cs" />
+    <Compile Include="Controllers\SurveyControllers\AnswersController.cs" />
     <Compile Include="Controllers\CumulativeGPAsController.cs" />
     <Compile Include="Controllers\FinalGradesController.cs" />
     <Compile Include="Controllers\CalculatorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\Survey Controllers\QuestionsController.cs" />
+    <Compile Include="Controllers\SurveyControllers\QuestionsController.cs" />
     <Compile Include="Controllers\StudentAppointmentController.cs" />
     <Compile Include="Controllers\StudentResourcesController.cs" />
-    <Compile Include="Controllers\Survey Controllers\SurveysController.cs" />
+    <Compile Include="Controllers\SurveyControllers\SurveysController.cs" />
     <Compile Include="Controllers\TutorAppointmentController.cs" />
     <Compile Include="Controllers\WeightedGradesController.cs" />
-    <Compile Include="Controllers\ZoomAPIController.cs" />
+    <Compile Include="Controllers\ZoomAPIControllers\ZoomAPIController.cs" />
     <Compile Include="DAL\ContextGetter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -513,6 +514,7 @@
     <Content Include="Areas\Professor\Views\TutoringAppts\Details.cshtml" />
     <Content Include="Areas\Professor\Views\TutoringAppts\Edit.cshtml" />
     <Content Include="Areas\Professor\Views\TutoringAppts\Index.cshtml" />
+    <Content Include="Areas\Tutor\Views\Zoom\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Compile Include="Models\ViewModels\AllUsersViewModel.cs" />
     <Content Include="Scripts\calculators.js" />
@@ -633,6 +635,7 @@
     <Content Include="Scripts\semantic.js" />
     <Content Include="Scripts\semantic.min.js" />
     <Content Include="Scripts\service-alert.js" />
+    <Content Include="Scripts\zoomtutor.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
