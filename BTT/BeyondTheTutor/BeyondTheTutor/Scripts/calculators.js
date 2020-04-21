@@ -228,7 +228,7 @@ function showSuccessfulSavedGrade(data) {
         cell.innerHTML = '<center>' + data;
     }
     else {
-        cell.innerHTML = '<center>' + data + '<a href="" target="_blank">Click here </a>' + 'to view saved grades';
+        cell.innerHTML = '<center>' + data + '<a href="/Calculators/SavedResults" target="_blank">Click here </a>' + 'to view saved results';
     }  
 }
 
@@ -246,7 +246,7 @@ function showSuccessfulFinalGrade(data) {
         cell.innerHTML = '<center>' + data;
     }
     else {
-        cell.innerHTML = '<center>' + data + '<a href="" target="_blank">Click here </a>' + 'to view saved results';
+        cell.innerHTML = '<center>' + data + '<a href="/Calculators/SavedResults" target="_blank">Click here </a>' + 'to view saved results';
     }
 }
 
@@ -264,10 +264,9 @@ function showSuccessfulFinalGPA(data) {
         cell.innerHTML = '<center>' + data;
     }
     else {
-        cell.innerHTML = '<center>' + data + '<a href="" target="_blank">Click here </a>' + 'to view saved results';
+        cell.innerHTML = '<center>' + data + '<a href="/Calculators/SavedResults" target="_blank">Click here </a>' + 'to view saved results';
     }
 }
-
 
 $(function () {
     $('#resetWeighted').on('click', function () {
