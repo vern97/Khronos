@@ -1,4 +1,5 @@
 ﻿using BeyondTheTutor.DAL;
+using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
 using System;
 using System.Linq;
@@ -13,6 +14,51 @@ namespace BeyondTheTutor.Controllers
         public ActionResult SavedResults()
         {
             ViewBag.Current = "SavedResults";
+
+            var userID = User.Identity.GetUserId();
+            var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
+
+            var savedGrades = db.WeightedGrades.Where(m => m.UserID.Equals(currentUserID))
+                .OrderBy(m => m.ClassName).ThenByDescending(m => m.RecordedDate).ToList();
+
+            if (savedGrades.Count == 0)
+            {
+                ViewBag.savedGradeCount = false;
+            }
+            else
+            {
+                ViewBag.savedGradeCount = true;
+                ViewBag.savedGradeLength = savedGrades.Count();
+                ViewBag.SavedWeightedGrades = savedGrades;
+            }
+
+            var savedFinalGrades = db.FinalGrades.Where(m => m.UserID.Equals(currentUserID))
+                .OrderBy(m => m.ClassName).ThenByDescending(m => m.RecordedDate).ToList();
+
+            if (savedFinalGrades.Count == 0)
+            {
+                ViewBag.savedFinalGradeCount = false;
+            }
+            else
+            {
+                ViewBag.savedFinalGradeCount = true;
+                ViewBag.savedFinalLength = savedFinalGrades.Count();
+                ViewBag.SavedFinalGrades = savedFinalGrades;
+            }
+
+            var savedGPAs = db.CumulativeGPAs.Where(m => m.UserID.Equals(currentUserID)).OrderBy(m => m.RecordedDate).ToList();
+
+            if (savedGPAs.Count == 0)
+            {
+                ViewBag.savedGPACount = false;
+            }
+            else
+            {
+                ViewBag.savedGPACount = true;
+                ViewBag.savedGPALength = savedGPAs.Count();
+                ViewBag.SavedGPAs = savedGPAs;
+            }
+
             return View();
         }
 
