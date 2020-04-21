@@ -47,6 +47,7 @@
     }
 
     function retrieve_user_info(data) {
+        $('#zoom_info_div').empty();
         $('#zoom_info_div').append(`
             <p>Hello, <i>${data.users[0].first_name} ${data.users[0].last_name}</i></p>
             <p><b>Your Personal Meeting ID:</b></p>
@@ -57,6 +58,32 @@
         `)
     }
 
+    var get_meetings_info = function () {
+        $.ajax({
+            type: 'GET',
+            dataType: 'json',
+            url: '/ZoomAPI/Meetings',
+            success: retrieve_meeting,
+            error: errorOnAjax
+        });
+    }
+
+    function retrieve_meeting(data) {
+        $('#meeting_status').empty();
+        if (data.meetings.length > 0) {
+            $('#meeting_status').append(`
+                <div class="ui negative message">
+                    <div class="center aligned content">
+                        <div class="ui medium center aligned header">
+                            <i class="bullhorn icon"></i>
+                            You are currently in a meeting
+                        </div>
+                    </div>
+                </div>
+        `)
+        }
+    }
+
     function errorOnAjax() {
         console.log('Error on ajax');
     }
@@ -64,8 +91,10 @@
     // Call ajax on window load
     get_online_appts.call();
     get_zoom_info.call();
+    get_meetings_info.call();
 
     // Set interval on ajax call to refresh every 2 seconds
     var interval = 1000 * 2;
     window.setInterval(get_online_appts, interval);
+    window.setInterval(get_meetings_info, interval);
 });
