@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 
 namespace BeyondTheTutor.Controllers
 {
+    [Authorize(Roles = "Student, Tutor")]
     public class FinalGradesController : Controller
     {
         private BeyondTheTutorContext db = new BeyondTheTutorContext();

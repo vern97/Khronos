@@ -34,7 +34,7 @@ namespace BeyondTheTutor.Controllers
             else if (userInput != null && userSelection == null)
             {
                 ViewBag.check = false;
-                var studentResources = db.StudentResources.Include(s => s.BTTUser).OrderBy(s => s.Topic);
+                var studentResources = db.StudentResources.Include(s => s.BTTUser).OrderBy(s => s.DisplayText);
 
                 var resourceList = studentResources
                     .Where(s => s.BTTUser.FirstName.Contains(userInput)
@@ -55,7 +55,7 @@ namespace BeyondTheTutor.Controllers
             {
                 ViewBag.check = false;
                 var studentResources = db.StudentResources.Include(s => s.BTTUser)
-                    .Where(s => s.Topic == userSelection).OrderBy(s => s.Topic).ToList();
+                    .Where(s => s.Topic == userSelection).OrderBy(s => s.DisplayText).ToList();
 
                 ViewBag.Topics = studentResources;
 
