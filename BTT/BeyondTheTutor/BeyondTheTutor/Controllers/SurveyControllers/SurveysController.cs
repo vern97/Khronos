@@ -25,7 +25,8 @@ namespace BeyondTheTutor.Controllers
                 ViewBag.Error = "Something went wrong! please try again later.";
                 
             }
-            
+            var change = 1;
+
             return View(db.Surveys.ToList());
         }
 
