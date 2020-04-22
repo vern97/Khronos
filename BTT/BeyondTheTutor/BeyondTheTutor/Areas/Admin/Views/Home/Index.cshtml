@@ -5,8 +5,8 @@
 }
 
 <body class="wou-silver-bg">
-    <h2 class="ui top attached center aligned icon header">
-        <i class="user circle icon"></i>
+    <h2 class="ui top attached center aligned icon header" style="color:#a7a9ac;">
+        <i class="user circle icon" style="color:#a7a9ac;"></i>
         Hello, @ViewBag.User
     </h2>
     <div class="ui internally celled grid">
@@ -82,10 +82,12 @@
             <div class="three wide column">
                 <div class="ui card">
                     <div class="content">
-                        <div class="ui big label">@DateTime.Now.DayOfWeek, @DateTime.Now.Date.ToString("dd/MM/yyyy")</div>
+                        <div class="header"><a href="/Admin/TutorSchedules/UpdateSchedule">Tutor Schedules</a></div>
                     </div>
                     <div class="content">
-                        <h4 class="ui sub header">Tutoring Schedules</h4>
+                        <div class="ui big label">@DateTime.Now.DayOfWeek @DateTime.Now.Date.ToString("MM-dd-yyyy")</div>
+                    </div>
+                    <div class="content">
                         <div class="ui small feed">
                             @foreach (var item in Model)
                             {
@@ -94,12 +96,13 @@
                                         <div class="summary">
                                             <div class="item">
                                                 <div class="content">
-                                                    <div class="header">@Html.DisplayFor(modelItem => item.Tutor.BTTUser.FirstName)</div>
-                                                    <div class="description">
-                                                        @Html.ValueFor(modelItem => item.StartTime)
-                                                    </div>
-                                                    <div class="description">
-                                                        @Html.DisplayFor(modelItem => item.EndTime)
+                                                    <div class="ui list">
+                                                        <div class="item">
+                                                            <div class="content">
+                                                                <a class="header">@Html.DisplayFor(modelItem => item.Tutor.BTTUser.FirstName)</a>
+                                                                <div class="description">Works from  @item.StartTime.ToString("hh:mm tt") to @item.EndTime.ToString("hh:mm tt")</div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -108,14 +111,10 @@
                                 </div>
                             }
 
-                          </div>
+                        </div>
                     </div>
                     <div class="extra content">
-                        <div class="ui compact menu">
-                            <a class="item">
-                                <i class="icon thumbs up"></i> View All Schedules
-                            </a>
-                        </div>
+                        <a href="/Admin/TutorSchedules/UpdateSchedule" button class="fluid ui button">View All Schedules</a>
                     </div>
                 </div>
             </div>
@@ -190,7 +189,7 @@
                             <div class="header"><a>Questions or Concerns?</a></div>
                             <div class="meta">Contact</div>
                             <div class="description">
-                                Email <b>beyondthetutor[at]gmail[dot]com</b>
+                                Email <b>beyondthetutor&commat;gmail.com</b>
                             </div>
                         </div>
                     </div>
@@ -200,7 +199,7 @@
                 <a class="weatherwidget-io" href="https://forecast7.com/en/44d85n123d23/monmouth/?unit=us" data-label_1="Western Oregon University" data-label_2="WEATHER" data-font="Ubuntu" data-icons="Climacons Animated" data-mode="Forecast" data-theme="original" data-highcolor="#c37a7a">MONMOUTH WEATHER</a>
             </div>
             <div class="three wide column">
-                <img class="ui medium image" src="@Url.Content("~/Content/images/corner_succeed.png")" />
+                <img class="ui medium image" src="@Url.Content("~/Content/images/admin_logo_black_2.jpg")" />
             </div>
         </div>
     </div>

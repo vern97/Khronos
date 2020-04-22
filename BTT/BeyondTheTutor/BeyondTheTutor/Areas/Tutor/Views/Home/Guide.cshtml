@@ -5,7 +5,7 @@
             <div class="ui styled fluid accordion FAQ">
                 <div class="ui horizontal divider">
                     <h1 class="ui centered header">Tutor Guide</h1>
-                </div>       
+                </div>
                 <div class="title">
                     <i class="dropdown icon"></i>
                     Welcome Message
@@ -25,18 +25,21 @@
                     <p>
                         @Html.ActionLink("Student resources", "Index", "StudentResources", new { area = "" }, htmlAttributes:
                         new { @class = (ViewBag.Current == "StuResIndex" ? "item red active" : "item") }) are an easy way to
-                        share helpful and interesting finds with your students. In the @Html.ActionLink("Add New", "Create", 
-                        "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResCreate" ? 
-                        "item red active" : "item") }) form you will enter a topic for your resource. Example topics are "Java", 
+                        share helpful and interesting finds with your students. In the @Html.ActionLink("Add New", "Create",
+"StudentResources", new { area = "" }, htmlAttributes: new
+{
+@class = (ViewBag.Current == "StuResCreate" ?
+"item red active" : "item")
+}) form you will enter a topic for your resource. Example topics are "Java",
                         "Semantic UI", "CSS Styling". Make the topic simple and searchable. You will provide the website URL for
-                        your resource by copying and pasting it into the appropropriate box. And you will decide how you want the 
+                        your resource by copying and pasting it into the appropropriate box. And you will decide how you want the
                         link displayed. Example displays are "Parse Trees - Wikipedia", "AJAX - CS 461", "HTML Tutorial". Make
-                        displays simple and searchable. 
+                        displays simple and searchable.
                     </p>
                     <p>
-                        You may @Html.ActionLink("manage", "ManageResources", "StudentResources", new { area = "" }, htmlAttributes: 
-                        new { @class = (ViewBag.Current == "StuResManage" ? "item red active" : "item") }) your student resources
-                        at any time. You may change the topic, URL, display text, or delete. 
+                        You may @Html.ActionLink("manage", "ManageResources", "StudentResources", new { area = "" }, htmlAttributes:
+                new { @class = (ViewBag.Current == "StuResManage" ? "item red active" : "item") }) your student resources
+                        at any time. You may change the topic, URL, display text, or delete.
                     </p>
                 </div>
                 <div class="title">
@@ -76,6 +79,15 @@
                         You can <a href="/Tutor/TutorSchedules/Create" target="_blank">add your scheduled times</a> in the tutoring center. You may also
                         <a href="/Tutor/TutorSchedules/UpdateSchedule" target="_blank">edit or delete</a> your schedules. Schedules are automatically shown
                         on the Beyond the Tutor home page calendar. Notice that time slots have a unique color for each tutor.
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    How do I contact the development team?
+                </div>
+                <div class="content">
+                    <p>
+                        Questions or comments? Contact us at beyondthetutor&commat;gmail.com
                     </p>
                 </div>
             </div>
