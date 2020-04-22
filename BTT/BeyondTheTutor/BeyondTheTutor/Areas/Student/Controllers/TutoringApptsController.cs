@@ -41,15 +41,6 @@ namespace BeyondTheTutor.Areas.Student.Controllers
             return View(sessionList);
         }
 
-        public ActionResult SessionSuccess()
-        {
-            var userID = User.Identity.GetUserId();
-            var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
-            var sessionList = db.TutoringAppts.Where(m => m.StudentID.Equals(currentUserID)).OrderBy(m => m.StartTime).ToList();
-
-            return View(sessionList);
-        }
-
         // GET: Student/TutoringAppts/Details/5
         public ActionResult Details(int? id)
         {
@@ -97,7 +88,7 @@ namespace BeyondTheTutor.Areas.Student.Controllers
             {
                 db.TutoringAppts.Add(tutoringAppt);
                 db.SaveChanges();
-                return RedirectToAction("SessionSuccess");
+                return RedirectToAction("Index");
             }
 
             ViewBag.ClassID = new SelectList(db.Classes, "ID", "Name", tutoringAppt.ClassID);

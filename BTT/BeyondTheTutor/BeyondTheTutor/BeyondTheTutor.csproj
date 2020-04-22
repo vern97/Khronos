@@ -392,12 +392,12 @@
     <Content Include="Content\fullcalendar.min.css" />
     <Content Include="Content\fullcalendar.print.css" />
     <Content Include="Content\fullcalendar.print.min.css" />
+    <Content Include="Content\images\admin_logo_black_2.jpg" />
     <Content Include="Content\images\BeyondtheTutor_Banner4.png" />
     <Content Include="Content\images\BeyondtheTutor_Logo.png" />
     <Content Include="Content\images\Campus.jpg" />
     <Content Include="Content\images\campus_map_1.jpg" />
     <Content Include="Content\images\campus_map_2.jpg" />
-    <Content Include="Content\images\corner_succeed.png" />
     <Content Include="Content\images\daniel.jpg" />
     <Content Include="Content\images\helen.jpg" />
     <Content Include="Content\images\Home_Page_Banner.png" />
@@ -433,7 +433,6 @@
     <Content Include="Content\images\landscapes_images\7.jpg" />
     <Content Include="Content\images\landscapes_images\8.jpg" />
     <Content Include="Content\images\landscapes_images\9.jpg" />
-    <Content Include="Content\images\Library_Photo.jpg" />
     <Content Include="Content\images\Login_Logo.png" />
     <Content Include="Content\images\Logo_Stacked.jpg" />
     <Content Include="Content\images\Resources_Owl_Logo.png" />
@@ -483,7 +482,6 @@
     <Content Include="Areas\Student\Views\TutoringAppts\Details.cshtml" />
     <Content Include="Areas\Student\Views\TutoringAppts\Edit.cshtml" />
     <Content Include="Areas\Student\Views\TutoringAppts\Index.cshtml" />
-    <Content Include="Areas\Student\Views\TutoringAppts\SessionSuccess.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Guide.cshtml" />
     <Content Include="Areas\Professor\Views\Home\Guide.cshtml" />
     <Content Include="Areas\Student\Views\Home\Guide.cshtml" />

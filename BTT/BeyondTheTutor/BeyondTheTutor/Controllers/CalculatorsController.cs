@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace BeyondTheTutor.Controllers
 {
+    [Authorize(Roles = "Student, Tutor")]
     public class CalculatorsController : Controller
     {
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
@@ -63,7 +64,6 @@ namespace BeyondTheTutor.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Student, Tutor")]
         public ActionResult Calculators()
         {
             ViewBag.Current = "Calculators";
@@ -73,7 +73,6 @@ namespace BeyondTheTutor.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Student, Tutor")]
         public ActionResult WeightedGradeResults()
         {
             string requestGrades = Request.QueryString["gradesArray"];
@@ -135,7 +134,6 @@ namespace BeyondTheTutor.Controllers
             }
         }
 
-        [Authorize(Roles = "Student, Tutor")]
         public ActionResult FinalGradeResults()
         {
             string grade1 = Request.QueryString["currentGrade"];
@@ -180,7 +178,6 @@ namespace BeyondTheTutor.Controllers
             }
         }
 
-        [Authorize(Roles = "Student, Tutor")]
         public ActionResult CurrentGPAResults()
         {
             // get current grade and credit values from calculate.js
@@ -257,7 +254,6 @@ namespace BeyondTheTutor.Controllers
             };
         }
 
-        [Authorize(Roles = "Student, Tutor")]
         public ActionResult CumulativeGPAResults()
         {
             string calculated = Request.QueryString["calculated"];

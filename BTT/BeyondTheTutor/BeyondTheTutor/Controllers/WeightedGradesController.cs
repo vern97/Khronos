@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 
 namespace BeyondTheTutor.Controllers
 {
+    [Authorize(Roles = "Student, Tutor")]
     public class WeightedGradesController : Controller
     {
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
