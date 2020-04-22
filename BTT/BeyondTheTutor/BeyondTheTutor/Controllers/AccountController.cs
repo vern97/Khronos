@@ -351,7 +351,9 @@ namespace BeyondTheTutor.Controllers
                 ViewBag.validationError = "tutor";
             else if (model.studentVM != null)
                 ViewBag.validationError = "student";
-            
+
+            ViewBag.ReCapKey = System.Web.Configuration.WebConfigurationManager.AppSettings["ReCapKey"];
+
             return View(model);
         }
 
