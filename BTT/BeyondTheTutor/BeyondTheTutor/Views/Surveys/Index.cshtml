@@ -1,9 +1,4 @@
 ﻿@model IEnumerable<BeyondTheTutor.Models.SurveyModels.Survey>
-@using BeyondTheTutor.DAL;
-@{
-    BeyondTheTutorContext db = new BeyondTheTutorContext();
-}
-
 
 <body class="wou-silver-bg">
     <div class="ui one column center aligned stackable page grid">
@@ -66,7 +61,6 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    var surveyClass = db.Classes.Find(item.ClassID).Name.ToString();
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.Name)
@@ -75,7 +69,7 @@
                             @Html.DisplayFor(modelItem => item.Description)
                         </td>
                         <td>
-                            @surveyClass
+                            @item.Class.Name;
                         </td>
                         <td style="text-align: center;">
                             @Html.DisplayFor(modelItem => item.Questions.Count)

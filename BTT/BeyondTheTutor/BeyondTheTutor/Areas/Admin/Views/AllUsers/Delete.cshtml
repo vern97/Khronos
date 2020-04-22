@@ -4,18 +4,6 @@
 @using Microsoft.AspNet.Identity.EntityFramework;
 @model BeyondTheTutor.Models.BTTUser
 
-@{
-    BeyondTheTutorContext db = new BeyondTheTutorContext();
-    ApplicationDbContext context = new ApplicationDbContext();
-
-    var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-    var accountEmail = UserManager.GetEmail(Model.ASPNetIdentityID);
-
-    ViewBag.First = Html.DisplayFor(model => model.FirstName);
-    ViewBag.Last = Html.DisplayFor(model => model.LastName);
-    ViewBag.Email = accountEmail.ToString();
-}
-
 <body class="wou-silver-bg">
     <div class="ui one column stackable page grid">
         <div class="ui red message schedule"><i class="close icon"></i>Careful! Once you delete this user, there's no turning back.</div>
