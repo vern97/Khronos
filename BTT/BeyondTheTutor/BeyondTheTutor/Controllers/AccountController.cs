@@ -10,6 +10,9 @@ using BeyondTheTutor.DAL;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Web.Routing;
 using reCAPTCHA.MVC;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Net;
 
 namespace BeyondTheTutor.Controllers
 {
@@ -206,14 +209,24 @@ namespace BeyondTheTutor.Controllers
             return View();
         }
 
+        public class CaptchaResponse
+        {
+            [JsonProperty("success")]
+            public string Success { get; set; }
+
+            [JsonProperty("error-codes")]
+            public List<string> ErrorCodes { get; set; }
+        }
+
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        [CaptchaValidator]
         public async Task<ActionResult> Register(RegistrationTypes model)
         {
-            bool isStudent, isTutor, isProfessor;
+            bool isStudent, isTutor, isProfessor, _error;
+
+            _error = false;
             isStudent = isTutor = isProfessor = false;
             string _email, _password, _firstname, _lastname, _confmessage, _class_standing, _vnumber ;
 
@@ -221,7 +234,53 @@ namespace BeyondTheTutor.Controllers
 
             short _classof = 0000;
 
-            if (ModelState.IsValid)
+            var response = Request["g-recaptcha-response"];
+            //secret that was generated in key value pair
+            string secret = System.Web.Configuration.WebConfigurationManager.AppSettings["ReCapSecretKey"];
+
+            var client = new WebClient();
+            var reply =
+                client.DownloadString(
+                    string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}",
+                secret, response));
+
+            var captchaResponse = JsonConvert.DeserializeObject<CaptchaResponse>(reply);
+
+            //when response is false check for the error message
+            if (captchaResponse.Success.Equals(false))
+            {
+                if (captchaResponse.ErrorCodes.Count <= 0) return View();
+
+                var error = captchaResponse.ErrorCodes[0].ToLower();
+                switch (error)
+                {
+                    case ("missing-input-secret"):
+                        ViewBag.Message = "The secret parameter is missing.";
+                        break;
+                    case ("invalid-input-secret"):
+                        ViewBag.Message = "The secret parameter is invalid or malformed.";
+                        break;
+
+                    case ("missing-input-response"):
+                        ViewBag.Message = "The response parameter is missing.";
+                        break;
+                    case ("invalid-input-response"):
+                        ViewBag.Message = "The response parameter is invalid or malformed.";
+                        break;
+
+                    default:
+                        ViewBag.Message = "Error occured. Please try again";
+                        break;
+                }
+
+                _error = true;
+            }
+            else
+            {
+                ViewBag.Message = "Valid";
+            }
+
+            if (ModelState.IsValid && !_error)
             {
                 if (model.studentVM != null)
                 {
