@@ -1,9 +1,6 @@
 ﻿@using BeyondTheTutor.Models
 @model LoginViewModel
-@if (User.Identity != null)
-{
-    @Html.Hidden("RedirectTo", Url.Action("index", "home"));
-}
+
 <body class="wou-grey-bg">
 
     @if (ViewBag.error != null)
@@ -104,12 +101,5 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-<script>
-     var url = $("#RedirectTo").val();
-
-    if(url != null)
-    {    location.href = url;
-    }
-    </script>
-   
+  
 }
