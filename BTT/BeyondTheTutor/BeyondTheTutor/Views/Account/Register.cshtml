@@ -58,11 +58,14 @@
                 {
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary("", new { @class = "text-danger" })
-                    <div class="two fields">
-                        <div class="field form-group">
-                            <label>First Name</label>
-                            @Html.EditorFor(m => m.professorVM.FirstName, new { htmlAttributes = new { placeholder = "First Name" } })
-                        </div>
+                <div class="three fields">
+                    <div class="field form-group">
+                        <label>First Name</label>
+                        @Html.EditorFor(m => m.professorVM.FirstName, new { htmlAttributes = new { placeholder = "First Name" } })
+                    </div>
+                    <div class="field form-group">
+                        <div class="g-recaptcha" data-sitekey="@ViewBag.ReCapKey"></div>
+                    </div>
                         <div class="field form-group">
                             <label>Last Name</label>
                             @Html.EditorFor(m => m.professorVM.LastName, new { htmlAttributes = new { placeholder = "Last Name" } })
@@ -82,12 +85,9 @@
                             @Html.PasswordFor(m => m.professorVM.ConfirmPassword, new { @class = "form-control" })
                         </div>
                     </div>
-                    if (ViewBag.ReCapKey != null)
-                    { <div class="g-recaptcha" data-sitekey="@ViewBag.ReCapKey"></div>}
-
                     <button class="fluid ui button schedule">Register Now</button>
-                }
-            </div>
+                    }
+                </div>
         </div>
     </div>
 
@@ -110,7 +110,7 @@
                             @Html.EditorFor(m => m.studentVM.LastName, new { htmlAttributes = new { placeholder = "Last Name" } })
                         </div>
                     </div>
-                    <div class="two fields">
+                    <div class="three fields">
                         <div class="field">
                             <label>Class Standing</label>
                             <select class="ui simple dropdown item" id="studentVM_ClassStanding" name="studentVM.ClassStanding">
@@ -119,6 +119,9 @@
                                 <option type="text" value="Junior">Junior</option>
                                 <option type="text" value="Senior">Senior</option>
                             </select>
+                        </div>
+                        <div class="field form-group">
+                            <div class="g-recaptcha" data-sitekey="@ViewBag.ReCapKey"></div>
                         </div>
                         <div class="field">
                             <label>Graduation Year</label>
@@ -146,9 +149,6 @@
                             @Html.PasswordFor(m => m.studentVM.ConfirmPassword, new { @class = "form-control" })
                         </div>
                     </div>
-                    if (ViewBag.ReCapKey != null)
-                    { <div class="g-recaptcha" data-sitekey="@ViewBag.ReCapKey"></div>}
-
                     <button class="fluid ui button schedule">Register Now</button>
                 }
             </div>
@@ -174,7 +174,7 @@
                             @Html.EditorFor(m => m.tutorVM.LastName, new { htmlAttributes = new { placeholder = "Last Name" } })
                         </div>
                     </div>
-                    <div class="two fields">
+                    <div class="three fields">
                         <div class="field form-group">
                             <label>VNumber</label>
                             <div class="form-group">
@@ -182,6 +182,9 @@
                                     @Html.EditorFor(m => m.tutorVM.VNumber, new { htmlAttributes = new { @class = "form-control" } })
                                 </div>
                             </div>
+                        </div>
+                        <div class="field form-group" style="text-align: center;">
+                            <div class="g-recaptcha" data-sitekey="@ViewBag.ReCapKey"></div>
                         </div>
                         <div class="field form-group">
                             <label>Graduation Year</label>
@@ -209,8 +212,6 @@
                             @Html.PasswordFor(m => m.tutorVM.ConfirmPassword, new { @class = "form-control" })
                         </div>
                     </div>
-                    if (ViewBag.ReCapKey != null)
-                    { <div class="g-recaptcha" data-sitekey="@ViewBag.ReCapKey"></div>}
                     <button class="fluid ui button schedule">Register Now</button>
                 }
             </div>
