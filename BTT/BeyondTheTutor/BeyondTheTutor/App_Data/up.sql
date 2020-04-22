@@ -151,14 +151,17 @@ CREATE TABLE [dbo].[Answers]
 	CONSTRAINT [PK_dbo.Answers] PRIMARY KEY ([UserID], [SurveyID], [QuestionID]),
 
 	CONSTRAINT [FK_dbo.Answers_dbo.BTTUsers_UserID] FOREIGN KEY ([UserID]) 
-		REFERENCES [dbo].[BTTUsers] ([ID]),
+		REFERENCES [dbo].[BTTUsers] ([ID])
+			ON DELETE CASCADE ON UPDATE CASCADE,
+
 
 	CONSTRAINT [FK_dbo.Answers_dbo.Surveys_SurveyID] FOREIGN KEY ([SurveyID]) 
 		REFERENCES [dbo].[Surveys] ([ID]),
 
+
 	CONSTRAINT [FK_dbo.Answers_dbo.Questions_QuestionID] FOREIGN KEY ([QuestionID]) 
 		REFERENCES [dbo].[Questions] ([ID])
-	ON DELETE CASCADE ON UPDATE CASCADE
+			ON DELETE CASCADE ON UPDATE CASCADE
 
 );
 

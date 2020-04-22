@@ -82,7 +82,7 @@ namespace BeyondTheTutor.DAL
                 .HasMany(e => e.Answers)
                 .WithRequired(e => e.BTTUser)
                 .HasForeignKey(e => e.UserID)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
 
             modelBuilder.Entity<Question>()
                 .Property(e => e.AskingQuestion)
@@ -96,8 +96,6 @@ namespace BeyondTheTutor.DAL
                 .HasMany(e => e.Answers)
                 .WithRequired(e => e.Survey)
                 .WillCascadeOnDelete(false);
-
-
         }
     }
 }
