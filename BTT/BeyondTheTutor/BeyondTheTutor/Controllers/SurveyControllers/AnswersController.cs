@@ -28,6 +28,7 @@ namespace BeyondTheTutor.Controllers
             var listOfQuestions = db.Surveys.Find(sid).Questions.ToList();
             var listOfAnswers = db.Surveys.Find(sid).Answers.Where(a => a.UserID == currentUser).ToList();
 
+            var change = 1;
 
             ViewBag.question = db.Questions.Find(qid).AskingQuestion;
             ViewBag.name = db.Surveys.Find(sid).Name;

@@ -1,28 +1,16 @@
 ﻿@model IEnumerable<BeyondTheTutor.Models.SurveyModels.Question>
 
 @{
-    ViewBag.Title = "Index";
+    string name = Model.FirstOrDefault().Survey.Name.ToString();
+    int SurveyID = Model.FirstOrDefault().SurveyID;
 }
 
     <body class="wou-silver-bg">
         <div class="ui one column center aligned stackable page grid">
-            <br />
-            <div class="ui large breadcrumb">
-                <a class="section">
-                    @Html.RouteLink("Home", new { controller = "Home", action = "Index" })
-                </a>
-                <i class="right chevron icon divider"></i>
-                <a class="section">
-                    @Html.RouteLink("Surveys", new { controller = "Surveys", action = "Index" })
-                </a>
-                <i class="right chevron icon divider"></i>
-                <div class="active section">Questions</div>
-            </div>
-            <br />
             <table class="ui striped compact table compact table-schedule">
                 <thead>
                     <tr>
-                        <th colspan="4"><h1 class="ui centered header">@ViewBag.name</h1></th>
+                        <th colspan="4"><h1 class="ui centered header">@name</h1></th>
                     </tr>
                     <tr>
                         <th colspan="4" style="text-align: center; color: red">
@@ -34,12 +22,12 @@
                                 <div class="or"></div>
                                 <button class="ui yellow button">
                                     <i class="icon plus"></i>
-                                    @Html.RouteLink("Add Another Question", new { controller = "Questions", action = "Create", id = ViewBag.SID })
+                                    @Html.RouteLink("Add Another Question", new { controller = "Questions", action = "Create", id = SurveyID})
                                 </button>
                             </div>
                         </th>
                     </tr>
-                    <tr ">
+                    <tr >
                         <th>
                             @Html.DisplayNameFor(model => model.AskingQuestion)
                         </th>
@@ -64,14 +52,7 @@
                             @Html.DisplayFor(modelItem => item.AskingQuestion)
                         </td>
                         <td>
-                            @if (item.Answers.Count() > 0)
-                            {
-                                <div class="ui rating" data-rating="@item.Answers.Where(s => s.SurveyID == item.SurveyID && s.QuestionID == item.ID).Average(q => q.UserAnswer).Value.ToString()" data-max-rating="5"></div>
-                            }
-                            else
-                            {
-                                <div class="ui rating" data-rating="0" data-max-rating="5"></div>
-                            }
+                            <div class="ui rating" data-rating="@item.Answers.Where(s => s.SurveyID == item.SurveyID && s.QuestionID == item.ID).Average(q => q.UserAnswer).ToString()" data-max-rating="5"></div>
                         </td>
                         <td style="text-align: center;">
                             @item.Answers.Count()

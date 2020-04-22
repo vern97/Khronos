@@ -30,9 +30,7 @@ namespace BeyondTheTutor.Controllers
                 var currentUser = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
                 var survey = db.Surveys.Find(id);
                 var listOfQuestions = survey.Questions;
-
-                ViewBag.name = survey.Name;
-                ViewBag.SID = id;
+                var change = 1;
 
                 return View(listOfQuestions.ToList());
 
