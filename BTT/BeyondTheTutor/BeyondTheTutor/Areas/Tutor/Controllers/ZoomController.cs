@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using BeyondTheTutor.DAL;
 using BeyondTheTutor.Models;
 using Microsoft.AspNet.Identity;
+using System.Diagnostics;
 
 namespace BeyondTheTutor.Areas.Tutor.Controllers
 {
@@ -31,7 +32,8 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
         {
             var userID = User.Identity.GetUserId();
             var currentTutorID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
-            var tomorrow = DateTime.Now.AddDays(1).AddHours(9);
+            var tomorrow = DateTime.Today.AddHours(23);
+            Debug.WriteLine(tomorrow);
             var tutoringAppts = db.TutoringAppts.Where(t => t.TutorID == currentTutorID && t.TypeOfMeeting == "Online" && t.Status == "Approved" && t.StartTime < tomorrow).OrderBy(t => t.StartTime).ThenBy(t => t.Class.Name).ThenBy(t => t.EndTime);
 
             var fetchAppts = tutoringAppts.Select(e => new
@@ -48,10 +50,20 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
                 e.Class,
                 StartTime = e.StartTime.ToShortTimeString(),
                 EndTime = e.EndTime.ToShortTimeString(),
+                OpenTime = IsUpcoming(e.StartTime, e.EndTime),
                 e.Length
             });
 
             return Json(fetchAppts, JsonRequestBehavior.AllowGet);
+        }
+
+        public bool IsUpcoming(DateTime start, DateTime end)
+        {
+            if (DateTime.Now > start.AddMinutes(-30) && end > DateTime.Now)
+            {
+                return true;
+            }
+            else return false;
         }
     }
 }

@@ -12,26 +12,71 @@
 
     // Update links on page to redirect to Users' Zoom meeting
     function retrieve_appts(data) {
-        $('#meeting_div').empty();
+        $('#meeting_div_current').empty();
+        $('#meeting_div_backlog').empty();
         if (data.length == 0) {
-            $('#meeting_div').append(`
+            $('#meeting_div_current').append(`
                 <p><b>It seems you have no scheduled Tutoring Appointments today</b></p>
             `);
         } else {
+            if (data.length > 1) {
+                $('#meeting_div_backlog').append(`
+                        <h3><i>Upcoming</i></h3>
+                `);
+            }
             for (var i = 0; i < data.length; i++) {
-                $('#meeting_div').append(`
-                <div class="item">
-                    <div class= "right floated content" >
-                        <a class="ui button" href="https://zoom.us/j/8623070324" target="_blank">
-                            Start Meeting
-                        </a>
-                    </div >
-                    <div class="content">
-                        <p class="header">${data[i].Requestor} - ${data[i].Class}</p>
-                        <div class="description">${data[i].StartTime}-${data[i].EndTime} - ${data[i].Length}</div>
-                    </div>
-                </div >
-            `);
+                if (i == 0) {
+                    $('#meeting_div_current').append(`
+                        <h3><i>Next Up</i></h3>
+                    `);
+                    $('#meeting_div_current').append(`
+                        <div class="item">
+                            <div id="appt${i}">
+                            </div>
+                            <div class="content">
+                                <p class="header">${data[i].Requestor} - ${data[i].Class}</p>
+                                <div class="description">${data[i].StartTime}-${data[i].EndTime} - ${data[i].Length}</div>
+                            </div>
+                        </div>
+                    `);
+                    if (data[i].OpenTime == true) {
+                        $('#appt' + i).append(`
+                            <div class= "right floated content">
+                                <a class="ui green button" href="https://zoom.us/j/8623070324" target="_blank">
+                                    Start Meeting
+                                </a>
+                            </div >
+                        `)
+                    } else {
+                        $('#appt' + i).append(`
+                            <div class= "right floated content">
+                                <a class="ui disabled button" href="https://zoom.us/j/8623070324" target="_blank">
+                                    Start Meeting
+                                </a>
+                            </div >
+                        `)
+                    }
+                } else {
+                    $('#meeting_div_backlog').append(`
+                        <div class="item">
+                            <div id="appt${i}">
+                            </div>
+                            <div class="content">
+                                <p class="header">${data[i].Requestor} - ${data[i].Class}</p>
+                                <div class="description">${data[i].StartTime}-${data[i].EndTime} - ${data[i].Length}</div>
+                            </div>
+                        </div>
+                    `);
+                    if (data[i].OpenTime == true) {
+                        $('#appt' + i).append(`
+                            <div class= "right floated content">
+                                <a class="ui green button" href="https://zoom.us/j/8623070324" target="_blank">
+                                    Start Meeting
+                                </a>
+                            </div >
+                        `)
+                    }
+                }
             }
         }
     }
