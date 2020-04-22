@@ -201,8 +201,7 @@ namespace BeyondTheTutor.Controllers
         public ActionResult Register()
         {
             ViewBag.Current = "AccountRegister";
-            if (ViewBag.ReCapKey = System.Web.Configuration.WebConfigurationManager.AppSettings["ReCapKey"] != null)
-            { ViewBag.ReCapKey = System.Web.Configuration.WebConfigurationManager.AppSettings["ReCapKey"]; }
+            ViewBag.ReCapKey = System.Web.Configuration.WebConfigurationManager.AppSettings["ReCapKey"];
             
             return View();
         }
