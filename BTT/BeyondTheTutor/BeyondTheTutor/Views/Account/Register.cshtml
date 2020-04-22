@@ -3,6 +3,9 @@
 @using BeyondTheTutor.Models
 @using reCAPTCHA.MVC;
 
+
+
+
 <body class="wou-silver-bg">
     <div class="ui container">
         <div class="ui floating message registration">
@@ -55,14 +58,14 @@
                 {
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary("", new { @class = "text-danger" })
-                    <div class="three fields">
-                        <div class="field form-group">
-                            <label>First Name</label>
-                            @Html.EditorFor(m => m.professorVM.FirstName, new { htmlAttributes = new { placeholder = "First Name" } })
-                        </div>
-                        <div class="field form-group">
-                            <div class="g-recaptcha" data-sitekey="@ViewBag.ReCapKey"></div>
-                        </div>
+                <div class="three fields">
+                    <div class="field form-group">
+                        <label>First Name</label>
+                        @Html.EditorFor(m => m.professorVM.FirstName, new { htmlAttributes = new { placeholder = "First Name" } })
+                    </div>
+                    <div class="field form-group">
+                        <div class="g-recaptcha" data-sitekey="@ViewBag.ReCapKey"></div>
+                    </div>
                         <div class="field form-group">
                             <label>Last Name</label>
                             @Html.EditorFor(m => m.professorVM.LastName, new { htmlAttributes = new { placeholder = "Last Name" } })
@@ -83,8 +86,8 @@
                         </div>
                     </div>
                     <button class="fluid ui button schedule">Register Now</button>
-                }
-            </div>
+                    }
+                </div>
         </div>
     </div>
 
@@ -118,7 +121,7 @@
                             </select>
                         </div>
                         <div class="field form-group">
-                            <div class="g-recaptcha" data-sitekey="6LeSqOwUAAAAAIiDFKIrYjwKwggn3xgVOpmNDwbv"></div>
+                            <div class="g-recaptcha" data-sitekey="@ViewBag.ReCapKey"></div>
                         </div>
                         <div class="field">
                             <label>Graduation Year</label>
@@ -221,7 +224,7 @@
 @section scripts
 {
     <script src="~/Scripts/main.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
     @if (@ViewBag.validationError != null)
     {
         <script type="text/javascript">
