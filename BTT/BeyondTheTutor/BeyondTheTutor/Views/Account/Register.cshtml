@@ -1,5 +1,10 @@
-﻿@using BeyondTheTutor.Models
-@model RegistrationTypes
+﻿@model RegistrationTypes
+
+@using BeyondTheTutor.Models
+@using reCAPTCHA.MVC;
+
+
+
 
 <body class="wou-silver-bg">
     <div class="ui container">
@@ -77,6 +82,9 @@
                             @Html.PasswordFor(m => m.professorVM.ConfirmPassword, new { @class = "form-control" })
                         </div>
                     </div>
+                    if (ViewBag.ReCapKey != null)
+                    { <div class="g-recaptcha" data-sitekey="@ViewBag.ReCapKey"></div>}
+
                     <button class="fluid ui button schedule">Register Now</button>
                 }
             </div>
@@ -138,6 +146,9 @@
                             @Html.PasswordFor(m => m.studentVM.ConfirmPassword, new { @class = "form-control" })
                         </div>
                     </div>
+                    if (ViewBag.ReCapKey != null)
+                    { <div class="g-recaptcha" data-sitekey="@ViewBag.ReCapKey"></div>}
+
                     <button class="fluid ui button schedule">Register Now</button>
                 }
             </div>
@@ -198,6 +209,8 @@
                             @Html.PasswordFor(m => m.tutorVM.ConfirmPassword, new { @class = "form-control" })
                         </div>
                     </div>
+                    if (ViewBag.ReCapKey != null)
+                    { <div class="g-recaptcha" data-sitekey="@ViewBag.ReCapKey"></div>}
                     <button class="fluid ui button schedule">Register Now</button>
                 }
             </div>
@@ -213,7 +226,7 @@
 
     @if (@ViewBag.validationError != null)
     {
-    <script type="text/javascript">
+        <script type="text/javascript">
         var whichForm = "@ViewBag.validationError";
 
         if (whichForm == "professor")
@@ -222,6 +235,6 @@
             $('#modalid-1').modal('show');
         else if (whichForm == "tutor")
             $('#modalid-2').modal('show');
-    </script>
+        </script>
     }
 }

@@ -163,6 +163,16 @@
             {
                 return HttpNotFound();
             }
+
+            ApplicationDbContext context = new ApplicationDbContext();
+
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            var accountEmail = UserManager.GetEmail(user.ASPNetIdentityID);
+
+            ViewBag.First = user.FirstName;
+            ViewBag.Last = user.LastName;
+            ViewBag.Email = accountEmail;
+
             return View(user);
         }
 

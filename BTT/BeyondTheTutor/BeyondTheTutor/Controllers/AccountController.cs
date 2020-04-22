@@ -9,6 +9,7 @@ using BeyondTheTutor.Models;
 using BeyondTheTutor.DAL;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Web.Routing;
+using reCAPTCHA.MVC;
 
 namespace BeyondTheTutor.Controllers
 {
@@ -200,6 +201,9 @@ namespace BeyondTheTutor.Controllers
         public ActionResult Register()
         {
             ViewBag.Current = "AccountRegister";
+            if (ViewBag.ReCapKey = System.Web.Configuration.WebConfigurationManager.AppSettings["ReCapKey"] != null)
+            { ViewBag.ReCapKey = System.Web.Configuration.WebConfigurationManager.AppSettings["ReCapKey"]; }
+            
             return View();
         }
 
@@ -207,6 +211,7 @@ namespace BeyondTheTutor.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [CaptchaValidator]
         public async Task<ActionResult> Register(RegistrationTypes model)
         {
             bool isStudent, isTutor, isProfessor;
