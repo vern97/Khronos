@@ -187,6 +187,7 @@
     <Compile Include="Areas\Professor\ProfessorAreaRegistration.cs" />
     <Compile Include="Areas\Student\Controllers\HomeController.cs" />
     <Compile Include="Areas\Student\Controllers\TutoringApptsController.cs" />
+    <Compile Include="Areas\Student\Controllers\ZoomController.cs" />
     <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
     <Compile Include="Areas\Tutor\Controllers\HomeController.cs" />
     <Compile Include="Areas\Tutor\Controllers\TutoringApptsController.cs" />
@@ -635,6 +636,7 @@
     <Content Include="Scripts\semantic.js" />
     <Content Include="Scripts\semantic.min.js" />
     <Content Include="Scripts\service-alert.js" />
+    <Content Include="Scripts\zoomstudent.js" />
     <Content Include="Scripts\zoomtutor.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -694,6 +696,7 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Professor\Data\" />
     <Folder Include="Areas\Student\Data\" />
+    <Folder Include="Areas\Student\Views\Zoom\" />
     <Folder Include="Areas\Tutor\Data\" />
     <Folder Include="Views\StudentAppointment\" />
     <Folder Include="Views\ZoomAPI\" />
