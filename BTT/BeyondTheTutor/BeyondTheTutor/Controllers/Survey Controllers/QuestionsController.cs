@@ -31,9 +31,6 @@ namespace BeyondTheTutor.Controllers
                 var survey = db.Surveys.Find(id);
                 var listOfQuestions = survey.Questions;
 
-                ViewBag.name = survey.Name;
-                ViewBag.SID = id;
-
                 return View(listOfQuestions.ToList());
 
             }
