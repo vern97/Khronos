@@ -222,7 +222,6 @@ namespace BeyondTheTutor.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        [CaptchaValidator]
         public async Task<ActionResult> Register(RegistrationTypes model)
         {
             bool isStudent, isTutor, isProfessor, _error;
@@ -278,7 +277,7 @@ namespace BeyondTheTutor.Controllers
                 ViewBag.Message = "Valid";
             }
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && !_error)
             {
                 if (model.studentVM != null)
                 {
