@@ -74,18 +74,12 @@ namespace BeyondTheTutor.Controllers
             {
                 return HttpNotFound();
             }
-            return View(finalGrade);
-        }
-
-        // POST: FinalGrades/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            FinalGrade finalGrade = db.FinalGrades.Find(id);
-            db.FinalGrades.Remove(finalGrade);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            else
+            {
+                db.FinalGrades.Remove(finalGrade);
+                db.SaveChanges();
+                return RedirectToAction("SavedResults", "Calculators");
+            }
         }
 
         protected override void Dispose(bool disposing)

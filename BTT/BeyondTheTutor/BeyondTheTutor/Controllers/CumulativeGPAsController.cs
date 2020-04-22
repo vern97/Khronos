@@ -69,18 +69,12 @@ namespace BeyondTheTutor.Controllers
             {
                 return HttpNotFound();
             }
-            return View(cumulativeGPA);
-        }
-
-        // POST: CumulativeGPAs/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            CumulativeGPA cumulativeGPA = db.CumulativeGPAs.Find(id);
-            db.CumulativeGPAs.Remove(cumulativeGPA);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            else
+            {
+                db.CumulativeGPAs.Remove(cumulativeGPA);
+                db.SaveChanges();
+                return RedirectToAction("SavedResults", "Calculators");
+            }
         }
 
         protected override void Dispose(bool disposing)

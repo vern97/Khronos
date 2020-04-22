@@ -73,18 +73,12 @@ namespace BeyondTheTutor.Controllers
             {
                 return HttpNotFound();
             }
-            return View(weightedGrade);
-        }
-
-        // POST: WeightedGrades/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            WeightedGrade weightedGrade = db.WeightedGrades.Find(id);
-            db.WeightedGrades.Remove(weightedGrade);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            else
+            {
+                db.WeightedGrades.Remove(weightedGrade);
+                db.SaveChanges();
+                return RedirectToAction("SavedResults", "Calculators");
+            }
         }
 
         protected override void Dispose(bool disposing)
