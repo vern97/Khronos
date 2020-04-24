@@ -25,15 +25,6 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
             return View(scheduleList);
         }
 
-        public ActionResult ScheduleSuccess()
-        {
-            var userID = User.Identity.GetUserId();
-            var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
-            var scheduleList = db.TutorSchedules.Where(m => m.TutorID.Equals(currentUserID)).OrderBy(m => m.StartTime).ToList();
-
-            return View(scheduleList);
-        }
-
         // GET: Tutor/TutorSchedules/Create
         public ActionResult Create()
         {
@@ -78,7 +69,7 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
                 tutorSchedule.ThemeColor = setTutorColor;
                 db.TutorSchedules.Add(tutorSchedule);
                 db.SaveChanges();
-                return RedirectToAction("ScheduleSuccess");
+                return RedirectToAction("UpdateSchedule");
             }
 
             return View(tutorSchedule);

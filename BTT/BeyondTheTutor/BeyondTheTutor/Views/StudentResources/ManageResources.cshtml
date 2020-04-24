@@ -2,8 +2,7 @@
 
 <body class="wou-grey-bg">
     <div class="ui one column stackable page grid">
-        <div class="ui red message schedule"><i class="close icon"></i>Careful! You may edit or delete resources. Deletion cannot be undone.</div>
-        <table class="ui striped table ui selectable celled table table-schedule">
+        <table class="ui striped selectable celled table resources" style="margin-top: 10px;">
             <thead>
                 <tr>
                     <th colspan="4"><h1 class="ui centered header">@ViewBag.currentUser's Resource List</h1></th>
@@ -25,10 +24,10 @@
                         <td>@Html.DisplayFor(modelItem => item.URL)</td>
                         <td>@Html.DisplayFor(modelItem => item.DisplayText)</td>
                         <td style="text-align: center;">
-                            <button class="ui negative basic button small ui button">
+                            <button class="ui small button">
                                 @Html.ActionLink("Edit", "Edit", new { id = item.ID })
                             </button>
-                            <button class="ui negative basic button small ui button">
+                            <button class="ui small button">
                                 @Html.ActionLink("Delete", "Delete", new { id = item.ID })
                             </button>
                         </td>

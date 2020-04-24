@@ -437,8 +437,8 @@
     <Content Include="Content\images\landscapes_images\7.jpg" />
     <Content Include="Content\images\landscapes_images\8.jpg" />
     <Content Include="Content\images\landscapes_images\9.jpg" />
-    <Content Include="Content\images\Login_Logo.png" />
     <Content Include="Content\images\Logo_Stacked.jpg" />
+    <Content Include="Content\images\resize_welcome_banner.png" />
     <Content Include="Content\images\Resources_Owl_Logo.png" />
     <Content Include="Content\images\stevie.jpg" />
     <Content Include="Content\images\TutoringLogo.png" />
@@ -476,7 +476,6 @@
     <Content Include="Areas\Tutor\Views\TutorSchedules\Create.cshtml" />
     <Content Include="Areas\Tutor\Views\TutorSchedules\Delete.cshtml" />
     <Content Include="Areas\Tutor\Views\TutorSchedules\Edit.cshtml" />
-    <Content Include="Areas\Tutor\Views\TutorSchedules\ScheduleSuccess.cshtml" />
     <Content Include="Areas\Tutor\Views\TutorSchedules\UpdateSchedule.cshtml" />
     <Content Include="Areas\Admin\Views\TutorSchedules\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\TutorSchedules\Edit.cshtml" />
@@ -677,7 +676,6 @@
     <Content Include="Views\StudentResources\Delete.cshtml" />
     <Content Include="Views\StudentResources\Edit.cshtml" />
     <Content Include="Views\StudentResources\Index.cshtml" />
-    <Content Include="Views\StudentResources\ResourceSuccess.cshtml" />
     <Content Include="Views\StudentResources\ManageResources.cshtml" />
     <Content Include="Views\StudentResources\ViewAll.cshtml" />
     <Content Include="Views\Surveys\Create.cshtml" />
