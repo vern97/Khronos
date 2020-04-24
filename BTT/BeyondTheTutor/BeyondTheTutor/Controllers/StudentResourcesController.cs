@@ -81,15 +81,6 @@ namespace BeyondTheTutor.Controllers
             return View(resourceList.ToList());
         }
 
-        [Authorize(Roles = "Tutor, Professor")]
-        public ActionResult ResourceSuccess()
-        {
-            var userID = User.Identity.GetUserId();
-            var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
-            var resourceList = db.StudentResources.Where(m => m.UserID == currentUserID).OrderBy(m => m.Topic);
-            return View(resourceList.ToList());
-        }
-
         // GET: StudentResources/Create
         [Authorize(Roles = "Tutor, Professor")]
         public ActionResult Create()
@@ -110,7 +101,7 @@ namespace BeyondTheTutor.Controllers
             {
                 db.StudentResources.Add(studentResource);
                 db.SaveChanges();
-                return RedirectToAction("ResourceSuccess");
+                return RedirectToAction("ManageResources");
             }
 
             ViewBag.UserID = new SelectList(db.BTTUsers, "ID", "FirstName", studentResource.UserID);

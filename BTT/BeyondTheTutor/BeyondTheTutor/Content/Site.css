@@ -94,6 +94,7 @@ textarea {
     border-top: solid;
     border-top-width: 3px;
     border-top-color: #db0a29;
+    width: auto;
 }
 
 .ui.grid.FAQ {
@@ -124,7 +125,7 @@ textarea {
     background-color: #ffffff;
 }
 
-.ui.secondary.large.pointing.menu.background-color-white {
+.ui.stackable.secondary.large.pointing.menu.background-color-white {
     background-color: #ffffff;
 }
 
