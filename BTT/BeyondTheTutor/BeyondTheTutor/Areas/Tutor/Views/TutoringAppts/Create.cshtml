@@ -10,8 +10,8 @@
             {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @Html.Hidden("Status", (object)ViewBag.Status)
                 @Html.Hidden("TutorID", (object)ViewBag.CurrentTutorID)
+                @Html.Hidden("Status", (object)ViewBag.SetCompleted)
                 <form>
                     <img class="ui centered image" src="@Url.Content("~/Content/images/Tutoring_Red_Banner.png")" />
                     <div class="ui hidden divider"></div>

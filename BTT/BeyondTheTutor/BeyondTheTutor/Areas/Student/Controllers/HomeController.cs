@@ -35,7 +35,7 @@ namespace BeyondTheTutor.Areas.Student.Controllers
 
                     db.Entry(tutoringAppt).State = EntityState.Modified;
                 } 
-                else if (DateTime.Now > appt.EndTime.AddMinutes(30) && (appt.Status == "Requested"))
+                else if (DateTime.Now > appt.EndTime && (appt.Status == "Requested"))
                 {
                     var currentItem = appt.ID;
                     TutoringAppt tutoringAppt = db.TutoringAppts.Find(currentItem);

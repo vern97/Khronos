@@ -59,6 +59,7 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
         public ActionResult Create()
         {
             ViewBag.Current = "TutTutorAppCreate";
+            ViewBag.SetCompleted = "Completed";
             var students = db.BTTUsers.Where(a => a.ID == a.Student.ID).Select(a => new
             {
                 ID = a.ID,
@@ -81,6 +82,7 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,StartTime,EndTime,TypeOfMeeting,ClassID,Length,Status,Note,StudentID,TutorID")] TutoringAppt tutoringAppt, DateTime? Date)
         {
+            ViewBag.SetCompleted = "Completed";
             if (Date == null)
             {
                 Date = (DateTime.Now).AddDays(1);
@@ -160,7 +162,7 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
         {
             if (Date == null)
             {
-                Date = (DateTime.Now).AddDays(1);
+                Date = (DateTime.Now).AddDays(2);
             }
 
             var date = Date?.ToString("yyyy-MM-dd");
