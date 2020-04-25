@@ -19,7 +19,7 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
             var allTutoringAppts = db.TutoringAppts;
             foreach (var appt in allTutoringAppts)
             {
-                if (DateTime.Now > appt.EndTime.AddMinutes(30) && (appt.Status == "Approved"))
+                if (DateTime.Now > appt.EndTime && (appt.Status == "Approved"))
                 {
                     var currentItem = appt.ID;
                     TutoringAppt tutoringAppt = db.TutoringAppts.Find(currentItem);
@@ -28,7 +28,7 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
 
                     db.Entry(tutoringAppt).State = EntityState.Modified;
                 }
-                else if (DateTime.Now > appt.EndTime.AddMinutes(30) && (appt.Status == "Requested"))
+                else if (DateTime.Now > appt.EndTime && (appt.Status == "Requested"))
                 {
                     var currentItem = appt.ID;
                     TutoringAppt tutoringAppt = db.TutoringAppts.Find(currentItem);
