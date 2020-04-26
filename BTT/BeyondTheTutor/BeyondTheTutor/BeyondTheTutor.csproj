@@ -199,6 +199,7 @@
     <Compile Include="Areas\Tutor\Controllers\ZoomController.cs" />
     <Compile Include="Areas\Tutor\TutorAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Controllers\SurveyControllers\AnswersController.cs" />
     <Compile Include="Controllers\CumulativeGPAsController.cs" />
     <Compile Include="Controllers\FinalGradesController.cs" />
@@ -687,6 +688,7 @@
     <Content Include="Views\Answers\Create.cshtml" />
     <Content Include="Views\Calculators\Calculators.cshtml" />
     <Content Include="Views\Calculators\SavedResults.cshtml" />
+    <Content Include="Views\Students\StudentProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

@@ -3,7 +3,7 @@
 <body class="wou-grey-bg">
     <div class="ui one column stackable page grid">
         <div class="ui red message schedule"><i class="close icon"></i>Careful! You may edit resources below.</div>
-        <div class="ui form attached fluid segment">
+        <div class="ui form attached fluid segment resources">
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
@@ -12,7 +12,7 @@
                 @Html.HiddenFor(model => model.ID)
 
                 <form>
-                    <div class="three fields">
+                    <div class="four fields">
                         <div class="field">
                             <h4>Resource Topic</h4>
                             @Html.EditorFor(model => model.Topic, new { htmlAttributes = new { @class = "form-control" } })
@@ -28,9 +28,13 @@
                             @Html.EditorFor(model => model.DisplayText, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.DisplayText, "", new { @class = "text-danger" })
                         </div>
+                        <div class="field">
+                            <h4>Action</h4>
+                            <button class="fluid ui button schedule" style="margin-bottom: 3px;">Save Resource Edits</button>
+                            @Html.ActionLink("Go Back to List", "ManageResources", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResManage" ? "item red active" : "item fluid ui button schedule"), @style = "button" })
+                        </div>
                     </div>
-                    <button class="fluid ui button schedule" style="margin-bottom: 3px;">Save Schedule Edits</button>
-                    @Html.ActionLink("Go Back to List", "ManageResources", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResManage" ? "item red active" : "item fluid ui button schedule"), @style = "button" })
+                    
                 </form>
             }
         </div>

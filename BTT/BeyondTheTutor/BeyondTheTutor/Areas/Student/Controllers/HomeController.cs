@@ -55,5 +55,6 @@ namespace BeyondTheTutor.Areas.Student.Controllers
             ViewBag.Current = "StuHomeGuide";
             return View();
         }
+
     }
 }
