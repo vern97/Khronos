@@ -23,21 +23,26 @@
         @Html.ActionLink("Beyond the Tutor", "Index", "Home", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "HomeIndex" ? "item red active" : "item") })
         @Html.ActionLink("Student Portal", "Index", "Home", new { area = "student" }, htmlAttributes: new { @class = (ViewBag.Current == "StuHomeIndex" ? "item red active" : "item") })
         <div class="right menu">
+
+            <a class="item red" href="https://titanembeds.com/embed/678653017465290762?scrollbartheme=inset-3&theme=IceWyvern&username=Student" target="_blank">Live Chat</a>
+
             <div class="ui dropdown item">
-                Calculators
+                Student Resources
                 <i class="dropdown icon"></i>
                 <div class="menu">
+                    @Html.ActionLink("Search Resources", "Index", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResIndex" ? "item red active" : "item") })
+                    <div class="divider"></div>
                     @Html.ActionLink("Calculators", "Calculators", "Calculators", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "Calculators" ? "item red active" : "item") })
                     @Html.ActionLink("Saved Results", "SavedResults", "Calculators", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "SavedResults" ? "item red active" : "item") })
                 </div>
             </div>
-            @Html.ActionLink("Resources", "Index", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResIndex" ? "item red active" : "item") })
+
             <div class="ui dropdown item">
                 Tutoring
                 <i class="dropdown icon"></i>
                 <div class="menu">
                     @Html.ActionLink("Request Session", "Create", "TutoringAppts", new { area = "student" }, htmlAttributes: new { @class = (ViewBag.Current == "StuTutorAppCreate" ? "item red active" : "item") })
-                    @Html.ActionLink("View Tutoring Sessions", "Index", "TutoringAppts", new { area = "student" }, htmlAttributes: new { @class = (ViewBag.Current == "StuTutorAppIndex" ? "item red active" : "item") })
+                    @Html.ActionLink("View Sessions", "Index", "TutoringAppts", new { area = "student" }, htmlAttributes: new { @class = (ViewBag.Current == "StuTutorAppIndex" ? "item red active" : "item") })
                 </div>
             </div>
         </div>
@@ -49,6 +54,7 @@
                 <div class="menu">
                     <div style="text-align: left;">
                         @Html.ActionLink("Change Password", "ChangePassword", "Manage", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "ChangePassword" ? "item red active" : "item") })
+                        @Html.ActionLink("Manage Profile", "StudentProfile", "Students", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuProfile" ? "item red active" : "item") })
                         @Html.ActionLink("User Guide", "Guide", "Home", new { area = "student" }, htmlAttributes: new { @class = (ViewBag.Current == "StuHomeGuide" ? "item red active" : "item") })
                         @Html.AntiForgeryToken()
                         <a href="javascript:document.getElementById('logoutForm').submit()" class="item">Sign out</a>

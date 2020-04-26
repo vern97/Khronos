@@ -1,3 +1,3 @@
-﻿SELECT * FROM WeightedGrades
+﻿SELECT * FROM BTTUsers
 
-SELECT * FROM BTTUsers
+SELECT * FROM Students

@@ -9,9 +9,9 @@
     background-size: cover;
 }
 
-.library-bg {
-    background: url('../Content/images/Library_Photo.jpg');
-    background-size: cover;
+.home-bg {
+    background: url('../Content/images/tree_bark.png');
+    background-repeat: repeat;
 }
 
 .wou-grey-bg {
@@ -126,7 +126,7 @@ textarea {
 }
 
 .ui.stackable.secondary.large.pointing.menu.background-color-white {
-    background-color: #ffffff;
+    background-color: #FFFFFF;
 }
 
 .ui.container.footer {
@@ -189,7 +189,7 @@ textarea {
 }
 
 .ui.top.attached.center.aligned.icon.header {
-    background-color: #231f20;
+    background-color: #515050;
     border: groove;
     border-width: 2px;
     border-color: #db0a29;
@@ -245,6 +245,12 @@ textarea {
 #resources th {
     background-color: #808080;
     color: #FFFFFF;
+}
+
+.ui.form.attached.fluid.segment.resources {
+    border-top: solid;
+    border-top-width: 3px;
+    border-top-color: #db0a29;
 }
 
 /* Customizations for calculators */
