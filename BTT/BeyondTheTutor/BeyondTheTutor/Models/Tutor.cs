@@ -23,6 +23,8 @@ namespace BeyondTheTutor.Models
 
         [Required]
         [StringLength(9)]
+        //CUSTOM CHANGE PLEASE SAVE
+        [RegularExpression(@"^[vV][0-9]{8}$", ErrorMessage = "Your V number seems to be broken.")]
         public string VNumber { get; set; }
 
         public bool AdminApproved { get; set; } = false;
