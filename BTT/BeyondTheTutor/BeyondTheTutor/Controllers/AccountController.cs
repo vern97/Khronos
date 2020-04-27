@@ -63,7 +63,15 @@ namespace BeyondTheTutor.Controllers
         {
             ViewBag.Current = "AccountLogin";
             ViewBag.ReturnUrl = returnUrl;
-
+            if (TempData["msg"] != null)
+                if (TempData["msg"].ToString() == "error")
+                {
+                    ViewBag.error = "Something went wrong, please try again later.";
+                }
+                else if(TempData["msg"].ToString() == "good")
+                {
+                    ViewBag.msg = "Congrats! You've successfully changed your password! please proceed by logging in.";
+                }
 
             return View();
         }
@@ -416,7 +424,8 @@ namespace BeyondTheTutor.Controllers
         private async Task<string> SendEmailConfirmationTokenAsync(string userID, string subject, string name)
         {
             string code = await UserManager.GenerateEmailConfirmationTokenAsync(userID);
-            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = userID, code = code }, protocol: Request.Url.Scheme);
+            //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = userID, code = code }, protocol: Request.Url.Scheme);
+            var callbackUrl = Url.Action("Login", "Account", new { userId = userID, code = code }, protocol: Request.Url.Scheme);
             string bodyOfEmail = "Hello " + name + ", please follow <a href=\"" + callbackUrl + "\">this link</a> to confirm your <i>Beyond The Tutor</i> account";
 
             await UserManager.SendEmailAsync(userID, subject, bodyOfEmail);
@@ -437,6 +446,7 @@ namespace BeyondTheTutor.Controllers
 
         }
 
+        /*
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
@@ -447,7 +457,7 @@ namespace BeyondTheTutor.Controllers
             }
             var result = await UserManager.ConfirmEmailAsync(userId, code);
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
-        }
+        }*/
 
 
         //
@@ -458,7 +468,6 @@ namespace BeyondTheTutor.Controllers
             return View();
         }
 
-        //
         // POST: /Account/ForgotPassword
         [HttpPost]
         [AllowAnonymous]
@@ -467,31 +476,31 @@ namespace BeyondTheTutor.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 var user = await UserManager.FindByNameAsync(model.Email);
+
+                TempData["msg"] = model.Email.ToString() ;
+
+
                 if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
-                    return View("ForgotPasswordConfirmation");
+                    return RedirectToAction("Index", "Home");
                 }
 
-                // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+                // For more information on how to 
+                // enable account confirmation and password reset 
+                // please visit https://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                await UserManager.SendEmailAsync(user.Id, "Reset Password", "DO NOT PRESS IF THIS EMAIL ISN'T ASSOSIATED WITH BeyondTheTutor\nTo reset your password please click the following link: <a href=\"" + callbackUrl + "\">RESET PASSWORD</a>");
+
+                return RedirectToAction("Index", "Home");
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
-        }
-
-        //
-        // GET: /Account/ForgotPasswordConfirmation
-        [AllowAnonymous]
-        public ActionResult ForgotPasswordConfirmation()
-        {
-            return View();
         }
 
         //
@@ -502,7 +511,6 @@ namespace BeyondTheTutor.Controllers
             return code == null ? View("Error") : View();
         }
 
-        //
         // POST: /Account/ResetPassword
         [HttpPost]
         [AllowAnonymous]
@@ -513,21 +521,30 @@ namespace BeyondTheTutor.Controllers
             {
                 return View(model);
             }
+
+            TempData["msg"] = "good";
+
+            if (model.Code == null)
+            {
+                TempData["msg"] = "error";
+            }
+
             var user = await UserManager.FindByNameAsync(model.Email);
-            ViewBag.Current = "AdminClassesIndex";
             if (user == null)
             {
                 // Don't reveal that the user does not exist
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
+                return RedirectToAction("Login", "Account");
             }
             var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
             if (result.Succeeded)
             {
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
+                return RedirectToAction("Login", "Account");
             }
+
             AddErrors(result);
-            return View();
+            return RedirectToAction("Login", "Account");
         }
+
 
         //
         // GET: /Account/ResetPasswordConfirmation

@@ -279,7 +279,7 @@ namespace BeyondTheTutor
 
                 // Create user with this role
                 string userPWD = "student2020";// System.Web.Configuration.WebConfigurationManager.AppSettings["AdminPassword"];
-                string userEmail = "student2@beyondthetutor.com";// System.Web.Configuration.WebConfigurationManager.AppSettings["AdminEmail"];
+                string userEmail = "student2@BeyondTheTutor.com";// System.Web.Configuration.WebConfigurationManager.AppSettings["AdminEmail"];
                 var user = new ApplicationUser
                 {
                     UserName = userEmail,

@@ -1,6 +1,6 @@
 @using BeyondTheTutor.Models
 @model LoginViewModel
-<body class="wou-grey-bg">
+    <body class="wou-grey-bg">
         @if (ViewBag.error != null)
         {
             <script type="text/javascript">
@@ -8,6 +8,13 @@
             alert("@ViewBag.error");
         };
             </script>
+        }
+
+        @if (ViewBag.msg != null)
+        {
+            <div class="ui green message" style="text-align: center;">
+                <B>@ViewBag.msg</B>
+            </div>
         }
 
         <div class="one column row">
@@ -41,6 +48,9 @@
                                         <div class="inline field " style="font-size: large; color: #db0a29;">
                                             @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                                         </div>
+                                        <div>
+                                            @Html.ActionLink("Forgot Password?", "ForgotPassword")
+                                        </div>
                                     </div>
 
                                 </div>
@@ -57,7 +67,7 @@
                 </div>
             </div>
         </div>
-        <div class="ui container footer" >
+        <div class="ui container footer">
             <hr />
             <div class="ui vertical footer segment">
                 <div class="ui container">
