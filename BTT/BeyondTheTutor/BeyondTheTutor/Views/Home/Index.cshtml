@@ -18,6 +18,14 @@
             </div>
         }
 
+        @if(ViewBag.msg != null)
+        {
+            <div class="ui green message" style="text-align: center;">
+                <B>@ViewBag.msg</B>
+            </div>
+        }
+           
+
         @if (User.IsInRole("Tutor"))
         {
             <div id="tutor_requests">

@@ -31,6 +31,11 @@ namespace BeyondTheTutor.Controllers
 
             db.SaveChanges();
 
+            if (TempData["msg"] != null) // ref from Controllers/AccountController/ForgotPassword
+            {
+                ViewBag.msg = "An email will be sent to " + TempData["msg"].ToString() + " if it's assosiated with our system. Goodluck!";
+            }
+
             return View();
         }
 
@@ -94,5 +99,7 @@ namespace BeyondTheTutor.Controllers
 
             return Json(serviceAlerts, JsonRequestBehavior.AllowGet);
         }
+
+
     }
 }
