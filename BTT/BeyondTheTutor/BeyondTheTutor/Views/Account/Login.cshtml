@@ -48,6 +48,9 @@
                                         <div class="inline field " style="font-size: large; color: #db0a29;">
                                             @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                                         </div>
+                                        <div>
+                                            @Html.ActionLink("Forgot Password?", "ForgotPassword")
+                                        </div>
                                     </div>
 
                                 </div>
