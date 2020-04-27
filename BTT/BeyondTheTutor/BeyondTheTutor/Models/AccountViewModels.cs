@@ -9,6 +9,7 @@
     {
         [Required]
         [Display(Name = "Email")]
+        [EmailAddress]
         public string Email { get; set; }
     }
 
@@ -45,6 +46,9 @@
     {
         [Required]
         [Display(Name = "Email")]
+        [EmailAddress]
+        [RegularExpression(@"^[a - zA - Z0 - 9._ % +-] + ((@wou.edu) | (@mail.wou.edu))]$",
+            ErrorMessage = "Please make sure your email is related to Western Oregon University.")]
         public string Email { get; set; }
     }
 
@@ -52,8 +56,7 @@
     {
         [Required]
         [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [EmailAddress]public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -77,8 +80,10 @@
     public class StudentRegistraionViewModel
     {
         [Required]
-        [EmailAddress]
         [Display(Name = "Email")]
+        [EmailAddress]
+        [RegularExpression(@"^[a - zA - Z0 - 9._ % +-] + ((@wou.edu) | (@mail.wou.edu))]$",
+            ErrorMessage = "Please make sure your email is related to Western Oregon University.")]
         public string Email { get; set; }
 
         [Required]
@@ -116,8 +121,10 @@
     public class TutorRegistrationViewModel
     {
         [Required]
-        [EmailAddress]
         [Display(Name = "Email")]
+        [EmailAddress]
+        [RegularExpression(@"^[a - zA - Z0 - 9._ % +-] + ((@wou.edu) | (@mail.wou.edu))]$",
+            ErrorMessage = "Please make sure your email is related to Western Oregon University.")]
         public string Email { get; set; }
 
         [Required]
@@ -136,6 +143,7 @@
 
         [Required]
         [StringLength(9, MinimumLength = 9, ErrorMessage = "Please make sure you entered your V Number correctly.")]
+        [RegularExpression(@"^[vV][0-9]{8}$", ErrorMessage = "Your V number seems to be broken.")]
         public string VNumber { get; set; }
 
         [Required]
@@ -153,8 +161,10 @@
     public class ProfessorRegistrationViewModel
     {
         [Required]
-        [EmailAddress]
         [Display(Name = "Email")]
+        [EmailAddress]
+        [RegularExpression(@"^[a - zA - Z0 - 9._ % +-] + ((@wou.edu) | (@mail.wou.edu))]$",
+            ErrorMessage = "Please make sure your email is related to Western Oregon University.")]
         public string Email { get; set; }
 
         [Required]
@@ -182,8 +192,10 @@
     public class AdminRegistrationViewModel
     {
         [Required]
-        [EmailAddress]
         [Display(Name = "Email")]
+        [EmailAddress]
+        [RegularExpression(@"^[a - zA - Z0 - 9._ % +-] + ((@wou.edu) | (@mail.wou.edu))]$",
+            ErrorMessage = "Please make sure your email is related to Western Oregon University.")]
         public string Email { get; set; }
 
         [Required]
@@ -212,8 +224,10 @@
     public class ResetPasswordViewModel
     {
         [Required]
-        [EmailAddress]
         [Display(Name = "Email")]
+        [EmailAddress]
+        [RegularExpression(@"^[a - zA - Z0 - 9._ % +-] + ((@wou.edu) | (@mail.wou.edu))]$",
+            ErrorMessage = "Please make sure your email is related to Western Oregon University.")]
         public string Email { get; set; }
 
         [Required]
@@ -233,8 +247,10 @@
     public class ForgotPasswordViewModel
     {
         [Required]
-        [EmailAddress]
         [Display(Name = "Email")]
+        [EmailAddress]
+        [RegularExpression(@"^[a - zA - Z0 - 9._ % +-] + ((@wou.edu) | (@mail.wou.edu))]$",
+            ErrorMessage = "Please make sure your email is related to Western Oregon University.")]
         public string Email { get; set; }
     }
 
