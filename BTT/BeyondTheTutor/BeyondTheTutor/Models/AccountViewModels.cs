@@ -47,7 +47,7 @@
         [Required]
         [Display(Name = "Email")]
         [EmailAddress]
-        [RegularExpression(@"^[a - zA - Z0 - 9._ % +-] + ((@wou.edu) | (@mail.wou.edu))]$",
+        [RegularExpression(@"^[a-zA-Z0-9._%+-]+((@wou.edu)|(@mail.wou.edu))$",
             ErrorMessage = "Please make sure your email is related to Western Oregon University.")]
         public string Email { get; set; }
     }
@@ -83,7 +83,7 @@
         [Required]
         [Display(Name = "Email")]
         [EmailAddress]
-        [RegularExpression(@"^[a - zA - Z0 - 9._ % +-] + ((@wou.edu) | (@mail.wou.edu))]$",
+        [RegularExpression(@"^[a-zA-Z0-9._%+-]+((@wou.edu)|(@mail.wou.edu))$",
             ErrorMessage = "Please make sure your email is related to Western Oregon University.")]
         public string Email { get; set; }
 
@@ -124,7 +124,7 @@
         [Required]
         [Display(Name = "Email")]
         [EmailAddress]
-        [RegularExpression(@"^[a - zA - Z0 - 9._ % +-] + ((@wou.edu) | (@mail.wou.edu))]$",
+        [RegularExpression(@"^[a-zA-Z0-9._%+-]+((@wou.edu)|(@mail.wou.edu))$",
             ErrorMessage = "Please make sure your email is related to Western Oregon University.")]
         public string Email { get; set; }
 
@@ -164,7 +164,7 @@
         [Required]
         [Display(Name = "Email")]
         [EmailAddress]
-        [RegularExpression(@"^[a - zA - Z0 - 9._ % +-] + ((@wou.edu) | (@mail.wou.edu))]$",
+        [RegularExpression(@"^[a-zA-Z0-9._%+-]+((@wou.edu)|(@mail.wou.edu))$",
             ErrorMessage = "Please make sure your email is related to Western Oregon University.")]
         public string Email { get; set; }
 
@@ -195,7 +195,7 @@
         [Required]
         [Display(Name = "Email")]
         [EmailAddress]
-        [RegularExpression(@"^[a - zA - Z0 - 9._ % +-] + ((@wou.edu) | (@mail.wou.edu))]$",
+        [RegularExpression(@"^[a-zA-Z0-9._%+-]+((@wou.edu)|(@mail.wou.edu))$",
             ErrorMessage = "Please make sure your email is related to Western Oregon University.")]
         public string Email { get; set; }
 
@@ -227,7 +227,7 @@
         [Required]
         [Display(Name = "Email")]
         [EmailAddress]
-        [RegularExpression(@"^[a - zA - Z0 - 9._ % +-] + ((@wou.edu) | (@mail.wou.edu))]$",
+        [RegularExpression(@"^[a-zA-Z0-9._%+-]+((@wou.edu)|(@mail.wou.edu))$",
             ErrorMessage = "Please make sure your email is related to Western Oregon University.")]
         public string Email { get; set; }
 
@@ -250,7 +250,7 @@
         [Required]
         [Display(Name = "Email")]
         [EmailAddress]
-        [RegularExpression(@"^[a - zA - Z0 - 9._ % +-] + ((@wou.edu) | (@mail.wou.edu))]$",
+        [RegularExpression(@"^[a-zA-Z0-9._%+-]+((@wou.edu)|(@mail.wou.edu))$",
             ErrorMessage = "Please make sure your email is related to Western Oregon University.")]
         public string Email { get; set; }
     }
