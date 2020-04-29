@@ -468,7 +468,7 @@ namespace BeyondTheTutor.Controllers
             if (result.Succeeded)
             {
                 TempData["msg"] = "confirmSuc";
-            }
+            } else { TempData["msg"] = "confirmFail"; }
 
             return RedirectToAction("Login");
         }
