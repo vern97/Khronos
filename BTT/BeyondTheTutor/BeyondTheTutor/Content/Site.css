@@ -447,3 +447,7 @@ table#savedFinalGPA tr {
     height: 100%;
     width: 100%;
 }
+
+.ui.container.portal {
+    width: auto;
+}
