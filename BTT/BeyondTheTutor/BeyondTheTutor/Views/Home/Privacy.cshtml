@@ -67,21 +67,28 @@
         <div class="ui vertical footer segment">
             <div class="ui container">
                 <div class="ui stackable divided equal height stackable grid">
-                    <div class="three wide column">
-                        <h4 class="ui header">Resources</h4>
-                        <div class="ui link list">
-                            @Html.ActionLink("FAQ", "FAQ", "Home", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "HomeFAQ" ? "item red active" : "item") })
-                            @Html.ActionLink("Privacy Policy", "Privacy", "Home", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "HomePrivacy" ? "item red active" : "item") })
-                            <a class=@(ViewBag.Current == "HomePrivacy" ? "item red active" : "item") href="#">Contact Us</a>
+                    @if (Request.IsAuthenticated)
+                    {
+
+                    }
+                    else
+                    {
+                        <div class="three wide column">
+                            <h4 class="ui header">Resources</h4>
+                            <div class="ui link list">
+                                @Html.ActionLink("FAQ", "FAQ", "Home", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "HomeFAQ" ? "item red active" : "item") })
+                                @Html.ActionLink("Privacy Policy", "Privacy", "Home", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "HomePrivacy" ? "item red active" : "item") })
+                                <a class=@(ViewBag.Current == "HomePrivacy" ? "item red active" : "item") href="#">Contact Us</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="three wide column">
-                        <h4 class="ui header">Account Services</h4>
-                        <div class="ui link list">
-                            @Html.ActionLink("Login", "Login", "Account", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "AccountLogin" ? "item red active" : "item") })
-                            @Html.ActionLink("Register", "Register", "Account", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "AccountRegister" ? "item red active" : "item") })
+                        <div class="three wide column">
+                            <h4 class="ui header">Account Services</h4>
+                            <div class="ui link list">
+                                @Html.ActionLink("Login", "Login", "Account", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "AccountLogin" ? "item red active" : "item") })
+                                @Html.ActionLink("Register", "Register", "Account", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "AccountRegister" ? "item red active" : "item") })
+                            </div>
                         </div>
-                    </div>
+                    }
                     <div class="seven wide column">
                         <h4 class="ui header">Beyond the Tutor</h4>
                         <p>If you have any questions about the services offered by Beyond the Tutor, you can reach us <a href="#">here</a>.</p>
