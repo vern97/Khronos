@@ -4,135 +4,137 @@ string dayOfTheMonth = (DateTime.Now.Day).ToString();
 }
 
     <body class="wou-red-bg">
-        <h2 class="ui top attached center aligned icon header black" style="color:#231f20;">
-            <i class="user circle outline icon" style="color:#231f20;"></i>
-            Hello @ViewBag.User!
-        </h2>
-        <div class="ui internally divided padded grid grey">
-            <div class="row">
-                <div class="three wide column">
-                    @* Real-time alerts for requested tutoring requests - DO NOT DELETE *@
-                    <div class="ui container">
-                        <div id="tutor_requests">
+        <div class="ui container portal">
+            <h2 class="ui top attached center aligned icon header black" style="color:#231f20;">
+                <i class="user circle outline icon" style="color:#231f20;"></i>
+                Hello @ViewBag.User!
+            </h2>
+            <div class="ui internally divided padded grid grey">
+                <div class="row">
+                    <div class="three wide column">
+                        @* Real-time alerts for requested tutoring requests - DO NOT DELETE *@
+                        <div class="ui container">
+                            <div id="tutor_requests">
 
-                        </div>
-                    </div>
-                    @* Real-time alerts for requested tutoring requests - DO NOT DELETE *@
-                </div>
-                <div class="ten wide column">
-                    <a class="weatherwidget-io" href="https://forecast7.com/en/44d85n123d23/monmouth/?unit=us" data-label_1="Western Oregon University" data-label_2="WEATHER" data-font="Roboto Slab" data-icons="Climacons Animated" data-theme="metallic">Western Oregon University WEATHER</a>
-                </div>
-                <div class="three wide column">
-                    <div class="ui cards">
-                        <div class="card">
-                            <div class="content tutor">
-                                <div class="ui centered header"><a id="portal-headers">Digital Timesheet</a></div>
-                                <div class="meta">Hours Worked</div>
-                                <div class="description">
-                                    Under Construction
-                                </div>
                             </div>
                         </div>
+                        @* Real-time alerts for requested tutoring requests - DO NOT DELETE *@
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="three wide column">
-                    <div class="ui card portal">
-                        <div class="content">
-                            <div class="ui centered header"><a href="/Tutor/TutoringAppts" id="portal-headers">Tutoring Sessions</a></div>
-                        </div>
-                        <div class="content">
-                            <h4 class="ui sub header">For @ViewBag.User</h4>
-                            <div class="ui small feed">
-                                <div class="event">
-                                    <div class="content">
-                                        <div class="summary">
-                                            <div class="ui compact menu">
-                                                <a class="item">
-                                                    <i class="icon thumbs up"></i> Approved Sessions
-                                                    <div class="floating ui green label">@ViewBag.futureSessions</div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="event">
-                                    <div class="content">
-                                        <div class="summary">
-                                            <div class="ui compact menu">
-                                                <a class="item">
-                                                    <i class="icon check"></i> Sessions by Tutor
-                                                    <div class="floating ui green label">@ViewBag.allTutorSessions</div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="content">
-                            <h4 class="ui sub header">For All Tutors</h4>
-                            <div class="ui small feed">
-                                <div class="event">
-                                    <div class="content">
-                                        <div class="summary">
-                                            <div class="ui compact menu">
-                                                <a class="item">
-                                                    <i class="icon exclamation"></i> Requested Sessions
-                                                    @{
-                                                        if (ViewBag.requestedSessions == 0)
-                                                        {
-                                                            <div class="floating ui green label">@ViewBag.requestedSessions</div>
-                                                        }
-                                                        else
-                                                        {
-                                                            <div class="floating ui red label">@ViewBag.requestedSessions</div>
-                                                        }
-                                                    }
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="event">
-                                    <div class="content">
-                                        <div class="summary">
-                                            <div class="ui compact menu">
-                                                <a class="item">
-                                                    <i class="icon star outline"></i> Sessions by Department
-                                                    <div class="floating ui green label">@ViewBag.allDepartmentSessions</div>
-                                                </a>
-                                            </div>
-                                        </div>
+                    <div class="ten wide column">
+                        <a class="weatherwidget-io" href="https://forecast7.com/en/44d85n123d23/monmouth/?unit=us" data-label_1="Western Oregon University" data-label_2="WEATHER" data-font="Roboto Slab" data-icons="Climacons Animated" data-theme="metallic">Western Oregon University WEATHER</a>
+                    </div>
+                    <div class="three wide column">
+                        <div class="ui cards">
+                            <div class="card">
+                                <div class="content tutor">
+                                    <div class="ui centered header"><a id="portal-headers">Digital Timesheet</a></div>
+                                    <div class="meta">Hours Worked</div>
+                                    <div class="description">
+                                        Under Construction
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="ten wide column">
-                    <img class="ui fluid image" src="@Url.Content("~/Content/images/landscapes_images/" + dayOfTheMonth + ".jpg")" />
-                </div>
-                <div class="three wide column">
-                    <div class="ui card portal">
-                        <div class="content">
-                            <div class="ui centered header"><p id="portal-headers-black">Upcoming Schedules</p></div>
-                        </div>
-                        <div class="content">
-                            <div class="ui small feed">
-                                @foreach (var item in Model)
-                                {
+                <div class="row">
+                    <div class="three wide column">
+                        <div class="ui card portal">
+                            <div class="content">
+                                <div class="ui centered header"><a href="/Tutor/TutoringAppts" id="portal-headers">Tutoring Sessions</a></div>
+                            </div>
+                            <div class="content">
+                                <h4 class="ui sub header">For @ViewBag.User</h4>
+                                <div class="ui small feed">
                                     <div class="event">
                                         <div class="content">
                                             <div class="summary">
-                                                <div class="item">
-                                                    <div class="content">
-                                                        <div class="ui list">
-                                                            <div class="item">
-                                                                <div class="content">
-                                                                    <p>@item.StartTime.DayOfWeek, @item.StartTime.ToString("MM-dd-yyyy")</p>
-                                                                    <div class="description">From @item.StartTime.ToString("hh:mm tt") to @item.EndTime.ToString("hh:mm tt")</div>
+                                                <div class="ui compact menu">
+                                                    <a class="item">
+                                                        <i class="icon thumbs up"></i> Approved Sessions
+                                                        <div class="floating ui green label">@ViewBag.futureSessions</div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="event">
+                                        <div class="content">
+                                            <div class="summary">
+                                                <div class="ui compact menu">
+                                                    <a class="item">
+                                                        <i class="icon check"></i> Sessions by Tutor
+                                                        <div class="floating ui green label">@ViewBag.allTutorSessions</div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <h4 class="ui sub header">For All Tutors</h4>
+                                <div class="ui small feed">
+                                    <div class="event">
+                                        <div class="content">
+                                            <div class="summary">
+                                                <div class="ui compact menu">
+                                                    <a class="item">
+                                                        <i class="icon exclamation"></i> Requested Sessions
+                                                        @{
+                                                            if (ViewBag.requestedSessions == 0)
+                                                            {
+                                                                <div class="floating ui green label">@ViewBag.requestedSessions</div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="floating ui red label">@ViewBag.requestedSessions</div>
+                                                            }
+                                                        }
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="event">
+                                        <div class="content">
+                                            <div class="summary">
+                                                <div class="ui compact menu">
+                                                    <a class="item">
+                                                        <i class="icon star outline"></i> Sessions by Department
+                                                        <div class="floating ui green label">@ViewBag.allDepartmentSessions</div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ten wide column">
+                        <img class="ui fluid image" src="@Url.Content("~/Content/images/landscapes_images/" + dayOfTheMonth + ".jpg")" />
+                    </div>
+                    <div class="three wide column">
+                        <div class="ui card portal">
+                            <div class="content">
+                                <div class="ui centered header"><p id="portal-headers-black">Upcoming Schedules</p></div>
+                            </div>
+                            <div class="content">
+                                <div class="ui small feed">
+                                    @foreach (var item in Model)
+                                    {
+                                        <div class="event">
+                                            <div class="content">
+                                                <div class="summary">
+                                                    <div class="item">
+                                                        <div class="content">
+                                                            <div class="ui list">
+                                                                <div class="item">
+                                                                    <div class="content">
+                                                                        <p>@item.StartTime.DayOfWeek, @item.StartTime.ToString("MM-dd-yyyy")</p>
+                                                                        <div class="description">From @item.StartTime.ToString("hh:mm tt") to @item.EndTime.ToString("hh:mm tt")</div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -140,90 +142,90 @@ string dayOfTheMonth = (DateTime.Now.Day).ToString();
                                                 </div>
                                             </div>
                                         </div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="extra content">
+                                <div class="fluid ui buttons">
+                                    <a href="/Tutor/TutorSchedules/Create" button class="ui button">add</a>
+                                    <div class="or"></div>
+                                    <a href="/Tutor/TutorSchedules/UpdateSchedule" button class="ui grey button">manage</a>
+                                    <div class="or"></div>
+                                    <a href="/Tutor/TutoringServiceAlerts/Create" button class="ui red button">alert</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="three wide column">
+                        <div class="ui cards">
+                            <div class="card">
+                                <div class="content tutor">
+                                    <div class="ui centered header"><p id="portal-headers-black">Users Features Guide</p></div>
+                                    <div class="meta">Tutor</div>
+                                    <div class="description">
+                                        Lost? Our <a id="portal-headers" href="/Tutor/Home/Guide">guide</a> can help.
                                     </div>
-                                }
-                            </div>
-                        </div>
-                        <div class="extra content">
-                            <div class="fluid ui buttons">
-                                <a href="/Tutor/TutorSchedules/Create" button class="ui button">add</a>
-                                <div class="or"></div>
-                                <a href="/Tutor/TutorSchedules/UpdateSchedule" button class="ui grey button">manage</a>
-                                <div class="or"></div>
-                                <a href="/Tutor/TutoringServiceAlerts/Create" button class="ui red button">alert</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="three wide column">
-                    <div class="ui cards">
-                        <div class="card">
-                            <div class="content tutor">
-                                <div class="ui centered header"><p id="portal-headers-black">Users Features Guide</p></div>
-                                <div class="meta">Tutor</div>
-                                <div class="description">
-                                    Lost? Our <a id="portal-headers" href="/Tutor/Home/Guide">guide</a> can help.
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="ten wide column">
-                    <div class="ui four statistics">
-                        <div class="statistic">
-                            <div class="value">
-                                @ViewBag.resources
+                    <div class="ten wide column">
+                        <div class="ui four statistics">
+                            <div class="statistic">
+                                <div class="value">
+                                    @ViewBag.resources
+                                </div>
+                                <div class="label">
+                                    Resources
+                                </div>
                             </div>
-                            <div class="label">
-                                Resources
+                            <div class="statistic">
+                                <div class="value">
+                                    <i class="check icon"></i> @ViewBag.completeSessions
+                                </div>
+                                <div class="label">
+                                    Completed Sessions
+                                </div>
                             </div>
-                        </div>
-                        <div class="statistic">
-                            <div class="value">
-                                <i class="check icon"></i> @ViewBag.completeSessions
+                            <div class="statistic">
+                                <div class="value">
+                                    @ViewBag.futureSessions
+                                </div>
+                                <div class="label">
+                                    Upcoming Sessions
+                                </div>
                             </div>
-                            <div class="label">
-                                Completed Sessions
-                            </div>
-                        </div>
-                        <div class="statistic">
-                            <div class="value">
-                                @ViewBag.futureSessions
-                            </div>
-                            <div class="label">
-                                Upcoming Sessions
-                            </div>
-                        </div>
-                        <div class="statistic">
-                            <div class="value">
-                                @ViewBag.totalGrades
-                            </div>
-                            <div class="label">
-                                Saved Grades
+                            <div class="statistic">
+                                <div class="value">
+                                    @ViewBag.totalGrades
+                                </div>
+                                <div class="label">
+                                    Saved Grades
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="three wide column">
-                    <div class="ui cards">
-                        <div class="card">
-                            <div class="content">
-                                <div class="ui centered header"><p id="portal-headers-black">Questions or Concerns?</p></div>
-                                <div class="meta">Contact</div>
-                                <div class="description">
-                                    <a href="mailto: beyondthetutor@gmail.com" id="portal-headers">beyondthetutor&commat;gmail.com</a>
+                    <div class="three wide column">
+                        <div class="ui cards">
+                            <div class="card">
+                                <div class="content">
+                                    <div class="ui centered header"><p id="portal-headers-black">Questions or Concerns?</p></div>
+                                    <div class="meta">Contact</div>
+                                    <div class="description">
+                                        <a href="mailto: beyondthetutor@gmail.com" id="portal-headers">beyondthetutor&commat;gmail.com</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <center>
+                <span style="color: #808080; font-size: 12px;"><b>&copy; 2020  Beyond The Tutor, Khronos |</b> <a href="/Home/Privacy">Privacy Notice</a></span>
+            </center>
         </div>
-        <center>
-            <span style="color: #808080; font-size: 12px;"><b>&copy; 2020  Beyond The Tutor, Khronos |</b> <a href="/Home/Privacy">Privacy Notice</a></span>
-        </center>
     </body>
 
 @section scripts
