@@ -22,6 +22,14 @@
     background-color: rgb(167,169,172);
 }
 
+.wou-red-bg {
+    background-color: #5f0707;
+}
+
+.wou-dark-bg {
+    background-color: #515050;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -385,4 +393,57 @@ table#savedFinalGPA tr {
     border: ridge;
     border-width: 1px;
     border-color: rgb(167,169,172);
+}
+
+/* Customization for tutor and student home page 
+   RED: #db0a29
+   BLACK: #231f20
+*/
+
+.ui.top.attached.center.aligned.icon.header.black {
+    background-color: rgb(167,169,172);
+    border-width: 3px;
+    border: groove;
+    border-top-color: #231f20;
+    border-left-color: #231f20;
+    border-right-color: #ffffff;
+    border-bottom-color: #db0a29;
+    height: 60%;
+}
+
+.ui.internally.divided.padded.grid.grey {
+    background-color: rgb(196,198,200);
+    border-width: 3px;
+    border-left: groove;
+    border-left-color: #231f20;
+    border-right: groove;
+    border-right-color: #ffffff;
+    border-bottom: groove;
+    border-bottom-color: #ffffff;
+}
+
+#portal-headers {
+    color: #231f20;
+    font-weight: 600;
+}
+
+#portal-headers-alert {
+    color: #db0a29;
+}
+
+#portal-headers-black {
+    color: #231f20;
+}
+
+#portal-headers:hover {
+    color: #db0a29;
+}
+
+.user.circle.icon {
+    color: #231f20;
+}
+
+.ui.card.portal {
+    height: 100%;
+    width: 100%;
 }
