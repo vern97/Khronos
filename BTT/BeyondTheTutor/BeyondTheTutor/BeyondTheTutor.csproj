@@ -401,10 +401,11 @@
     <Content Include="Content\images\admin_logo_black_2.jpg" />
     <Content Include="Content\images\BeyondtheTutor_Banner4.png" />
     <Content Include="Content\images\BeyondtheTutor_Logo.png" />
-    <Content Include="Content\images\Campus.jpg" />
+    <Content Include="Content\images\books_stacked.png" />
     <Content Include="Content\images\campus_map_1.jpg" />
     <Content Include="Content\images\campus_map_2.jpg" />
     <Content Include="Content\images\daniel.jpg" />
+    <Content Include="Content\images\elyse.png" />
     <Content Include="Content\images\helen.jpg" />
     <Content Include="Content\images\Home_Page_Banner.png" />
     <Content Include="Content\images\KhronosLogo.png" />
@@ -441,7 +442,6 @@
     <Content Include="Content\images\landscapes_images\9.jpg" />
     <Content Include="Content\images\Logo_Stacked.jpg" />
     <Content Include="Content\images\resize_welcome_banner.png" />
-    <Content Include="Content\images\Resources_Owl_Logo.png" />
     <Content Include="Content\images\stevie.jpg" />
     <Content Include="Content\images\TutoringLogo.png" />
     <Content Include="Content\images\Tutoring_Red_Banner.png" />

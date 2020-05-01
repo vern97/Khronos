@@ -4,16 +4,6 @@
 }
 
 /* Backgrounds for web pages*/
-.campus-bg {
-    background: url('../Content/images/Campus.jpg');
-    background-size: cover;
-}
-
-.home-bg {
-    background: url('../Content/images/tree_bark.png');
-    background-repeat: repeat;
-}
-
 .wou-grey-bg {
     background-color: rgb(196,198,200);
 }
@@ -26,8 +16,8 @@
     background-color: #5f0707;
 }
 
-.wou-dark-bg {
-    background-color: #515050;
+.wou-blue-bg {
+    background-color: lightblue;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -404,10 +394,10 @@ table#savedFinalGPA tr {
     background-color: rgb(167,169,172);
     border-width: 3px;
     border: groove;
-    border-top-color: #231f20;
-    border-left-color: #231f20;
+    border-top-color: teal;
+    border-left-color: teal;
     border-right-color: #ffffff;
-    border-bottom-color: #db0a29;
+    border-bottom-color: teal;
     height: 60%;
 }
 
@@ -415,7 +405,7 @@ table#savedFinalGPA tr {
     background-color: rgb(196,198,200);
     border-width: 3px;
     border-left: groove;
-    border-left-color: #231f20;
+    border-left-color: teal;
     border-right: groove;
     border-right-color: #ffffff;
     border-bottom: groove;
@@ -450,4 +440,9 @@ table#savedFinalGPA tr {
 
 .ui.container.portal {
     width: auto;
+}
+
+.ui.floating.message.portal {
+    height: 100%;
+    width: 100%;
 }

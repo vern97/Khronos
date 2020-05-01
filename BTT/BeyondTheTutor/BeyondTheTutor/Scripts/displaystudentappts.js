@@ -44,36 +44,24 @@
             }
         }
 
-        if (numApptsUnderReview > 0) {
-            $('#student_requests').append(`
-                <div class="ui top attached blue block header" style="width:800px;">
-                    You have ${numApptsUnderReview} tutoring requests <i>pending</i>
-                </div>
-            `)
-        }
-
-        if (numApptsAccepted > 0) {
-            $('#student_requests').append(`
+        $('#student_requests').append(`
+            <div class="ui blue message">
+                <div class="center aligned content">
+                    <div class="ui medium center aligned header">
+                        Tutoring Overview
+                    </div>
+                    <div class="ui top attached blue block header">
+                        You have ${numApptsUnderReview} requests <i>pending</i>
+                    </div>
                     <div class="ui attached green block header">
-                        You have ${numApptsAccepted} upcoming tutoring requests
+                        You have ${numApptsAccepted} requests <i>approved</i>
                     </div>
-            `)
-        }
+                        <div class="ui attached red block header">
+                        You have ${numApptsCanceled} requests <i>cancelled</i>
+                    </div>
+                </div>
+            </div>
+        `)
 
-        if (numApptsCanceled > 0) {
-            $('#student_requests').append(`
-                    <div class="ui attached red block header">
-                        You have ${numApptsCanceled} tutoring requests marked as <i>canceled</i>
-                    </div>
-            `)
-        }
-
-        if (numApptsAccepted > 0 || numApptsCanceled > 0) {
-            $('#student_requests').append(`
-                    <div class="ui attached segment">
-                        Please check the status for any canceled or approved requests <a href="/Student/TutoringAppts"><u>here</u></a>
-                    </div>
-            `)
-        }
     }
 });

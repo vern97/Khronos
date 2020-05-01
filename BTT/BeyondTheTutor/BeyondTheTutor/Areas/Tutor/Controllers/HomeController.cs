@@ -20,7 +20,7 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
             ViewBag.Current = "TutorHomeIndex";
 
             // --------------BEGIN section for custom portal display--------------
-            // get tutor name so display in portal
+            // get tutor name to display in portal
             var userID = User.Identity.GetUserId();
             var currentUser = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault();
             ViewBag.User = currentUser.FirstName;

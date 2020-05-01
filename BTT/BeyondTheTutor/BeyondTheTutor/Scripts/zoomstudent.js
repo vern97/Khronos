@@ -12,10 +12,35 @@
 
     function retrieve_upcoming_appt(data) {
         $('#display_zoom_alert').empty()
+        if (data.length == 0) {
+            $('#display_zoom_alert').append(`
+                    <div class="ui blue message">
+                        <div class="center aligned content">
+                            <div class="ui medium center aligned header">
+                                <i class="comments outline icon"></i>
+                                Online Tutoring Appointments
+                            </div>
+                            <div class="ui center aligned segment" id="zoom_alert_info">
+                            
+                            </div>
+                        </div>
+                    </div>
+                `)
+            $('#zoom_alert_info').append(`
+                    <div class="ui small center aligned header">
+                        You have no scheduled Zoom appointments
+                    </div>
+                    Get homework help today
+                    <div style="padding-top:15px;">
+                        <a class="teal fluid ui button" href="/Student/TutoringAppts/Create">Request Tutoring</a>
+                    </div>           
+                `)
+        }
+
         for (var i = 0; i < data.length; i++){
             if (data[i].HasStarted == true && data[i].Upcoming == true) {
                 $('#display_zoom_alert').append(`
-                    <div class="ui green message">
+                    <div class="ui blue message">
                         <div class="center aligned content">
                             <div class="ui medium center aligned header">
                                 <i class="bullhorn icon"></i>
@@ -33,10 +58,10 @@
                     </div>
                     Your appointment for ${data[i].Class} will be with ${data[i].AssignedTutor} from ${data[i].StartTime} to ${data[i].EndTime} for ${data[i].Length}
                     <div style="padding-top:15px;">
-                        <a class="fluid positive ui button" href="https://zoom.us/j/8623070324">Join Meeting</a>
+                        <a class="teal fluid ui button" href="https://zoom.us/j/8623070324">Join Meeting</a>
                     </div>
                 `)
-            } else if (data[i].HasStarted == false && data[i].Upcoming == true){
+            } else if (data[i].HasStarted == false && data[i].Upcoming == true) {
                 $('#display_zoom_alert').append(`
                     <div class="ui blue message">
                         <div class="center aligned content">
@@ -56,10 +81,34 @@
                     </div>
                     Your appointment for ${data[i].Class} will be with ${data[i].AssignedTutor} from ${data[i].StartTime} to ${data[i].EndTime} for ${data[i].Length}
                     <div style="padding-top:15px;">
-                        <a class="fluid positive ui disabled button">Join Meeting</a>
+                        <a class="blue fluid ui disabled button">Join Meeting</a>
                     </div>
                     
                 `)
+            } else {
+                $('#display_zoom_alert').append(`
+                    <div class="ui blue message">
+                        <div class="center aligned content">
+                            <div class="ui medium center aligned header">
+                                <i class="comments outline icon"></i>
+                                Online Tutoring Appointments
+                            </div>
+                            <div class="ui center aligned segment" id="zoom_alert_info">
+                            
+                            </div>
+                        </div>
+                    </div>
+                `)
+                $('#zoom_alert_info').append(`
+                    <div class="ui small center aligned header">
+                        You have no scheduled Zoom appointments
+                    </div>
+                    Get homework help today
+                    <div style="padding-top:15px;">
+                        <a class="teal fluid ui button" href="/Student/TutoringAppts/Create">Request Tutoring</a>
+                    </div>           
+                `)
+
             }
             
         }
