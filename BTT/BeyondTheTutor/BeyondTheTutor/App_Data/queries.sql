@@ -1,3 +1,4 @@
-﻿SELECT * FROM BTTUsers
+﻿SELECT * FROM StudentResources
 
-SELECT * FROM Students
+SELECT * FROM BTTUsers
+

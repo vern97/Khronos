@@ -63,14 +63,24 @@ namespace BeyondTheTutor.Controllers
         {
             ViewBag.Current = "AccountLogin";
             ViewBag.ReturnUrl = returnUrl;
+
             if (TempData["msg"] != null)
-                if (TempData["msg"].ToString() == "error")
+                switch (TempData["msg"].ToString()) // resetFail and Suc ref. from task: ResetPassword; and confirmSuc & Fail from ConfirmEmail.
                 {
-                    ViewBag.error = "Something went wrong, please try again later.";
-                }
-                else if(TempData["msg"].ToString() == "good")
-                {
-                    ViewBag.msg = "Congrats! You've successfully changed your password! please proceed by logging in.";
+                    case "resetFail":
+                        ViewBag.error = "Something went wrong, please try again later.";
+                        break;
+                    case "resetSuc":
+                        ViewBag.msg = "Congrats! You've successfully changed your password! Please proceed by logging in.";
+                        break;
+                    case "confirmFail":
+                        ViewBag.error = "Oops, something went wrong. Please try again later.";
+                        break;
+                    case "confirmSuc":
+                        ViewBag.msg = "Congrats! You've successfully confirmed your email. Please proceed by logging in.";
+                        break;
+                    default:
+                        break;
                 }
 
             return View();
@@ -424,10 +434,8 @@ namespace BeyondTheTutor.Controllers
         private async Task<string> SendEmailConfirmationTokenAsync(string userID, string subject, string name)
         {
             string code = await UserManager.GenerateEmailConfirmationTokenAsync(userID);
-            //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = userID, code = code }, protocol: Request.Url.Scheme);
-            var callbackUrl = Url.Action("Login", "Account", new { userId = userID, code = code }, protocol: Request.Url.Scheme);
+            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = userID, code = code }, protocol: Request.Url.Scheme);
             string bodyOfEmail = "Hello " + name + ", please follow <a href=\"" + callbackUrl + "\">this link</a> to confirm your <i>Beyond The Tutor</i> account";
-
             await UserManager.SendEmailAsync(userID, subject, bodyOfEmail);
 
             return callbackUrl;
@@ -446,18 +454,24 @@ namespace BeyondTheTutor.Controllers
 
         }
 
-        /*
+        
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
             if (userId == null || code == null)
             {
-                return View("Error");
+                TempData["msg"] = "confirmFail";
+                return RedirectToAction("Login");
             }
             var result = await UserManager.ConfirmEmailAsync(userId, code);
-            return View(result.Succeeded ? "ConfirmEmail" : "Error");
-        }*/
+            if (result.Succeeded)
+            {
+                TempData["msg"] = "confirmSuc";
+            } else { TempData["msg"] = "confirmFail"; }
+
+            return RedirectToAction("Login");
+        }
 
 
         //
@@ -522,12 +536,7 @@ namespace BeyondTheTutor.Controllers
                 return View(model);
             }
 
-            TempData["msg"] = "good";
-
-            if (model.Code == null)
-            {
-                TempData["msg"] = "error";
-            }
+            var z = model.Code != null ? TempData["msg"] = "resetSuc" : TempData["msg"] = "resetFail"; // goes to Login with TempData stating the result
 
             var user = await UserManager.FindByNameAsync(model.Email);
             if (user == null)
