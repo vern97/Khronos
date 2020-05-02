@@ -386,3 +386,7 @@ table#savedFinalGPA tr {
     border-width: 1px;
     border-color: rgb(167,169,172);
 }
+
+tr#noShow {
+    background-color: #e60000;
+}
