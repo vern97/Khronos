@@ -4,7 +4,7 @@
     <div class="ui one column centered padded grid">
         <div class="ui centered vertical segment">
 
-            <div class="ui top attached tabular large menu" style="justify-content:center;">
+            <div class="ui attached tabular large menu" style="justify-content:center;">
                 <a class="active item red" data-tab="BacklogButton"><b>Tutor Backlog</b></a>
                 <a class="item red" data-tab="RequestedButton"><b>Requested</b> </a>
                 <a class="item red" data-tab="ApprovedButton"><b>Approved</b> </a>
@@ -19,7 +19,9 @@
             <div class="ui bottom attached active tab segment" data-tab="BacklogButton">
                 @if (ViewBag.AnyRequested == false && ViewBag.AnyApproved == false)
                 {
-                    <p><b>There seems to be no requests to view at this time</b></p>
+                    <div class="ui red centered segment">
+                        <p><b>There seems to be no requests to view at this time</b></p>
+                    </div>
                 }
                 else
                 {
@@ -83,7 +85,7 @@
                     {
                         <div class="ui red centered segment">
                             <div class="ui horizontal divider">
-                                <h3 class="ui centered header">Accepted Requests</h3>
+                                <h3 class="ui centered header">Approved Requests</h3>
                             </div>
                             <table class="ui center aligned striped table">
                                 <thead>
@@ -195,7 +197,9 @@
                 }
                 else
                 {
-                    <p><b>There seems to be no requests to view at this time</b></p>
+                    <div class="ui red centered segment">
+                        <p><b>There seems to be no requests to view at this time</b></p>
+                    </div>
                 }
             </div>
 
@@ -257,7 +261,9 @@
                 }
                 else
                 {
-                    <p><b>There seems to be no requests to view at this time</b></p>
+                    <div class="ui red centered segment">
+                        <p><b>There seems to be no requests to view at this time</b></p>
+                    </div>
                 }
             </div>
 
@@ -319,7 +325,9 @@
                 }
                 else
                 {
-                    <p><b>There seems to be no requests to view at this time</b></p>
+                    <div class="ui red centered segment">
+                        <p><b>There seems to be no requests to view at this time</b></p>
+                    </div>
                 }
             </div>
 
@@ -381,7 +389,9 @@
                 }
                 else
                 {
-                    <p><b>There seems to be no requests to view at this time</b></p>
+                    <div class="ui red centered segment">
+                        <p><b>There seems to be no requests to view at this time</b></p>
+                    </div>
                 }
             </div>
 
@@ -443,7 +453,9 @@
                 }
                 else
                 {
-                    <p><b>There seems to be no requests to view at this time</b></p>
+                    <div class="ui red centered segment">
+                        <p><b>There seems to be no requests to view at this time</b></p>
+                    </div>
                 }
             </div>
 
@@ -505,7 +517,9 @@
                 }
                 else
                 {
-                    <p><b>There seems to be no requests to view at this time</b></p>
+                    <div class="ui red centered segment">
+                        <p><b>There seems to be no requests to view at this time</b></p>
+                    </div>
                 }
             </div>
 
@@ -545,20 +559,40 @@
                                     }
                                     if (item.TutorID == ViewBag.TutorID)
                                     {
-                                        <tr>
-                                            <td>@Html.DisplayFor(modelItem => item.Class.Name)</td>
-                                            <td>@Html.DisplayFor(modelItem => dateItem)</td>
-                                            <td>@Html.DisplayFor(modelItem => startTimeItem)</td>
-                                            <td>@Html.DisplayFor(modelItem => endTimeItem)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.Length)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.TypeOfMeeting)</td>
-                                            <td>@Html.DisplayFor(modelItem => requestorItem)</td>
-                                            <td>@Html.DisplayFor(modelItem => assignedTutorItem)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.Status)</td>
-                                            <td>
-                                                @Html.ActionLink("Update Request", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "ui basic blue button" })
-                                            </td>
-                                        </tr>
+                                        if (item.Status == "No Show")
+                                        {
+                                            <tr id="noShow">
+                                                <td>@Html.DisplayFor(modelItem => item.Class.Name)</td>
+                                                <td>@Html.DisplayFor(modelItem => dateItem)</td>
+                                                <td>@Html.DisplayFor(modelItem => startTimeItem)</td>
+                                                <td>@Html.DisplayFor(modelItem => endTimeItem)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.Length)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.TypeOfMeeting)</td>
+                                                <td>@Html.DisplayFor(modelItem => requestorItem)</td>
+                                                <td>@Html.DisplayFor(modelItem => assignedTutorItem)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                                                <td>
+                                                    @Html.ActionLink("Update Request", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "ui basic black button" })
+                                                </td>
+                                            </tr>
+                                        }
+                                        else
+                                        {
+                                            <tr>
+                                                <td>@Html.DisplayFor(modelItem => item.Class.Name)</td>
+                                                <td>@Html.DisplayFor(modelItem => dateItem)</td>
+                                                <td>@Html.DisplayFor(modelItem => startTimeItem)</td>
+                                                <td>@Html.DisplayFor(modelItem => endTimeItem)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.Length)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.TypeOfMeeting)</td>
+                                                <td>@Html.DisplayFor(modelItem => requestorItem)</td>
+                                                <td>@Html.DisplayFor(modelItem => assignedTutorItem)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                                                <td>
+                                                    @Html.ActionLink("Update Request", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "ui basic blue button" })
+                                                </td>
+                                            </tr>
+                                        }
                                     }
                                 }
                             </tbody>
@@ -567,7 +601,9 @@
                 }
                 else
                 {
-                    <p><b>There seems to be no requests to view at this time</b></p>
+                    <div class="ui red centered segment">
+                        <p><b>There seems to be no requests to view at this time</b></p>
+                    </div>
                 }
             </div>
 
@@ -605,20 +641,41 @@
                                     {
                                         assignedTutorItem = item.Tutor.BTTUser.FirstName + " " + item.Tutor.BTTUser.LastName;
                                     }
-                                    <tr>
-                                        <td>@Html.DisplayFor(modelItem => item.Class.Name)</td>
-                                        <td>@Html.DisplayFor(modelItem => dateItem)</td>
-                                        <td>@Html.DisplayFor(modelItem => startTimeItem)</td>
-                                        <td>@Html.DisplayFor(modelItem => endTimeItem)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.Length)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.TypeOfMeeting)</td>
-                                        <td>@Html.DisplayFor(modelItem => requestorItem)</td>
-                                        <td>@Html.DisplayFor(modelItem => assignedTutorItem)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.Status)</td>
-                                        <td>
-                                            @Html.ActionLink("Update Request", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "ui basic blue button" })
-                                        </td>
-                                    </tr>
+                                    if (item.Status == "No Show")
+                                    {
+                                        <tr id="noShow">
+                                            <td>@Html.DisplayFor(modelItem => item.Class.Name)</td>
+                                            <td>@Html.DisplayFor(modelItem => dateItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => startTimeItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => endTimeItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Length)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.TypeOfMeeting)</td>
+                                            <td>@Html.DisplayFor(modelItem => requestorItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => assignedTutorItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                                            <td>
+                                                @Html.ActionLink("Update Request", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "ui basic black button" })
+                                            </td>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td>@Html.DisplayFor(modelItem => item.Class.Name)</td>
+                                            <td>@Html.DisplayFor(modelItem => dateItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => startTimeItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => endTimeItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Length)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.TypeOfMeeting)</td>
+                                            <td>@Html.DisplayFor(modelItem => requestorItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => assignedTutorItem)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                                            <td>
+                                                @Html.ActionLink("Update Request", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "ui basic blue button" })
+                                            </td>
+                                        </tr>
+                                    }
+
                                 }
                             </tbody>
                         </table>
@@ -626,7 +683,9 @@
                 }
                 else
                 {
-                    <p><b>There seems to be no requests to view at this time</b></p>
+                    <div class="ui red centered segment">
+                        <p><b>There seems to be no requests to view at this time</b></p>
+                    </div>
                 }
             </div>
         </div>

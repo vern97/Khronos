@@ -384,7 +384,6 @@ table#savedFinalGPA tr {
     border-width: 1px;
     border-color: rgb(167,169,172);
 }
-
 /* Customization for tutor and student home page 
    RED: #db0a29
    BLACK: #231f20
@@ -445,4 +444,7 @@ table#savedFinalGPA tr {
 .ui.floating.message.portal {
     height: 100%;
     width: 100%;
+
+tr#noShow {
+    background-color: #e60000;
 }
