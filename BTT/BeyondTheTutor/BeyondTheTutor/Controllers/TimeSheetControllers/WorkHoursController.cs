@@ -41,7 +41,7 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
         // GET: WorkHours/Create
         public ActionResult Create()
         {
-            ViewBag.TimeSheetID = new SelectList(db.Days, "ID", "ID");
+            ViewBag.DayID = new SelectList(db.Days, "ID", "ID");
             return View();
         }
 
@@ -50,16 +50,19 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,ClockedIn,ClockedOut,TimeSheetID")] WorkHour workHour)
+        public ActionResult Create([Bind(Include = "ID,ClockedIn,ClockedOut,DayID")] WorkHour workHour)
         {
             if (ModelState.IsValid)
             {
                 db.WorkHours.Add(workHour);
+                Day d = db.Days.Find(workHour.DayID);
+                d.RegularHrs += Math.Round((decimal)(workHour.ClockedOut - workHour.ClockedIn).TotalHours, 1);
+                db.Entry(d).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.TimeSheetID = new SelectList(db.Days, "ID", "ID", workHour.TimeSheetID);
+            ViewBag.DayID = new SelectList(db.Days, "ID", "ID", workHour.DayID);
             return View(workHour);
         }
 
@@ -75,7 +78,7 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
             {
                 return HttpNotFound();
             }
-            ViewBag.TimeSheetID = new SelectList(db.Days, "ID", "ID", workHour.TimeSheetID);
+            ViewBag.DayID = new SelectList(db.Days, "ID", "ID", workHour.DayID);
             return View(workHour);
         }
 
@@ -84,7 +87,7 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,ClockedIn,ClockedOut,TimeSheetID")] WorkHour workHour)
+        public ActionResult Edit([Bind(Include = "ID,ClockedIn,ClockedOut,DayID")] WorkHour workHour)
         {
             if (ModelState.IsValid)
             {
@@ -92,7 +95,7 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.TimeSheetID = new SelectList(db.Days, "ID", "ID", workHour.TimeSheetID);
+            ViewBag.DayID = new SelectList(db.Days, "ID", "ID", workHour.DayID);
             return View(workHour);
         }
 
@@ -117,6 +120,9 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
         public ActionResult DeleteConfirmed(int id)
         {
             WorkHour workHour = db.WorkHours.Find(id);
+            Day d = db.Days.Find(workHour.DayID);
+            d.RegularHrs -= Math.Round((decimal)(workHour.ClockedOut - workHour.ClockedIn).TotalHours, 1);
+            db.Entry(d).State = EntityState.Modified;
             db.WorkHours.Remove(workHour);
             db.SaveChanges();
             return RedirectToAction("Index");

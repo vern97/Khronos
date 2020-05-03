@@ -4,43 +4,108 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<body class="wou-silver-bg">
+    <div class="ui one column center aligned stackable page grid">
+        <br />
+        @if (ViewBag.Error != null)
+        {
+            <div class="ui sixteen wide column" style="text-align: center;">
+                <div class="ui red message" style="text-align: center;">
+                    <B>@ViewBag.Error</B>
+                </div>
+            </div>
+        }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Tutor.VNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Month)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Year)
-        </th>
-        <th></th>
-    </tr>
+        <table class="ui striped compact table table-schedule" style="white-space:nowrap;">
+            <thead>
+                <tr>
+                    <th colspan="6">
+                        @using (Html.BeginForm("Index", "TimeSheets", FormMethod.Get))
+                        {
+                            <div class="ui fluid action input">
+                                @if (ViewBag.searched != null)
+                                {
+                                    <input type="text" style="color: #db0a29" value="@ViewBag.searched" name="search" id="search" placeholder="@ViewBag.Placeholder">
+                                }
+                                else
+                                {
+                                    <input type="text" style="color: #db0a29" name="search" id="search" placeholder="@ViewBag.Placeholder">
+                                }
+                                <button class="ui button" style="        background-color: #db0a29; color: white;">Search</button>
+                            </div>
+                        }
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan="6" style="text-align: center;">
+                        @using (Html.BeginForm("Create", "TimeSheets", FormMethod.Get))
+                        {
+                            <button class="ui button" style="background-color: #084b00; color: white;">Create a TimeSheet</button>
+                        }
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Year)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Month)
+                    </th>
+                    <th style="text-align: center;">
+                        Total Days
+                    </th>
+                    <th>
+                        Total Hours
+                    </th>
+                    <th colspan="2" style="text-align: center;">
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.Year
+                        </td>
+                        <td>
+                            @(((Dictionary<byte, string>)ViewBag.months)[item.Month])
+                        </td>
+                        <td>
+                            @item.Days.Count()
+                        </td>
+                        <td>
+                            @item.Days.Sum(z => z.RegularHrs)
+                        </td>
+                        <td>
+                            <button class="ui button">
+                                <i class="icon trash"></i>
+                                @Html.ActionLink("Delete TimeSheet", "Delete", new { id = item.ID })
+                            </button>
+                        </td>
+                        <td>
+                            <div class="ui buttons">
+                                <button class="ui button active">
+                                    @Html.RouteLink("View Days", new { controller = "Days", action = "Index", id = item.ID })
+                                </button>
+                                <div class="or"></div>
+                                <button class="ui yellow button">
+                                    <i class="icon plus"></i>
+                                    @Html.RouteLink("Add a Day", new { controller = "Days", action = "Create", id = item.ID })
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tutor.VNumber)
-        </td>
-        <td>
-            @(((Dictionary<byte, string>)ViewBag.months)[item.Month])
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Year)
-            @Html.DisplayFor(modelItem => item.Tutor.BTTUser.FirstName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
 }
-
-</table>

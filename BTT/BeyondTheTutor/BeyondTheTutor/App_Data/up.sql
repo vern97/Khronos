@@ -241,10 +241,10 @@ CREATE TABLE [WorkHours]
 	[ID] 				INT IDENTITY (1, 1) NOT NULL,
     [ClockedIn] 		DATETIME 			NOT NULL,
     [ClockedOut] 		DATETIME 			NOT NULL,
-    [TimeSheetID] 		INT					NOT NULL,
+    [DayID] 			INT					NOT NULL,
     CONSTRAINT [PK_WorkHours] PRIMARY KEY ([ID]),
 	
-	CONSTRAINT [FK.dbo.WorkHours_dbo.Days_ID] FOREIGN KEY ([TimeSheetID]) 
+	CONSTRAINT [FK.dbo.WorkHours_dbo.Days_ID] FOREIGN KEY ([DayID]) 
 	REFERENCES [dbo].[Days] ([ID])
 		ON DELETE CASCADE
 		ON UPDATE CASCADE

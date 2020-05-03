@@ -33,7 +33,6 @@ namespace BeyondTheTutor.DAL
         public virtual DbSet<Day> Days { get; set; }
         public virtual DbSet<TimeSheet> TimeSheets { get; set; }
         public virtual DbSet<WorkHour> WorkHours { get; set; }
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Day>()
@@ -43,7 +42,7 @@ namespace BeyondTheTutor.DAL
             modelBuilder.Entity<Day>()
                 .HasMany(e => e.WorkHours)
                 .WithRequired(e => e.Day)
-                .HasForeignKey(e => e.TimeSheetID);
+                .HasForeignKey(e => e.DayID);
 
             modelBuilder.Entity<TimeSheet>()
                 .Property(e => e.Month);
@@ -116,7 +115,6 @@ namespace BeyondTheTutor.DAL
                 .HasOptional(e => e.Tutor)
                 .WithRequired(e => e.BTTUser)
                 .WillCascadeOnDelete();
-
         }
     }
 }

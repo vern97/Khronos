@@ -14,46 +14,16 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
     public class TimeSheetsController : Controller
     {
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
+        private TimeSheet ts = new TimeSheet();
 
-        public Dictionary<byte, string> months = new Dictionary<byte, string>()
-        {
-            { 1, "JAN" },
-            { 2, "JAN - FEB" },
-            { 3, "FEB" },
-            { 4, "FEB - MAR" },
-            { 5, "MAR" },
-            { 6, "MAR - APR" },
-            { 7, "APR" },
-            { 8, "APR - MAY" },
-            { 9, "MAY" },
-            { 10, "MAY - JUN" },
-            { 11, "JUN" },
-            { 12, "JUN - JUL" },
-            { 13, "JUL" },
-            { 14, "JUL - AUG" },
-            { 15, "AUG" },
-            { 16, "AUG - SEP" },
-            { 17, "SEP" },
-            { 18, "SEP - OCT" },
-            { 19, "OCT" },
-            { 20, "OCT - NOV" },
-            { 21, "NOV" },
-            { 22, "NOV - DEC" },
-            { 23, "DEC" },
-            { 24, "DEC - JAN" }
-        };
         // GET: TimeSheets
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            /*var tutoringAppts = db.TutoringAppts
-                .OrderBy(t => t.StartTime)
-                .ThenBy(t => t.Class.Name)
-                .ThenBy(t => t.EndTime)
-                .Include(t => t.Class)
-                .Include(t => t.Student)
-                .Include(t => t.Tutor);*/
-            ViewBag.months = months;
-            var timeSheets = db.TimeSheets.Include(t => t.Tutor);
+            ViewBag.months = ts.getMonths();
+            var timeSheets = db.TimeSheets.Where(u => u.TutorID == id) // a tutor's timesheets
+                .Include(t => t.Tutor)
+                .OrderByDescending(t => t.Year)
+                .ThenByDescending(t => t.Year);
 
             return View(timeSheets.ToList());
         }
@@ -76,9 +46,8 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
         // GET: TimeSheets/Create
         public ActionResult Create()
         {
-            var m = new TimeSheet();
             ViewBag.TutorID = new SelectList(db.Tutors, "ID", "VNumber");
-            ViewBag.MonthsID = new SelectList(m.Months, "Key", "Value");
+            ViewBag.MonthsID = new SelectList(ts.getMonths(), "Key", "Value");
 
             return View();
         }

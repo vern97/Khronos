@@ -6,10 +6,12 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+    @Html.Hidden("RegularHrs")
+    @Html.Hidden("TimeSheetID", (object)ViewBag.TSID)
+
     <div class="form-horizontal">
         <h4>Day</h4>
         <hr />
@@ -17,24 +19,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.On, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.On, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.On, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.RegularHrs, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.RegularHrs, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.RegularHrs, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TimeSheetID, "TimeSheetID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("TimeSheetID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.TimeSheetID, "", new { @class = "text-danger" })
+                @Html.DropDownList("DaysID", null, htmlAttributes:
+               new { @class = "ui scrolling dropdown form-control", id = "On", Name = "On" })
             </div>
         </div>
 

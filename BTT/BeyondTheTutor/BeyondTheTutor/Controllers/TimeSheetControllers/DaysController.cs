@@ -15,10 +15,13 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
     {
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
 
+        private Day d = new Day();
+
         // GET: Days
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            var days = db.Days.Include(d => d.TimeSheet);
+            ViewBag.days = d.getDays();
+            var days = db.Days.Where(d => d.TimeSheetID == id).Include(d => d.TimeSheet);
             return View(days.ToList());
         }
 
@@ -38,9 +41,22 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
         }
 
         // GET: Days/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
+            if (id == null)
+            {
+                return RedirectToAction("index");
+            }
+            TimeSheet ts = db.TimeSheets.Find(id);
+            if (ts == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.TSID = id;
+
+            Day d = new Day();
             ViewBag.TimeSheetID = new SelectList(db.TimeSheets, "ID", "ID");
+            ViewBag.DaysID = new SelectList(d.getDays(), "Key", "Value");
             return View();
         }
 
@@ -53,6 +69,7 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
         {
             if (ModelState.IsValid)
             {
+                day.RegularHrs = 0;
                 db.Days.Add(day);
                 db.SaveChanges();
                 return RedirectToAction("Index");

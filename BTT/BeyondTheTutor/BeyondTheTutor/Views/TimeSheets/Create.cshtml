@@ -6,10 +6,9 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
     <div class="form-horizontal">
         <h4>TimeSheet</h4>
         <hr />
@@ -17,16 +16,19 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Month, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("MonthsID", null, htmlAttributes: 
-               new { @class = "ui selection dropdown form-control", id = "Month", Name = "Month" })                @Html.ValidationMessageFor(model => model.Month, "", new { @class = "text-danger" })
+                @Html.DropDownList("MonthsID", null, htmlAttributes:
+               new { @class = "ui selection dropdown form-control", id = "Month", Name = "Month" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Year, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Year, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
+                <select class="ui selection dropdown item form-control" id="Year" name="Year">
+                    @{int year = DateTime.Today.Year.ToString().AsInt();}
+                    <option type="number" value="@year">@year</option>
+                    <option type="number" value="@(year+1)">@(year + 1)</option>
+                </select>
             </div>
         </div>
 
