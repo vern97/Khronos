@@ -212,6 +212,7 @@
     <Compile Include="Controllers\StudentResourcesController.cs" />
     <Compile Include="Controllers\SurveyControllers\SurveysController.cs" />
     <Compile Include="Controllers\TutorAppointmentController.cs" />
+    <Compile Include="Controllers\TutorsController.cs" />
     <Compile Include="Controllers\WeightedGradesController.cs" />
     <Compile Include="Controllers\ZoomAPIControllers\ZoomAPIController.cs" />
     <Compile Include="DAL\ContextGetter.cs" />
@@ -220,6 +221,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
+    <Compile Include="Models\ProfilePictureModels\ProfilePicture.cs" />
     <Compile Include="Models\SurveyModels\Answer.cs" />
     <Compile Include="DAL\BeyondTheTutorContext.cs" />
     <Compile Include="Models\BTTUser.cs" />
@@ -693,6 +695,7 @@
     <Content Include="Views\Errors\Http404.cshtml" />
     <Content Include="Views\Errors\Http403.cshtml" />
     <Content Include="Views\Errors\Http500.cshtml" />
+    <Content Include="Views\Tutors\TutorProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

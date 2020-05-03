@@ -6,6 +6,7 @@ namespace BeyondTheTutor.DAL
     using System.Linq;
     using BeyondTheTutor.Models;
     using BeyondTheTutor.Models.SurveyModels;
+    using BeyondTheTutor.Models.ProfilePictureModels;
     using BeyondTheTutor.DAL;
     public partial class BeyondTheTutorContext : DbContext
     {
@@ -21,6 +22,7 @@ namespace BeyondTheTutor.DAL
         public virtual DbSet<CumulativeGPA> CumulativeGPAs { get; set; }
         public virtual DbSet<FinalGrade> FinalGrades { get; set; }
         public virtual DbSet<Professor> Professors { get; set; }
+        public virtual DbSet<ProfilePicture> ProfilePictures { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
         public virtual DbSet<StudentResource> StudentResources { get; set; }
         public virtual DbSet<Student> Students { get; set; }
@@ -96,6 +98,11 @@ namespace BeyondTheTutor.DAL
                 .HasMany(e => e.Answers)
                 .WithRequired(e => e.Survey)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<BTTUser>()
+                .HasMany(e => e.ProfilePictures)
+                .WithRequired(e => e.BTTUser)
+                .HasForeignKey(e => e.UserID);
         }
     }
 }
