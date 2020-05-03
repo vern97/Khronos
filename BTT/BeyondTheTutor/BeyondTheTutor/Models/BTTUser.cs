@@ -6,6 +6,7 @@ namespace BeyondTheTutor.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
     using BeyondTheTutor.Models.SurveyModels;
+    using BeyondTheTutor.Models.ProfilePictureModels;
 
     public partial class BTTUser
     {
@@ -57,5 +58,8 @@ namespace BeyondTheTutor.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WeightedGrade> WeightedGrades { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProfilePicture> ProfilePictures { get; set; }
     }
 }
