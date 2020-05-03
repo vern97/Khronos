@@ -351,3 +351,5 @@ MigrationBackup/
 .ionide/
 
 Web_Deploy.config
+
+ContextGetter.cs

@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity;
 using BeyondTheTutor.DAL;
 using BeyondTheTutor.Models;
 using BeyondTheTutor.Models.ProfilePictureModels;
+using System.IO;
 
 namespace BeyondTheTutor.Controllers
 {
@@ -25,21 +26,33 @@ namespace BeyondTheTutor.Controllers
             ViewBag.userFirstName = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().FirstName;
             ViewBag.userLastName = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().LastName;
 
+            ViewBag.ImagePath = null;
+
             return View();
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,ImagePath,UserID")] ProfilePicture profilePicture)
+        //[ValidateAntiForgeryToken]
+        public ActionResult TutorProfile(HttpPostedFileBase userPicture)
         {
-            if (ModelState.IsValid)
+            byte[] bytes;
+
+            var userID = User.Identity.GetUserId();
+            var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
+
+            using (BinaryReader br = new BinaryReader(userPicture.InputStream))
             {
-                db.Entry(profilePicture).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("TutorProfile");
+                bytes = br.ReadBytes(userPicture.ContentLength);
             }
 
-            return View(profilePicture);
+            db.ProfilePictures.Add(new ProfilePicture
+            {
+                ImagePath = bytes,
+                UserID = currentUserID
+            });
+
+            db.SaveChanges();
+            return RedirectToAction("TutorProfile");
         }
 
         protected override void Dispose(bool disposing)
