@@ -69,6 +69,7 @@
                     <div class="menu">
                         <div style="text-align: left;">
                             @Html.ActionLink("Change Password", "ChangePassword", "Manage", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "ChangePassword" ? "item red active" : "item") })
+                            @Html.ActionLink("Manage Profile", "TutorProfile", "Tutors", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "TutProfile" ? "item red active" : "item") })
                             @Html.ActionLink("User Guide", "Guide", "Home", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutorHomeGuide" ? "item red active" : "item") })
                             @Html.AntiForgeryToken()
                             <a href="javascript:document.getElementById('logoutForm').submit()" class="item">Sign out</a>

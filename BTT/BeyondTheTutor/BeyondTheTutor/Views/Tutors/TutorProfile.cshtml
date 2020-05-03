@@ -18,23 +18,28 @@
             <div class="column">
                 <div class="ui grid registration">
                     <div class="ui attached fluid segment form">
-                        @using (Html.BeginForm("Edit", "Tutors", FormMethod.Post))
+                        @using (Html.BeginForm("TutorProfile", "Tutors", FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
-                            @Html.AntiForgeryToken()
+                            //@Html.AntiForgeryToken()
                             <h2>Update Profile Picture</h2>
                             <hr />
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            @Html.HiddenFor(m => m.UserID, (object)ViewBag.CurrentUserID)
+                            //@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            //@Html.Hidden("UserID", (object)ViewBag.CurrentUserID)
                             <div class="form-group">
-                                Select Profile Picture
                                 <div class="col-md-10">
-                                    @Html.TextBoxFor(m => m.ImagePath, new { type = "file" })
+                                    <div>
+                                        <label for="userPicture" class="ui icon button">
+                                            <i class="file icon"></i>
+                                            Open File
+                                        </label>
+                                        <input type="file" id="userPicture" name="userPicture" style="display:none"/>
+                                    </div>
                                 </div>
                             </div>
                             <br />
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <button class="fluid ui button schedule">Update Profile Picture</button>
+                                    <button class="fluid ui button schedule">Upload Photo</button>
                                 </div>
                             </div>
                         }
