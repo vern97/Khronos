@@ -27,7 +27,7 @@
                 <i class="dropdown icon"></i>
                 <div class="menu">
                     @Html.ActionLink("Courses", "Index", "Classes", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminClassesIndex" ? "item red active" : "item") })
-                    <a class="item">Other</a>
+                    @Html.ActionLink("Tutor Schedules", "UpdateSchedule", "TutorSchedules", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminTutorSchedUpdateSchedule" ? "item red active" : "item") })
                 </div>
             </div>
             <div class="ui dropdown item">
@@ -37,13 +37,6 @@
                     @Html.ActionLink("Approve Pending Users", "Index", "ElevatedAccount", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminElevatedAccountIndex" ? "item red active" : "item") })
                     @Html.ActionLink("Create an Admin", "CreateAdmin", "AllUsers", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "CreateAdmin" ? "item red active" : "item") })
                     @Html.ActionLink("Remove a User", "Index", "AllUsers", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminAllUsersIndex" ? "item red active" : "item") })
-                </div>
-            </div>
-            <div class="ui dropdown item">
-                Scheduling
-                <i class="dropdown icon"></i>
-                <div class="menu">
-                    @Html.ActionLink("Edit Tutor Schedules", "UpdateSchedule", "TutorSchedules", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminTutorSchedUpdateSchedule" ? "item red active" : "item") })
                 </div>
             </div>
                 @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
