@@ -21,10 +21,13 @@ namespace BeyondTheTutor.Controllers
             ViewBag.Current = "TutProfile";
 
             var userID = User.Identity.GetUserId();
-            ViewBag.currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
+            var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
+            ViewBag.currentUserID = currentUserID;
 
             ViewBag.userFirstName = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().FirstName;
             ViewBag.userLastName = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().LastName;
+
+            ViewBag.UserHasProfilePicture = db.ProfilePictures.Any(m => m.UserID == currentUserID);
 
             ViewBag.ImagePath = null;
 
@@ -40,19 +43,44 @@ namespace BeyondTheTutor.Controllers
             var userID = User.Identity.GetUserId();
             var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
 
-            using (BinaryReader br = new BinaryReader(userPicture.InputStream))
+            // Check if a user already has a current picture
+            var userHasPicture = db.ProfilePictures.Any(m => m.UserID == currentUserID);
+            
+
+            if (userPicture != null)
             {
-                bytes = br.ReadBytes(userPicture.ContentLength);
+                if (userHasPicture == true)
+                {
+                    // Get ID of current picture
+                    var currentUserPicture = db.ProfilePictures.Where(m => m.UserID == currentUserID).FirstOrDefault().ID;
+                    // Get object of current picture
+                    ProfilePicture oldProfilePicture = db.ProfilePictures.Find(currentUserPicture);
+                    // Remove current picture to free space in db
+                    db.ProfilePictures.Remove(oldProfilePicture);
+                }
+
+                using (BinaryReader br = new BinaryReader(userPicture.InputStream))
+                {
+                    bytes = br.ReadBytes(userPicture.ContentLength);
+                }
+
+                db.ProfilePictures.Add(new ProfilePicture
+                {
+                    ImagePath = bytes,
+                    UserID = currentUserID
+                });
+
+                db.SaveChanges();
+
             }
 
-            db.ProfilePictures.Add(new ProfilePicture
-            {
-                ImagePath = bytes,
-                UserID = currentUserID
-            });
-
-            db.SaveChanges();
             return RedirectToAction("TutorProfile");
+        }
+
+        public ActionResult RetrieveCurrentTutorProfilePicture(int id)
+        {
+            var profileImage = db.ProfilePictures.Where(m => m.UserID == id).Select(m => m.ImagePath).FirstOrDefault();
+            return File(profileImage, "image/jpg");
         }
 
         protected override void Dispose(bool disposing)

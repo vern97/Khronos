@@ -15,6 +15,3 @@ DROP TABLE dbo.Questions;
 DROP TABLE dbo.Surveys;
 DROP TABLE dbo.BTTUsers;
 DROP TABLE dbo.Classes;
-
-
-
