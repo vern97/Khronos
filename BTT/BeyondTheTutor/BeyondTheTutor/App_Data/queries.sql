@@ -2,3 +2,4 @@
 
 SELECT * FROM BTTUsers
 
+SELECT * FROM ProfilePictures

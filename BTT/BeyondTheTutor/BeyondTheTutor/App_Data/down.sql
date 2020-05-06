@@ -1,4 +1,5 @@
-﻿DROP TABLE dbo.WeightedGrades;
+﻿DROP TABLE dbo.ProfilePictures;
+DROP TABLE dbo.WeightedGrades;
 DROP TABLE dbo.FinalGrades;
 DROP TABLE dbo.CumulativeGPAs;
 DROP TABLE dbo.StudentResources;

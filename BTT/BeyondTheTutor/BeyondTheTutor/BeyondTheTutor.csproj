@@ -212,9 +212,11 @@
     <Compile Include="Controllers\StudentResourcesController.cs" />
     <Compile Include="Controllers\SurveyControllers\SurveysController.cs" />
     <Compile Include="Controllers\TimeSheetControllers\DaysController.cs" />
+    <Compile Include="Controllers\TimeSheetControllers\TimeSheetCRUDController.cs" />
     <Compile Include="Controllers\TimeSheetControllers\TimeSheetsController.cs" />
     <Compile Include="Controllers\TimeSheetControllers\WorkHoursController.cs" />
     <Compile Include="Controllers\TutorAppointmentController.cs" />
+    <Compile Include="Controllers\TutorsController.cs" />
     <Compile Include="Controllers\WeightedGradesController.cs" />
     <Compile Include="Controllers\ZoomAPIControllers\ZoomAPIController.cs" />
     <Compile Include="DAL\ContextGetter.cs" />
@@ -223,6 +225,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
+    <Compile Include="Models\ProfilePictureModels\ProfilePicture.cs" />
     <Compile Include="Models\SurveyModels\Answer.cs" />
     <Compile Include="DAL\BeyondTheTutorContext.cs" />
     <Compile Include="Models\BTTUser.cs" />
@@ -411,10 +414,11 @@
     <Content Include="Content\images\admin_logo_black_2.jpg" />
     <Content Include="Content\images\BeyondtheTutor_Banner4.png" />
     <Content Include="Content\images\BeyondtheTutor_Logo.png" />
-    <Content Include="Content\images\Campus.jpg" />
+    <Content Include="Content\images\books_stacked.png" />
     <Content Include="Content\images\campus_map_1.jpg" />
     <Content Include="Content\images\campus_map_2.jpg" />
     <Content Include="Content\images\daniel.jpg" />
+    <Content Include="Content\images\elyse.png" />
     <Content Include="Content\images\helen.jpg" />
     <Content Include="Content\images\Home_Page_Banner.png" />
     <Content Include="Content\images\KhronosLogo.png" />
@@ -451,7 +455,6 @@
     <Content Include="Content\images\landscapes_images\9.jpg" />
     <Content Include="Content\images\Logo_Stacked.jpg" />
     <Content Include="Content\images\resize_welcome_banner.png" />
-    <Content Include="Content\images\Resources_Owl_Logo.png" />
     <Content Include="Content\images\stevie.jpg" />
     <Content Include="Content\images\TutoringLogo.png" />
     <Content Include="Content\images\Tutoring_Red_Banner.png" />
@@ -530,6 +533,7 @@
     <Content Include="Areas\Tutor\Views\Zoom\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Compile Include="Models\ViewModels\AllUsersViewModel.cs" />
+    <Compile Include="Models\TimeSheetModels\TutorTimeSheetsCustomModel.cs" />
     <Content Include="Scripts\calculators.js" />
     <Content Include="Scripts\disable-service-alert-dropdown.js" />
     <Content Include="Scripts\displayrequestedappts.js" />
@@ -703,6 +707,7 @@
     <Content Include="Views\Errors\Http404.cshtml" />
     <Content Include="Views\Errors\Http403.cshtml" />
     <Content Include="Views\Errors\Http500.cshtml" />
+    <Content Include="Views\Tutors\TutorProfile.cshtml" />
     <Content Include="Views\TimeSheets\Create.cshtml" />
     <Content Include="Views\TimeSheets\Delete.cshtml" />
     <Content Include="Views\TimeSheets\Details.cshtml" />
@@ -718,6 +723,7 @@
     <Content Include="Views\WorkHours\Details.cshtml" />
     <Content Include="Views\WorkHours\Edit.cshtml" />
     <Content Include="Views\WorkHours\Index.cshtml" />
+    <Content Include="Views\TimeSheetCRUD\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

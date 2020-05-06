@@ -1,0 +1,57 @@
+﻿@model BeyondTheTutor.Models.ProfilePictureModels.ProfilePicture
+
+<br />
+<body class="wou-grey-bg">
+    <div class="ui divided grid center aligned">
+        <div class="row six wide column">
+            <div class="column">
+                <div class="ui grid registration">
+                    <div class="ui attached fluid segment form">
+                        <h3>@ViewBag.userFirstName @ViewBag.userLastName</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui divided grid center aligned">
+        <div class="row six wide column">
+            <div class="column">
+                <div class="ui grid registration">
+                    <div class="ui attached fluid segment form">
+                        @using (Html.BeginForm("TutorProfile", "Tutors", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            //@Html.AntiForgeryToken()
+                            <h2>Update Profile Picture</h2>
+                            <hr />
+                            //@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            //@Html.Hidden("UserID", (object)ViewBag.CurrentUserID)
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <div>
+                                        <label for="userPicture" class="ui icon button">
+                                            <i class="file icon"></i>
+                                            Open File
+                                        </label>
+                                        <input type="file" id="userPicture" name="userPicture" style="display:none"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <button class="fluid ui button schedule">Upload Photo</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+@section Scripts {
+    <script src="~/Scripts/main.js"></script>
+}
+
+

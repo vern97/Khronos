@@ -61,7 +61,7 @@
                 {
                     <tr>
                         <th>
-                            @(((Dictionary<int, string>)ViewBag.days)[item.On])
+                            @(((Dictionary<byte, string>)ViewBag.days)[item.On])
                         </th>
                         <td>
                             @Html.DisplayFor(modelItem => item.RegularHrs)

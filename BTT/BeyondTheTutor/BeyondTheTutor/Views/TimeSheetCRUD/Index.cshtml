@@ -1,0 +1,51 @@
+﻿@using BeyondTheTutor.Models.TimeSheetModels
+@model TutorTimeSheetCustomModel
+@{
+    Dictionary<int, string> d_days = new Dictionary<int, string>();
+}
+
+
+    <table class="ui table">
+        <thead>
+            <tr>
+                <th>Month</th>
+                <th>Year</th>
+                <th>Days</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var ts in Model.TimeSheets)
+            {
+                <tr>
+
+                    <td>@Model.months[ts.Month]</td>
+                    <td>@ts.Year</td>
+                    <td>
+                        <select onchange="location = this.value;" class="ui scrolling dropdown form-control">
+                            <option value="">Select a day</option>
+                            @{
+                                var days = ts.Days.Where(d => d.TimeSheetID == ts.ID);
+                                d_days.Clear();
+                                //foreach (var day in days) { d_days.Add(day.On, Model.days[day.ID]); }
+                                foreach (var day in days)
+                                {
+                                    <option value="/WorkHours/Index/@day.ID">@Model.days[day.On]</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        
+    </table>
+    
+
+
+    
+        
+                    
+
+
+    

@@ -8,13 +8,13 @@ namespace BeyondTheTutor.Models.TimeSheetModels
 
     public partial class Day
     {
-        public Dictionary<int, string> getDays()
+        public Dictionary<byte, string> getDays()
         {
-            Dictionary<int, string> d_days = new Dictionary<int, string>();
+            Dictionary<byte, string> d_days = new Dictionary<byte, string>();
 
-            for (int i = 10; i < 31; i++)
+            for (byte i = 10; i < 31; i++)
             {
-                int c = i + 1;
+                byte c = (byte)(i + 1);
                 string val = "";
 
                 switch (c)
@@ -38,9 +38,9 @@ namespace BeyondTheTutor.Models.TimeSheetModels
                 }
             }
 
-            for (int i = 0; i < 10; i++)
+            for (byte i = 0; i < 10; i++)
             {
-                int c = i + 1;
+                byte c = (byte)(i + 1);
                 string val = "";
 
                 switch (c)
