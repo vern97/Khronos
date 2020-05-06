@@ -79,8 +79,8 @@ namespace BeyondTheTutor.Controllers
 
         public ActionResult RetrieveCurrentTutorProfilePicture(int id)
         {
-            var profileImage = db.ProfilePictures.Where(m => m.UserID == id).Select(m => m.ImagePath).FirstOrDefault();
-            return File(profileImage, "image/jpg");
+            var profilePicture = db.ProfilePictures.Where(m => m.UserID == id).Select(m => m.ImagePath).FirstOrDefault();
+            return File(profilePicture, "image/jpg");
         }
 
         protected override void Dispose(bool disposing)

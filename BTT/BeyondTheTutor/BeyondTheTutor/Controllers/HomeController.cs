@@ -80,10 +80,25 @@ namespace BeyondTheTutor.Controllers
             {
                 fName = e.BTTUser.FirstName,
                 lName = e.BTTUser.LastName,
-                gradYear = e.ClassOf
+                gradYear = e.ClassOf,
+                profilePictureID = db.ProfilePictures.Where(m => m.UserID == e.ID).Select(m => m.ID).FirstOrDefault()
             }).ToList();
 
             return Json(tutors, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult RetrieveCurrentTutorProfilePicture(int id)
+        {   
+            var profilePicture = db.ProfilePictures.Where(m => m.ID == id).Select(m => m.ImagePath).FirstOrDefault();
+
+            if(profilePicture == null)
+            {
+                return File("~/Content/images/BeyondtheTutor_Logo.png", "image/jpg");
+            }
+            else
+            {
+                return File(profilePicture, "image/jpg"); ;
+            }
         }
 
         // Create Json to be used by service-alert.js based on db.TutoringServiceAlerts to display banners on Index
