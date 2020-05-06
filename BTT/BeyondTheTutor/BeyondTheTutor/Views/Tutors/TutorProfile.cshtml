@@ -6,25 +6,29 @@
         <div class="row six wide column">
             <div class="column">
                 <div class="ui grid registration">
-                    <div class="ui attached fluid segment form">
-                        <h3>@ViewBag.userFirstName @ViewBag.userLastName</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="ui divided grid center aligned">
-        <div class="row six wide column">
-            <div class="column">
-                <div class="ui grid registration">
-                    <div class="ui attached fluid segment form">
+                    <div class="ui attached red fluid segment form">
                         @using (Html.BeginForm("TutorProfile", "Tutors", FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
-                            //@Html.AntiForgeryToken()
+                            @Html.AntiForgeryToken()
+
                             <h2>Update Profile Picture</h2>
                             <hr />
-                            //@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            //@Html.Hidden("UserID", (object)ViewBag.CurrentUserID)
+                            <div class="ui one column padded center aligned grid" id="tutors_container">
+                                @if (ViewBag.UserHasProfilePicture == false)
+                                {
+                                    <div style="min-width:240px;">
+                                            <img class="ui rounded image" src="~/Content/images/helen.jpg" alt="Alternate Text" style="max-height:320px; max-width:240px; min-height:320px;" />
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div style="min-width:240px;">
+                                        <img class="ui rounded image" src="@Url.Action("RetrieveCurrentTutorProfilePicture", "Tutors", new { id = ViewBag.currentUserID})" alt="Alternate Text" style="max-height:320px; max-width:240px; min-height:320px;" />
+                                    </div>
+                                }
+                            </div>
+                            <p>Recommended picture ratio is 240x320</p>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="form-group">
                                 <div class="col-md-10">
                                     <div>
@@ -32,7 +36,7 @@
                                             <i class="file icon"></i>
                                             Open File
                                         </label>
-                                        <input type="file" id="userPicture" name="userPicture" style="display:none"/>
+                                        <input type="file" id="userPicture" name="userPicture" style="display:none" />
                                     </div>
                                 </div>
                             </div>

@@ -19,4 +19,3 @@ DROP TABLE dbo.Classes;
 DROP TABLE dbo.WorkHours;
 DROP TABLE dbo.Days;
 DROP TABLE dbo.TimeSheets;
-
