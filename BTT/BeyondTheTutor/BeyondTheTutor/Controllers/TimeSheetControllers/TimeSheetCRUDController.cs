@@ -18,6 +18,7 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
     {
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
         private TimeSheet viewBagTS = new TimeSheet();
+        private Day viewBagD = new Day();
 
         private BTTUser getUser()
         {
@@ -31,7 +32,7 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
             var returningTutor = getUser().Tutor;
             ViewBag.MonthsID = new SelectList(viewBagTS.getMonths(), "Key", "Value");
             ViewBag.TutorID = new SelectList(db.Tutors, "ID", "VNumber");
-
+            ViewBag.DaysID = new SelectList(viewBagD.getDays(), "Key", "Value");
 
 
 
@@ -56,19 +57,34 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateTimesheet(TutorTimeSheetCustomModel model)
         {
-            var foo = model; 
             if (model.TimeSheetVM != null)
             {
                 model.TimeSheetVM.TutorID = getUser().ID;
                 model.TimeSheetVM.Tutor = getUser().Tutor ;
 
                 db.TimeSheets.Add(model.TimeSheetVM);
-                db.SaveChanges();
+                db.SaveChangesAsync();
+
+                return View("Index");
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> CreateDay(TutorTimeSheetCustomModel model)
+        {
+            if (model.DayVM != null)
+            {
+                model.DayVM.TimeSheet = db.TimeSheets.Find(model.DayVM.TimeSheetID);
+                model.DayVM.RegularHrs = 0;
+                db.Days.Add(model.DayVM);
+                db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }
 
-            //ViewBag.TutorID = new SelectList(db.Tutors, "ID", "VNumber", timeSheet.TutorID);
             return RedirectToAction("Index");
         }
     }
