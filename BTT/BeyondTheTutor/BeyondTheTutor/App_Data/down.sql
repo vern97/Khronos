@@ -15,3 +15,7 @@ DROP TABLE dbo.Questions;
 DROP TABLE dbo.Surveys;
 DROP TABLE dbo.BTTUsers;
 DROP TABLE dbo.Classes;
+
+DROP TABLE dbo.WorkHours;
+DROP TABLE dbo.Days;
+DROP TABLE dbo.TimeSheets;

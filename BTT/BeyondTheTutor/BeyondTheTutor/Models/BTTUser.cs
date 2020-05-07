@@ -18,6 +18,7 @@ namespace BeyondTheTutor.Models
             StudentResources = new HashSet<StudentResource>();
             WeightedGrades = new HashSet<WeightedGrade>();
             Answers = new HashSet<Answer>();
+
         }
 
         public int ID { get; set; }
@@ -61,5 +62,6 @@ namespace BeyondTheTutor.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProfilePicture> ProfilePictures { get; set; }
+
     }
 }

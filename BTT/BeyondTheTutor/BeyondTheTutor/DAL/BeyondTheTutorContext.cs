@@ -6,8 +6,10 @@ namespace BeyondTheTutor.DAL
     using System.Linq;
     using BeyondTheTutor.Models;
     using BeyondTheTutor.Models.SurveyModels;
-    using BeyondTheTutor.Models.ProfilePictureModels;
+    using BeyondTheTutor.Models.TimeSheetModels;
+	using BeyondTheTutor.Models.ProfilePictureModels;
     using BeyondTheTutor.DAL;
+	
     public partial class BeyondTheTutorContext : DbContext
     {
         public BeyondTheTutorContext()
@@ -32,9 +34,23 @@ namespace BeyondTheTutor.DAL
         public virtual DbSet<Tutor> Tutors { get; set; }
         public virtual DbSet<TutorSchedule> TutorSchedules { get; set; }
         public virtual DbSet<WeightedGrade> WeightedGrades { get; set; }
-
+        public virtual DbSet<Day> Days { get; set; }
+        public virtual DbSet<TimeSheet> TimeSheets { get; set; }
+        public virtual DbSet<WorkHour> WorkHours { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Day>()
+                .Property(e => e.RegularHrs)
+                .HasPrecision(4, 2);
+
+            modelBuilder.Entity<Day>()
+                .HasMany(e => e.WorkHours)
+                .WithRequired(e => e.Day)
+                .HasForeignKey(e => e.DayID);
+
+            modelBuilder.Entity<TimeSheet>()
+                .Property(e => e.Month);
+
             modelBuilder.Entity<BTTUser>()
                 .HasOptional(e => e.Admin)
                 .WithRequired(e => e.BTTUser)
@@ -98,6 +114,11 @@ namespace BeyondTheTutor.DAL
                 .HasMany(e => e.Answers)
                 .WithRequired(e => e.Survey)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<BTTUser>()
+                .HasOptional(e => e.Tutor)
+                .WithRequired(e => e.BTTUser)
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<BTTUser>()
                 .HasMany(e => e.ProfilePictures)

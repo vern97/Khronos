@@ -211,6 +211,10 @@
     <Compile Include="Controllers\StudentAppointmentController.cs" />
     <Compile Include="Controllers\StudentResourcesController.cs" />
     <Compile Include="Controllers\SurveyControllers\SurveysController.cs" />
+    <Compile Include="Controllers\TimeSheetControllers\DaysController.cs" />
+    <Compile Include="Controllers\TimeSheetControllers\TimeSheetCRUDController.cs" />
+    <Compile Include="Controllers\TimeSheetControllers\TimeSheetsController.cs" />
+    <Compile Include="Controllers\TimeSheetControllers\WorkHoursController.cs" />
     <Compile Include="Controllers\TutorAppointmentController.cs" />
     <Compile Include="Controllers\TutorsController.cs" />
     <Compile Include="Controllers\WeightedGradesController.cs" />
@@ -235,6 +239,9 @@
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\StudentResource.cs" />
     <Compile Include="Models\SurveyModels\Survey.cs" />
+    <Compile Include="Models\TimeSheetModels\Day.cs" />
+    <Compile Include="Models\TimeSheetModels\TimeSheet.cs" />
+    <Compile Include="Models\TimeSheetModels\WorkHour.cs" />
     <Compile Include="Models\Tutor.cs" />
     <Compile Include="Models\TutoringAppt.cs" />
     <Compile Include="Models\TutoringServiceAlert.cs" />
@@ -521,6 +528,7 @@
     <Content Include="Areas\Tutor\Views\Zoom\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Compile Include="Models\ViewModels\AllUsersViewModel.cs" />
+    <Compile Include="Models\TimeSheetModels\TutorTimeSheetsCustomModel.cs" />
     <Content Include="Scripts\calculators.js" />
     <Content Include="Scripts\disable-service-alert-dropdown.js" />
     <Content Include="Scripts\displayrequestedappts.js" />
@@ -695,6 +703,22 @@
     <Content Include="Views\Errors\Http403.cshtml" />
     <Content Include="Views\Errors\Http500.cshtml" />
     <Content Include="Views\Tutors\TutorProfile.cshtml" />
+    <Content Include="Views\TimeSheets\Create.cshtml" />
+    <Content Include="Views\TimeSheets\Delete.cshtml" />
+    <Content Include="Views\TimeSheets\Details.cshtml" />
+    <Content Include="Views\TimeSheets\Edit.cshtml" />
+    <Content Include="Views\TimeSheets\Index.cshtml" />
+    <Content Include="Views\Days\Create.cshtml" />
+    <Content Include="Views\Days\Delete.cshtml" />
+    <Content Include="Views\Days\Details.cshtml" />
+    <Content Include="Views\Days\Edit.cshtml" />
+    <Content Include="Views\Days\Index.cshtml" />
+    <Content Include="Views\WorkHours\Create.cshtml" />
+    <Content Include="Views\WorkHours\Delete.cshtml" />
+    <Content Include="Views\WorkHours\Details.cshtml" />
+    <Content Include="Views\WorkHours\Edit.cshtml" />
+    <Content Include="Views\WorkHours\Index.cshtml" />
+    <Content Include="Views\TimeSheetCRUD\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

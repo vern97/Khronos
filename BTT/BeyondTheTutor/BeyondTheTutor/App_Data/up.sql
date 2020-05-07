@@ -197,10 +197,57 @@ CREATE TABLE [dbo].[CumulativeGPAs]
 	[RecordedDate]		[DATETIME]			NOT NULL,
 	[CumulativeGPA]		FLOAT				NOT NULL,
 	[UserID]			INT					NOT NULL
-	CONSTRAINT [PK_dbo.CumulativeGPAs] PRIMARY KEY CLUSTERED ([ID] ASC)
+	CONSTRAINT [PK_dbo.CumulativeGPAs] PRIMARY KEY CLUSTERED ([ID] ASC),
+
 	CONSTRAINT [FK_dbo.CumulativeGPAs_dbo.BTTUsers_ID] FOREIGN KEY ([UserID]) 
 		REFERENCES [BTTUsers] ([ID])
-		ON DELETE CASCADE ON UPDATE CASCADE
+		ON DELETE CASCADE 
+		ON UPDATE CASCADE
+);
+
+
+CREATE TABLE [TimeSheets] 
+(
+    [ID] 			INT IDENTITY (1, 1) 	NOT NULL,
+    [Month] 		TINYINT					NOT NULL,
+    [Year] 			SMALLINT 				NOT NULL,
+	[TutorID]		INT						NOT NULL,
+	CONSTRAINT [PK_TimeSheets] PRIMARY KEY CLUSTERED ([ID] ASC),
+
+	CONSTRAINT [FK.dbo.TimeSheets_dbo.Tutors_ID] FOREIGN KEY ([TutorID]) 
+		REFERENCES [dbo].[Tutors] ([ID])
+		ON DELETE CASCADE 
+		ON UPDATE CASCADE,
+);
+
+
+CREATE TABLE [Days] 
+(
+	[ID]			INT IDENTITY(1,1)	NOT NULL,
+    [On] 			TINYINT 			NOT NULL,
+    [RegularHrs] 	DECIMAL(4,2),
+    [TimeSheetID] 	INT 				NOT NULL,
+    CONSTRAINT [PK_Days] PRIMARY KEY ([ID]), 
+		
+	CONSTRAINT [FK.dbo.TutorTimeSheets_dbo.TimeSheets_ID] FOREIGN KEY ([TimeSheetID]) 
+		REFERENCES [dbo].[TimeSheets] ([ID])
+		ON DELETE CASCADE 
+		ON UPDATE CASCADE
+);
+
+
+CREATE TABLE [WorkHours] 
+(
+	[ID] 				INT IDENTITY (1, 1) NOT NULL,
+    [ClockedIn] 		DATETIME 			NOT NULL,
+    [ClockedOut] 		DATETIME 			NOT NULL,
+    [DayID] 			INT					NOT NULL,
+    CONSTRAINT [PK_WorkHours] PRIMARY KEY ([ID]),
+	
+	CONSTRAINT [FK.dbo.WorkHours_dbo.Days_ID] FOREIGN KEY ([DayID]) 
+	REFERENCES [dbo].[Days] ([ID])
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
 );
 
 CREATE TABLE [dbo].[ProfilePictures]
