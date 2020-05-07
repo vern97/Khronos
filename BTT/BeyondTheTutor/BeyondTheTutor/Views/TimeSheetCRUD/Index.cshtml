@@ -1,87 +1,158 @@
-﻿@using BeyondTheTutor.Models.TimeSheetModels
-@model TutorTimeSheetCustomModel
+﻿@model TutorTimeSheetCustomModel
+
+@using BeyondTheTutor.Models.TimeSheetModels
 @{
     Dictionary<int, string> d_days = new Dictionary<int, string>();
 }
 
 
-    <body class="wou-silver-bg">
-        <div class="ui one column center aligned stackable page grid">
-            <br />
-            @if (ViewBag.Error != null)
-            {
-                <div class="ui sixteen wide column" style="text-align: center;">
-                    <div class="ui red message" style="text-align: center;">
-                        <B>@ViewBag.Error</B>
-                    </div>
+<body class="wou-silver-bg">
+    <div class="ui one column center aligned stackable page grid">
+        <br />
+        @if (ViewBag.Error != null)
+        {
+            <div class="ui sixteen wide column" style="text-align: center;">
+                <div class="ui red message" style="text-align: center;">
+                    <B>@ViewBag.Error</B>
                 </div>
-            }
+            </div>
+        }
 
-            <table class="ui striped compact table table-schedule"  style="text-align: center;">
-                <thead>
-                    <tr>
-                        <th colspan="3">
-                            @using (Html.BeginForm("Index", "TimeSheets", FormMethod.Get))
-                            {
-                                <div class="ui fluid action input">
-                                    @if (ViewBag.searched != null)
-                                    {
-                                        <input type="text" style="color: #db0a29" value="@ViewBag.searched" name="search" id="search" placeholder="@ViewBag.Placeholder">
-                                    }
-                                    else
-                                    {
-                                        <input type="text" style="color: #db0a29" name="search" id="search" placeholder="@ViewBag.Placeholder">
-                                    }
-                                    <button class="ui button" style="        background-color: #db0a29; color: white;">Search</button>
+        <table class="ui striped compact table table-schedule" style="text-align: center;">
+            <thead>
+                <tr>
+                    <th colspan="3">
+                        @using (Html.BeginForm("Index", "TimeSheets", FormMethod.Get))
+                        {
+                            <div class="ui fluid action input">
+                                @if (ViewBag.searched != null)
+                                {
+                                    <input type="text" style="color: #db0a29" value="@ViewBag.searched" name="search" id="search" placeholder="@ViewBag.Placeholder">
+                                }
+                                else
+                                {
+                                    <input type="text" style="color: #db0a29" name="search" id="search" placeholder="@ViewBag.Placeholder">
+                                }
+                                <button class="ui button" style="        background-color: #db0a29; color: white;">Search</button>
+                            </div>
+                        }
+                    </th>
+                </tr>
+                <tr style="text-align: center;">
+                    <th colspan="3">
+                        @using (Html.BeginForm("CreateTimeSheet", "TimeSheetCRUD", FormMethod.Post, new { @class = "ui form form-horizontal", style = "text-align: center;" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(model => model.TimeSheetVM.ID)
+                            @Html.HiddenFor(model => model.TimeSheetVM.TutorID)
+                            @Html.HiddenFor(model => model.TimeSheetVM.Tutor)
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="three fields">
+                                <div class="field form-group">
+                                    @Html.LabelFor(model => model.TimeSheetVM.Month, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    @Html.DropDownList("MonthsID", null, htmlAttributes:
+                                   new {  id = "TimeSheetVM_Month", Name = "TimeSheetVM.Month", @class = "ui selection dropdown form-control" })
                                 </div>
-                            }
-                        </th>
-                    </tr>
+                                <div class="field form-group">
+                                    @Html.LabelFor(model => model.TimeSheetVM.Year, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <select class="ui selection dropdown item form-control" id="TimeSheetVM_Year" name="TimeSheetVM.Year">
+                                        @{int year = DateTime.Today.Year.ToString().AsInt();}
+                                        <option type="number" value="@year">@year</option>
+                                        <option type="number" value="@(year+1)">@(year + 1)</option>
+                                    </select>
+                                </div>
+                                <div class="field form-group">
+                                    <input type="submit" value="Create" class="ui button" />
+                                </div>
+                            </div>
+                        }
+                    </th>
+                </tr>
+                <tr>
+                    <th>Month</th>
+                    <th>Year</th>
+                    <th>Days</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ts in Model.TimeSheets)
+                {
                     <tr>
-                        <th colspan="3" style="text-align: center;">
-                            @using (Html.BeginForm("Create", "Days", FormMethod.Get))
-                            {
-                                <button class="ui button" style="background-color: #084b00; color: white;">Create a TimeSheet</button>
-                            }
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>Month</th>
-                        <th>Year</th>
-                        <th>Days</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var ts in Model.TimeSheets)
-                    {
-                        <tr>
-
+                        @if (ts.Month < 1)
+                        {
+                            <td>NA</td>
+                        }
+                        else
+                        {
                             <td>@Model.months[ts.Month]</td>
-                            <td>@ts.Year</td>
-                            <td>
-                                <select onchange="location = this.value;" class="ui scrolling dropdown form-control">
-                                    <option value="">Select a day</option>
-                                    @{
-                                        var days = ts.Days.Where(d => d.TimeSheetID == ts.ID);
-                                        d_days.Clear();
-                                        //foreach (var day in days) { d_days.Add(day.On, Model.days[day.ID]); }
+                        }
+                        <td>@ts.Year</td>
+                        <td>
+                            <div onchange="location = this.value;" class="ui selection dropdown">
+                                <input type="hidden" name="dropdown">
+                                <i class="dropdown icon"></i>
+                                <div class="default text">Select a day</div>
+                                <div class="menu">
+                                    @{ var days = ts.Days.Where(d => d.TimeSheetID == ts.ID);
+
                                         foreach (var day in days)
                                         {
-                                            <option value="/WorkHours/Index/@day.ID">@Model.days[day.On]</option>
+                                            <div class="item" value="/WorkHours/Index/@day.ID">@Model.days[day.On]</div>
                                         }
                                     }
-                                    <option style="color: green; font-weight: bold;" value=""><b>Add Day</b></option>
-                                </select>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
+                                    <div class="item">
+                                        <i class="plus icon"></i>
+                                        Add Day
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
 
-            </table>
+
+
+@using (Html.BeginForm("CreateTimeSheet", "TimeSheetCRUD", FormMethod.Post, new { @class = "ui form form-horizontal", style = "text-align: center;" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h4>TimeSheet</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.EditorFor(m => m.TimeSheetVM.TutorID)
+
+    </div>
+
+        <div class="form-group">
+            @Html.EditorFor(m => m.TimeSheetVM.Year)
+
         </div>
-    </body>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.EditorFor(m => m.TimeSheetVM.Month)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
 
 
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+}
 
 
 

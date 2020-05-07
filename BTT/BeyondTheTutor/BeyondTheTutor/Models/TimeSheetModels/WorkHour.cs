@@ -6,7 +6,7 @@ namespace BeyondTheTutor.Models.TimeSheetModels
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class WorkHour
+    public class WorkHour
     {
         public int ID { get; set; }
 

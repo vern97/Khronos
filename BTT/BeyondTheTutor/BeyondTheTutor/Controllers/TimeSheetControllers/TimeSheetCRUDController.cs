@@ -17,18 +17,23 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
     public class TimeSheetCRUDController : Controller
     {
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
+        private TimeSheet viewBagTS = new TimeSheet();
 
+        private BTTUser getUser()
+        {
+            string aspid = User.Identity.GetUserId();
+            return  db.BTTUsers.Where(t => t.ASPNetIdentityID == aspid).FirstOrDefault();
+        }
         // GET: TimeSheetCRUD
         public async Task<ActionResult> Index()
         {
-            ApplicationDbContext context = new ApplicationDbContext();
-            string aspid = User.Identity.GetUserId();
-            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            var tutor = db.BTTUsers.Where(t => t.ASPNetIdentityID == aspid).FirstOrDefault();
-            var returningTutor = tutor.Tutor;
+            var tutor = getUser();
+            var returningTutor = getUser().Tutor;
+            ViewBag.MonthsID = new SelectList(viewBagTS.getMonths(), "Key", "Value");
+            ViewBag.TutorID = new SelectList(db.Tutors, "ID", "VNumber");
 
-            
-          
+
+
 
             TutorTimeSheetCustomModel tsData = new TutorTimeSheetCustomModel();
             tsData.TimeSheets = db.TimeSheets
@@ -45,6 +50,26 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
 
 
             return View(tsData);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> CreateTimesheet(TutorTimeSheetCustomModel model)
+        {
+            var foo = model; 
+            if (model.TimeSheetVM != null)
+            {
+                model.TimeSheetVM.TutorID = getUser().ID;
+                model.TimeSheetVM.Tutor = getUser().Tutor ;
+
+                db.TimeSheets.Add(model.TimeSheetVM);
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+
+            //ViewBag.TutorID = new SelectList(db.Tutors, "ID", "VNumber", timeSheet.TutorID);
+            return RedirectToAction("Index");
         }
     }
 }

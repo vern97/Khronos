@@ -6,7 +6,7 @@ namespace BeyondTheTutor.Models.TimeSheetModels
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Day
+    public class Day
     {
         public Dictionary<byte, string> getDays()
         {
