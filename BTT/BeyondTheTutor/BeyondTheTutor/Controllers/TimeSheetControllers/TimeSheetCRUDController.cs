@@ -14,6 +14,7 @@ using BeyondTheTutor.Models.TimeSheetModels;
 
 namespace BeyondTheTutor.Controllers.TimeSheetControllers
 {
+    [Authorize(Roles = "Tutor")]
     public class TimeSheetCRUDController : Controller
     {
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
@@ -25,6 +26,7 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
             string aspid = User.Identity.GetUserId();
             return  db.BTTUsers.Where(t => t.ASPNetIdentityID == aspid).FirstOrDefault();
         }
+        
         // GET: TimeSheetCRUD
         public async Task<ActionResult> Index()
         {
@@ -65,7 +67,7 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
                 db.TimeSheets.Add(model.TimeSheetVM);
                 db.SaveChangesAsync();
 
-                return View("Index");
+                return RedirectToAction("Index");
             }
 
             return RedirectToAction("Index");
@@ -86,6 +88,33 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
             }
 
             return RedirectToAction("Index");
+        }
+
+        // GET: TimeSheetCRUD
+        public async Task<ActionResult> ViewDay()
+        {
+            var tutor = getUser();
+            var returningTutor = getUser().Tutor;
+            ViewBag.MonthsID = new SelectList(viewBagTS.getMonths(), "Key", "Value");
+            ViewBag.DaysID = new SelectList(viewBagD.getDays(), "Key", "Value");
+
+
+
+            TutorTimeSheetCustomModel tsData = new TutorTimeSheetCustomModel();
+            tsData.TimeSheets = db.TimeSheets
+                .Where(t => t.TutorID == tutor.ID)
+                .OrderByDescending(y => y.Year)
+                .OrderByDescending(m => m.Month)
+                .ToList();
+
+            tsData.tutor = returningTutor;
+            Day d = new Day();
+            tsData.days = d.getDays();
+            TimeSheet ts = new TimeSheet();
+            tsData.months = ts.getMonths();
+
+
+            return View(tsData);
         }
     }
 }

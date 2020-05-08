@@ -1,9 +1,7 @@
 ﻿@model TutorTimeSheetCustomModel
 
 @using BeyondTheTutor.Models.TimeSheetModels
-@{
-    Dictionary<int, string> d_days = new Dictionary<int, string>();
-}
+
 
 
 <body class="wou-silver-bg">
@@ -73,7 +71,7 @@
                 <tr>
                     <th>Month</th>
                     <th>Year</th>
-                    <th>Days</th>
+                    <th>View a day</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -91,8 +89,8 @@
                         }
                         <td>@ts.Year</td>
                         <td>
-                            <div onchange="location = this.value;" class="ui selection dropdown">
-                                <input type="hidden" name="dropdown">
+                            <div class="ui selection dropdown">
+                                <input type="hidden" name="dropdown0">
                                 <i class="dropdown icon"></i>
                                 <div class="default text">Select a day</div>
                                 <div class="menu">
@@ -100,7 +98,50 @@
 
                                         foreach (var day in days)
                                         {
-                                            <div class="item" value="/WorkHours/Index/@day.ID">@Model.days[day.On]</div>
+                                            string str = "view" + day.ID;
+                                            <div onclick="$('#@str').modal({allowMultiple: true}).modal({inverted: true}).modal('show');"
+                                                 class="item" value="@day.ID">@Model.days[day.On]</div>
+                                            <div class="ui small modal" id="@str">
+                                                <i class="close icon"></i>
+                                                <h2 class="ui centered header registration">Quick Day View</h2>
+                                                <div class="content">
+                                                    <div class="ui form attached fluid segment ui equal width form">
+                                                        <div class="ui small statistics" style="text-align: center;">
+                                                            <div class="ui statistic">
+                                                                <div class="value">
+                                                                    <i class="calendar icon"></i>
+                                                                    @ts.Month/@day.On/@ts.Year
+                                                                </div>
+                                                                <div class="label">
+                                                                    TimeSheet Month/Day/Year
+                                                                </div>
+                                                            </div>
+                                                            <div class="statistic">
+                                                                <div class="value">
+                                                                    <i class="clock icon"></i>
+                                                                    @day.RegularHrs
+                                                                </div>
+                                                                <div class="label">
+                                                                    Hours Worked
+                                                                </div>
+                                                            </div>
+                                                            <div class="statistic">
+                                                                <div class="value">
+                                                                    <i class="dollar icon"></i>
+                                                                    @{decimal money = day.RegularHrs.Value  * (decimal)(12.2);}
+                                                                    @Math.Round(money, 2)
+                                                                </div>
+                                                                <div class="label">
+                                                                    Estimated Earnings
+                                                                </div>
+                                                            </div>
+                                                        </div><br/>
+                                                              <div style="text-align: center;">
+                                                                  <button style="text-align: center;" class="ui large button positive"><i class="th list icon"></i>View More</button>
+                                                              </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         }
                                     }
                                 </div>
@@ -108,13 +149,11 @@
                         </td>
                         <td>
                             @{var mstring = ("add" + @ts.ID); }
-                            <button onclick="$('#@mstring') .modal('setting', 'transition', 'swing left')
-                                                            .modal({ inverted: true })
-                                                            .modal('show');"
+                            <button onclick="$('#@mstring').modal({allowMultiple: true}).modal({inverted: true}).modal('show');"
                                     class="ui button negative">
                                 Add Day
                             </button>
-                            <div class="ui modal" id="@mstring">
+                            <div class="ui mini modal" id="@mstring">
                                 <i class="close icon"></i>
                                 <h2 class="ui centered header registration">Add a day to your timesheet</h2>
                                 <div class="content">
@@ -127,25 +166,19 @@
 
                                             @Html.HiddenFor(m => m.DayVM.RegularHrs)
                                             <div class="fields">
-                                                <div class="field">
+                                                <div class="two wide field">
                                                     <b>You are about to append a day onto the @(Model.months[ts.Month])/@ts.Year timesheet</b>
                                                 </div>
                                             </div>
-                                            <div class="fields" style="text-align: center;">
-                                                <div class="field"></div>
-                                                <div class="field"></div>
-
+                                            <div class="two fields" style="text-align: center;">
                                                 <div class="field form-group">
                                                     @Html.DropDownList("DaysID", null, htmlAttributes:
                                                              new { @class = "ui scrollable dropdown form-control", id = "DayVM_On", Name = "DayVM.On" })
 
                                                 </div>
                                                 <div class="field form-group">
-                                                    <input type="submit" value="Add Day" class="ui button positive" />
+                                                    <input type="submit" value="Add Day" class="ui small button positive" />
                                                 </div>
-                                                <div class="field"></div>
-                                                <div class="field"></div>
-
                                             </div>
                                         }
                                     </div>
@@ -167,11 +200,6 @@
 @section scripts
 {
     <script src="~/Scripts/main.js"></script>
-
-
-    <script type="text/javascript">
-
-    </script>
 
 }
 

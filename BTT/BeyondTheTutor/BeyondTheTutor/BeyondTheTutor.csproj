@@ -259,6 +259,10 @@
   <ItemGroup>
     <Content Include="App_Data\AspDown.sql" />
     <Content Include="App_Data\AspUp.sql" />
+    <Content Include="App_Data\BeyondTheTutor.mdf" />
+    <Content Include="App_Data\BeyondTheTutor_log.ldf">
+      <DependentUpon>BeyondTheTutor.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\down.sql" />
     <Content Include="App_Data\queries.sql" />
     <Content Include="App_Data\seed.sql" />
@@ -719,6 +723,7 @@
     <Content Include="Views\WorkHours\Edit.cshtml" />
     <Content Include="Views\WorkHours\Index.cshtml" />
     <Content Include="Views\TimeSheetCRUD\Index.cshtml" />
+    <Content Include="Views\TimeSheetCRUD\ViewDay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

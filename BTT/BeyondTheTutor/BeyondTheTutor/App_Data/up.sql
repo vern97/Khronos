@@ -260,3 +260,4 @@ CREATE TABLE [dbo].[ProfilePictures]
 		REFERENCES [BTTUsers] ([ID])
 		ON DELETE CASCADE ON UPDATE CASCADE
 );
+

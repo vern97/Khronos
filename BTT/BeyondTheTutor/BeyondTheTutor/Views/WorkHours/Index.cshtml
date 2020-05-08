@@ -23,7 +23,8 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Day.ID)
@@ -35,9 +36,21 @@
             @Html.DisplayFor(modelItem => item.ClockedOut)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            <div class="ui fluid buttons">
+                <button class="ui animated fluid button" tabindex="0">
+                    <div class="visible content">
+                        @Html.DisplayFor(modelItem => item.ClockedIn)-@Html.DisplayFor(modelItem => item.ClockedOut)
+                    </div>
+                    <div class="hidden content">
+                        Edit Shift
+                    </div>
+                </button>
+                <button class="ui times icon negative button">X</button>
+            </div>
+            @{/*@Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+                        @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id=item.ID })*/
+            }
         </td>
     </tr>
 }
