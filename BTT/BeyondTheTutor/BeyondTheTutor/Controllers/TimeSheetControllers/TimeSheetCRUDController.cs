@@ -11,6 +11,7 @@ using System.Web.Security;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using BeyondTheTutor.Models.TimeSheetModels;
+using System;
 
 namespace BeyondTheTutor.Controllers.TimeSheetControllers
 {
@@ -112,6 +113,42 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
 
 
             return View(tsData);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> CreateShift(TutorTimeSheetCustomModel model)
+        {
+            if (model.ShiftVM != null)
+            {
+                db.WorkHours.Add(model.ShiftVM);
+                Day d = db.Days.Find(model.ShiftVM.DayID);
+                d.RegularHrs += Math.Round((decimal)(model.ShiftVM.ClockedOut - model.ShiftVM.ClockedIn).TotalHours, 1);
+                db.Entry(d).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("ViewMonth", new { tsid = model.ShiftVM.Day.TimeSheetID });
+            }
+
+            return RedirectToAction("Index");
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteShift(TutorTimeSheetCustomModel model)
+        {
+            if (model.ShiftVM != null && db.WorkHours.Find(model.ShiftVM.ID) != null)
+            {
+                WorkHour workHour = db.WorkHours.Find(model.ShiftVM.ID);
+                Day d = db.Days.Find(workHour.DayID);
+                d.RegularHrs -= Math.Round((decimal)(workHour.ClockedOut - workHour.ClockedIn).TotalHours, 1);
+                db.Entry(d).State = EntityState.Modified;
+                db.WorkHours.Remove(workHour);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }
