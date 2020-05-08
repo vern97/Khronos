@@ -91,21 +91,18 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
         }
 
         // GET: TimeSheetCRUD
-        public async Task<ActionResult> ViewDay()
+        public async Task<ActionResult> ViewMonth(int? tsid)
         {
             var tutor = getUser();
             var returningTutor = getUser().Tutor;
+            var returningTimesheet = 
             ViewBag.MonthsID = new SelectList(viewBagTS.getMonths(), "Key", "Value");
             ViewBag.DaysID = new SelectList(viewBagD.getDays(), "Key", "Value");
 
 
 
             TutorTimeSheetCustomModel tsData = new TutorTimeSheetCustomModel();
-            tsData.TimeSheets = db.TimeSheets
-                .Where(t => t.TutorID == tutor.ID)
-                .OrderByDescending(y => y.Year)
-                .OrderByDescending(m => m.Month)
-                .ToList();
+            tsData.TimeSheetVM = db.TimeSheets.Find(tsid);
 
             tsData.tutor = returningTutor;
             Day d = new Day();

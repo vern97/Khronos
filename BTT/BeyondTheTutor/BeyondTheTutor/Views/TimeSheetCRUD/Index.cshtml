@@ -72,6 +72,7 @@
                     <th>Month</th>
                     <th>Year</th>
                     <th>View a day</th>
+                    <th>Month Hours</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -89,31 +90,37 @@
                         }
                         <td>@ts.Year</td>
                         <td>
+
+                            @{ var days = ts.Days.Where(d => d.TimeSheetID == ts.ID); }
                             <div class="ui selection dropdown">
                                 <input type="hidden" name="dropdown0">
                                 <i class="dropdown icon"></i>
-                                <div class="default text">Select a day</div>
+                                @if (ts.Days.Count < 1)
+                                {<div class="default text"> No Days Worked. . .</div>
+                                }
+                                else
+                                { <div class="default text">View a day</div>
+                                }
                                 <div class="menu">
-                                    @{ var days = ts.Days.Where(d => d.TimeSheetID == ts.ID);
+                                    @foreach (var day in days)
+                                    {
+                                        string str = "view" + day.ID;
 
-                                        foreach (var day in days)
-                                        {
-                                            string str = "view" + day.ID;
-                                            <div onclick="$('#@str').modal({allowMultiple: true}).modal({inverted: true}).modal('show');"
-                                                 class="item" value="@day.ID">@Model.days[day.On]</div>
-                                            <div class="ui small modal" id="@str">
+                                        <div onclick="$('#@str').modal({allowMultiple: true}).modal({inverted: true}).modal('show');"
+                                             class="item" value="@day.ID">@Model.days[day.On]</div>
+                                            <div class="ui modal" id="@str">
                                                 <i class="close icon"></i>
                                                 <h2 class="ui centered header registration">Quick Day View</h2>
                                                 <div class="content">
                                                     <div class="ui form attached fluid segment ui equal width form">
-                                                        <div class="ui small statistics" style="text-align: center;">
+                                                        <div class="ui fluid statistics">
                                                             <div class="ui statistic">
                                                                 <div class="value">
                                                                     <i class="calendar icon"></i>
-                                                                    @ts.Month/@day.On/@ts.Year
+                                                                    @day.On  @Model.months[ts.Month]  @ts.Year
                                                                 </div>
                                                                 <div class="label">
-                                                                    TimeSheet Month/Day/Year
+                                                                    TimeSheet
                                                                 </div>
                                                             </div>
                                                             <div class="statistic">
@@ -128,24 +135,37 @@
                                                             <div class="statistic">
                                                                 <div class="value">
                                                                     <i class="dollar icon"></i>
-                                                                    @{decimal money = day.RegularHrs.Value  * (decimal)(12.2);}
+                                                                    @{decimal money = day.RegularHrs.Value * (decimal)(12.2);}
                                                                     @Math.Round(money, 2)
                                                                 </div>
                                                                 <div class="label">
                                                                     Estimated Earnings
                                                                 </div>
                                                             </div>
-                                                        </div><br/>
-                                                              <div style="text-align: center;">
-                                                                  <button style="text-align: center;" class="ui large button positive"><i class="th list icon"></i>View More</button>
-                                                              </div>
+                                                        </div>
+                                                        <br />
+                                                        <div style="text-align: center;">
+                                                            <button class="ui labled icon button">
+                                                                <i class="th list icon"></i>
+                                                                @Html.ActionLink("View Month's Details", "ViewMonth", new { tsid = ts.ID })
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        }
-                                    }
+
+                                                                        }
                                 </div>
                             </div>
+                        </td>
+                        <td>
+                            @{decimal x = (decimal)@ts.Days.Sum(m => m.RegularHrs); }
+                            @{if (x < (decimal)0.01)
+                            {
+                                <b style="color: lightgray">None</b>
+                            }
+                            else
+                                { <b style="color: forestgreen">@ts.Days.Sum(m => m.RegularHrs).Value.ToString()</b> } }
                         </td>
                         <td>
                             @{var mstring = ("add" + @ts.ID); }

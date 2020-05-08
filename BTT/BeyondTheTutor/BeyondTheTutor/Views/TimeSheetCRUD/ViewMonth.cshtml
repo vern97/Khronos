@@ -1,0 +1,78 @@
+﻿@model TutorTimeSheetCustomModel
+
+@using BeyondTheTutor.Models.TimeSheetModels
+
+<br />
+
+<body class="wou-silver-bg">
+    <div class="ui one column center aligned stackable page grid">
+        <table class="ui celled definition compact table" style="text-align: center;">
+            <thead>
+                <tr>
+                    <th colspan="4"><h1 class="ui centered header">@Model.months[Model.TimeSheetVM.Month]/@Model.TimeSheetVM.Year</h1></th>
+                </tr>
+            </thead>
+                <tr style="text-align: center;">
+                    <td colspan="4">
+                        <button class="ui labeled icon button" onclick="location.href='@Url.Action("Index", "TimeSheetCRUD")'">
+                            <i class="left arrow icon"></i>
+                            Back to Timesheets
+                        </button>
+                    </td>
+                    <br />
+                </tr>
+            <thead>
+                <tr>
+                    <th><h4>Days</h4></th>
+                    <th><h4>Shifts</h4></th>
+                    <th><h4>Estimated Earnings</h4></th>
+                    <th><h4>Actions</h4></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var day in Model.TimeSheetVM.Days)
+                {
+                    <tr>
+                        <td>@Model.days[day.On]</td>
+                        <td style="text-align: center;">
+                            <div class="ui list">
+                                @foreach (var shift in day.WorkHours)
+                                {
+                                    <div class="item">
+                                        <div class="content">
+                                            <div class="ui buttons" style="width:95%">
+                                                <button class="ui animated button" tabindex="0">
+                                                    <div class="visible content">
+                                                        @shift.ClockedIn.ToShortTimeString()-@shift.ClockedOut.ToShortTimeString()
+                                                    </div>
+                                                    <div class="hidden content">
+                                                        Edit Shift
+                                                    </div>
+                                                </button>
+                                                <button href="delete" class="ui times icon negative button">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </td>
+                        <td>
+                            @{decimal money = day.RegularHrs.Value * (decimal)(12.2);}
+                            @Math.Round(money, 2)
+                        </td>
+                        <td style="text-align: center;">
+                                @Html.ActionLink("Add Shift", "addshift", new { id = day.ID }, new { @class = "ui button positive" })
+                                @Html.ActionLink("Delete Day", "deleteday", new { id = day.ID }, new { @class = "ui button negative" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+}

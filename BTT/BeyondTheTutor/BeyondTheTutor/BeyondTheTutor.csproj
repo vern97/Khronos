@@ -723,7 +723,7 @@
     <Content Include="Views\WorkHours\Edit.cshtml" />
     <Content Include="Views\WorkHours\Index.cshtml" />
     <Content Include="Views\TimeSheetCRUD\Index.cshtml" />
-    <Content Include="Views\TimeSheetCRUD\ViewDay.cshtml" />
+    <Content Include="Views\TimeSheetCRUD\ViewMonth.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
