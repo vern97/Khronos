@@ -18,6 +18,56 @@
                         <i class="left arrow icon"></i>
                         Back to Timesheets
                     </button>
+                    <button class="ui button" onclick="$('#EditTimeSheet').modal('show')">
+                        <i class="th list icon"></i>
+                        Edit Timesheet
+                    </button>
+                    <div class="ui mini modal" id="EditTimeSheet">
+                        <i class="close icon"></i>
+                        <h2 class="ui centered header registration">Edit Timesheet @Model.months[Model.TimeSheetVM.Month] / @Model.TimeSheetVM.Year</h2>
+                        <div class="content">
+                            <div class="ui form attached fluid">
+                                @using (Html.BeginForm("EditTimesheet", "TimeSheetCRUD", FormMethod.Post, new { @class = "ui form form-horizontal", style = "text-align: center;" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.Hidden("TimeSheetVM_ID", (object)Model.TimeSheetVM.ID, new { Name = "TimeSheetVM.ID" })
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="two fields fluid">
+                                        <div class="field">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.TimeSheetVM.Month, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.DropDownList("MonthsID", null, htmlAttributes:
+                                                   new { @class = "ui scrolling dropdown form-control fluid", id = "TimeSheetVM_Month", Name = "TimeSheetVM.Month" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.TimeSheetVM.Year, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    <select class="ui scrolling dropdown item form-control fluid" id="TimeSheetVM_Year" Name="TimeSheetVM.Year">
+                                                        @{int year = DateTime.Today.Year.ToString().AsInt();}
+                                                        <option type="number" value="@year">@year</option>
+                                                        <option type="number" value="@(year+1)">@(year + 1)</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="actions">
+                                        <div class="ui buttons fluid">
+                                            <div class="ui cancel button">
+                                                Cancel
+                                            </div>
+                                            <div class="or"></div>
+                                            <input type="submit" value="Update" class="ui button right labeled checkmark icon icon positive form-group" />
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
                 </td>
                 <br />
             </tr>
@@ -51,7 +101,13 @@
                                                         Edit Shift
                                                     </div>
                                                 </button>
-                                                <button href="delete" class="ui times icon negative button">X</button>
+                                                @using (Html.BeginForm("DeleteShift", "TimeSheetCRUD", FormMethod.Post, new { @class = "ui form form-horizontal", style = "text-align: center;" }))
+                                                {
+                                                    @Html.AntiForgeryToken()
+                                                    @Html.Hidden("ShiftVM_ID", (object)shift.ID, new { Name = "ShiftVM.ID" })
+                                                    @Html.Hidden("TimeSheetVM_ID", (object)Model.TimeSheetVM.ID, new { Name = "TimeSheetVM.ID" })
+                                                    <button type="submit" class="ui times icon negative button">X</button>
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -77,8 +133,6 @@
                                         {
                                             @Html.AntiForgeryToken()
                                             @Html.Hidden("ShiftVM_DayID", (object)day.ID, new { Name = "ShiftVM.DayID" })
-                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
                                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                             <div class="two fields">
                                                 <div class="field">

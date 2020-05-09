@@ -25,9 +25,9 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
         private BTTUser getUser()
         {
             string aspid = User.Identity.GetUserId();
-            return  db.BTTUsers.Where(t => t.ASPNetIdentityID == aspid).FirstOrDefault();
+            return db.BTTUsers.Where(t => t.ASPNetIdentityID == aspid).FirstOrDefault();
         }
-        
+
         // GET: TimeSheetCRUD
         public async Task<ActionResult> Index()
         {
@@ -63,7 +63,7 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
             if (model.TimeSheetVM != null)
             {
                 model.TimeSheetVM.TutorID = getUser().ID;
-                model.TimeSheetVM.Tutor = getUser().Tutor ;
+                model.TimeSheetVM.Tutor = getUser().Tutor;
 
                 db.TimeSheets.Add(model.TimeSheetVM);
                 db.SaveChangesAsync();
@@ -96,7 +96,7 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
         {
             var tutor = getUser();
             var returningTutor = getUser().Tutor;
-            var returningTimesheet = 
+            var returningTimesheet =
             ViewBag.MonthsID = new SelectList(viewBagTS.getMonths(), "Key", "Value");
             ViewBag.DaysID = new SelectList(viewBagD.getDays(), "Key", "Value");
 
@@ -135,9 +135,9 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
 
         [HttpPost, ActionName("DeleteShift")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteShift(int id)
+        public async Task<ActionResult> DeleteShift(TutorTimeSheetCustomModel model)
         {
-            var shift = db.WorkHours.Find(id);
+            var shift = db.WorkHours.Find(model.ShiftVM.ID);
 
             if (shift != null)
             {
@@ -146,10 +146,10 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
                 db.Entry(d).State = EntityState.Modified;
                 db.WorkHours.Remove(shift);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ViewMonth", new { tsid = model.TimeSheetVM.ID });
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("ViewMonth", new { tsid = model.TimeSheetVM.ID });
         }
 
 
@@ -169,5 +169,24 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
             return RedirectToAction("Index");
         }
 
-    }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> EditTimesheet(TutorTimeSheetCustomModel model)
+        {
+            var ts = model.TimeSheetVM;
+            if (ts.Month != null && ts.Year != null && ts.ID != null)
+            {
+                TimeSheet timeSheet = db.TimeSheets.Find(ts.ID);
+                timeSheet.Month = ts.Month;
+                timeSheet.Year = ts.Year;
+                db.Entry(timeSheet).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
+
+        
+
+}
 }
