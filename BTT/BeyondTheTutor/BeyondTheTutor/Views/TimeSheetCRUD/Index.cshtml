@@ -126,20 +126,10 @@
                                                             <div class="statistic">
                                                                 <div class="value">
                                                                     <i class="clock icon"></i>
-                                                                    @day.RegularHrs
+                                                                    @day.getPayRollTime()
                                                                 </div>
                                                                 <div class="label">
                                                                     Hours Worked
-                                                                </div>
-                                                            </div>
-                                                            <div class="statistic">
-                                                                <div class="value">
-                                                                    <i class="dollar icon"></i>
-                                                                    @{decimal money = day.RegularHrs.Value * (decimal)(12.2);}
-                                                                    @Math.Round(money, 2)
-                                                                </div>
-                                                                <div class="label">
-                                                                    Estimated Earnings
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -158,13 +148,13 @@
                             </div>
                         </td>
                         <td style="text-align: center;">
-                            @{decimal x = (decimal)@ts.Days.Sum(m => m.RegularHrs); }
+                            @{decimal x = (decimal)@ts.Days.Sum(m => m.getPayRollTime()); }
                             @{if (x < (decimal)0.01)
                                 {
-                                <b style="color: lightgray">None</b>
+                                    <b style="color: lightgray">None</b>
                                 }
                                 else
-                                { <b style="color: forestgreen">@ts.Days.Sum(m => m.RegularHrs).Value.ToString()</b> } }
+                                { <b style="color: forestgreen">@x</b> } }
                         </td>
                         <td>
 

@@ -84,8 +84,13 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
                 model.DayVM.RegularHrs = 0;
                 db.Days.Add(model.DayVM);
                 db.SaveChangesAsync();
-
-                return RedirectToAction("Index");
+                if(model.tutor.VNumber == null)
+                {
+                    return RedirectToAction("Index");
+                } else
+                {
+                    return RedirectToAction("ViewMonth", new { tsid = model.DayVM.TimeSheetID });
+                }
             }
 
             return RedirectToAction("Index");
@@ -123,10 +128,10 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
             {
                 db.WorkHours.Add(model.ShiftVM);
                 Day d = db.Days.Find(model.ShiftVM.DayID);
-                d.RegularHrs += Math.Round((decimal)(model.ShiftVM.ClockedOut - model.ShiftVM.ClockedIn).TotalHours, 1);
+                d.RegularHrs += (int)(model.ShiftVM.ClockedOut - model.ShiftVM.ClockedIn).TotalMinutes;
                 db.Entry(d).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("ViewMonth", new { tsid = model.ShiftVM.Day.TimeSheetID });
+                return RedirectToAction("ViewMonth", new { tsid=model.ShiftVM.Day.TimeSheetID });
             }
 
             return RedirectToAction("Index");
@@ -142,7 +147,7 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
             if (shift != null)
             {
                 Day d = db.Days.Find(shift.DayID); // the day the shift belongs to
-                d.RegularHrs -= Math.Round((decimal)(shift.ClockedOut - shift.ClockedIn).TotalHours, 1);
+                d.RegularHrs -= (int)(shift.ClockedOut - shift.ClockedIn).TotalMinutes;
                 db.Entry(d).State = EntityState.Modified;
                 db.WorkHours.Remove(shift);
                 db.SaveChanges();

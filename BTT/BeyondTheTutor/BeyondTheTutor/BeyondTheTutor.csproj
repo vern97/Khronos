@@ -211,10 +211,7 @@
     <Compile Include="Controllers\StudentAppointmentController.cs" />
     <Compile Include="Controllers\StudentResourcesController.cs" />
     <Compile Include="Controllers\SurveyControllers\SurveysController.cs" />
-    <Compile Include="Controllers\TimeSheetControllers\DaysController.cs" />
     <Compile Include="Controllers\TimeSheetControllers\TimeSheetCRUDController.cs" />
-    <Compile Include="Controllers\TimeSheetControllers\TimeSheetsController.cs" />
-    <Compile Include="Controllers\TimeSheetControllers\WorkHoursController.cs" />
     <Compile Include="Controllers\TutorAppointmentController.cs" />
     <Compile Include="Controllers\TutorsController.cs" />
     <Compile Include="Controllers\WeightedGradesController.cs" />
@@ -259,10 +256,6 @@
   <ItemGroup>
     <Content Include="App_Data\AspDown.sql" />
     <Content Include="App_Data\AspUp.sql" />
-    <Content Include="App_Data\BeyondTheTutor.mdf" />
-    <Content Include="App_Data\BeyondTheTutor_log.ldf">
-      <DependentUpon>BeyondTheTutor.mdf</DependentUpon>
-    </Content>
     <Content Include="App_Data\down.sql" />
     <Content Include="App_Data\queries.sql" />
     <Content Include="App_Data\seed.sql" />
@@ -707,21 +700,6 @@
     <Content Include="Views\Errors\Http403.cshtml" />
     <Content Include="Views\Errors\Http500.cshtml" />
     <Content Include="Views\Tutors\TutorProfile.cshtml" />
-    <Content Include="Views\TimeSheets\Create.cshtml" />
-    <Content Include="Views\TimeSheets\Delete.cshtml" />
-    <Content Include="Views\TimeSheets\Details.cshtml" />
-    <Content Include="Views\TimeSheets\Edit.cshtml" />
-    <Content Include="Views\TimeSheets\Index.cshtml" />
-    <Content Include="Views\Days\Create.cshtml" />
-    <Content Include="Views\Days\Delete.cshtml" />
-    <Content Include="Views\Days\Details.cshtml" />
-    <Content Include="Views\Days\Edit.cshtml" />
-    <Content Include="Views\Days\Index.cshtml" />
-    <Content Include="Views\WorkHours\Create.cshtml" />
-    <Content Include="Views\WorkHours\Delete.cshtml" />
-    <Content Include="Views\WorkHours\Details.cshtml" />
-    <Content Include="Views\WorkHours\Edit.cshtml" />
-    <Content Include="Views\WorkHours\Index.cshtml" />
     <Content Include="Views\TimeSheetCRUD\Index.cshtml" />
     <Content Include="Views\TimeSheetCRUD\ViewMonth.cshtml" />
   </ItemGroup>

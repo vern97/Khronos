@@ -225,7 +225,7 @@ CREATE TABLE [Days]
 (
 	[ID]			INT IDENTITY(1,1)	NOT NULL,
     [On] 			TINYINT 			NOT NULL,
-    [RegularHrs] 	DECIMAL(4,2),
+    [RegularHrs] 	INT,
     [TimeSheetID] 	INT 				NOT NULL,
     CONSTRAINT [PK_Days] PRIMARY KEY ([ID]), 
 		

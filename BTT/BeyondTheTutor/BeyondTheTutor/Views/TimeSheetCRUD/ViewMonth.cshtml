@@ -68,6 +68,41 @@
                             </div>
                         </div>
                     </div>
+                    <button onclick="$('#AddDay').modal({allowMultiple: true}).modal({inverted: true}).modal('show');"
+                            class="ui button positive">
+                        Add Day
+                    </button>
+                    <div class="ui mini modal" id="AddDay">
+                        <i class="close icon"></i>
+                        <h2 class="ui centered header registration">Add a day to your timesheet</h2>
+                        <div class="content">
+                            <div class="ui form attached fluid segment ui equal width form">
+
+                                @using (Html.BeginForm("CreateDay", "TimeSheetCRUD", FormMethod.Post, new { @class = "ui form form-horizontal", style = "text-align: center;" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.Hidden("DayVM_TimeSheetID", (object)Model.TimeSheetVM.ID, new { Name = "DayVM.TimeSheetID" })
+                                    @Html.HiddenFor(m => m.tutor.VNumber, (object)Model.TimeSheetVM.ID)//for a simple redirect if statment
+                                    @Html.HiddenFor(m => m.DayVM.RegularHrs)
+                                    <div class="fields">
+                                        <div class="two wide field">
+                                            <b>You are about to append a day onto the @(Model.months[Model.TimeSheetVM.Month])/@Model.TimeSheetVM.Year timesheet</b>
+                                        </div>
+                                    </div>
+                                    <div class="two fields" style="text-align: center;">
+                                        <div class="field form-group">
+                                            @Html.DropDownList("DaysID", null, htmlAttributes:
+                                                     new { @class = "ui scrollable dropdown form-control", id = "DayVM_On", Name = "DayVM.On" })
+
+                                        </div>
+                                        <div class="field form-group">
+                                            <input type="submit" value="Add Day" class="ui small button positive" />
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
                 </td>
                 <br />
             </tr>
@@ -75,7 +110,7 @@
                 <tr>
                     <th><h4>Days</h4></th>
                     <th><h4>Shifts</h4></th>
-                    <th><h4>Estimated Earnings</h4></th>
+                    <th><h4>Total Hours</h4></th>
                     <th><h4>Actions</h4></th>
                 </tr>
             </thead>
@@ -115,8 +150,7 @@
                             </div>
                         </td>
                         <td>
-                            @{decimal money = day.RegularHrs.Value * (decimal)(12.2);}
-                            @Math.Round(money, 2)
+                            @day.getPayRollTime()
                         </td>
                         <td style="text-align: center;">
                             @{var mstring = ("add" + day.ID);}
