@@ -79,11 +79,11 @@ namespace BeyondTheTutor.Models.TimeSheetModels
 
         public int RegularHrs { get; set; }
 
-        public decimal getPayRollTime()
+        public double getPayRollTime(int mins)
         {
-            var hours = RegularHrs/60;
+            var hours = mins/60;
 
-            var minutes = RegularHrs % 60;
+            var minutes = mins % 60;
                 
 
             switch (
@@ -99,34 +99,34 @@ namespace BeyondTheTutor.Models.TimeSheetModels
                 minutes >= 3 ? .1 : .0)
             {
                 case 1:
-                    return hours + (decimal)1.0;
+                    return hours + 1.0;
                     break;
                 case .9:
-                    return hours + (decimal).9;
+                    return hours + .9;
                     break;
                 case .8:
-                    return hours + (decimal).8;
+                    return hours + .8;
                     break;
                 case .7:
-                    return hours + (decimal).7;
+                    return hours + .7;
                     break;
                 case .6:
-                    return hours + (decimal).6;
+                    return hours + .6;
                     break;
                 case .5:
-                    return hours + (decimal).5;
+                    return hours + .5;
                     break;
                 case .4:
-                    return hours + (decimal).4;
+                    return hours + .4;
                     break;
                 case .3:
-                    return hours + (decimal).3;
+                    return hours + .3;
                     break;
                 case .2:
-                    return hours + (decimal).2;
+                    return hours + .2;
                     break;
                 case .1:
-                    return hours + (decimal).1;
+                    return hours + .1;
                     break;
                 case .0:
                     return hours;

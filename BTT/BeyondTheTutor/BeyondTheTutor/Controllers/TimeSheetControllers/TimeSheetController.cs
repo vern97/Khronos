@@ -195,7 +195,22 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
             return RedirectToAction("Index");
         }
 
-        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteDay(TutorTimeSheetCustomModel model)
+        {
+            var day = db.Days.Find(model.DayVM.ID);
 
-}
+            if (day != null)
+            {
+                db.Days.Remove(day);
+                db.SaveChanges();
+                return RedirectToAction("ViewMonth", new { tsid = model.DayVM.TimeSheetID });
+            }
+
+            return RedirectToAction("ViewMonth", new { tsid = model.DayVM.TimeSheetID });
+        }
+
+
+    }
 }
