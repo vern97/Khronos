@@ -133,22 +133,41 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
         }
 
 
-        [HttpPost]
+        [HttpPost, ActionName("DeleteShift")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteShift(TutorTimeSheetCustomModel model)
+        public async Task<ActionResult> DeleteShift(int id)
         {
-            if (model.ShiftVM != null && db.WorkHours.Find(model.ShiftVM.ID) != null)
+            var shift = db.WorkHours.Find(id);
+
+            if (shift != null)
             {
-                WorkHour workHour = db.WorkHours.Find(model.ShiftVM.ID);
-                Day d = db.Days.Find(workHour.DayID);
-                d.RegularHrs -= Math.Round((decimal)(workHour.ClockedOut - workHour.ClockedIn).TotalHours, 1);
+                Day d = db.Days.Find(shift.DayID); // the day the shift belongs to
+                d.RegularHrs -= Math.Round((decimal)(shift.ClockedOut - shift.ClockedIn).TotalHours, 1);
                 db.Entry(d).State = EntityState.Modified;
-                db.WorkHours.Remove(workHour);
+                db.WorkHours.Remove(shift);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             return RedirectToAction("Index");
         }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteTimesheet(TutorTimeSheetCustomModel model)
+        {
+            var ts = db.TimeSheets.Find(model.TimeSheetVM.ID);
+
+            if (ts != null)
+            {
+                db.TimeSheets.Remove(ts);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Index");
+        }
+
     }
 }

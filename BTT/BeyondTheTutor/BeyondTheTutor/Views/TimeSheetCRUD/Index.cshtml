@@ -153,17 +153,17 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                     }
+                                                                        }
                                 </div>
                             </div>
                         </td>
                         <td style="text-align: center;">
                             @{decimal x = (decimal)@ts.Days.Sum(m => m.RegularHrs); }
                             @{if (x < (decimal)0.01)
-                            {
+                                {
                                 <b style="color: lightgray">None</b>
-                            }
-                            else
+                                }
+                                else
                                 { <b style="color: forestgreen">@ts.Days.Sum(m => m.RegularHrs).Value.ToString()</b> } }
                         </td>
                         <td>
@@ -172,48 +172,71 @@
                                 <button class="ui button">
                                     @Html.ActionLink("View Timesheet", "ViewMonth", new { tsid = ts.ID })
                                 </button>
-                                <div class="or"></div>
-                                <button class="ui button" style="background-color: #450000">
-                                    @Html.ActionLink("Delete Timesheet", "DeleteTimesheet", new { tsid = ts.ID })
+                                <div class="or"></div>                            
+                                @{ string del = "del" + @ts.ID;}
+                                <button class="ui button negative" onclick="$('#@del').modal({allowMultiple: true}).modal('show');">
+                                    Delete Timesheet
                                 </button>
                             </div>
-
-                            @{var mstring = ("add" + @ts.ID); }
-                            <button onclick="$('#@mstring').modal({allowMultiple: true}).modal({inverted: true}).modal('show');"
-                                    class="ui button positive">
-                                Add Day
-                            </button>
-                            <div class="ui mini modal" id="@mstring">
-                                <i class="close icon"></i>
-                                <h2 class="ui centered header registration">Add a day to your timesheet</h2>
+                            <div class="ui mini modal" id="@del">
+                                <div class="header">Deletion Confirmation</div>
                                 <div class="content">
-                                    <div class="ui form attached fluid segment ui equal width form">
-
-                                        @using (Html.BeginForm("CreateDay", "TimeSheetCRUD", FormMethod.Post, new { @class = "ui form form-horizontal", style = "text-align: center;" }))
+                                    <p>Are you sure you want to permenently delete @Model.months[ts.Month]/@ts.Year</p>
+                                </div>
+                                <div class="actions">
+                                    <div class="ui buttons fluid">
+                                        <div class="ui cancel button">
+                                            No
+                                        </div>
+                                        <div class="or"></div>
+                                        @using (Html.BeginForm("DeleteTimesheet", "TimeSheetCRUD", FormMethod.Post, new { @class = "ui form form-horizontal", style = "text-align: center;" }))
                                         {
                                             @Html.AntiForgeryToken()
-                                            @Html.Hidden("DayVM_TimeSheetID", (object)ts.ID, new { Name = "DayVM.TimeSheetID" })
-
-                                            @Html.HiddenFor(m => m.DayVM.RegularHrs)
-                                            <div class="fields">
-                                                <div class="two wide field">
-                                                    <b>You are about to append a day onto the @(Model.months[ts.Month])/@ts.Year timesheet</b>
-                                                </div>
-                                            </div>
-                                            <div class="two fields" style="text-align: center;">
-                                                <div class="field form-group">
-                                                    @Html.DropDownList("DaysID", null, htmlAttributes:
-                                                             new { @class = "ui scrollable dropdown form-control", id = "DayVM_On", Name = "DayVM.On" })
-
-                                                </div>
-                                                <div class="field form-group">
-                                                    <input type="submit" value="Add Day" class="ui small button positive" />
-                                                </div>
-                                            </div>
+                                            @Html.Hidden("TimeSheetVM_ID", (object)ts.ID, new { Name = "TimeSheetVM.ID" })
+                                            <input type="submit" value="Yes"class="ui button right labeled checkmark icon icon positive"/>
                                         }
                                     </div>
                                 </div>
+                                
+                                                                          
                             </div>
+
+                                @{var mstring = ("add" + @ts.ID); }
+                                <button onclick="$('#@mstring').modal({allowMultiple: true}).modal({inverted: true}).modal('show');"
+                                        class="ui button positive">
+                                    Add Day
+                                </button>
+                                <div class="ui mini modal" id="@mstring">
+                                    <i class="close icon"></i>
+                                    <h2 class="ui centered header registration">Add a day to your timesheet</h2>
+                                    <div class="content">
+                                        <div class="ui form attached fluid segment ui equal width form">
+
+                                            @using (Html.BeginForm("CreateDay", "TimeSheetCRUD", FormMethod.Post, new { @class = "ui form form-horizontal", style = "text-align: center;" }))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                @Html.Hidden("DayVM_TimeSheetID", (object)ts.ID, new { Name = "DayVM.TimeSheetID" })
+
+                                                @Html.HiddenFor(m => m.DayVM.RegularHrs)
+                                                <div class="fields">
+                                                    <div class="two wide field">
+                                                        <b>You are about to append a day onto the @(Model.months[ts.Month])/@ts.Year timesheet</b>
+                                                    </div>
+                                                </div>
+                                                <div class="two fields" style="text-align: center;">
+                                                    <div class="field form-group">
+                                                        @Html.DropDownList("DaysID", null, htmlAttributes:
+                                                                 new { @class = "ui scrollable dropdown form-control", id = "DayVM_On", Name = "DayVM.On" })
+
+                                                    </div>
+                                                    <div class="field form-group">
+                                                        <input type="submit" value="Add Day" class="ui small button positive" />
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
                         </td>
                     </tr>
                 }
