@@ -211,7 +211,7 @@
     <Compile Include="Controllers\StudentAppointmentController.cs" />
     <Compile Include="Controllers\StudentResourcesController.cs" />
     <Compile Include="Controllers\SurveyControllers\SurveysController.cs" />
-    <Compile Include="Controllers\TimeSheetControllers\TimeSheetCRUDController.cs" />
+    <Compile Include="Controllers\TimeSheetControllers\TimeSheetController.cs" />
     <Compile Include="Controllers\TutorAppointmentController.cs" />
     <Compile Include="Controllers\TutorsController.cs" />
     <Compile Include="Controllers\WeightedGradesController.cs" />
@@ -256,6 +256,10 @@
   <ItemGroup>
     <Content Include="App_Data\AspDown.sql" />
     <Content Include="App_Data\AspUp.sql" />
+    <Content Include="App_Data\BeyondTheTutor.mdf" />
+    <Content Include="App_Data\BeyondTheTutor_log.ldf">
+      <DependentUpon>BeyondTheTutor.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\down.sql" />
     <Content Include="App_Data\queries.sql" />
     <Content Include="App_Data\seed.sql" />

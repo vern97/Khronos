@@ -14,7 +14,7 @@
             </thead>
             <tr style="text-align: center;">
                 <td colspan="4">
-                    <button class="ui labeled icon button" onclick="location.href='@Url.Action("Index", "TimeSheetCRUD")'">
+                    <button class="ui labeled icon button" onclick="location.href='@Url.Action("Index", "TimeSheet")'">
                         <i class="left arrow icon"></i>
                         Back to Timesheets
                     </button>
@@ -27,7 +27,7 @@
                         <h2 class="ui centered header registration">Edit Timesheet @Model.months[Model.TimeSheetVM.Month] / @Model.TimeSheetVM.Year</h2>
                         <div class="content">
                             <div class="ui form attached fluid">
-                                @using (Html.BeginForm("EditTimesheet", "TimeSheetCRUD", FormMethod.Post, new { @class = "ui form form-horizontal", style = "text-align: center;" }))
+                                @using (Html.BeginForm("EditTimesheet", "TimeSheet", FormMethod.Post, new { @class = "ui form form-horizontal", style = "text-align: center;" }))
                                 {
                                     @Html.AntiForgeryToken()
                                     @Html.Hidden("TimeSheetVM_ID", (object)Model.TimeSheetVM.ID, new { Name = "TimeSheetVM.ID" })
@@ -78,7 +78,7 @@
                         <div class="content">
                             <div class="ui form attached fluid segment ui equal width form">
 
-                                @using (Html.BeginForm("CreateDay", "TimeSheetCRUD", FormMethod.Post, new { @class = "ui form form-horizontal", style = "text-align: center;" }))
+                                @using (Html.BeginForm("CreateDay", "TimeSheet", FormMethod.Post, new { @class = "ui form form-horizontal", style = "text-align: center;" }))
                                 {
                                     @Html.AntiForgeryToken()
                                     @Html.Hidden("DayVM_TimeSheetID", (object)Model.TimeSheetVM.ID, new { Name = "DayVM.TimeSheetID" })
@@ -136,7 +136,7 @@
                                                         Edit Shift
                                                     </div>
                                                 </button>
-                                                @using (Html.BeginForm("DeleteShift", "TimeSheetCRUD", FormMethod.Post, new { @class = "ui form form-horizontal", style = "text-align: center;" }))
+                                                @using (Html.BeginForm("DeleteShift", "TimeSheet", FormMethod.Post, new { @class = "ui form form-horizontal", style = "text-align: center;" }))
                                                 {
                                                     @Html.AntiForgeryToken()
                                                     @Html.Hidden("ShiftVM_ID", (object)shift.ID, new { Name = "ShiftVM.ID" })
@@ -163,7 +163,7 @@
                                 <h2 class="ui centered header registration">Add a shift to your day</h2>
                                 <div class="content">
                                     <div class="ui form attached fluid">
-                                        @using (Html.BeginForm("CreateShift", "TimeSheetCRUD", FormMethod.Post, new { @class = "ui form form-horizontal", style = "text-align: center;" }))
+                                        @using (Html.BeginForm("CreateShift", "TimeSheet", FormMethod.Post, new { @class = "ui form form-horizontal", style = "text-align: center;" }))
                                         {
                                             @Html.AntiForgeryToken()
                                             @Html.Hidden("ShiftVM_DayID", (object)day.ID, new { Name = "ShiftVM.DayID" })

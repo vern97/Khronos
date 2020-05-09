@@ -39,7 +39,7 @@
                 <tr style="text-align: center;">
                     <th colspan="2"></th>
                     <th colspan="3">
-                        @using (Html.BeginForm("CreateTimeSheet", "TimeSheetCRUD", FormMethod.Post, new { @class = "ui form form-horizontal", style = "text-align: center;" }))
+                        @using (Html.BeginForm("CreateTimeSheet", "TimeSheet", FormMethod.Post, new { @class = "ui form form-horizontal", style = "text-align: center;" }))
                         {
                             @Html.AntiForgeryToken()
                             @Html.HiddenFor(model => model.TimeSheetVM.ID)
@@ -179,7 +179,7 @@
                                             No
                                         </div>
                                         <div class="or"></div>
-                                        @using (Html.BeginForm("DeleteTimesheet", "TimeSheetCRUD", FormMethod.Post, new { @class = "ui form form-horizontal", style = "text-align: center;" }))
+                                        @using (Html.BeginForm("DeleteTimesheet", "TimeSheet", FormMethod.Post, new { @class = "ui form form-horizontal", style = "text-align: center;" }))
                                         {
                                             @Html.AntiForgeryToken()
                                             @Html.Hidden("TimeSheetVM_ID", (object)ts.ID, new { Name = "TimeSheetVM.ID" })
@@ -202,7 +202,7 @@
                                     <div class="content">
                                         <div class="ui form attached fluid segment ui equal width form">
 
-                                            @using (Html.BeginForm("CreateDay", "TimeSheetCRUD", FormMethod.Post, new { @class = "ui form form-horizontal", style = "text-align: center;" }))
+                                            @using (Html.BeginForm("CreateDay", "TimeSheet", FormMethod.Post, new { @class = "ui form form-horizontal", style = "text-align: center;" }))
                                             {
                                                 @Html.AntiForgeryToken()
                                                 @Html.Hidden("DayVM_TimeSheetID", (object)ts.ID, new { Name = "DayVM.TimeSheetID" })

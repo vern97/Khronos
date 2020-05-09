@@ -16,7 +16,7 @@ using System;
 namespace BeyondTheTutor.Controllers.TimeSheetControllers
 {
     [Authorize(Roles = "Tutor")]
-    public class TimeSheetCRUDController : Controller
+    public class TimeSheetController : Controller
     {
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
         private TimeSheet viewBagTS = new TimeSheet();
@@ -28,9 +28,11 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
             return db.BTTUsers.Where(t => t.ASPNetIdentityID == aspid).FirstOrDefault();
         }
 
-        // GET: TimeSheetCRUD
+        // GET: TimeSheets
         public async Task<ActionResult> Index()
         {
+            ViewBag.Current = "TutorTimeSheets";
+
             var tutor = getUser();
             var returningTutor = getUser().Tutor;
             ViewBag.MonthsID = new SelectList(viewBagTS.getMonths(), "Key", "Value");
@@ -96,9 +98,11 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
             return RedirectToAction("Index");
         }
 
-        // GET: TimeSheetCRUD
+        // GET: TimeSheets
         public async Task<ActionResult> ViewMonth(int? tsid)
         {
+            ViewBag.Current = "TutorTimeSheets";
+
             var tutor = getUser();
             var returningTutor = getUser().Tutor;
             var returningTimesheet =
