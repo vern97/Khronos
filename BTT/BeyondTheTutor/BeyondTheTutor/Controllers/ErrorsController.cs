@@ -16,6 +16,7 @@
 
         public ViewResult Http404()
         {
+            Response.StatusCode = 404;
             return View();
         }
 
@@ -26,6 +27,7 @@
 
         public ActionResult Http500()
         {
+            Response.StatusCode = 500;
             return View();
         }
     }
