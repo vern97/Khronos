@@ -407,6 +407,7 @@
     <Content Include="Content\fullcalendar.min.css" />
     <Content Include="Content\fullcalendar.print.css" />
     <Content Include="Content\fullcalendar.print.min.css" />
+    <Content Include="Content\images\404_RedYellow.png" />
     <Content Include="Content\images\BeyondtheTutor_Logo.png" />
     <Content Include="Content\images\books_stacked.png" />
     <Content Include="Content\images\campus_map_1.jpg" />
@@ -448,6 +449,7 @@
     <Content Include="Content\images\landscapes_images\8.jpg" />
     <Content Include="Content\images\landscapes_images\9.jpg" />
     <Content Include="Content\images\Logo_Stacked.jpg" />
+    <Content Include="Content\images\Owl_RedYellow.png" />
     <Content Include="Content\images\resize_welcome_banner.png" />
     <Content Include="Content\images\stevie.jpg" />
     <Content Include="Content\images\TutoringLogo.png" />
