@@ -251,7 +251,7 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
 
             ReportDocument rd = new ReportDocument();
             
-            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "CrystalReport3.rpt"));
+            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "PrintTutorTimesheet.rpt"));
             var tbls = rd.Database.Tables;
             rd.Database.Tables[0].SetDataSource(days);
             rd.Database.Tables[1].SetDataSource(shifts);

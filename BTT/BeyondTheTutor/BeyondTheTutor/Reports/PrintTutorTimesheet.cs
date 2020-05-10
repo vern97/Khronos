@@ -16,14 +16,14 @@ namespace BeyondTheTutor.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class CrystalReport3 : ReportClass {
+    public class PrintTutorTimesheet : ReportClass {
         
-        public CrystalReport3() {
+        public PrintTutorTimesheet() {
         }
         
         public override string ResourceName {
             get {
-                return "CrystalReport3.rpt";
+                return "PrintTutorTimesheet.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace BeyondTheTutor.Reports {
         
         public override string FullResourceName {
             get {
-                return "BeyondTheTutor.Reports.CrystalReport3.rpt";
+                return "BeyondTheTutor.Reports.PrintTutorTimesheet.rpt";
             }
             set {
                 // Do nothing
@@ -178,9 +178,9 @@ namespace BeyondTheTutor.Reports {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedCrystalReport3 : Component, ICachedReport {
+    public class CachedPrintTutorTimesheet : Component, ICachedReport {
         
-        public CachedCrystalReport3() {
+        public CachedPrintTutorTimesheet() {
         }
         
         [Browsable(false)]
@@ -217,7 +217,7 @@ namespace BeyondTheTutor.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            CrystalReport3 rpt = new CrystalReport3();
+            PrintTutorTimesheet rpt = new PrintTutorTimesheet();
             rpt.Site = this.Site;
             return rpt;
         }
