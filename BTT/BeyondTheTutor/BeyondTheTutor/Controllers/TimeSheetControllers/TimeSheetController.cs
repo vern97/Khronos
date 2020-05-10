@@ -1,17 +1,13 @@
 ﻿using BeyondTheTutor.DAL;
-using BeyondTheTutor.Models.ViewModels;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using BeyondTheTutor.Models;
-using System.Net;
-using System.Web.Security;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using BeyondTheTutor.Models.TimeSheetModels;
-using System;
+using System.IO;
+using CrystalDecisions.CrystalReports.Engine;
 
 namespace BeyondTheTutor.Controllers.TimeSheetControllers
 {
@@ -211,6 +207,69 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
             return RedirectToAction("ViewMonth", new { tsid = model.DayVM.TimeSheetID });
         }
 
+        public ActionResult Print(int? id)
+        {
+            Day d = new Day();
 
+            var days = db.TimeSheets
+                .Find(id)
+                .Days
+                .Select(m => new { 
+                    ID = m.ID, 
+                    On = m.On, 
+                    RegularHrs = d.getPayRollTime(m.RegularHrs)
+                    }).ToList();
+
+            var wh = db.WorkHours.Where(w => w.DayID == id);//continue from here
+
+            /*.Days
+            .Select(m => new {
+                ID = m.ID,
+                On = m.On,
+                RegularHrs = d.getPayRollTime(m.RegularHrs)
+            }).ToList();*/
+
+            /*var days = db.TimeSheets
+                .Find(id)
+                .Days
+                .Select(m => new { 
+                    ID = m.ID, 
+                    On = m.On, 
+                    RegularHrs = d.getPayRollTime(m.RegularHrs) }).ToList();*/
+
+            var shifts = db.WorkHours.Where(g => g.Day.TimeSheetID == id) ;
+            /*var shifts = db.WorkHours.Select(m => new
+            {
+                ClockedIn = m.ClockedIn,
+                ClockedOut = m.ClockedOut,
+                RegularHrs = (d.getPayRollTime((int)(m.ClockedOut - m.ClockedIn).TotalMinutes)).ToString(),
+                On = m.Day.On
+            }).ToList();*/
+
+
+
+            ReportDocument rd = new ReportDocument();
+            
+            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "CrystalReport3.rpt"));
+            var tbls = rd.Database.Tables;
+            rd.Database.Tables[0].SetDataSource(days);
+            rd.Database.Tables[1].SetDataSource(shifts);
+            
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+
+            TimeSheet ts = new TimeSheet();
+            var t = db.BTTUsers.Find(db.TimeSheets.Find(id).Tutor.ID);
+            string first, last, date;
+            first = t.FirstName;
+            last = t.LastName;
+            date = ts.getMonths()[db.TimeSheets.Find(id).Month] + "-" + db.TimeSheets.Find(id).Year;
+
+            
+            Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            stream.Seek(0, SeekOrigin.Begin);
+            return File(stream, "application/pdf", last + "_" + first + "_" + date + ".pdf");
+        }
     }
 }

@@ -104,10 +104,13 @@
                         </div>
                     </div>
                     <button onclick="$('#print').modal({allowMultiple: true}).modal({inverted: true}).modal('show');"
-                            class="ui button negative">
+                            class="ui button negative disabled">
                         <i class="print icon"></i>
                         Print Time Sheet
                     </button>
+                    <a class="ui button negative" href="@Url.Action("Print", new { id = Model.TimeSheetVM.ID  })">
+                        download report
+                    </a>
                 </td>
                 <br />
             </tr>

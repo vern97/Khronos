@@ -46,6 +46,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -89,7 +92,6 @@
     <Reference Include="Microsoft.Owin.Security.Twitter, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.Twitter.4.1.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -175,11 +177,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="all.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>all.xsd</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -204,11 +201,6 @@
     <Compile Include="Areas\Tutor\Controllers\TutorSchedulesController.cs" />
     <Compile Include="Areas\Tutor\Controllers\ZoomController.cs" />
     <Compile Include="Areas\Tutor\TutorAreaRegistration.cs" />
-    <Compile Include="BeyondTheTutorDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BeyondTheTutorDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
@@ -262,16 +254,27 @@
     <Compile Include="Models\ViewModels\TutoringApptInfoViewModel.cs" />
     <Compile Include="Models\WeightedGrade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Startup.cs" />
-    <Compile Include="TutorDataSet.Designer.cs">
+    <Compile Include="Reports\CrystalReport1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TutorDataSet.xsd</DependentUpon>
+      <DependentUpon>CrystalReport1.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\CrystalReport3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport3.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\AspDown.sql" />
     <Content Include="App_Data\AspUp.sql" />
+    <Content Include="App_Data\BeyondTheTutor.mdf" />
+    <Content Include="App_Data\BeyondTheTutor_log.ldf">
+      <DependentUpon>BeyondTheTutor.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\down.sql" />
     <Content Include="App_Data\queries.sql" />
     <Content Include="App_Data\seed.sql" />
@@ -541,28 +544,6 @@
     <Content Include="Areas\Professor\Views\TutoringAppts\Edit.cshtml" />
     <Content Include="Areas\Professor\Views\TutoringAppts\Index.cshtml" />
     <Content Include="Areas\Tutor\Views\Zoom\Index.cshtml" />
-    <Content Include="BeyondTheTutorDataSet.xsc">
-      <DependentUpon>BeyondTheTutorDataSet.xsd</DependentUpon>
-    </Content>
-    <Content Include="all.xsc">
-      <DependentUpon>all.xsd</DependentUpon>
-    </Content>
-    <None Include="all.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>all.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="all.xss">
-      <DependentUpon>all.xsd</DependentUpon>
-    </Content>
-    <None Include="BeyondTheTutorDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>BeyondTheTutorDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="BeyondTheTutorDataSet.xss">
-      <DependentUpon>BeyondTheTutorDataSet.xsd</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Compile Include="Models\ViewModels\AllUsersViewModel.cs" />
     <Compile Include="Models\TimeSheetModels\TutorTimeSheetsCustomModel.cs" />
@@ -742,17 +723,6 @@
     <Content Include="Views\Tutors\TutorProfile.cshtml" />
     <Content Include="Views\TimeSheet\Index.cshtml" />
     <Content Include="Views\TimeSheet\ViewMonth.cshtml" />
-    <Content Include="TutorDataSet.xsc">
-      <DependentUpon>TutorDataSet.xsd</DependentUpon>
-    </Content>
-    <None Include="TutorDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>TutorDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="TutorDataSet.xss">
-      <DependentUpon>TutorDataSet.xsd</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
@@ -760,7 +730,6 @@
     <Folder Include="Areas\Student\Data\" />
     <Folder Include="Areas\Student\Views\Zoom\" />
     <Folder Include="Areas\Tutor\Data\" />
-    <Folder Include="Reports\" />
     <Folder Include="Views\StudentAppointment\" />
     <Folder Include="Views\ZoomAPI\" />
   </ItemGroup>
@@ -768,6 +737,19 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\CrystalReport1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\CrystalReport3.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport3.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
