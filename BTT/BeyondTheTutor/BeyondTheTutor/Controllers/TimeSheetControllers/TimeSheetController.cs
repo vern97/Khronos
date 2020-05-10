@@ -246,6 +246,7 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
                 On = m.Day.On
             }).ToList();*/
 
+            TimeSheet ts = new TimeSheet();
 
 
             ReportDocument rd = new ReportDocument();
@@ -259,8 +260,15 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
             Response.ClearContent();
             Response.ClearHeaders();
 
-            TimeSheet ts = new TimeSheet();
             var t = db.BTTUsers.Find(db.TimeSheets.Find(id).Tutor.ID);
+
+            rd.SetParameterValue("total", d.getPayRollTime(db.Days.Where(m => m.TimeSheetID == id).Sum(m => m.RegularHrs)));
+            rd.SetParameterValue("emp_name", t.FirstName + " " + t.LastName);
+            rd.SetParameterValue("emp_v", t.Tutor.VNumber.ToString());
+            rd.SetParameterValue("ts_month", ts.getMonths()[db.TimeSheets.Find(id).Month].ToString());
+            rd.SetParameterValue("ts_year", db.TimeSheets.Find(id).Year.ToString());
+
+
             string first, last, date;
             first = t.FirstName;
             last = t.LastName;
