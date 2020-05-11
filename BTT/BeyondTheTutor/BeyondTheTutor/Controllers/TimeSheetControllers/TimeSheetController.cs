@@ -9,6 +9,7 @@ using BeyondTheTutor.Models.TimeSheetModels;
 using System.IO;
 using System.Web;
 using Microsoft.AspNet.Identity.Owin;
+using Rotativa;
 using System.Collections.Generic;
 using System.Web.Security;
 
@@ -278,7 +279,6 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
 
         public ActionResult Print(int? id)
         {
-            /*
             var t = db.BTTUsers.Find(db.TimeSheets.Find(id).Tutor.ID);
             TimeSheet ts = new TimeSheet();
 
@@ -299,8 +299,7 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
             {
                 FileName = last + "_" + first + "_" + date + ".pdf",
                 Cookies = cookieCollection
-            };*/
-            return View();
+            };
         }
 
     }
