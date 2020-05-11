@@ -1,0 +1,83 @@
+﻿@model BeyondTheTutor.Models.TimeSheetModels.WorkHour
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<body class="wou-silver-bg">
+    <div class="ui one column center aligned stackable page grid">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <table class="ui eight column wide striped center aligned table table-schedule">
+                <thead style="text-align: center;">
+                    <tr>
+                        <th>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                CLOCKED IN                                
+                                <div class="col-md-10">
+                                    <div class="ui">
+                                        <div class="ui huge input left icon">
+                                            <i class="time icon"></i>
+                                            <input type="time" id="ClockedIn" name="ClockedIn">
+                                        </div>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.ClockedIn, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="form-group">
+                                CLOCKED OUT
+                                <div class="col-md-10">
+                                    <div class="ui">
+                                        <div class="ui huge input left icon">
+                                            <i class="time icon"></i>
+                                            <input class="ui" type="time" id="ClockedOut" name="ClockedOut">
+                                        </div>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.ClockedOut, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <button class="fluid ui button schedule">Create</button>
+
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DayID, "DayID", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("DayID", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.DayID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+    </div>
+</body>
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+}

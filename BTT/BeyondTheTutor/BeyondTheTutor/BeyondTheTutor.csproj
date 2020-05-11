@@ -46,9 +46,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -214,7 +211,10 @@
     <Compile Include="Controllers\StudentAppointmentController.cs" />
     <Compile Include="Controllers\StudentResourcesController.cs" />
     <Compile Include="Controllers\SurveyControllers\SurveysController.cs" />
-    <Compile Include="Controllers\TimeSheetControllers\TimeSheetController.cs" />
+    <Compile Include="Controllers\TimeSheetControllers\DaysController.cs" />
+    <Compile Include="Controllers\TimeSheetControllers\TimeSheetCRUDController.cs" />
+    <Compile Include="Controllers\TimeSheetControllers\TimeSheetsController.cs" />
+    <Compile Include="Controllers\TimeSheetControllers\WorkHoursController.cs" />
     <Compile Include="Controllers\TutorAppointmentController.cs" />
     <Compile Include="Controllers\TutorsController.cs" />
     <Compile Include="Controllers\WeightedGradesController.cs" />
@@ -254,12 +254,6 @@
     <Compile Include="Models\ViewModels\TutoringApptInfoViewModel.cs" />
     <Compile Include="Models\WeightedGrade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reports\PrintTutorTimesheet.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PrintTutorTimesheet.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -711,8 +705,22 @@
     <Content Include="Views\Errors\Http403.cshtml" />
     <Content Include="Views\Errors\Http500.cshtml" />
     <Content Include="Views\Tutors\TutorProfile.cshtml" />
-    <Content Include="Views\TimeSheet\Index.cshtml" />
-    <Content Include="Views\TimeSheet\ViewMonth.cshtml" />
+    <Content Include="Views\TimeSheets\Create.cshtml" />
+    <Content Include="Views\TimeSheets\Delete.cshtml" />
+    <Content Include="Views\TimeSheets\Details.cshtml" />
+    <Content Include="Views\TimeSheets\Edit.cshtml" />
+    <Content Include="Views\TimeSheets\Index.cshtml" />
+    <Content Include="Views\Days\Create.cshtml" />
+    <Content Include="Views\Days\Delete.cshtml" />
+    <Content Include="Views\Days\Details.cshtml" />
+    <Content Include="Views\Days\Edit.cshtml" />
+    <Content Include="Views\Days\Index.cshtml" />
+    <Content Include="Views\WorkHours\Create.cshtml" />
+    <Content Include="Views\WorkHours\Delete.cshtml" />
+    <Content Include="Views\WorkHours\Details.cshtml" />
+    <Content Include="Views\WorkHours\Edit.cshtml" />
+    <Content Include="Views\WorkHours\Index.cshtml" />
+    <Content Include="Views\TimeSheetCRUD\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
@@ -727,15 +735,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Reports\PrintTutorTimesheet.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>PrintTutorTimesheet.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
