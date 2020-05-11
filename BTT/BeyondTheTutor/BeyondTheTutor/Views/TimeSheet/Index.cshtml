@@ -203,7 +203,6 @@
                                             {
                                                 @Html.AntiForgeryToken()
                                                 @Html.Hidden("DayVM_TimeSheetID", (object)ts.ID, new { Name = "DayVM.TimeSheetID" })
-
                                                 @Html.HiddenFor(m => m.DayVM.RegularHrs)
                                                 <div class="fields">
                                                     <div class="two wide field">

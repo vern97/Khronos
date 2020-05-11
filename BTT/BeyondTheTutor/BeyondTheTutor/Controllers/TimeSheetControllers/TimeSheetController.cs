@@ -82,7 +82,7 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
                 model.DayVM.RegularHrs = 0;
                 db.Days.Add(model.DayVM);
                 db.SaveChangesAsync();
-                if(model.tutor.VNumber == null)
+                if(model.tutor == null)
                 {
                     return RedirectToAction("Index");
                 } else
