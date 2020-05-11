@@ -9,7 +9,6 @@ using BeyondTheTutor.Models.TimeSheetModels;
 using System.IO;
 using System.Web;
 using Microsoft.AspNet.Identity.Owin;
-using CrystalDecisions.CrystalReports.Engine;
 
 namespace BeyondTheTutor.Controllers.TimeSheetControllers
 {
@@ -252,6 +251,8 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
             return RedirectToAction("ViewMonth", new { tsid = model.DayVM.TimeSheetID });
         }
 
+
+        /*working code, just no license for CrystalDecisions report
         public ActionResult Print(int? id)
         {
             Day d = new Day();
@@ -304,7 +305,7 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
             stream.Seek(0, SeekOrigin.Begin);
             return File(stream, "application/pdf", last + "_" + first + "_" + date + ".pdf");
         }
-
+        */
 
 
 
