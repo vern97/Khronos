@@ -71,7 +71,8 @@
                 <tr>
                     <th>Month</th>
                     <th>Year</th>
-                    <th>View a day</th>
+                    @if(User.IsInRole("Admin"))
+                    { <th>Tutor</th> } else { <th>View a day</th> }
                     <th style="text-align: center;">Month Hours</th>
                     <th>Actions</th>
                 </tr>
@@ -90,61 +91,68 @@
                         }
                         <td>@ts.Year</td>
                         <td>
-
                             @{ var days = ts.Days.Where(d => d.TimeSheetID == ts.ID); }
-                            <div class="ui selection dropdown">
-                                <input type="hidden" name="dropdown0">
-                                <i class="dropdown icon"></i>
-                                @if (ts.Days.Count < 1)
-                                {<div class="default text"> No Days Worked. . .</div>
-                                }
-                                else
-                                { <div class="default text">View a day</div>
-                                }
-                                <div class="menu">
-                                    @foreach (var day in days)
-                                    {
-                                        string str = "view" + day.ID;
+                            @if (User.IsInRole("Admin"))
+                            { string name = (ts.Tutor.BTTUser.LastName + " " + ts.Tutor.BTTUser.FirstName).ToString(); 
+                              @name
+                            }
+                            else
+                            {
+                                <div class="ui selection dropdown">
+                                    <input type="hidden" name="dropdown0">
+                                    <i class="dropdown icon"></i>
+                                    @if (ts.Days.Count < 1)
+                                    {<div class="default text"> No Days Worked. . .</div>
+                                    }
+                                    else
+                                    { <div class="default text">View a day</div>
+                                    }
+                                    <div class="menu">
+                                        @foreach (var day in days)
+                                        {
+                                            string str = "view" + day.ID;
 
-                                        <div onclick="$('#@str').modal({allowMultiple: true}).modal({inverted: true}).modal('show');"
-                                             class="item" value="@day.ID">@Model.days[day.On]</div>
-                                            <div class="ui modal" id="@str">
-                                                <i class="close icon"></i>
-                                                <h2 class="ui centered header registration">Quick Day View</h2>
-                                                <div class="content">
-                                                    <div class="ui form attached fluid segment ui equal width form">
-                                                        <div class="ui fluid statistics">
-                                                            <div class="ui statistic">
-                                                                <div class="value">
-                                                                    <i class="calendar icon"></i>
-                                                                    @day.On  @Model.months[ts.Month]  @ts.Year
+                                            <div onclick="$('#@str').modal({allowMultiple: true}).modal({inverted: true}).modal('show');"
+                                                 class="item" value="@day.ID">@Model.days[day.On]</div>
+                                                <div class="ui modal" id="@str">
+                                                    <i class="close icon"></i>
+                                                    <h2 class="ui centered header registration">Quick Day View</h2>
+                                                    <div class="content">
+                                                        <div class="ui form attached fluid segment ui equal width form">
+                                                            <div class="ui fluid statistics">
+                                                                <div class="ui statistic">
+                                                                    <div class="value">
+                                                                        <i class="calendar icon"></i>
+                                                                        @day.On  @Model.months[ts.Month]  @ts.Year
+                                                                    </div>
+                                                                    <div class="label">
+                                                                        TimeSheet
+                                                                    </div>
                                                                 </div>
-                                                                <div class="label">
-                                                                    TimeSheet
+                                                                <div class="statistic">
+                                                                    <div class="value">
+                                                                        <i class="clock icon"></i>
+                                                                        @day.getPayRollTime(@day.RegularHrs)
+                                                                    </div>
+                                                                    <div class="label">
+                                                                        Hours Worked
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="statistic">
-                                                                <div class="value">
-                                                                    <i class="clock icon"></i>
-                                                                    @day.getPayRollTime(@day.RegularHrs)
-                                                                </div>
-                                                                <div class="label">
-                                                                    Hours Worked
-                                                                </div>
+                                                            <br />
+                                                            <div style="text-align: center;">
+                                                                <button class="ui labled icon button">
+                                                                    <i class="th list icon"></i>
+                                                                    @Html.ActionLink("View Month's Details", "ViewMonth", new { tsid = ts.ID })
+                                                                </button>
                                                             </div>
-                                                        </div>
-                                                        <br />
-                                                        <div style="text-align: center;">
-                                                            <button class="ui labled icon button">
-                                                                <i class="th list icon"></i>
-                                                                @Html.ActionLink("View Month's Details", "ViewMonth", new { tsid = ts.ID })
-                                                            </button>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>                 }
+                                                </div>}
+                                    </div>
                                 </div>
-                            </div>
+                            }
+
                         </td>
                         <td style="text-align: center;">
                             @{decimal x = (decimal)@ts.Days.Sum(m => m.getPayRollTime(m.RegularHrs)); }

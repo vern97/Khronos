@@ -13,7 +13,7 @@
     using System.Threading.Tasks;
     using System.Data.Entity;
 
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Tutor, Admin")]
     public class AllUsersController : Controller
     {
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
