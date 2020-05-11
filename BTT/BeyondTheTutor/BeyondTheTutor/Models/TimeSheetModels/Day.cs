@@ -87,7 +87,7 @@ namespace BeyondTheTutor.Models.TimeSheetModels
                 
 
             switch (
-                minutes >= 57 ? 1 :
+                minutes >= 57 ? 1.0 :
                 minutes >= 51 ? .9 :
                 minutes >= 45 ? .8 :
                 minutes >= 39 ? .7 :
