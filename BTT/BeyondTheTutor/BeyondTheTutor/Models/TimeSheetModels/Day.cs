@@ -87,38 +87,38 @@ namespace BeyondTheTutor.Models.TimeSheetModels
                 
 
             switch (
-                minutes >= 57 ? 1.0 :
-                minutes >= 51 ? .9 :
-                minutes >= 45 ? .8 :
-                minutes >= 39 ? .7 :
-                minutes >= 33 ? .6 :
-                minutes >= 27 ? .5 :
-                minutes >= 21 ? .4 :
-                minutes >= 15 ? .3 :
-                minutes >= 9 ? .2 :
-                minutes >= 3 ? .1 : .0)
+                minutes >= 57 ? "1" :
+                minutes >= 51 ? ".9" :
+                minutes >= 45 ? ".8" :
+                minutes >= 39 ? ".7" :
+                minutes >= 33 ? ".6" :
+                minutes >= 27 ? ".5" :
+                minutes >= 21 ? ".4" :
+                minutes >= 15 ? ".3" :
+                minutes >= 9 ? ".2" :
+                minutes >= 3 ? ".1" : ".0")
             {
-                case 1:
+                case "1":
                     return hours + 1.0;
-                case .9:
+                case ".9":
                     return hours + .9;
-                case .8:
+                case ".8":
                     return hours + .8;
-                case .7:
+                case ".7":
                     return hours + .7;
-                case .6:
+                case ".6":
                     return hours + .6;
-                case .5:
+                case ".5":
                     return hours + .5;
-                case .4:
+                case ".4":
                     return hours + .4;
-                case .3:
+                case ".3":
                     return hours + .3;
-                case .2:
+                case ".2":
                     return hours + .2;
-                case .1:
+                case ".1":
                     return hours + .1;
-                case .0:
+                case ".0":
                     return hours;
                 default:
                     return hours;
