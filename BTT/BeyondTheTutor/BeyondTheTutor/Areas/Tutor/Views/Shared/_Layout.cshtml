@@ -23,7 +23,7 @@
         @Html.ActionLink("Beyond the Tutor", "Index", "Home", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "HomeIndex" ? "item red active" : "item") })
         @Html.ActionLink("Tutor Portal", "Index", "Home", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutorHomeIndex" ? "item red active" : "item") })
         <div class="right menu">
-            @Html.ActionLink("Time Sheets", "Index", "TimeSheet", new { area = ""  }, htmlAttributes: new { @class = (ViewBag.Current == "TutorTimeSheets" ? "item red active" : "item") })
+            @Html.ActionLink("Time Sheets", "Index", "TimeSheet", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "TutorTimeSheets" ? "item red active" : "item") })
             <div class="ui dropdown item">
                 Live Chat
                 <i class="dropdown icon"></i>
@@ -61,23 +61,23 @@
 
         </div>
 
-            @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
-            {
-                <div class="ui dropdown item">
-                    @ViewBag.FirstName
-                    <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <div style="text-align: left;">
-                            @Html.ActionLink("Change Password", "ChangePassword", "Manage", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "ChangePassword" ? "item red active" : "item") })
-                            @Html.ActionLink("Manage Profile", "TutorProfile", "Tutors", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "TutProfile" ? "item red active" : "item") })
-                            @Html.ActionLink("User Guide", "Guide", "Home", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutorHomeGuide" ? "item red active" : "item") })
-                            @Html.AntiForgeryToken()
-                            <a href="javascript:document.getElementById('logoutForm').submit()" class="item">Sign out</a>
-                        </div>
+        @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
+        {
+            <div class="ui dropdown item">
+                @ViewBag.FirstName
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <div style="text-align: left;">
+                        @Html.ActionLink("Change Password", "ChangePassword", "Manage", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "ChangePassword" ? "item red active" : "item") })
+                        @Html.ActionLink("Manage Profile", "TutorProfile", "Tutors", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "TutProfile" ? "item red active" : "item") })
+                        @Html.ActionLink("User Guide", "Guide", "Home", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutorHomeGuide" ? "item red active" : "item") })
+                        @Html.AntiForgeryToken()
+                        <a href="javascript:document.getElementById('logoutForm').submit()" class="item">Sign out</a>
                     </div>
                 </div>
-            }
-        </div>
+            </div>
+        }
+    </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/fullcalendarjs")

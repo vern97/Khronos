@@ -272,7 +272,15 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
             TimeSheet ts = new TimeSheet();
             tsData.months = ts.getMonths();
 
+            var t = db.BTTUsers.Find(db.TimeSheets.Find(tsid).Tutor.ID);
 
+            string first, last, date;
+            first = t.FirstName;
+            last = t.LastName;
+            date = ts.getMonths()[db.TimeSheets.Find(tsid).Month] + "-" + db.TimeSheets.Find(tsid).Year;
+
+
+            ViewBag.Title = last + "_" + first + "_" + date;
             return View(tsData);
         }
 

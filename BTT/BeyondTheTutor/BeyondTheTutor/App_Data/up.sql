@@ -1,4 +1,4 @@
-﻿ CREATE TABLE [dbo].[BTTUsers]
+﻿CREATE TABLE [dbo].[BTTUsers]
 (
 	[ID]				INT IDENTITY (1,1) 	NOT NULL,
 	[FirstName]			[NVARCHAR](50)		NOT NULL,
@@ -260,4 +260,3 @@ CREATE TABLE [dbo].[ProfilePictures]
 		REFERENCES [BTTUsers] ([ID])
 		ON DELETE CASCADE ON UPDATE CASCADE
 );
-

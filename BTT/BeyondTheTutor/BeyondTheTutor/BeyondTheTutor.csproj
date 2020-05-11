@@ -411,7 +411,6 @@
     <Content Include="Content\images\campus_map_2.jpg" />
     <Content Include="Content\images\daniel.jpg" />
     <Content Include="Content\images\elyse.png" />
-    <Content Include="Content\images\timesheet_images\finalpart.png" />
     <Content Include="Content\images\helen.jpg" />
     <Content Include="Content\images\Home_Page_Banner.png" />
     <Content Include="Content\images\KhronosLogo.png" />
@@ -450,6 +449,7 @@
     <Content Include="Content\images\Owl_RedYellow.png" />
     <Content Include="Content\images\resize_welcome_banner.png" />
     <Content Include="Content\images\stevie.jpg" />
+    <Content Include="Content\images\timesheet_images\finalpart.png" />
     <Content Include="Content\images\timesheet_images\logo.jpg" />
     <Content Include="Content\images\TutoringLogo.png" />
     <Content Include="Content\images\Tutoring_Red_Banner.png" />
@@ -705,8 +705,8 @@
     <Content Include="Views\Errors\Http500.cshtml" />
     <Content Include="Views\Tutors\TutorProfile.cshtml" />
     <Content Include="Views\TimeSheet\Index.cshtml" />
-    <Content Include="Views\TimeSheet\ViewMonth.cshtml" />
     <Content Include="Views\TimeSheet\PrintMonth.cshtml" />
+    <Content Include="Views\TimeSheet\ViewMonth.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
@@ -721,9 +721,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

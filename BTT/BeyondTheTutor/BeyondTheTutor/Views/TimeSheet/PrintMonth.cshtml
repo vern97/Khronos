@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Powered By: Beyond the Tutor - Tutor Time Sheet Printout</title>
+    <title>@ViewBag.Title-Powered_By_BeyondTheTutor</title>
     <link rel="icon" type="image/png" href="../../favicon-32x32.png" sizes="32x32" />
 
     @Styles.Render("~/Content/css")
@@ -155,10 +155,11 @@
     <img style="float: right; margin:25px; width: auto; height: 3.5in;" src="../../Content/images/timesheet_images/finalpart.png" alt="logo">
 
 </body>
-</body>
 </html>
 
 
 <script>
     window.print();
+
+    setTimeout(function(){ window.history.back() }, 3000);
 </script>
