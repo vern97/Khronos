@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "403: Forbidden";
+    Response.StatusCode = 403;
+}
+
+<h1>Forbidden</h1>
+<h2>403</h2>
+
+<p>We're sorry.  You do not appear to have permission to view that page.</p>
+
+@Html.ActionLink("BeyondTheTutor", "Index", "Home", null, new { @class = "btn btn-primary", role = "button" })
+

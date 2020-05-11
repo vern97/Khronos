@@ -1,0 +1,63 @@
+﻿@model BeyondTheTutor.Models.TutoringAppt
+
+@{
+    ViewBag.Title = "Cancel Request";
+    ViewBag.Status = "Canceled";
+}
+
+<body class="wou-silver-bg">
+        <div class="ui one column center aligned stackable page grid" style="padding-top:10px;">
+            <div class="ui red message">Careful, this action is permanent! If you decide you want this tutoring appointment after it's canceled, you will need to request another</div>
+            <div class="ui form attached fluid segment">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("ID", (object)ViewBag.ID)
+                    @Html.Hidden("StartTime", (object)ViewBag.StartTime)
+                    @Html.Hidden("EndTime", (object)ViewBag.EndTime)
+                    @Html.Hidden("TypeOfMeeting", (object)ViewBag.TypeOfMeeting)
+                    @Html.Hidden("ClassID", (object)ViewBag.ClassID)
+                    @Html.Hidden("Length", (object)ViewBag.Length)
+                    @Html.Hidden("Status", (object)ViewBag.Status)
+                    @Html.Hidden("Note", (object)ViewBag.Note)
+                    @Html.Hidden("StudentID", (object)ViewBag.StudentID)
+                    @Html.Hidden("TutorID", (object)ViewBag.TutorID)
+                <div class="three fields">
+                    <div class="field">
+                        <h4>Class Requested For</h4>
+                        @Html.DisplayFor(model => model.Class.Name)
+                    </div>
+                    <div class="field">
+                        <h4>Range Start Time</h4>
+                        @Html.DisplayFor(model => model.StartTime)
+                    </div>
+                    <div class="field">
+                        <h4>Range End Time</h4>
+                        @Html.DisplayFor(model => model.EndTime)
+                    </div>
+                    <div class="field">
+                        <h4>Meeting Length</h4>
+                        @Html.DisplayFor(model => model.Length)
+                    </div>
+                    <div class="field">
+                        <h4>Type of Meeting</h4>
+                        @Html.DisplayFor(model => model.TypeOfMeeting)
+                    </div>
+                    <div class="field">
+                        <h4>Current Request Status</h4>
+                        @Html.DisplayFor(model => model.Status)
+                    </div>
+                </div>
+                    <form>
+                        <button class="fluid ui button schedule" style="margin-bottom: 3px;">Cancel Request</button>
+                        <a href="/Tutor/TutorSchedules/UpdateSchedule" button class="fluid ui button schedule">Go Back to List</a>
+                    </form>
+                }
+            </div>
+        </div>
+</body>
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+}

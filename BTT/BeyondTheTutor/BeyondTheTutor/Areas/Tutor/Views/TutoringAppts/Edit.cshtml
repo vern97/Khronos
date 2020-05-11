@@ -1,0 +1,155 @@
+﻿@model BeyondTheTutor.Models.TutoringAppt
+
+<body class="wou-silver-bg">
+    <div class="ui one column center aligned stackable page grid" style="padding-top:10px;">
+        <div class="ui icon message">
+            <i class="edit icon"></i>
+            <div class="content">
+                <div class="header">
+                    Edit Tutoring Request
+                </div>
+                <p>Here you can edit the tutoring request - be sure to update the status when finished, and add any notes to clarify information with the student</p>
+            </div>
+        </div>
+        <div class="ui form center aligned attached fluid red segment">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("ID", (object)ViewBag.ID)
+                @Html.Hidden("TypeOfMeeting", (object)ViewBag.TypeOfMeeting)
+                @Html.Hidden("ClassID", (object)ViewBag.ClassID)
+                @Html.Hidden("Length", (object)ViewBag.Length)
+                @Html.Hidden("StudentID", (object)ViewBag.StudentID)
+                @Html.Hidden("Date", (object)ViewBag.modelDate)
+                <div class="four fields">
+                    <div class="field">
+                        <h4>Class Requested For</h4>
+                        @Html.DisplayFor(model => model.Class.Name)
+                    </div>
+                    <div class="field">
+                        <h4>Requestor</h4>
+                        @ViewBag.StudentName
+                    </div>
+                    <div class="field">
+                        <h4>Type of Meeting</h4>
+                        @Html.DisplayFor(model => model.TypeOfMeeting)
+                    </div>
+                    <div class="field">
+                        <h4>Current Request Status</h4>
+                        @Html.DisplayFor(model => model.Status)
+                    </div>
+                </div>
+
+                <div class="four fields">
+                    <div class="field">
+                        <h4>Date Requested</h4>
+                        @ViewBag.modelDate
+                    </div>
+                    <div class="field">
+                        <h4>Range Start Time</h4>
+                        @ViewBag.modelStartTime
+                    </div>
+                    <div class="field">
+                        <h4>Range End Time</h4>
+                        @ViewBag.modelEndTime
+                    </div>
+                    <div class="field">
+                        <h4>Meeting Length</h4>
+                        @Html.DisplayFor(model => model.Length)
+                    </div>
+                </div>
+
+                <div class="two fields">
+                    <div class="field">
+                        <h4>Change Start Time</h4>
+                        @Html.DropDownListFor(model => model.StartTime, new SelectListItem[] {
+                                    new SelectListItem() {Text = (string)ViewBag.modelStartTime, Value=(string)ViewBag.modelStartTime},
+                                    new SelectListItem() {Text = "8:00 AM", Value="8:00 AM"},
+                                    new SelectListItem() {Text = "8:30 AM", Value="8:30 AM"},
+                                    new SelectListItem() {Text = "9:00 AM", Value="9:00 AM", Selected = true},
+                                    new SelectListItem() {Text = "9:30 AM", Value="9:30 AM"},
+                                    new SelectListItem() {Text = "10:00 AM", Value="10:00 AM"},
+                                    new SelectListItem() {Text = "10:30 AM", Value="10:30 AM"},
+                                    new SelectListItem() {Text = "11:00 AM", Value="11:00 AM"},
+                                    new SelectListItem() {Text = "11:30 AM", Value="11:30 AM"},
+                                    new SelectListItem() {Text = "12:00 PM", Value="12:00 PM"},
+                                    new SelectListItem() {Text = "12:30 PM", Value="12:30 PM"},
+                                    new SelectListItem() {Text = "1:00 PM", Value="1:00 PM"},
+                                    new SelectListItem() {Text = "1:30 PM", Value="1:30 PM"},
+                                    new SelectListItem() {Text = "2:00 PM", Value="2:00 PM"},
+                                    new SelectListItem() {Text = "2:30 PM", Value="2:30 PM"},
+                                    new SelectListItem() {Text = "3:00 PM", Value="3:00 PM"},
+                                    new SelectListItem() {Text = "3:30 PM", Value="3:30 PM"},
+                                    new SelectListItem() {Text = "4:00 PM", Value="4:00 PM"},
+                                    new SelectListItem() {Text = "4:30 PM", Value="4:30 PM"}
+                                    }, htmlAttributes: new { @class = "ui selection dropdown form-control" })
+                        @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="field">
+                        <h4>Change End Time</h4>
+                        @Html.DropDownListFor(model => model.EndTime, new SelectListItem[] {
+                                    new SelectListItem() {Text = (string)ViewBag.modelEndTime, Value=(string)ViewBag.modelEndTime},
+                                    new SelectListItem() {Text = "8:00 AM", Value="8:00 AM"},
+                                    new SelectListItem() {Text = "8:30 AM", Value="8:30 AM"},
+                                    new SelectListItem() {Text = "9:00 AM", Value="9:00 AM", Selected = true},
+                                    new SelectListItem() {Text = "9:30 AM", Value="9:30 AM"},
+                                    new SelectListItem() {Text = "10:00 AM", Value="10:00 AM"},
+                                    new SelectListItem() {Text = "10:30 AM", Value="10:30 AM"},
+                                    new SelectListItem() {Text = "11:00 AM", Value="11:00 AM"},
+                                    new SelectListItem() {Text = "11:30 AM", Value="11:30 AM"},
+                                    new SelectListItem() {Text = "12:00 PM", Value="12:00 PM"},
+                                    new SelectListItem() {Text = "12:30 PM", Value="12:30 PM"},
+                                    new SelectListItem() {Text = "1:00 PM", Value="1:00 PM"},
+                                    new SelectListItem() {Text = "1:30 PM", Value="1:30 PM"},
+                                    new SelectListItem() {Text = "2:00 PM", Value="2:00 PM"},
+                                    new SelectListItem() {Text = "2:30 PM", Value="2:30 PM"},
+                                    new SelectListItem() {Text = "3:00 PM", Value="3:00 PM"},
+                                    new SelectListItem() {Text = "3:30 PM", Value="3:30 PM"},
+                                    new SelectListItem() {Text = "4:00 PM", Value="4:00 PM"},
+                                    new SelectListItem() {Text = "4:30 PM", Value="4:30 PM"}
+                                    }, htmlAttributes: new { @class = "ui selection dropdown form-control" })
+                        @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="two fields">
+                    <div class="field">
+                        <h4>Status</h4>
+                        @Html.DropDownListFor(model => model.Status, new SelectListItem[] {
+                                    new SelectListItem() {Text = "Requested", Value="Requested", Selected = true},
+                                    new SelectListItem() {Text = "Approve", Value="Approved"},
+                                    new SelectListItem() {Text = "Decline", Value="Declined"},
+                                    new SelectListItem() {Text = "Cancel", Value="Canceled"},
+                                    new SelectListItem() {Text = "Completed", Value="Completed"},
+                                    new SelectListItem() {Text = "No Show", Value="No Show"},
+                                 }, "Select", htmlAttributes: new { @class = "ui selection dropdown form-control" })
+                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="field">
+                        <h4>Assigned Tutor</h4>
+                        @Html.DropDownListFor(model => model.TutorID, new SelectList(ViewBag.Tutors, "ID", "Name", "true"), "Assign Tutor", htmlAttributes: new { @class = "ui selection dropdown form-control" })
+                        @Html.ValidationMessageFor(model => model.TutorID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="one field">
+                    <div class="field">
+                        @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "control-label" })
+                        @Html.TextBoxFor(model => model.Note, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <form>
+                    <button class="fluid ui button schedule" style="margin-bottom: 3px;">Update Request</button>
+                    <a href="/Tutor/TutoringAppts/Index" button class="fluid ui button schedule">Go Back to List</a>
+                </form>
+            }
+        </div>
+    </div>
+</body>
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+}

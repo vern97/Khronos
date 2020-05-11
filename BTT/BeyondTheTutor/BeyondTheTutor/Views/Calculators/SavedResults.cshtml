@@ -1,0 +1,249 @@
+﻿@{ 
+    string[] colorWheel = { "#C7C7BB", "#DDDED2", "#EEEDE8", "#D5BAB1", "#B8A4A7" };
+}
+<body class="wou-silver-bg">
+    <div class="ui one column centered padded grid">
+        <div class="ui centered vertical segment">
+            <div class="ui top attached tabular large menu" style="justify-content:center;">
+                <a class="active item red" data-tab="first"><b>Weighted Grades</b></a>
+                <a class="item red" data-tab="second"><b>What Is Needed On Final</b> </a>
+                <a class="item red" data-tab="third"><b>Cumulative GPA</b> </a>
+            </div>
+            <div class="ui bottom attached active tab segment" data-tab="first">
+                @if (ViewBag.savedGradeCount == false)
+                {
+                    <p><b>There seems to be no saved grades to view at this time</b></p>
+                }
+                else
+                {
+                    if (ViewBag.savedGradeCount == true)
+                    {
+                        <div class="ui red centered segment">
+                            <div class="ui horizontal divider">
+                                <h3 class="ui centered header">Saved Weighted Grades</h3>
+                            </div>
+                            <table class="ui center aligned striped padded table">
+                                <thead>
+                                    <tr>
+                                        <th><h4>Date Recorded</h4></th>
+                                        <th><h4>Time Recorded</h4></th>
+                                        <th><h4>Course Name</h4></th>
+                                        <th><h4>Saved Grade</h4></th>
+                                        <th><h4>Action</h4></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{ 
+                                        int colorCount = 0;
+                                        int itemCount = 0;
+                                        bool isFirst = true;
+                                        bool isNew = false;
+                                    }
+                                    @foreach (var item in ViewBag.SavedWeightedGrades)
+                                    {
+                                        if (isFirst == false && colorCount == colorWheel.Length)
+                                        {
+                                            colorCount = 0;
+                                        }
+
+                                        if (itemCount + 1 < ViewBag.savedGradeLength)
+                                        {
+                                            if (ViewBag.SavedWeightedGrades[itemCount].ClassName != ViewBag.SavedWeightedGrades[itemCount + 1].ClassName)
+                                            {
+                                                isNew = true;
+                                            }
+                                            else
+                                            {
+                                                isNew = false;
+                                            }
+                                        }
+                                        if (isNew == false)
+                                        {
+                                    <tr style="background-color: @colorWheel[colorCount];">
+                                        <td>@item.RecordedDate.ToString("MM-dd-yyyy")</td>
+                                        <td>@item.RecordedDate.ToString("hh:mm tt")</td>
+                                        <td>@item.ClassName</td>
+                                        <td>@item.Grade</td>
+                                        <td>
+                                            @Html.ActionLink("Delete", "Delete", "WeightedGrades", new { id = item.ID }, htmlAttributes: new { @class = "ui small button" })
+                                        </td>
+                                    </tr>
+                                        }
+                                        if (isNew == true)
+                                        {
+                                <tr style="background-color: @colorWheel[colorCount];">
+                                    <td style="border-bottom: solid; border-bottom-color:#231f20; border-bottom-width: 1px;">@item.RecordedDate.ToString("MM-dd-yyyy")</td>
+                                    <td style="border-bottom: solid; border-bottom-color:#231f20; border-bottom-width: 1px;">@item.RecordedDate.ToString("hh:mm tt")</td>
+                                    <td style="border-bottom: solid; border-bottom-color:#231f20; border-bottom-width: 1px;">@item.ClassName</td>
+                                    <td style="border-bottom: solid; border-bottom-color:#231f20; border-bottom-width: 1px;">@item.Grade</td>
+                                    <td style="border-bottom: solid; border-bottom-color:#231f20; border-bottom-width: 1px;">
+                                        @Html.ActionLink("Delete", "Delete", "WeightedGrades", new { id = item.ID }, htmlAttributes: new { @class = "ui small button" })
+                                    </td>
+                                </tr>
+                                        }
+                                        if (itemCount + 1 < ViewBag.savedGradeLength)
+                                        {
+                                            if (ViewBag.SavedWeightedGrades[itemCount].ClassName != ViewBag.SavedWeightedGrades[itemCount + 1].ClassName)
+                                            {
+                                                colorCount++;
+                                            }
+                                        }
+                                        itemCount++;
+
+                                        isFirst = false;
+                                    }
+                                </tbody>
+                                </table>
+                        </div>
+                    }
+                }
+            </div>
+            <div class="ui bottom attached tab segment" data-tab="second">
+                @if (ViewBag.savedFinalGradeCount == false)
+                {
+                    <p><b>There seems to be no saved goals to view at this time</b></p>
+                }
+                else
+                {
+                    if (ViewBag.savedFinalGradeCount == true)
+                    {
+                        <div class="ui red centered segment">
+                            <div class="ui horizontal divider">
+                                <h3 class="ui centered header">Saved Final Goals</h3>
+                            </div>
+                            <table class="ui center aligned striped padded table">
+                                <thead>
+                                    <tr>
+                                        <th><h4>Date Recorded</h4></th>
+                                        <th><h4>Time Recorded</h4></th>
+                                        <th><h4>Course Name</h4></th>
+                                        <th><h4>Saved Goal</h4></th>
+                                        <th><h4>Action</h4></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{ int colorCount2 = 0;
+                                        int itemCount2 = 0;
+                                        bool isFirst2 = true;
+                                        bool isNew2 = false;
+                                    }
+
+                                    @foreach (var item in ViewBag.SavedFinalGrades)
+                                    {
+                                        if (isFirst2 == false && colorCount2 == colorWheel.Length)
+                                        {
+                                            colorCount2 = 0;
+                                        }
+                                        if (itemCount2 + 1 < ViewBag.savedFinalLength)
+                                        {
+                                            if (ViewBag.SavedFinalGrades[itemCount2].ClassName != ViewBag.SavedFinalGrades[itemCount2 + 1].ClassName)
+                                            {
+                                                isNew2 = true;
+                                            }
+                                            else
+                                            {
+                                                isNew2 = false;
+                                            }
+                                        }
+                                        if (isNew2 == false)
+                                        {
+                                    <tr style="background-color: @colorWheel[colorCount2];">
+                                        <td>@item.RecordedDate.ToString("MM-dd-yyyy")</td>
+                                        <td>@item.RecordedDate.ToString("hh:mm tt")</td>
+                                        <td>@item.ClassName</td>
+                                        <td>@item.Grade</td>
+                                        <td>
+                                            @Html.ActionLink("Delete", "Delete", "FinalGrades", new { id = item.ID }, htmlAttributes: new { @class = "ui small button" })
+                                        </td>
+                                    </tr>
+                                        }
+                                        if (isNew2 == true)
+                                        {
+                                <tr style="background-color: @colorWheel[colorCount2];">
+                                    <td style="border-bottom: solid; border-bottom-color:#231f20; border-bottom-width: 1px;">@item.RecordedDate.ToString("MM-dd-yyyy")</td>
+                                    <td style="border-bottom: solid; border-bottom-color:#231f20; border-bottom-width: 1px;">@item.RecordedDate.ToString("hh:mm tt")</td>
+                                    <td style="border-bottom: solid; border-bottom-color:#231f20; border-bottom-width: 1px;">@item.ClassName</td>
+                                    <td style="border-bottom: solid; border-bottom-color:#231f20; border-bottom-width: 1px;">@item.Grade</td>
+                                    <td style="border-bottom: solid; border-bottom-color:#231f20; border-bottom-width: 1px;">
+                                        @Html.ActionLink("Delete", "Delete", "FinalGrades", new { id = item.ID }, htmlAttributes: new { @class = "ui small button" })
+                                    </td>
+                                </tr>
+                                        }
+                                        if (itemCount2 + 1 < ViewBag.savedFinalLength)
+                                        {
+                                            if (ViewBag.SavedFinalGrades[itemCount2].ClassName != ViewBag.SavedFinalGrades[itemCount2 + 1].ClassName)
+                                            {
+                                                colorCount2++;
+
+                                            }
+                                        }
+                                        itemCount2++;
+                                        isFirst2 = false;
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                }
+            </div>
+            <div class="ui bottom attached tab segment" data-tab="third">
+                @if (ViewBag.savedGPACount == false)
+                {
+                    <p><b>There seems to be no saved GPA to view at this time</b></p>
+                }
+                else
+                {
+                    if (ViewBag.savedGPACount == true)
+                    {
+                        <div class="ui red centered segment">
+                            <div class="ui horizontal divider">
+                                <h3 class="ui centered header">Saved Cumulative GPA</h3>
+                            </div>
+                            <table class="ui center aligned striped padded table">
+                                <thead>
+                                    <tr>
+                                        <th><h4>Date Recorded</h4></th>
+                                        <th><h4>Time Recorded</h4></th>
+                                        <th><h4>Cumulative GPA</h4></th>
+                                        <th><h4>Action</h4></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{ 
+                                        int colorCount3 = 0;
+                                        bool isFirst3 = true;
+                                     }
+
+                                    @foreach (var item in ViewBag.SavedGPAs)
+                                    {
+                                        if (isFirst3 == false && colorCount3 == colorWheel.Length)
+                                        {
+                                            colorCount3 = 0;
+                                        }
+
+                                    <tr style="background-color: @colorWheel[colorCount3];">
+                                        <td style="border-bottom: solid; border-bottom-color:#231f20; border-bottom-width: 1px;">@item.RecordedDate.ToString("MM-dd-yyyy")</td>
+                                        <td style="border-bottom: solid; border-bottom-color:#231f20; border-bottom-width: 1px;">@item.RecordedDate.ToString("hh:mm tt")</td>
+                                        <td style="border-bottom: solid; border-bottom-color:#231f20; border-bottom-width: 1px;">@item.CumulativeGPA1</td>
+                                        <td style="border-bottom: solid; border-bottom-color:#231f20; border-bottom-width: 1px;">
+                                            @Html.ActionLink("Delete", "Delete", "CumulativeGPAs", new { id = item.ID }, htmlAttributes: new { @class = "ui small button" })
+                                        </td>
+                                    </tr>
+
+                                        colorCount3++;
+                                        isFirst3 = false;
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</body>
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+}

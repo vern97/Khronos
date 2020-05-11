@@ -1,0 +1,69 @@
+﻿@model BeyondTheTutor.Models.SurveyModels.Answer
+
+<div class="ui modal eight wide column">
+    <div class="header"><div style="text-align: center;">@ViewBag.name</div><br /><p><i style="font-size: smaller;">@ViewBag.description</i></p></div>
+    <div class="content large" style="text-align: center; font-size: large;">
+        <b>@ViewBag.question</b>
+    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.Hidden("SurveyID", (object)ViewBag.SID)
+        @Html.Hidden("QuestionID", (object)ViewBag.QID)
+        @Html.Hidden("UserID", (object)ViewBag.UID)
+        <div class="form-horizontal" style="text-align: center;">
+
+            <div class="form-group">
+                @Html.HiddenFor(model => model.UserAnswer, new { htmlAttributes = new { @class = "form-control" } })
+                <div class="ui massive star rating" data-rating="1" data-max-rating="5"></div>
+            </div>
+            <br />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button class="ui button schedule" id="button" onclick="validate()">@ViewBag.ButtonText</button>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div style="text-align: center;" class="footer">
+                <i>@ViewBag.QuestionsAnswered</i>
+            </div>
+            <br />
+        </div>
+    }
+</div>
+
+
+@section scripts
+{
+
+    <script>
+        $('.ui.modal')
+            .modal('setting', 'closable', false)
+            .modal('show')
+            ;
+    </script>
+
+    <script>
+        validate = function () {
+            document.getElementById("button").className = 'ui button positive';
+
+            var rating = $('.ui.rating').rating('get rating');
+            document.getElementById("UserAnswer").value = rating;
+        }
+    </script>
+
+    <script type="text/javascript">
+        $('.ui.rating')
+            .rating({
+                initialRating: 3,
+                maxRating: 5,
+                onRate: validate
+            })
+            ;
+    </script>
+
+
+    <script src="~/Scripts/main.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+}

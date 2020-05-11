@@ -92,6 +92,9 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="reCAPTCHA.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\reCAPTCH.MVC.1.0.1\lib\net45\reCAPTCHA.MVC.dll</HintPath>
+    </Reference>
     <Reference Include="SendGrid, Version=9.12.6.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
       <HintPath>..\packages\SendGrid.9.12.6\lib\net452\SendGrid.dll</HintPath>
     </Reference>
@@ -177,32 +180,76 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AllUsersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ClassesController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\TutorSchedulesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ElevatedAccountController.cs" />
     <Compile Include="Areas\Professor\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Professor\Controllers\TutoringApptsController.cs" />
     <Compile Include="Areas\Professor\ProfessorAreaRegistration.cs" />
     <Compile Include="Areas\Student\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Student\Controllers\TutoringApptsController.cs" />
+    <Compile Include="Areas\Student\Controllers\ZoomController.cs" />
     <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
     <Compile Include="Areas\Tutor\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Tutor\Controllers\TutoringApptsController.cs" />
+    <Compile Include="Areas\Tutor\Controllers\TutoringServiceAlertsController.cs" />
     <Compile Include="Areas\Tutor\Controllers\TutorSchedulesController.cs" />
+    <Compile Include="Areas\Tutor\Controllers\ZoomController.cs" />
     <Compile Include="Areas\Tutor\TutorAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ErrorsController.cs" />
+    <Compile Include="Controllers\StudentsController.cs" />
+    <Compile Include="Controllers\SurveyControllers\AnswersController.cs" />
+    <Compile Include="Controllers\CumulativeGPAsController.cs" />
+    <Compile Include="Controllers\FinalGradesController.cs" />
+    <Compile Include="Controllers\CalculatorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SurveyControllers\QuestionsController.cs" />
+    <Compile Include="Controllers\StudentAppointmentController.cs" />
+    <Compile Include="Controllers\StudentResourcesController.cs" />
+    <Compile Include="Controllers\SurveyControllers\SurveysController.cs" />
+    <Compile Include="Controllers\TimeSheetControllers\TimeSheetController.cs" />
+    <Compile Include="Controllers\TutorAppointmentController.cs" />
+    <Compile Include="Controllers\TutorsController.cs" />
+    <Compile Include="Controllers\WeightedGradesController.cs" />
+    <Compile Include="Controllers\ZoomAPIControllers\ZoomAPIController.cs" />
+    <Compile Include="DAL\ContextGetter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ViewModels\AccountViewModel.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
-    <Compile Include="Models\AspNetUser.cs" />
+    <Compile Include="Models\ProfilePictureModels\ProfilePicture.cs" />
+    <Compile Include="Models\SurveyModels\Answer.cs" />
     <Compile Include="DAL\BeyondTheTutorContext.cs" />
     <Compile Include="Models\BTTUser.cs" />
-    <Compile Include="Models\Professor.cs" />
-    <Compile Include="Models\Student.cs" />
-    <Compile Include="Models\Tutor.cs" />
-    <Compile Include="Models\TutorSchedule.cs" />
+    <Compile Include="Models\Class.cs" />
+    <Compile Include="Models\CumulativeGPA.cs" />
+    <Compile Include="Models\FinalGrade.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="DAL\IdentityModels.cs" />
-    <Compile Include="Models\ViewModels\ManageViewModel.cs" />
+    <Compile Include="Models\Professor.cs" />
+    <Compile Include="Models\SurveyModels\Question.cs" />
+    <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\StudentResource.cs" />
+    <Compile Include="Models\SurveyModels\Survey.cs" />
+    <Compile Include="Models\TimeSheetModels\Day.cs" />
+    <Compile Include="Models\TimeSheetModels\TimeSheet.cs" />
+    <Compile Include="Models\TimeSheetModels\WorkHour.cs" />
+    <Compile Include="Models\Tutor.cs" />
+    <Compile Include="Models\TutoringAppt.cs" />
+    <Compile Include="Models\TutoringServiceAlert.cs" />
+    <Compile Include="Models\TutorSchedule.cs" />
+    <Compile Include="Models\ZoomModels\MeetingInfo.cs" />
+    <Compile Include="Models\ZoomModels\Meetings.cs" />
+    <Compile Include="Models\ZoomModels\Users.cs" />
+    <Compile Include="Models\ZoomModels\UserInfo.cs" />
+    <Compile Include="Models\ViewModels\ElevatedAccountViewModel.cs" />
+    <Compile Include="Models\ViewModels\TutoringApptInfoViewModel.cs" />
+    <Compile Include="Models\WeightedGrade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -357,14 +404,62 @@
     <Content Include="Content\fullcalendar.min.css" />
     <Content Include="Content\fullcalendar.print.css" />
     <Content Include="Content\fullcalendar.print.min.css" />
-    <Content Include="Content\images\BeyondtheTutor_Banner.png" />
-    <Content Include="Content\images\BeyondtheTutor_Banner2.png" />
+    <Content Include="Content\images\404_RedYellow.png" />
     <Content Include="Content\images\BeyondtheTutor_Logo.png" />
+    <Content Include="Content\images\books_stacked.png" />
+    <Content Include="Content\images\campus_map_1.jpg" />
+    <Content Include="Content\images\campus_map_2.jpg" />
+    <Content Include="Content\images\daniel.jpg" />
+    <Content Include="Content\images\elyse.png" />
+    <Content Include="Content\images\timesheet_images\finalpart.png" />
+    <Content Include="Content\images\helen.jpg" />
+    <Content Include="Content\images\Home_Page_Banner.png" />
+    <Content Include="Content\images\KhronosLogo.png" />
+    <Content Include="Content\images\landscapes_images\1.jpg" />
+    <Content Include="Content\images\landscapes_images\10.jpg" />
+    <Content Include="Content\images\landscapes_images\11.jpg" />
+    <Content Include="Content\images\landscapes_images\12.jpg" />
+    <Content Include="Content\images\landscapes_images\13.jpg" />
+    <Content Include="Content\images\landscapes_images\14.jpg" />
+    <Content Include="Content\images\landscapes_images\15.jpg" />
+    <Content Include="Content\images\landscapes_images\16.jpg" />
+    <Content Include="Content\images\landscapes_images\17.jpg" />
+    <Content Include="Content\images\landscapes_images\18.jpg" />
+    <Content Include="Content\images\landscapes_images\19.jpg" />
+    <Content Include="Content\images\landscapes_images\2.jpg" />
+    <Content Include="Content\images\landscapes_images\20.jpg" />
+    <Content Include="Content\images\landscapes_images\21.jpg" />
+    <Content Include="Content\images\landscapes_images\22.jpg" />
+    <Content Include="Content\images\landscapes_images\23.jpg" />
+    <Content Include="Content\images\landscapes_images\24.jpg" />
+    <Content Include="Content\images\landscapes_images\25.jpg" />
+    <Content Include="Content\images\landscapes_images\26.jpg" />
+    <Content Include="Content\images\landscapes_images\27.jpg" />
+    <Content Include="Content\images\landscapes_images\28.jpg" />
+    <Content Include="Content\images\landscapes_images\29.jpg" />
+    <Content Include="Content\images\landscapes_images\3.jpg" />
+    <Content Include="Content\images\landscapes_images\30.jpg" />
+    <Content Include="Content\images\landscapes_images\31.jpg" />
+    <Content Include="Content\images\landscapes_images\4.jpg" />
+    <Content Include="Content\images\landscapes_images\5.jpg" />
+    <Content Include="Content\images\landscapes_images\6.jpg" />
+    <Content Include="Content\images\landscapes_images\7.jpg" />
+    <Content Include="Content\images\landscapes_images\8.jpg" />
+    <Content Include="Content\images\landscapes_images\9.jpg" />
+    <Content Include="Content\images\Logo_Stacked.jpg" />
+    <Content Include="Content\images\Owl_RedYellow.png" />
+    <Content Include="Content\images\resize_welcome_banner.png" />
+    <Content Include="Content\images\stevie.jpg" />
+    <Content Include="Content\images\timesheet_images\logo.jpg" />
+    <Content Include="Content\images\TutoringLogo.png" />
+    <Content Include="Content\images\Tutoring_Red_Banner.png" />
+    <Content Include="Content\images\WOU_arch.jpg" />
     <Content Include="Content\jquery.datetimepicker.css" />
     <Content Include="Content\semantic.css" />
     <Content Include="Content\semantic.min.css" />
     <Content Include="Content\themes\default\assets\fonts\icons.svg" />
     <Content Include="Content\themes\default\assets\images\flags.png" />
+    <Content Include="favicon-32x32.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -392,12 +487,53 @@
     <Content Include="Areas\Tutor\Views\TutorSchedules\Create.cshtml" />
     <Content Include="Areas\Tutor\Views\TutorSchedules\Delete.cshtml" />
     <Content Include="Areas\Tutor\Views\TutorSchedules\Edit.cshtml" />
-    <Content Include="Areas\Tutor\Views\TutorSchedules\ScheduleSuccess.cshtml" />
     <Content Include="Areas\Tutor\Views\TutorSchedules\UpdateSchedule.cshtml" />
     <Content Include="Areas\Admin\Views\TutorSchedules\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\TutorSchedules\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\TutorSchedules\UpdateSchedule.cshtml" />
+    <Content Include="Areas\Student\Views\TutoringAppts\Create.cshtml" />
+    <Content Include="Areas\Student\Views\TutoringAppts\Delete.cshtml" />
+    <Content Include="Areas\Student\Views\TutoringAppts\Details.cshtml" />
+    <Content Include="Areas\Student\Views\TutoringAppts\Edit.cshtml" />
+    <Content Include="Areas\Student\Views\TutoringAppts\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Guide.cshtml" />
+    <Content Include="Areas\Professor\Views\Home\Guide.cshtml" />
+    <Content Include="Areas\Student\Views\Home\Guide.cshtml" />
+    <Content Include="Areas\Tutor\Views\Home\Guide.cshtml" />
+    <Content Include="Areas\Admin\Views\ElevatedAccount\UpdateTutor.cshtml" />
+    <Content Include="Areas\Admin\Views\ElevatedAccount\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ElevatedAccount\UpdateProfessor.cshtml" />
+    <Content Include="Areas\Admin\Views\AllUsers\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AllUsers\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\AllUsers\CreateAdmin.cshtml" />
+    <Content Include="Areas\Admin\Views\ElevatedAccount\Delete.cshtml" />
+    <Content Include="Areas\Tutor\Views\TutoringAppts\Create.cshtml" />
+    <Content Include="Areas\Tutor\Views\TutoringAppts\Delete.cshtml" />
+    <Content Include="Areas\Tutor\Views\TutoringAppts\Details.cshtml" />
+    <Content Include="Areas\Tutor\Views\TutoringAppts\Edit.cshtml" />
+    <Content Include="Areas\Tutor\Views\TutoringAppts\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Classes\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Classes\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Classes\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Classes\Index.cshtml" />
+    <Content Include="Areas\Tutor\Views\TutoringServiceAlerts\Create.cshtml" />
+    <Content Include="Areas\Tutor\Views\TutoringServiceAlerts\Delete.cshtml" />
+    <Content Include="Areas\Tutor\Views\TutoringServiceAlerts\Details.cshtml" />
+    <Content Include="Areas\Tutor\Views\TutoringServiceAlerts\Edit.cshtml" />
+    <Content Include="Areas\Tutor\Views\TutoringServiceAlerts\Index.cshtml" />
+    <Content Include="Areas\Professor\Views\TutoringAppts\Create.cshtml" />
+    <Content Include="Areas\Professor\Views\TutoringAppts\Delete.cshtml" />
+    <Content Include="Areas\Professor\Views\TutoringAppts\Details.cshtml" />
+    <Content Include="Areas\Professor\Views\TutoringAppts\Edit.cshtml" />
+    <Content Include="Areas\Professor\Views\TutoringAppts\Index.cshtml" />
+    <Content Include="Areas\Tutor\Views\Zoom\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Compile Include="Models\ViewModels\AllUsersViewModel.cs" />
+    <Compile Include="Models\TimeSheetModels\TutorTimeSheetsCustomModel.cs" />
+    <Content Include="Scripts\calculators.js" />
+    <Content Include="Scripts\disable-service-alert-dropdown.js" />
+    <Content Include="Scripts\displayrequestedappts.js" />
+    <Content Include="Scripts\displaystudentappts.js" />
     <Content Include="Scripts\displaytutors.js" />
     <Content Include="Scripts\fullcalendar.js" />
     <Content Include="Scripts\fullcalendar.min.js" />
@@ -511,6 +647,9 @@
     <Content Include="Scripts\schedulecalendar.js" />
     <Content Include="Scripts\semantic.js" />
     <Content Include="Scripts\semantic.min.js" />
+    <Content Include="Scripts\service-alert.js" />
+    <Content Include="Scripts\zoomstudent.js" />
+    <Content Include="Scripts\zoomtutor.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -528,7 +667,6 @@
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
@@ -543,21 +681,59 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\FAQ.cshtml" />
+    <Content Include="Views\Home\Privacy.cshtml" />
+    <Content Include="Views\StudentResources\Create.cshtml" />
+    <Content Include="Views\StudentResources\Delete.cshtml" />
+    <Content Include="Views\StudentResources\Edit.cshtml" />
+    <Content Include="Views\StudentResources\Index.cshtml" />
+    <Content Include="Views\StudentResources\ManageResources.cshtml" />
+    <Content Include="Views\StudentResources\ViewAll.cshtml" />
+    <Content Include="Views\Surveys\Create.cshtml" />
+    <Content Include="Views\Surveys\Delete.cshtml" />
+    <Content Include="Views\Surveys\Index.cshtml" />
+    <Content Include="Views\Questions\Create.cshtml" />
+    <Content Include="Views\Questions\Delete.cshtml" />
+    <Content Include="Views\Questions\Index.cshtml" />
+    <Content Include="Views\Answers\Create.cshtml" />
+    <Content Include="Views\Calculators\Calculators.cshtml" />
+    <Content Include="Views\Calculators\SavedResults.cshtml" />
+    <Content Include="Views\Students\StudentProfile.cshtml" />
+    <Content Include="Views\Errors\General.cshtml" />
+    <Content Include="Views\Errors\Http404.cshtml" />
+    <Content Include="Views\Errors\Http403.cshtml" />
+    <Content Include="Views\Errors\Http500.cshtml" />
+    <Content Include="Views\Tutors\TutorProfile.cshtml" />
+    <Content Include="Views\TimeSheet\Index.cshtml" />
+    <Content Include="Views\TimeSheet\ViewMonth.cshtml" />
+    <Content Include="Views\TimeSheet\PrintMonth.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Professor\Data\" />
     <Folder Include="Areas\Student\Data\" />
+    <Folder Include="Areas\Student\Views\Zoom\" />
     <Folder Include="Areas\Tutor\Data\" />
+    <Folder Include="Views\StudentAppointment\" />
+    <Folder Include="Views\ZoomAPI\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
@@ -579,6 +755,9 @@
           <CustomServerUrl>
           </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <servers defaultServer="SelfHostServer">
+            <server name="SelfHostServer" exePath="" cmdArgs="" url="http://localhost:50091/" workingDir="" />
+          </servers>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

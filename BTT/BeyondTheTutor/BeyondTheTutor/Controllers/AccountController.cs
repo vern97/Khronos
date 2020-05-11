@@ -9,6 +9,10 @@ using BeyondTheTutor.Models;
 using BeyondTheTutor.DAL;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Web.Routing;
+using reCAPTCHA.MVC;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Net;
 
 namespace BeyondTheTutor.Controllers
 {
@@ -57,7 +61,28 @@ namespace BeyondTheTutor.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            ViewBag.Current = "AccountLogin";
             ViewBag.ReturnUrl = returnUrl;
+
+            if (TempData["msg"] != null)
+                switch (TempData["msg"].ToString()) // resetFail and Suc ref. from task: ResetPassword; and confirmSuc & Fail from ConfirmEmail.
+                {
+                    case "resetFail":
+                        ViewBag.error = "Something went wrong, please try again later.";
+                        break;
+                    case "resetSuc":
+                        ViewBag.msg = "Congrats! You've successfully changed your password! Please proceed by logging in.";
+                        break;
+                    case "confirmFail":
+                        ViewBag.error = "Oops, something went wrong. Please try again later.";
+                        break;
+                    case "confirmSuc":
+                        ViewBag.msg = "Congrats! You've successfully confirmed your email. Please proceed by logging in.";
+                        break;
+                    default:
+                        break;
+                }
+
             return View();
         }
 
@@ -83,11 +108,24 @@ namespace BeyondTheTutor.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    BeyondTheTutorContext db = new BeyondTheTutorContext();
                     // Require the user to have a confirmed email before they can log on.
                     var user = await UserManager.FindByNameAsync(model.Email);
                     // Resolve the user via their email
                     var roles = await UserManager.GetRolesAsync(user.Id);
+
                     var confirmedByEmail = await UserManager.IsEmailConfirmedAsync(user.Id);
+                    var confirmedByAdmin = false;
+                    var userID = UserManager.FindByName(model.Email).Id;
+
+                    var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
+
+                    if (roles.Contains("Tutor"))
+                        confirmedByAdmin = db.Tutors.Find(currentUserID).AdminApproved;
+                     else if( roles.Contains("Professor"))
+                        confirmedByAdmin = db.Professors.Find(currentUserID).AdminApproved;
+
+
                     if (user != null)
                     {
                         if (!confirmedByEmail && roles.Contains("Student"))
@@ -96,14 +134,34 @@ namespace BeyondTheTutor.Controllers
                             ViewBag.error = "You must have a confirmed email to log on.";
                             return View();
                         }
-                        else if (!roles.Contains("Admin") && !confirmedByEmail) // || !confirmedByAdmin) 
+                        else if (!(roles.Contains("Admin") || roles.Contains("Student")) && (!confirmedByEmail || !confirmedByAdmin)) 
                         {
                             ViewBag.error = "You must confirm your email and/or get special permission by emailing: Admin@BeyondTheTutor.com";
                             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
                             return View();
                         }
                     }
-                    return RedirectToLocal(returnUrl);
+
+                    if (roles.Contains("Admin"))
+                    {
+                        return RedirectToAction("Index", "Home", new { area = "admin" });
+                    }
+                    else if (roles.Contains("Professor"))
+                    {
+                        return RedirectToAction("Index", "Home", new { area = "professor" });
+                    }
+                    else if (roles.Contains("Student"))
+                    {
+                        return RedirectToAction("Index", "Home", new { area = "student" });
+                    }
+                    else if (roles.Contains("Tutor"))
+                    {
+                        return RedirectToAction("Index", "Home", new { area = "tutor" });
+                    }
+                    else
+                    {
+                        return RedirectToAction("FAQ", "Home");
+                    }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -158,35 +216,141 @@ namespace BeyondTheTutor.Controllers
             }
         }
 
-        //
+        
         // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewBag.Current = "AccountRegister";
+            ViewBag.ReCapKey = System.Web.Configuration.WebConfigurationManager.AppSettings["ReCapKey"];
+            
             return View();
         }
 
-        //
+        public class CaptchaResponse
+        {
+            [JsonProperty("success")]
+            public string Success { get; set; }
+
+            [JsonProperty("error-codes")]
+            public List<string> ErrorCodes { get; set; }
+        }
+
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegistrationTypes model)
         {
-            if (ModelState.IsValid)
+            bool isStudent, isTutor, isProfessor, _error;
+            isStudent = isTutor = isProfessor = _error = false;
+            string _email, _password, _firstname, _lastname, _confmessage, _class_standing, _vnumber ;
+
+            _email = _password = _firstname = _lastname = _class_standing = _vnumber = null;
+
+            short _classof = 0000;
+
+            var response = Request["g-recaptcha-response"];
+            //secret that was generated in key value pair
+            string secret = System.Web.Configuration.WebConfigurationManager.AppSettings["ReCapSecretKey"];
+
+            var client = new WebClient();
+            var reply =
+                client.DownloadString(
+                    string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secret, response));
+
+            var captchaResponse = JsonConvert.DeserializeObject<CaptchaResponse>(reply);
+
+            //when response is false check for the error message
+            if (captchaResponse.Success.Equals(false))
             {
-                
+                if (captchaResponse.ErrorCodes.Count <= 0) return View();
+
+                var error = captchaResponse.ErrorCodes[0].ToLower();
+                switch (error)
+                {
+                    case ("missing-input-secret"):
+                        ViewBag.Message = "The secret parameter is missing.";
+                        break;
+                    case ("invalid-input-secret"):
+                        ViewBag.Message = "The secret parameter is invalid or malformed.";
+                        break;
+
+                    case ("missing-input-response"):
+                        ViewBag.Message = "The response parameter is missing.";
+                        break;
+                    case ("invalid-input-response"):
+                        ViewBag.Message = "The response parameter is invalid or malformed.";
+                        break;
+
+                    default:
+                        ViewBag.Message = "Error occured. Please try again";
+                        break;
+                }
+
+                _error = true;
+            }
+            else
+            {
+                ViewBag.Message = "Valid";
+            }
+
+            if (ModelState.IsValid && !_error)
+            {
+                if (model.studentVM != null)
+                {
+                    isStudent = true;
+                    _firstname = model.studentVM.FirstName;
+                    _lastname = model.studentVM.LastName;
+                    _password = model.studentVM.Password;
+                    _class_standing = model.studentVM.ClassStanding;
+                    _classof = model.studentVM.GraduatingYear;
+                    _email = model.studentVM.Email;
+                }
+                if (model.tutorVM != null)
+                {
+                    isTutor = true;
+                    _firstname = model.tutorVM.FirstName;
+                    _lastname = model.tutorVM.LastName;
+                    _password = model.tutorVM.Password;
+                    _vnumber = model.tutorVM.VNumber;
+                    _classof = model.tutorVM.ClassOf;
+                    _email = model.tutorVM.Email;
+                }
+                if (model.professorVM != null)
+                {
+                    isProfessor = true;
+                    _firstname = model.professorVM.FirstName;
+                    _lastname = model.professorVM.LastName;
+                    _password = model.professorVM.Password;
+                    _email = model.professorVM.Email;
+                }
+
+                if (isTutor || isProfessor)
+                {
+                    _confmessage = "Confirm your account email and wait for admin approval";
+                    ViewBag.Message = "Once you've confirmed that " + _email + " is your email address and recieved admin approval, you'll be able to use your account.";
+                }
+                else
+                {
+                    ViewBag.Message = "Once you've confirmed that " + _email + " is your email address, you can continue to your account.";
+                    _confmessage = "Confirm your account email";
+                }
+
                 //var user = new ApplicationUser { UserName = model.FirstName + " " + model.LastName, Email = model.Email };
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var user = new ApplicationUser
+                {
+                    UserName = _email,
+                    Email = _email 
+                };
+
+                var result = await UserManager.CreateAsync(user, _password);
+
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-                    string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account", model.FirstName);
-
-                    // Won't be shown to the user if we redirect to home
-                    ViewBag.Message = "Once you've confirmed that " + model.Email + " is your email address, you can continue to your account.";
+                    string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, _confmessage, _firstname);
 
                     TempData["Message"] = ViewBag.Message;
 
@@ -199,26 +363,53 @@ namespace BeyondTheTutor.Controllers
 
                     var special_user = new BTTUser
                     {
-                        FirstName = model.FirstName,
-                        LastName = model.LastName,
+                        FirstName = _firstname,
+                        LastName = _lastname,
                         ASPNetIdentityID = user.Id                    
                     };
 
-                    var sub_user = new Student
-                    {
-                        ClassStanding = model.ClassStanding,
-                        GraduatingYear = model.GraduatingYear
-                    };
-
-                    sub_user.BTTUser = special_user;
-
                     BeyondTheTutorContext db = new BeyondTheTutorContext();
-                    
-                    db.BTTUsers.Add(special_user);
-                    db.Students.Add(sub_user);
+
+                    if (model.studentVM != null)
+                    {
+                        var sub_user = new Student
+                        {
+                            ClassStanding = _class_standing,
+                            GraduatingYear = _classof
+                        };
+
+                        sub_user.BTTUser = special_user;
+                        db.BTTUsers.Add(special_user);
+                        db.Students.Add(sub_user);
+                        UserManager.AddToRole(user.Id, "Student");
+                    }
+                    if (model.tutorVM != null)
+                    {
+                        var sub_user = new Tutor
+                        {
+                            VNumber = _vnumber,
+                            ClassOf = _classof,
+                        };
+
+                        sub_user.BTTUser = special_user;
+                        db.BTTUsers.Add(special_user);
+                        db.Tutors.Add(sub_user);
+                        UserManager.AddToRole(user.Id, "Tutor");
+                    }
+                    if (model.professorVM != null)
+                    {
+                        var sub_user = new Professor
+                        {
+
+                        };
+                        sub_user.BTTUser = special_user;
+                        db.BTTUsers.Add(special_user);
+                        db.Professors.Add(sub_user);
+                        UserManager.AddToRole(user.Id, "Professor");
+                    }
+
 
                     await db.SaveChangesAsync();
-                    UserManager.AddToRole(user.Id, "Student");
 
                     AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
 
@@ -228,6 +419,15 @@ namespace BeyondTheTutor.Controllers
             }
 
             // If we got this far, something failed, redisplay form
+            if (model.professorVM != null)
+                ViewBag.validationError = "professor";
+            else if (model.tutorVM != null)
+                ViewBag.validationError = "tutor";
+            else if (model.studentVM != null)
+                ViewBag.validationError = "student";
+
+            ViewBag.ReCapKey = System.Web.Configuration.WebConfigurationManager.AppSettings["ReCapKey"];
+
             return View(model);
         }
 
@@ -236,7 +436,6 @@ namespace BeyondTheTutor.Controllers
             string code = await UserManager.GenerateEmailConfirmationTokenAsync(userID);
             var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = userID, code = code }, protocol: Request.Url.Scheme);
             string bodyOfEmail = "Hello " + name + ", please follow <a href=\"" + callbackUrl + "\">this link</a> to confirm your <i>Beyond The Tutor</i> account";
-
             await UserManager.SendEmailAsync(userID, subject, bodyOfEmail);
 
             return callbackUrl;
@@ -255,20 +454,24 @@ namespace BeyondTheTutor.Controllers
 
         }
 
-
-        //
+        
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
             if (userId == null || code == null)
             {
-                return View("Error");
+                TempData["msg"] = "confirmFail";
+                return RedirectToAction("Login");
             }
             var result = await UserManager.ConfirmEmailAsync(userId, code);
-            return View(result.Succeeded ? "ConfirmEmail" : "Error");
-        }
+            if (result.Succeeded)
+            {
+                TempData["msg"] = "confirmSuc";
+            } else { TempData["msg"] = "confirmFail"; }
 
+            return RedirectToAction("Login");
+        }
 
 
         //
@@ -279,7 +482,6 @@ namespace BeyondTheTutor.Controllers
             return View();
         }
 
-        //
         // POST: /Account/ForgotPassword
         [HttpPost]
         [AllowAnonymous]
@@ -288,31 +490,31 @@ namespace BeyondTheTutor.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 var user = await UserManager.FindByNameAsync(model.Email);
+
+                TempData["msg"] = model.Email.ToString() ;
+
+
                 if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
-                    return View("ForgotPasswordConfirmation");
+                    return RedirectToAction("Index", "Home");
                 }
 
-                // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+                // For more information on how to 
+                // enable account confirmation and password reset 
+                // please visit https://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                await UserManager.SendEmailAsync(user.Id, "Reset Password", "DO NOT PRESS IF THIS EMAIL ISN'T ASSOSIATED WITH BeyondTheTutor\nTo reset your password please click the following link: <a href=\"" + callbackUrl + "\">RESET PASSWORD</a>");
+
+                return RedirectToAction("Index", "Home");
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
-        }
-
-        //
-        // GET: /Account/ForgotPasswordConfirmation
-        [AllowAnonymous]
-        public ActionResult ForgotPasswordConfirmation()
-        {
-            return View();
         }
 
         //
@@ -323,7 +525,6 @@ namespace BeyondTheTutor.Controllers
             return code == null ? View("Error") : View();
         }
 
-        //
         // POST: /Account/ResetPassword
         [HttpPost]
         [AllowAnonymous]
@@ -334,20 +535,25 @@ namespace BeyondTheTutor.Controllers
             {
                 return View(model);
             }
+
+            var z = model.Code != null ? TempData["msg"] = "resetSuc" : TempData["msg"] = "resetFail"; // goes to Login with TempData stating the result
+
             var user = await UserManager.FindByNameAsync(model.Email);
             if (user == null)
             {
                 // Don't reveal that the user does not exist
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
+                return RedirectToAction("Login", "Account");
             }
             var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
             if (result.Succeeded)
             {
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
+                return RedirectToAction("Login", "Account");
             }
+
             AddErrors(result);
-            return View();
+            return RedirectToAction("Login", "Account");
         }
+
 
         //
         // GET: /Account/ResetPasswordConfirmation

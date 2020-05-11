@@ -1,0 +1,111 @@
+﻿@using BeyondTheTutor.Models.ViewModels
+@model List<ElevatedAccountViewModel>
+
+<h2 style="text-align: center;">Elevated User View</h2>
+<br/>
+@if (ViewBag.T != null)
+{
+<div class="ui green message" style="text-align: center;">
+    <B>@ViewBag.T</B>
+</div>
+}
+else if (ViewBag.F != null)
+{
+<div class="ui orange message" style="text-align: center;">
+    <B >@ViewBag.F</B>
+</div>
+}
+<br />
+
+<body class="wou-silver-bg">
+    <div class="ui one column stackable page grid">
+        <div class="ui message column twenty wide" style="text-align: center;"><i class="info icon" id="message"></i>Current users available for change.</div>
+        <table class="ui striped table ui selectable celled table table-schedule">
+            <thead>
+                <tr>
+                    <th>
+                        <h4>Last Name</h4>
+                    </th>
+                    <th>
+                        <h4>First Name</h4>
+                    </th>
+                    <th>
+                        <h4>Admin Approved</h4>
+                    </th>
+                    <th>
+                        <h4>Role</h4>
+                    </th>
+                    <th>
+                        <h4 style="text-align: center;">Actions</h4>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.LastName
+                        </td>
+                        <td>
+                            @item.FirstName
+                        </td>
+                        <td style="text-align: center">
+                            @item.adminApproved
+                        </td>
+                        <td>
+                            @item.role
+                        </td>
+                        <td style="text-align: center;">
+                            @if (item.adminApproved)
+                            {
+                                if (item.role == "Professor")
+                                {
+                                    <button class="ui basic button">
+                                        <i class="icon lock"></i>
+                                        @Html.ActionLink("Disapprove", "UpdateProfessor", new { id = item.ID })
+                                    </button>
+                                }
+                                else if (item.role == "Tutor")
+                                {
+                                    <button class="ui basic button">
+                                        <i class="icon lock"></i>
+                                        @Html.ActionLink("Disapprove", "UpdateTutor", new { id = item.ID })
+                                    </button>
+                                }
+                            }
+                            else
+                            {
+                                if (item.role == "Professor")
+                                {
+                                    <button class="ui basic button">
+                                        <i class="icon unlock"></i>
+                                        @Html.ActionLink("Approve", "UpdateProfessor", new { id = item.ID })
+                                    </button>
+                                }
+                                else if (item.role == "Tutor")
+                                {
+                                    <button class="ui basic button">
+                                        <i class="icon unlock"></i>
+                                        @Html.ActionLink("Approve", "UpdateTutor", new { id = item.ID })
+                                    </button>
+                                }
+                            }
+                            <button class="ui basic button">
+                                <i class="icon trash"></i>
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+}
+
+

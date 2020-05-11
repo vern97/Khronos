@@ -6,6 +6,10 @@ using BeyondTheTutor.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
 using System;
+using System.Threading.Tasks;
+using System.Web.Mvc.Routing;
+using System.Web.Mvc;
+using System.Web;
 
 [assembly: OwinStartupAttribute(typeof(BeyondTheTutor.Startup))]
 namespace BeyondTheTutor
@@ -65,8 +69,8 @@ namespace BeyondTheTutor
                 {
                     var special_user = new BTTUser
                     {
-                        FirstName = "Admin",
-                        LastName = "Account",
+                        FirstName = "Tracy",
+                        LastName = "Boyson",
                         ASPNetIdentityID = user.Id
                     };
 
@@ -81,7 +85,11 @@ namespace BeyondTheTutor
                     db.SaveChangesAsync();
                 }
 
-                if (res.Succeeded) { var result1 = UserManager.AddToRole(user.Id, ROLES[0]); }
+                if (res.Succeeded) 
+                { 
+                    var result1 = UserManager.AddToRole(user.Id, ROLES[0]);
+                }
+
             }
 
             // Do we need another role?  i.e. "User"
@@ -112,15 +120,15 @@ namespace BeyondTheTutor
                 {
                     var special_user = new BTTUser
                     {
-                        FirstName = "Professor",
-                        LastName = "Account",
+                        FirstName = "Becka",
+                        LastName = "Morgan",
                         ASPNetIdentityID = user.Id
                     };
 
                     var sub_user = new Professor
                     {
                         ID = special_user.ID,
-                        AdminApproved = false
+                        AdminApproved = true
                     };
 
                     sub_user.BTTUser = special_user;
@@ -158,15 +166,15 @@ namespace BeyondTheTutor
                 {
                     var special_user = new BTTUser
                     {
-                        FirstName = "Student",
-                        LastName = "Account",
+                        FirstName = "Brandon",
+                        LastName = "Linton",
                         ASPNetIdentityID = user.Id
                     };
 
                     var sub_user = new Student
                     {
                         ID = special_user.ID,
-                        ClassStanding = "default",
+                        ClassStanding = "Junior",
                         GraduatingYear = 2022
                     };
 
@@ -243,8 +251,8 @@ namespace BeyondTheTutor
                 {
                     var special_user = new BTTUser
                     {
-                        FirstName = "Michael",
-                        LastName = "Scott",
+                        FirstName = "Shay",
+                        LastName = "Green",
                         ASPNetIdentityID = tutor.Id
                     };
 
@@ -265,7 +273,48 @@ namespace BeyondTheTutor
                 if (res.Succeeded) { var result1 = UserManager.AddToRole(tutor.Id, ROLES[3]); }
             }
 
+            /*{
 
+                IdentityResult res;
+
+                // Create user with this role
+                string userPWD = "student2020";// System.Web.Configuration.WebConfigurationManager.AppSettings["AdminPassword"];
+                string userEmail = "student2@BeyondTheTutor.com";// System.Web.Configuration.WebConfigurationManager.AppSettings["AdminEmail"];
+                var user = new ApplicationUser
+                {
+                    UserName = userEmail,
+                    Email = userEmail,
+                    EmailConfirmed = true
+                };
+                // Username and email must be the same unless you want to make changes to the login code, which assumes they are the same
+                // It will appear to work but once you clear your cache (to delete the cookie) or use another browser it won't work
+
+                res = UserManager.Create(user, userPWD);
+
+                if (res.Succeeded)
+                {
+                    var special_user = new BTTUser
+                    {
+                        FirstName = "Maksim",
+                        LastName = "Stoyanov",
+                        ASPNetIdentityID = user.Id
+                    };
+
+                    var sub_user = new Student
+                    {
+                        ID = special_user.ID,
+                        ClassStanding = "Senior",
+                        GraduatingYear = 2020
+                    };
+
+                    sub_user.BTTUser = special_user;
+                    db.BTTUsers.Add(special_user);
+                    db.Students.Add(sub_user);
+                    db.SaveChangesAsync();
+                }
+
+                UserManager.AddToRole(user.Id, ROLES[2]); 
+            }*/
 
             /*
             // creating Creating Professor role   

@@ -1,0 +1,103 @@
+﻿<body class="wou-silver-bg">
+    <div class="ui grid FAQ">
+        <div class="three wide column"></div>
+        <div class="ten wide column">
+            <div class="ui styled fluid accordion FAQ">
+                <div class="ui horizontal divider">
+                    <h1 class="ui centered header">Tutor Guide</h1>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Welcome Message
+                </div>
+                <div class="content">
+                    <p>
+                        Beyond the Tutor welcomes you to the tutor portal. We provide several resources to create a
+                        pleasant experience during your time as a Computer Science Department tutor. Browse our guide
+                        to learn about features available to you.
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Adding and Managing Student Resources
+                </div>
+                <div class="content">
+                    <p>
+                        @Html.ActionLink("Student resources", "Index", "StudentResources", new { area = "" }, htmlAttributes:
+                        new { @class = (ViewBag.Current == "StuResIndex" ? "item red active" : "item") }) are an easy way to
+                        share helpful and interesting finds with your students. In the @Html.ActionLink("Add New", "Create",
+"StudentResources", new { area = "" }, htmlAttributes: new
+{
+@class = (ViewBag.Current == "StuResCreate" ?
+"item red active" : "item")
+}) form you will enter a topic for your resource. Example topics are "Java",
+                        "Semantic UI", "CSS Styling". Make the topic simple and searchable. You will provide the website URL for
+                        your resource by copying and pasting it into the appropropriate box. And you will decide how you want the
+                        link displayed. Example displays are "Parse Trees - Wikipedia", "AJAX - CS 461", "HTML Tutorial". Make
+                        displays simple and searchable.
+                    </p>
+                    <p>
+                        You may @Html.ActionLink("manage", "ManageResources", "StudentResources", new { area = "" }, htmlAttributes:
+                new { @class = (ViewBag.Current == "StuResManage" ? "item red active" : "item") }) your student resources
+                        at any time. You may change the topic, URL, display text, or delete.
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Discord Real-Time Chat
+                </div>
+                <div class="content">
+                    <p>
+                        On your portal <a href="/Tutor/Home/Index" target="_blank">home page</a> you will find a Discord chat box.
+                        This allows you to chat with students in real-time.<br />
+                    </p>
+                    <p>
+                        If you don't have a Discord account we recommend signing up <a href="https://discordapp.com/" target="_blank">here</a>.
+                        Join the tutoring server by clicking DISCORD LOGIN in the chat box. <b>You may join the server with a pre-existing Discord account</b>.<br />
+                    </p>
+                    <p>
+                        <a href="https://discordapp.com/" target="_blank">Download desktop Discord</a> or access the server in your
+                        <a href="https://discordapp.com/channels/678653017465290762/678653017465290765" target="_blank">browser</a>. Right-click
+                        your username and change your nickname to FIRST-NAME (Tutor). Once your account is set up with an appropriate user name you
+                        may chat with students from your portal home page or whichever method you prefer.
+                    </p>
+                    <p>
+                        Real-time chat is intended for quick help. If a student's needs require significant time then politely recommend
+                        they visit the tutoring center or schedule a tutoring session.
+                    </p>
+                    <p>
+                        Real-time chat is intended for use while you are scheduled in the tutoring center. If you would like to work with a student
+                        outside your normal tutoring hours please recommend they schedule a tutoring session so that you are compensated for your time.
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Tutoring Center Scheduling
+                </div>
+                <div class="content">
+                    <p>
+                        You can <a href="/Tutor/TutorSchedules/Create" target="_blank">add your scheduled times</a> in the tutoring center. You may also
+                        <a href="/Tutor/TutorSchedules/UpdateSchedule" target="_blank">edit or delete</a> your schedules. Schedules are automatically shown
+                        on the Beyond the Tutor home page calendar. Notice that time slots have a unique color for each tutor.
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    How do I contact the development team?
+                </div>
+                <div class="content">
+                    <p>
+                        Questions or comments? Contact us at beyondthetutor&commat;gmail.com
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="three wide column"></div>
+    </div>
+</body>
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+}
+

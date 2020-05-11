@@ -1,25 +1,62 @@
-﻿<!DOCTYPE html>
+﻿@using BeyondTheTutor.DAL;
+@using Microsoft.AspNet.Identity;
+@{
+    BeyondTheTutorContext db = new BeyondTheTutorContext();
+
+    var userID = User.Identity.GetUserId();
+    var currentUser = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault()?.FirstName;
+    
+    ViewBag.FirstName = currentUser;
+    
+    
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../../../../favicon-32x32.png" sizes="32x32" />
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/fullcalendarcss")
     <link rel="stylesheet" type="text/css" href="~/Content/semantic.min.css">
 </head>
 <body>
-    <div class="ui inverted menu">
-        <a href="/Professor/Home/Index" class="item">Professor Portal</a>
+    <div class="ui stackable secondary large pointing menu background-color-white">
+        @Html.ActionLink("Beyond the Tutor", "Index", "Home", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "HomeIndex" ? "item red active" : "item") })
+        @Html.ActionLink("Professor Portal", "Index", "Home", new { area = "professor" }, htmlAttributes: new { @class = (ViewBag.Current == "ProfHomeIndex" ? "item red active" : "item") })
         <div class="right menu">
-            @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
-            {
-                @Html.AntiForgeryToken()
-                <a href="javascript:document.getElementById('logoutForm').submit()" class="item">Sign out</a>
-            }
+            @Html.ActionLink("Analyze Tutoring Requests", "Index", "TutoringAppts", new { area = "professor" }, htmlAttributes: new { @class = (ViewBag.Current == "ProfApptsIndex" ? "item red active" : "item") })
+            @Html.ActionLink("Surveys", "Index", "Surveys", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "ProfSurveyIndex" ? "item red active" : "item") })
+            <div class="ui dropdown item">
+                Resources
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    @Html.ActionLink("Add New", "Create", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResCreate" ? "item red active" : "item") })
+                    @Html.ActionLink("Manage", "ManageResources", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResManage" ? "item red active" : "item") })
+                    @Html.ActionLink("View All", "Index", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResIndex" ? "item red active" : "item") })
+                </div>
+            </div>
         </div>
+        @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
+        {
+            <div class="ui dropdown item">
+                @ViewBag.FirstName
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <div style="text-align: left;">
+                        @Html.ActionLink("Change Password", "ChangePassword", "Manage", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "ChangePassword" ? "item red active" : "item") })
+                        @Html.ActionLink("User Guide", "Guide", "Home", new { area = "professor" }, htmlAttributes: new { @class = (ViewBag.Current == "ProfHomeGuide" ? "item red active" : "item") })
+                        @Html.AntiForgeryToken()
+                        <a href="javascript:document.getElementById('logoutForm').submit()" class="item">Sign out</a>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/fullcalendarjs")
     <script src="~/Scripts/semantic.min.js"></script>
 
     <div class="container body-content">

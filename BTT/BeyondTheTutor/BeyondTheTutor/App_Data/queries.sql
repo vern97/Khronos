@@ -1,5 +1,5 @@
-﻿SELECT * FROM BTTUsers
+﻿SELECT * FROM StudentResources
 
-SELECT * FROM Tutors
+SELECT * FROM BTTUsers
 
-SELECT * FROM TutorSchedule
+SELECT * FROM ProfilePictures

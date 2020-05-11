@@ -3,6 +3,23 @@
     padding-bottom: 20px;
 }
 
+/* Backgrounds for web pages*/
+.wou-grey-bg {
+    background-color: rgb(196,198,200);
+}
+
+.wou-silver-bg {
+    background-color: rgb(167,169,172);
+}
+
+.wou-red-bg {
+    background-color: #5f0707;
+}
+
+.wou-blue-bg {
+    background-color: lightblue;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -46,22 +63,20 @@ textarea {
     width: 100%;
 }
 
+.ui.yellow.message.schedule {
+    width: 100%;
+}
+
 .fluid.ui.button.schedule {
     width: 100%;
     background-color: #db0a29;
     color: #FFFFFF;
 }
 
-.campus-bg {
-    background: url('../images/Campus.jpg');
-    background-size: cover;
-}
-.wou-grey-bg {
-    background-color: rgb(196,198,200);
-}
-
-.wou-silver-bg {
+.fluid.ui.button.login {
+    width: 100%;
     background-color: rgb(167,169,172);
+    color: #FFFFFF;
 }
 
 #tutors_container {
@@ -71,4 +86,365 @@ textarea {
 
 #tutor_cards {
     padding-top: 15px;
+}
+
+.ui.styled.fluid.accordion.FAQ {
+    border-top: solid;
+    border-top-width: 3px;
+    border-top-color: #db0a29;
+    width: auto;
+}
+
+.ui.grid.FAQ {
+    padding-bottom: 30px;
+}
+
+.ui.grid.privacy {
+    padding-bottom: 30px;
+}
+
+.ui.striped.selectable.celled.table.resources {
+    border-top: solid;
+    border-top-width: 3px;
+    border-top-color: #db0a29;
+}
+
+.ui.segment.login {
+    border-top: solid;
+    border-top-width: 3px;
+    border-top-color: #db0a29;
+}
+
+.ui.one.column.stackable.page.grid.schedule {
+    padding-top: 10px;
+}
+
+.ui.segments.background-color-white {
+    background-color: #ffffff;
+}
+
+.ui.stackable.secondary.large.pointing.menu.background-color-white {
+    background-color: #FFFFFF;
+}
+
+.ui.container.footer {
+    width: 100%;
+    padding-top: 20px;
+    margin-bottom: 10px;
+}
+
+#modal {
+    width: 100%;
+}
+
+#modal-1 {
+    width: 100%;
+}
+
+#modal-2 {
+    width: 100%;
+}
+
+.ui.floating.message.registration {
+    border-top: solid;
+    border-top-width: 3px;
+    border-top-color: #db0a29;
+    border-bottom: solid;
+    border-bottom-width: 3px;
+    border-bottom-color: rgb(196,198,200);
+}
+
+.ui.centered.header.registration {
+    background-color: rgb(196,198,200);
+}
+
+.ui.small.warning.message {
+    margin-bottom: 10px;
+}
+
+.ui.raised.fluid.card {
+    border: solid;
+    border-width: 1px;
+    border-color: rgb(196,198,200);
+}
+
+.ui.placeholder.segment.login {
+    border-top: solid;
+    border-top-width: 3px;
+    border-top-color: #db0a29;
+}
+
+.ui.one.column.stackable.page.grid.schedule {
+    margin-top: 10px;
+}
+
+/* Customizations for admin home page */
+.ten.wide.column.admin {
+    border: solid;
+    border-width: 3px;
+    border-color: #db0a29;
+    background-color: #FFFFFF;
+}
+
+.ui.top.attached.center.aligned.icon.header {
+    background-color: #515050;
+    border: groove;
+    border-width: 2px;
+    border-color: #db0a29;
+}
+
+/* Customizations for student resources */
+.column.resources {
+    border: solid;
+    border-width: 1px;
+    border-color: #db0a29;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.fluid.ui.button.resources {
+    width: 100%;
+    background-color: transparent;
+    color: #231f20;
+    font-size: large;
+    text-align: center;
+    text-shadow: inherit;
+}
+
+.fluid.ui.button.resources:hover {
+    color: #db0a29;
+}
+
+.resources-link {
+    color: #231f20;
+    font-size: large;
+}
+
+.resources-link:hover {
+    color: #db0a29;
+}
+
+.all-resources-link {
+    color: #db0a29;
+}
+
+.all-resources-link:hover {
+    color: #231f20;
+}
+
+.ui.striped.padded.table.resources {
+    border-top: solid;
+    border-top-width: 3px;
+    border-top-color: #db0a29;
+}
+
+#resources th {
+    background-color: #808080;
+    color: #FFFFFF;
+}
+
+.ui.form.attached.fluid.segment.resources {
+    border-top: solid;
+    border-top-width: 3px;
+    border-top-color: #db0a29;
+}
+
+/* Customizations for calculators */
+table#weighted {
+    font-size: large;
+    color: #231f20;
+    margin-top: 5px;
+    width: 100%;
+    padding: 5px;
+}
+
+table#weighted tr {
+    background-color: rgb(196,198,200);
+    font-size: large;
+    color: #231f20;
+    margin-top: 5px;
+    width: 100%;
+    padding: 5px;
+}
+
+table#final {
+    font-size: large;
+    color: #231f20;
+    margin-top: 5px;
+    width: 100%;
+    padding: 5px;
+}
+
+table#final tr {
+    background-color: rgb(196,198,200);
+    font-size: large;
+    color: #231f20;
+    margin-top: 5px;
+    width: 100%;
+    padding: 5px;
+}
+
+table#currentGPA {
+    font-size: large;
+    color: #231f20;
+    margin-top: 5px;
+    width: 100%;
+    padding: 5px;
+}
+
+table#currentGPA tr {
+    background-color: rgb(196,198,200);
+    font-size: large;
+    color: #231f20;
+    margin-top: 5px;
+    width: 100%;
+    padding: 5px;
+}
+
+table#cumulative {
+    font-size: large;
+    color: #231f20;
+    margin-top: 5px;
+    width: 100%;
+    padding: 5px;
+}
+
+table#cumulative tr {
+    background-color: rgb(196,198,200);
+    font-size: large;
+    color: #231f20;
+    margin-top: 5px;
+    width: 100%;
+    padding: 5px;
+}
+
+table#savedGrade {
+    font-size: large;
+    color: #231f20;
+    margin-top: 5px;
+    width: 100%;
+    padding: 5px;
+}
+
+table#savedGrade tr {
+    background-color: rgb(196,198,200);
+    font-size: large;
+    color: #231f20;
+    margin-top: 5px;
+    width: 100%;
+    padding: 5px;
+}
+
+table#savedFinal {
+    font-size: large;
+    color: #231f20;
+    margin-top: 5px;
+    width: 100%;
+    padding: 5px;
+}
+
+table#savedFinal tr {
+    background-color: rgb(196,198,200);
+    font-size: large;
+    color: #231f20;
+    margin-top: 5px;
+    width: 100%;
+    padding: 5px;
+}
+
+table#savedFinalGPA {
+    font-size: large;
+    color: #231f20;
+    margin-top: 5px;
+    width: 100%;
+    padding: 5px;
+}
+
+table#savedFinalGPA tr {
+    background-color: rgb(196,198,200);
+    font-size: large;
+    color: #231f20;
+    margin-top: 5px;
+    width: 100%;
+    padding: 5px;
+}
+
+.ui.top.attached.tabular.menu.custom .item {
+    background-color: #d8d8d8;
+    border: ridge;
+    border-width: 1px;
+    border-color: rgb(167,169,172);
+}
+
+.ui.top.attached.tabular.menu.custom .active.item {
+    background-color: #FFFFFF;
+    border: ridge;
+    border-width: 1px;
+    border-color: rgb(167,169,172);
+}
+/* Customization for tutor and student home page 
+   RED: #db0a29
+   BLACK: #231f20
+*/
+
+.ui.top.attached.center.aligned.icon.header.black {
+    background-color: rgb(167,169,172);
+    border-width: 3px;
+    border: groove;
+    border-top-color: teal;
+    border-left-color: teal;
+    border-right-color: #ffffff;
+    border-bottom-color: teal;
+    height: 60%;
+}
+
+.ui.internally.divided.padded.grid.grey {
+    background-color: rgb(196,198,200);
+    border-width: 3px;
+    border-left: groove;
+    border-left-color: teal;
+    border-right: groove;
+    border-right-color: #ffffff;
+    border-bottom: groove;
+    border-bottom-color: #ffffff;
+}
+
+#portal-headers {
+    color: #231f20;
+    font-weight: 600;
+}
+
+#portal-headers-alert {
+    color: #db0a29;
+}
+
+#portal-headers-black {
+    color: #231f20;
+}
+
+#portal-headers:hover {
+    color: #db0a29;
+}
+
+.user.circle.icon {
+    color: #231f20;
+}
+
+.ui.card.portal {
+    height: 100%;
+    width: 100%;
+}
+
+.ui.container.portal {
+    width: auto;
+}
+
+.ui.floating.message.portal {
+    height: 100%;
+    width: 100%;
+
+tr#noShow {
+    background-color: #e60000;
 }

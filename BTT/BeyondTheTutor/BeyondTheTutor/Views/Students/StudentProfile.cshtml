@@ -1,0 +1,73 @@
+﻿@model BeyondTheTutor.Models.Student
+
+<br />
+<body class="wou-grey-bg">
+    <div class="ui divided grid center aligned">
+        <div class="row six wide column">
+            <div class="column">
+                <div class="ui grid registration">
+                    <div class="ui attached fluid segment form">
+                        <h3>@ViewBag.userFirstName @ViewBag.userLastName</h3>
+                        <h4>Anticipated graduation: @ViewBag.gradYear</h4>
+                        <h4>Current class standing: @ViewBag.classStand</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui divided grid center aligned">
+        <div class="row six wide column">
+            <div class="column">
+                <div class="ui grid registration">
+                    <div class="ui attached fluid segment form">
+                        @using (Html.BeginForm("Edit", "Students", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <h2>Update Profile Form</h2>
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.Hidden("ID", (object)ViewBag.CurrentUserID)
+                            <div class="form-group">
+                                Graduating Year
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(m => m.GraduatingYear, new SelectListItem[] {
+                            new SelectListItem() {Text = DateTime.Now.AddYears(0).Year.ToString(), Value=DateTime.Now.AddYears(0).Year.ToString()},
+                            new SelectListItem() {Text = DateTime.Now.AddYears(1).Year.ToString(), Value=DateTime.Now.AddYears(1).Year.ToString()},
+                            new SelectListItem() {Text = DateTime.Now.AddYears(2).Year.ToString(), Value=DateTime.Now.AddYears(2).Year.ToString()},
+                            new SelectListItem() {Text = DateTime.Now.AddYears(3).Year.ToString(), Value=DateTime.Now.AddYears(3).Year.ToString()},
+                            new SelectListItem() {Text = DateTime.Now.AddYears(4).Year.ToString(), Value=DateTime.Now.AddYears(4).Year.ToString()}
+                            }, "Select", htmlAttributes: new { @class = "ui selection dropdown form-control" })
+                                    @Html.ValidationMessageFor(model => model.GraduatingYear, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                Class Standing
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(m => m.ClassStanding, new SelectListItem[] {
+                            new SelectListItem() {Text = "Freshman", Value="Freshman"},
+                            new SelectListItem() {Text = "Sophomore", Value="Sophomore"},
+                            new SelectListItem() {Text = "Junior", Value="Junior"},
+                            new SelectListItem() {Text = "Senior", Value="Senior"}
+                            }, "Select", htmlAttributes: new { @class = "ui selection dropdown form-control" })
+                                    @Html.ValidationMessageFor(model => model.ClassStanding, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <button class="fluid ui button schedule">Update Profile</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+@section Scripts {
+    <script src="~/Scripts/main.js"></script>
+}
+
+

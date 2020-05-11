@@ -1,34 +1,86 @@
-﻿<!DOCTYPE html>
+﻿@using BeyondTheTutor.DAL;
+@using Microsoft.AspNet.Identity;
+@{
+    BeyondTheTutorContext db = new BeyondTheTutorContext();
+
+    var userID = User.Identity.GetUserId();
+    var currentUser = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault()?.FirstName;
+    ViewBag.FirstName = currentUser;
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../../../../favicon-32x32.png" sizes="32x32" />
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/fullcalendarcss")
     <link rel="stylesheet" type="text/css" href="~/Content/semantic.min.css">
 </head>
 <body>
-    <div class="ui inverted menu">
-        <a href="/Tutor/Home/Index" class="item">Tutor Portal</a>
+    <div class="ui stackable secondary large pointing menu background-color-white">
+        @Html.ActionLink("Beyond the Tutor", "Index", "Home", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "HomeIndex" ? "item red active" : "item") })
+        @Html.ActionLink("Tutor Portal", "Index", "Home", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutorHomeIndex" ? "item red active" : "item") })
         <div class="right menu">
-            <div class="ui simple dropdown item">
-                Scheduling
+            @Html.ActionLink("Time Sheets", "Index", "TimeSheet", new { area = ""  }, htmlAttributes: new { @class = (ViewBag.Current == "TutorTimeSheets" ? "item red active" : "item") })
+            <div class="ui dropdown item">
+                Live Chat
                 <i class="dropdown icon"></i>
                 <div class="menu">
-                    <a href="/Tutor/TutorSchedules/Create" class="item">Add Tutoring Schedule</a>
-                    <a href="/Tutor/TutorSchedules/UpdateSchedule" class="item">Edit Tutoring Schedules</a>
+                    <a class="item red" href="https://titanembeds.com/embed/678653017465290762?scrollbartheme=inset-3&theme=IceWyvern&username=Student" target="_blank">Discord</a>
+                    @Html.ActionLink("Zoom", "Index", "Zoom", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutZoomIndex" ? "item red active" : "item") })
                 </div>
             </div>
+
+            <div class="ui dropdown item">
+                Resources
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    @Html.ActionLink("Add New Link", "Create", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResCreate" ? "item red active" : "item") })
+                    @Html.ActionLink("Manage Links", "ManageResources", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResManage" ? "item red active" : "item") })
+                    @Html.ActionLink("Search Resources", "Index", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResIndex" ? "item red active" : "item") })
+                    <div class="divider"></div>
+                    @Html.ActionLink("Calculators", "Calculators", "Calculators", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "Calculators" ? "item red active" : "item") })
+                    @Html.ActionLink("Saved Results", "SavedResults", "Calculators", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "SavedResults" ? "item red active" : "item") })
+                </div>
+            </div>
+
+            <div class="ui dropdown item">
+                Tutoring
+                <i class="dropdown icon"></i>
+                <div class="fluid menu">
+                    @Html.ActionLink("Input Session", "Create", "TutoringAppts", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutTutorAppCreate" ? "item red active" : "item") })
+                    @Html.ActionLink("Review Requests", "Index", "TutoringAppts", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutApptsIndex" ? "item red active" : "item") })
+                    <div class="divider"></div>
+                    @Html.ActionLink("Add Schedule", "Create", "TutorSchedules", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutSchedCreate" ? "item red active" : "item") })
+                    @Html.ActionLink("Manage Schedule", "UpdateSchedule", "TutorSchedules", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutSchedUpdate" ? "item red active" : "item") })
+                    @Html.ActionLink("Service Alert", "Create", "TutoringServiceAlerts", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutServiceAlert" ? "item red active" : "item") })
+                </div>
+            </div>
+
+        </div>
+
             @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
             {
-                @Html.AntiForgeryToken()
-                <a href="javascript:document.getElementById('logoutForm').submit()" class="item">Sign out</a>
+                <div class="ui dropdown item">
+                    @ViewBag.FirstName
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <div style="text-align: left;">
+                            @Html.ActionLink("Change Password", "ChangePassword", "Manage", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "ChangePassword" ? "item red active" : "item") })
+                            @Html.ActionLink("Manage Profile", "TutorProfile", "Tutors", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "TutProfile" ? "item red active" : "item") })
+                            @Html.ActionLink("User Guide", "Guide", "Home", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutorHomeGuide" ? "item red active" : "item") })
+                            @Html.AntiForgeryToken()
+                            <a href="javascript:document.getElementById('logoutForm').submit()" class="item">Sign out</a>
+                        </div>
+                    </div>
+                </div>
             }
         </div>
-        
-    </div>
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/fullcalendarjs")
     <script src="~/Scripts/semantic.min.js"></script>
 
     <div class="container body-content">

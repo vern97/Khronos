@@ -1,0 +1,134 @@
+﻿@model BeyondTheTutor.Models.TutoringAppt
+
+@{ ViewBag.Status = "Requested";
+}
+
+<body class="wou-silver-bg">
+    <div class="ui one column centered padded grid schedule">
+        <div class="ui form centered segment">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.Hidden("TutorID", (object)ViewBag.CurrentTutorID)
+                @Html.Hidden("Status", (object)ViewBag.SetCompleted)
+                <form>
+                    <img class="ui centered image" src="@Url.Content("~/Content/images/Tutoring_Red_Banner.png")" />
+                    <div class="ui hidden divider"></div>
+                    <div class="five fields">
+                        <div class="field">
+                            <h4>Date</h4>
+                        </div>
+                        <div class="field">
+                            <h4>Start Time</h4>
+                        </div>
+                        <div class="field">
+                            <h4>End Time</h4>
+                        </div>
+                        <div class="field">
+                            <h4>Length</h4>
+                        </div>
+                        <div class="field">
+                            <h4>Class</h4>
+                        </div>
+                        <div class="field">
+                            <h4>Type of Meeting</h4>
+                        </div>
+                        <div class="field">
+                            <h4>Student</h4>
+                        </div>
+                    </div>
+                    <div class="seven fields">
+                        <div class="field">
+                            @Html.DropDownList("Date", new SelectListItem[] {
+                                new SelectListItem() {Text = ((DateTime.Now).AddDays(0)).ToString("MM-dd-yyyy") + " " + DateTime.Now.AddDays(0).DayOfWeek, Value=((DateTime.Now).AddDays(0)).ToString()},
+                                new SelectListItem() {Text = ((DateTime.Now).AddDays(1)).ToString("MM-dd-yyyy") + " " + DateTime.Now.AddDays(1).DayOfWeek, Value=((DateTime.Now).AddDays(1)).ToString()},
+                                new SelectListItem() {Text = ((DateTime.Now).AddDays(2)).ToString("MM-dd-yyyy") + " " + DateTime.Now.AddDays(2).DayOfWeek, Value=((DateTime.Now).AddDays(2)).ToString()},
+                                new SelectListItem() {Text = ((DateTime.Now).AddDays(3)).ToString("MM-dd-yyyy") + " " + DateTime.Now.AddDays(3).DayOfWeek, Value=((DateTime.Now).AddDays(3)).ToString()},
+                                new SelectListItem() {Text = ((DateTime.Now).AddDays(4)).ToString("MM-dd-yyyy") + " " + DateTime.Now.AddDays(4).DayOfWeek, Value=((DateTime.Now).AddDays(4)).ToString()},
+                                new SelectListItem() {Text = ((DateTime.Now).AddDays(5)).ToString("MM-dd-yyyy") + " " + DateTime.Now.AddDays(5).DayOfWeek, Value=((DateTime.Now).AddDays(5)).ToString()},
+                                new SelectListItem() {Text = ((DateTime.Now).AddDays(6)).ToString("MM-dd-yyyy") + " " + DateTime.Now.AddDays(6).DayOfWeek, Value=((DateTime.Now).AddDays(6)).ToString()}
+                            }, htmlAttributes: new { @class = "ui selection dropdown form-control" })
+                        </div>
+                        <div class="field">
+                            @Html.DropDownListFor(m => m.StartTime, new SelectListItem[] {
+                                new SelectListItem() {Text = "8:00 AM", Value="8:00 AM"},
+                                new SelectListItem() {Text = "8:30 AM", Value="8:30 AM"},
+                                new SelectListItem() {Text = "9:00 AM", Value="9:00 AM"},
+                                new SelectListItem() {Text = "9:30 AM", Value="9:30 AM"},
+                                new SelectListItem() {Text = "10:00 AM", Value="10:00 AM"},
+                                new SelectListItem() {Text = "10:30 AM", Value="10:30 AM"},
+                                new SelectListItem() {Text = "11:00 AM", Value="11:00 AM"},
+                                new SelectListItem() {Text = "11:30 AM", Value="11:30 AM"},
+                                new SelectListItem() {Text = "12:00 PM", Value="12:00 PM"},
+                                new SelectListItem() {Text = "12:30 PM", Value="12:30 PM"},
+                                new SelectListItem() {Text = "1:00 PM", Value="1:00 PM"},
+                                new SelectListItem() {Text = "1:30 PM", Value="1:30 PM"},
+                                new SelectListItem() {Text = "2:00 PM", Value="2:00 PM"},
+                                new SelectListItem() {Text = "2:30 PM", Value="2:30 PM"},
+                                new SelectListItem() {Text = "3:00 PM", Value="3:00 PM"},
+                                new SelectListItem() {Text = "3:30 PM", Value="3:30 PM"},
+                                new SelectListItem() {Text = "4:00 PM", Value="4:00 PM"},
+                                new SelectListItem() {Text = "4:30 PM", Value="4:30 PM"}
+                                }, htmlAttributes: new { @class = "ui selection dropdown form-control" })
+                            @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="field">
+                            @Html.DropDownListFor(m => m.EndTime, new SelectListItem[]{
+                                new SelectListItem() {Text = "8:30 AM", Value="8:30 AM"},
+                                new SelectListItem() {Text = "9:00 AM", Value="9:00 AM"},
+                                new SelectListItem() {Text = "9:30 AM", Value="9:30 AM"},
+                                new SelectListItem() {Text = "10:00 AM", Value="10:00 AM"},
+                                new SelectListItem() {Text = "10:30 AM", Value="10:30 AM"},
+                                new SelectListItem() {Text = "11:00 AM", Value="11:00 AM"},
+                                new SelectListItem() {Text = "11:30 AM", Value="11:30 AM"},
+                                new SelectListItem() {Text = "12:00 PM", Value="12:00 PM"},
+                                new SelectListItem() {Text = "12:30 PM", Value="12:30 PM"},
+                                new SelectListItem() {Text = "1:00 PM", Value="1:00 PM"},
+                                new SelectListItem() {Text = "1:30 PM", Value="1:30 PM"},
+                                new SelectListItem() {Text = "2:00 PM", Value="2:00 PM"},
+                                new SelectListItem() {Text = "2:30 PM", Value="2:30 PM"},
+                                new SelectListItem() {Text = "3:00 PM", Value="3:00 PM"},
+                                new SelectListItem() {Text = "3:30 PM", Value="3:30 PM"},
+                                new SelectListItem() {Text = "4:00 PM", Value="4:00 PM"},
+                                new SelectListItem() {Text = "4:30 PM", Value="4:30 PM"},
+                                new SelectListItem() {Text = "5:00 PM", Value="5:00 PM"}
+                                }, htmlAttributes: new { @class = "ui selection dropdown form-control" })
+                            @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="field">
+                            <select class="ui selection dropdown" id="Length" name="Length">
+                                <option type="text" value="30 minutes">30 minutes</option>
+                                <option type="text" value="1 hour">1 hour</option>
+                                <option type="text" value="1+ hours">1+ hour</option>
+                            </select>
+                            @Html.ValidationMessageFor(model => model.Length, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="field">
+                            @Html.DropDownList("ClassID", null, htmlAttributes: new { @class = "ui selection dropdown form-control" })
+                            @Html.ValidationMessageFor(model => model.ClassID, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="field">
+                            @Html.DropDownListFor(m => m.TypeOfMeeting, new SelectListItem[]{
+                                new SelectListItem() {Text = "In-Person", Value="In-Person"},
+                                new SelectListItem() {Text = "Online", Value="Online"}
+                                }, htmlAttributes: new { @class = "ui selection dropdown form-control" })
+                            @Html.ValidationMessageFor(model => model.TypeOfMeeting, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="field">
+                            @Html.DropDownListFor(model => model.StudentID, new SelectList(ViewBag.StudentsItem, "ID", "Name"), htmlAttributes: new { @class = "ui selection dropdown form-control" })
+                            @Html.ValidationMessageFor(model => model.StudentID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="ui hidden divider"></div>
+                    <button class="fluid ui button schedule">Submit Request</button>
+                </form>
+            }
+        </div>
+    </div>
+</body>
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+}

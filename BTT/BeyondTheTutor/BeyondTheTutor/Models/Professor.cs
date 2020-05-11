@@ -8,9 +8,10 @@ namespace BeyondTheTutor.Models
 
     public partial class Professor
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
-        public bool AdminApproved { get; set; }
+        public bool AdminApproved { get; set; } = false;
 
         public virtual BTTUser BTTUser { get; set; }
     }

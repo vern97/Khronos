@@ -1,0 +1,113 @@
+﻿@model IEnumerable<BeyondTheTutor.Models.Class>
+@{
+    ViewBag.Placeholder = "Search: \"CS260\", \"161\"";
+}
+
+@if (ViewBag.StatusMessage != null)
+{
+    <div class="ui green message" style="text-align: center;">
+        <B>@ViewBag.StatusMessage</B>
+    </div>
+}
+@if (ViewBag.Err != null)
+{
+    <div class="ui red message" style="text-align: center;">
+        <B>@ViewBag.Err</B>
+    </div>
+}
+
+<body class="wou-silver-bg">
+    <div class="ui one column center aligned stackable page grid">
+        <br />
+
+        @if (ViewBag.message != null)
+        {
+            <div class="ui sixteen wide column" style="text-align: center;">
+                <div class="ui red message" style="text-align: center;">
+                    <i class="user times icon" id="message"></i>
+                    <B>@ViewBag.message</B>
+                </div>
+            </div>
+        }
+
+        @if (ViewBag.created != null)
+        {
+            <div class="ui sixteen wide column" style="text-align: center;">
+                <div class="ui green message" style="text-align: center;">
+                    <i class="user outline icon" id="created"></i>
+                    <B>@ViewBag.created</B>
+                </div>
+            </div>
+        }
+
+        <br />
+
+        <table class="ui striped ten wide column compact table table-schedule">
+            <thead>
+                <tr>
+                    <th colspan="4">
+                        @using (Html.BeginForm("Index", "Classes", FormMethod.Get))
+                        {
+                            <div class="ui fluid action input">
+                                @if (ViewBag.searched != null)
+                                {
+                                    <input type="text" style="color: #db0a29" value="@ViewBag.searched" name="search" id="search" placeholder="@ViewBag.Placeholder">
+                                }
+                                else
+                                {
+                                    <input type="text" style="color: #db0a29" name="search" id="search" placeholder="@ViewBag.Placeholder">
+                                }
+                                <button class="ui button" style="background-color: #db0a29; color: white;">Search</button>
+                            </div>
+                        }
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan="1">
+                        Course
+                    </th>
+                    <th colspan="1">
+                        @using (Html.BeginForm("Create", "Classes", FormMethod.Get))
+                        {
+                            <button class="ui button" style="background-color: #084b00; color: white;">Add</button>
+                        }
+                    </th>
+                </tr>
+                @if (Model.Count() < 1)
+                {
+                    <tr>
+                        <td>
+                            Nothing by this search
+                        </td>
+                        <td>
+                            <a href="./Classes/Create">Create a Course</a>
+                        </td>
+                    </tr>
+                }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            <button class="ui basic button">
+                                <i class="edit icon"></i>
+                                @Html.ActionLink("Rename", "Edit", new { id = item.ID })
+                            </button>
+                            <button class="ui basic button">
+                                <i class="icon trash"></i>
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                            </button>
+                        </td>
+                    </tr>
+                }
+        </table>
+    </div>
+</body>
+
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+}

@@ -1,0 +1,38 @@
+﻿@model BeyondTheTutor.Models.StudentResource
+
+<body class="wou-grey-bg">
+    <div class="ui one column stackable page grid">
+        <div class="ui red message schedule"><i class="close icon"></i>Careful! You may delete resources below. Deletion cannot be undone.</div>
+        <div class="ui form attached fluid segment resources">
+            <div class="three fields">
+                <div class="field">
+                    <h4>Resource Topic</h4>
+                    @Html.DisplayFor(model => model.Topic)
+                </div>
+                <div class="field">
+                    <h4>URL for Topic</h4>
+                    @Html.DisplayFor(model => model.URL)
+                </div>
+                <div class="field">
+                    <h4>How You Want Link Displayed</h4>
+                    @Html.DisplayFor(model => model.DisplayText)
+                </div>
+            </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <button class="fluid ui button schedule" style="margin-bottom: 3px;">Delete Resource Entry</button>
+                    @Html.ActionLink("Go Back to List", "ManageResources", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResManage" ? "item red active" : "item fluid ui button schedule"), @style = "button" })
+
+                </div>
+            }
+        </div>
+    </div>
+</body>
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+}

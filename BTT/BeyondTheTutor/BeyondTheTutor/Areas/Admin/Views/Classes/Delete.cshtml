@@ -1,0 +1,35 @@
+﻿@model BeyondTheTutor.Models.Class
+
+
+@{
+    ViewBag.Title = "Delete Request";
+}
+
+<body class="wou-silver-bg">
+    <div class="ui one column stackable page grid center aligned">
+        <div class="ui red message schedule" style="text-align: center;"><i class="close icon"></i>You are about to confirm a deletion request on a class</div>
+        <div class="ui form attached six wide column segment">
+            <div class="field">
+                    <div class="ui label fluid">
+                        <i class="pencil alternate icon"><h3>@Html.DisplayFor(model => model.Name)</h3></i>
+                    </div>
+            </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <button type="submit" value="Delete" class="fluid ui button schedule" style="margin-bottom: 3px;">DELETE</button>
+                </div>
+            }
+            <br />
+            @Html.ActionLink("Back to List", "Index")
+
+        </div>
+    </div>
+</body>
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+}

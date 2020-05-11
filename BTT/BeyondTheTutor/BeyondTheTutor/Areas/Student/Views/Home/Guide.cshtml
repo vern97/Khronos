@@ -1,0 +1,156 @@
+﻿<body class="wou-silver-bg">
+    <div class="ui grid FAQ">
+        <div class="three wide column"></div>
+        <div class="ten wide column">
+            <div class="ui styled fluid accordion FAQ">
+                <div class="ui horizontal divider">
+                    <h1 class="ui centered header">Student Guide</h1>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Welcome Message for Students
+                </div>
+                <div class="content">
+                    <p>
+                        Beyond the Tutor welcomes you to the student portal. We provide several resources to create a
+                        pleasant experience during your time as a Computer Science Department student. Browse our guide
+                        to learn about features available to you.
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Calculators and Progress Tracking
+                </div>
+                <div class="content">
+                    <p>
+                        We provide several types of calculators: Weighted Grade, Final Grade, Current Semester GPA, and Cumulative GPA.
+                        You will find instructions along with each calculator. You may also save and manage results to track your progress.
+                    </p>
+                    <p>
+                        @Html.ActionLink("Calculators", "Calculators", "Calculators", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "Calculators" ? "item red active" : "item") })
+                    </p>
+                    <p>
+                        Results are separated by calculation type and color-coded by course name. Finally, results are ordered by
+                        most recent entry so that you can easily measure progress.
+                    </p>
+                    <p>
+                        @Html.ActionLink("Saved Results", "SavedResults", "Calculators", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "SavedResults" ? "item red active" : "item") })
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Course Surveys from Professors
+                </div>
+                <div class="content">
+                    <p>
+                        We provide access to short surveys provided by professors.
+                    </p>
+                    <p>
+                        @Html.ActionLink("View Available Surveys", "Index", "TutoringAppts", new { area = "student" }, htmlAttributes: new { @class = (ViewBag.Current == "StuTutorAppIndex" ? "item red active" : "item") })
+                    </p>
+                    <p>
+                        Surveys are found on the tutoring sessions page. If a professor has added a survey for a course you will
+                        be able to access the survey once you have requested a tutoring session for that course.
+                        Professors may periodically add new questions to surveys which will reactivate the survey button.
+                        You may answer new questions without repeating previously answered questions.
+                    </p>
+                    <p>
+                        Surveys are designed to provide insights into course design and student need. Student responses are 100% anonymous.
+                        Professors can only access answers and analysis of answers. Please review our Privacy Policy should you have any concerns.
+                    </p>
+                    <p>
+                        @Html.ActionLink("Privacy Policy", "Privacy", "Home", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "HomePrivacy" ? "item red active" : "item") })
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Getting Tutoring Help
+                </div>
+                <div class="content">
+                    <p>
+                        We provide a quick and easy way to request tutoring.
+                    </p>
+                    <p>
+                        @Html.ActionLink("Request Session", "Create", "TutoringAppts", new { area = "student" }, htmlAttributes: new { @class = (ViewBag.Current == "StuTutorAppCreate" ? "item red active" : "item") })
+                    </p>
+                    <p>
+                        You will fill out the required form, choosing Date, Time Range, Length, Class and whether you want an in-person
+                        or online session. When providing a time range, providing a wider range increases chances of being approved.
+                    </p>
+                    <p>
+                        <i>
+                            e.g. Student wants a one hour tutoring session. Student has open availability from noon to four.
+                            Student requests a starting time of 12:00 PM and ending time of 4:00 PM and length of one hour. Tutor accepts the session for a one-hour block in that range.
+                        </i>
+                    </p>
+                    <p>
+                        When you submit a request you will receive a notification on the student portal which displays the status of your request.
+                        Please allow time for tutors to approve or deny the request. This notification will automatically update once the request is reviewed.
+                    </p>
+                    <p>
+                        If you cannot attend a tutoring session please cancel as soon as possible. You may also review past and future sessions.
+                    </p>
+                    <p>
+                        @Html.ActionLink("View Tutoring Sessions", "Index", "TutoringAppts", new { area = "student" }, htmlAttributes: new { @class = (ViewBag.Current == "StuTutorAppIndex" ? "item red active" : "item") })
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Helpful Resources from Professors and Tutors
+                </div>
+                <div class="content">
+                    <p>
+                        We provide access to helpful resources shared by professors and tutors.
+                    </p>
+                    <p>
+                        You may browse resources by topic or choose to view all resources. You may also search by topic, keyword, and
+                        professor and tutor first or last name. (e.g. to find links shared by Breeann Flesch you would search either "Breeann"
+                        or "Flesch".)
+                    </p>
+                    <p>
+                        @Html.ActionLink("Resources", "Index", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResIndex" ? "item red active" : "item") })
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Real-Time Chatting with Tutors
+                </div>
+                <div class="content">
+                    <p>
+                        We provide real-time chat with tutors through Discord.
+                    </p>
+                    <p>
+                        <a class="item red" href="https://titanembeds.com/embed/678653017465290762?scrollbartheme=inset-3&theme=IceWyvern&username=Student" target="_blank">Discord</a>
+                    </p>
+                    <p>
+                        To use the chat feature as a guest click on the guest account name box and press Enter.
+                        The default guest account is named STUDENT. Please enter chat using your real name.
+                        If you have a pre-existing Discord account you may join with your account by choosing DISCORD LOGIN.
+                    </p>
+                    <p>
+                        If you want a Discord account sign up <a href="https://discordapp.com/" target="_blank">here</a>.
+                    </p>
+                    <p>
+                        Real-time chat is intended for quick help. If your needs require significant time then visit the
+                        tutoring center or <a href="/Student/TutoringAppts/Create" target="_blank">request a tutoring session</a>.
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    How do I contact the development team?
+                </div>
+                <div class="content">
+                    <p>
+                        Questions or comments? Contact us at beyondthetutor&commat;gmail.com
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="three wide column"></div>
+    </div>
+</body>
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+}

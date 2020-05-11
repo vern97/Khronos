@@ -1,0 +1,88 @@
+﻿@model IEnumerable<BeyondTheTutor.Models.SurveyModels.Question>
+
+@{
+    string name = Model.FirstOrDefault().Survey.Name.ToString();
+    int SurveyID = Model.FirstOrDefault().SurveyID;
+}
+
+    <body class="wou-silver-bg">
+        <div class="ui one column center aligned stackable page grid">
+            <table class="ui striped compact table compact table-schedule">
+                <thead>
+                    <tr>
+                        <th colspan="4"><h1 class="ui centered header">@name</h1></th>
+                    </tr>
+                    <tr>
+                        <th colspan="4" style="text-align: center; color: red">
+
+                            <div class="ui buttons">
+                                <button class="ui button active">
+                                    @Html.RouteLink("Back to Surveys", new { controller = "Surveys", action = "Index" })
+                                </button>
+                                <div class="or"></div>
+                                <button class="ui yellow button">
+                                    <i class="icon plus"></i>
+                                    @Html.RouteLink("Add Another Question", new { controller = "Questions", action = "Create", id = SurveyID})
+                                </button>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr >
+                        <th>
+                            @Html.DisplayNameFor(model => model.AskingQuestion)
+                        </th>
+                        <th>
+                            Average Answer
+                        </th>
+                        <th style="text-align: center;">
+                            Participants
+                        </th>
+                        <th style="text-align: center;">
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+
+
+                <br />
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AskingQuestion)
+                        </td>
+                        <td>
+                            <div class="ui rating" data-rating="@item.Answers.Where(s => s.SurveyID == item.SurveyID && s.QuestionID == item.ID).Average(q => q.UserAnswer).ToString()" data-max-rating="5"></div>
+                        </td>
+                        <td style="text-align: center;">
+                            @item.Answers.Count()
+                        </td>
+                        <td style="white-space:nowrap; text-align: center;">
+                            <button class="ui basic button">
+                                <i class="icon trash"></i>
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </body>
+
+
+
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $('.ui.rating')
+            .rating({
+                maxRating: 5,
+            })
+            .rating("disable", true)
+            ;
+    </script>
+}

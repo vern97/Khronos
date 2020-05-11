@@ -11,6 +11,7 @@
             day: 'Day',
             today: 'Today'
         },
+        timezone: 'America/Los_Angeles',
         events: '/Home/GetTutorSchedules',
         minTime: "07:00:00",
         maxTime: "19:00:00",

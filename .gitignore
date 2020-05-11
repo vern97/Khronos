@@ -9,6 +9,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+ContextGetter.cs
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -350,3 +351,5 @@ MigrationBackup/
 .ionide/
 
 Web_Deploy.config
+
+ContextGetter.cs

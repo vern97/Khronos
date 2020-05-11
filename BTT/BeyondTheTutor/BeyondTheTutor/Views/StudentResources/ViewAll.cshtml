@@ -1,0 +1,34 @@
+﻿@model IEnumerable<BeyondTheTutor.Models.StudentResource>
+
+<body class="wou-silver-bg">
+    <div class="ui relaxed grid">
+        <div class="two column centered row">
+            <div class="column">
+                <a href="/StudentResources/Index" button class="fluid ui button schedule">Return to Resources Home</a>
+                <table class="ui striped padded table resources" id="resources">
+                    <thead>
+                        <tr>
+                            <th>Topic</th>
+                            <th>Resource</th>
+                            <th>Recommended</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td><b>@Html.DisplayFor(modelItem => item.Topic)</b></td>
+                                <td>
+                                    <a href="@Html.DisplayFor(modelItem => item.URL)" target="_blank" class="all-resources-link">
+                                        <b>@Html.DisplayFor(modelItem => item.DisplayText)</b>
+                                    </a>
+                                </td>
+                                <td><b>@Html.DisplayFor(modelItem => item.BTTUser.FirstName) @Html.DisplayFor(modelItem => item.BTTUser.LastName)</b></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>

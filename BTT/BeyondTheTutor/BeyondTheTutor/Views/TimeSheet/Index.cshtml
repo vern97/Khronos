@@ -1,0 +1,257 @@
+﻿@model TutorTimeSheetCustomModel
+
+@using BeyondTheTutor.Models.TimeSheetModels
+
+
+
+<body class="wou-silver-bg">
+    <div class="ui one column center aligned stackable page grid">
+        <br />
+        @if (ViewBag.Error != null)
+        {
+            <div class="ui sixteen wide column" style="text-align: center;">
+                <div class="ui red message" style="text-align: center;">
+                    <B>@ViewBag.Error</B>
+                </div>
+            </div>
+        }
+
+        <table class="ui striped compact table table-schedule" style="text-align: center;">
+            <thead>
+                <tr><th colspan="2"></th>
+                    <th colspan="3">
+                        @using (Html.BeginForm("Index", "TimeSheets", FormMethod.Get))
+                        {
+                            <div class="ui fluid action input">
+                                @if (ViewBag.searched != null)
+                                {
+                                    <input type="text" style="color: #db0a29" value="@ViewBag.searched" name="search" id="search" placeholder="@ViewBag.Placeholder">
+                                }
+                                else
+                                {
+                                    <input type="text" style="color: #db0a29" name="search" id="search" placeholder="@ViewBag.Placeholder">
+                                }
+                                <button class="ui button" style="background-color: #003b98; color: white;">Search</button>
+                            </div>
+                        }
+                    </th>
+                </tr>
+                <tr style="text-align: center;">
+                    <th colspan="2"></th>
+                    <th colspan="3">
+                        @using (Html.BeginForm("CreateTimeSheet", "TimeSheet", FormMethod.Post, new { @class = "ui form form-horizontal", style = "text-align: center;" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(model => model.TimeSheetVM.ID)
+                            @Html.HiddenFor(model => model.TimeSheetVM.TutorID)
+                            @Html.HiddenFor(model => model.TimeSheetVM.Tutor)
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="two fields">
+                                <div class="field form-group">
+                                    @Html.LabelFor(model => model.TimeSheetVM.Month, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    @Html.DropDownList("MonthsID", null, htmlAttributes:
+                                   new { id = "TimeSheetVM_Month", Name = "TimeSheetVM.Month", @class = "ui selection dropdown form-control" })
+                                </div>
+                                <div class="field form-group">
+                                    @Html.LabelFor(model => model.TimeSheetVM.Year, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <select class="ui selection dropdown item form-control" id="TimeSheetVM_Year" name="TimeSheetVM.Year">
+                                        @{int year = DateTime.Today.Year.ToString().AsInt();}
+                                        <option type="number" value="@year">@year</option>
+                                        <option type="number" value="@(year+1)">@(year + 1)</option>
+                                    </select>
+                                </div>
+                                <div class="field form-group">
+                                    <br />
+                                    <input type="submit" value="Create Timesheet" class="ui button negative" />
+                                </div>
+                            </div>
+                        }
+                    </th>
+                </tr>
+                <tr>
+                    <th>Month</th>
+                    <th>Year</th>
+                    @if(User.IsInRole("Admin"))
+                    { <th>Tutor</th> } else { <th>View a day</th> }
+                    <th style="text-align: center;">Month Hours</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ts in Model.TimeSheets)
+                {
+                    <tr>
+                        @if (ts.Month < 1)
+                        {
+                            <td>NA</td>
+                        }
+                        else
+                        {
+                            <td>@Model.months[ts.Month]</td>
+                        }
+                        <td>@ts.Year</td>
+                        <td>
+                            @{ var days = ts.Days.Where(d => d.TimeSheetID == ts.ID); }
+                            @if (User.IsInRole("Admin"))
+                            { string name = (ts.Tutor.BTTUser.LastName + " " + ts.Tutor.BTTUser.FirstName).ToString(); 
+                              @name
+                            }
+                            else
+                            {
+                                <div class="ui selection dropdown">
+                                    <input type="hidden" name="dropdown0">
+                                    <i class="dropdown icon"></i>
+                                    @if (ts.Days.Count < 1)
+                                    {<div class="default text"> No Days Worked. . .</div>
+                                    }
+                                    else
+                                    { <div class="default text">View a day</div>
+                                    }
+                                    <div class="menu">
+                                        @foreach (var day in days)
+                                        {
+                                            string str = "view" + day.ID;
+
+                                            <div onclick="$('#@str').modal({allowMultiple: true}).modal({inverted: true}).modal('show');"
+                                                 class="item" value="@day.ID">@Model.days[day.On]</div>
+                                                <div class="ui modal" id="@str">
+                                                    <i class="close icon"></i>
+                                                    <h2 class="ui centered header registration">Quick Day View</h2>
+                                                    <div class="content">
+                                                        <div class="ui form attached fluid segment ui equal width form">
+                                                            <div class="ui fluid statistics">
+                                                                <div class="ui statistic">
+                                                                    <div class="value">
+                                                                        <i class="calendar icon"></i>
+                                                                        @day.On  @Model.months[ts.Month]  @ts.Year
+                                                                    </div>
+                                                                    <div class="label">
+                                                                        TimeSheet
+                                                                    </div>
+                                                                </div>
+                                                                <div class="statistic">
+                                                                    <div class="value">
+                                                                        <i class="clock icon"></i>
+                                                                        @day.getPayRollTime(@day.RegularHrs)
+                                                                    </div>
+                                                                    <div class="label">
+                                                                        Hours Worked
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <br />
+                                                            <div style="text-align: center;">
+                                                                <button class="ui labled icon button">
+                                                                    <i class="th list icon"></i>
+                                                                    @Html.ActionLink("View Month's Details", "ViewMonth", new { tsid = ts.ID })
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>}
+                                    </div>
+                                </div>
+                            }
+
+                        </td>
+                        <td style="text-align: center;">
+                            @{decimal x = (decimal)@ts.Days.Sum(m => m.getPayRollTime(m.RegularHrs)); }
+                            @{if (x < (decimal)0.01)
+                                {
+                                    <b style="color: lightgray">None</b>
+                                }
+                                else
+                                { <b style="color: forestgreen">@x</b> } }
+                        </td>
+                        <td>
+
+                            <div class="ui buttons">
+                                <button class="ui button">
+                                    @Html.ActionLink("View Timesheet", "ViewMonth", new { tsid = ts.ID })
+                                </button>
+                                <div class="or"></div>                            
+                                @{ string del = "del" + @ts.ID;}
+                                <button class="ui button negative" onclick="$('#@del').modal({allowMultiple: true}).modal('show');">
+                                    Delete Timesheet
+                                </button>
+                            </div>
+                            <div class="ui mini modal" id="@del">
+                                <div class="header">Deletion Confirmation</div>
+                                <div class="content">
+                                    <p>Are you sure you want to permenently delete @Model.months[ts.Month]/@ts.Year</p>
+                                </div>
+                                <div class="actions">
+                                    <div class="ui buttons fluid">
+                                        <div class="ui cancel button">
+                                            No
+                                        </div>
+                                        <div class="or"></div>
+                                        @using (Html.BeginForm("DeleteTimesheet", "TimeSheet", FormMethod.Post, new { @class = "ui form form-horizontal", style = "text-align: center;" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            @Html.Hidden("TimeSheetVM_ID", (object)ts.ID, new { Name = "TimeSheetVM.ID" })
+                                            <input type="submit" value="Yes"class="ui button right labeled checkmark icon icon positive"/>
+                                        }
+                                    </div>
+                                </div>                                   
+                            </div>
+
+                                @{var mstring = ("add" + @ts.ID); }
+                                <button onclick="$('#@mstring').modal({allowMultiple: true}).modal({inverted: true}).modal('show');"
+                                        class="ui button positive">
+                                    Add Day
+                                </button>
+                                <div class="ui mini modal" id="@mstring">
+                                    <i class="close icon"></i>
+                                    <h2 class="ui centered header registration">Add a day to your timesheet</h2>
+                                    <div class="content">
+                                        <div class="ui form attached fluid segment ui equal width form">
+
+                                            @using (Html.BeginForm("CreateDay", "TimeSheet", FormMethod.Post, new { @class = "ui form form-horizontal", style = "text-align: center;" }))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                @Html.Hidden("DayVM_TimeSheetID", (object)ts.ID, new { Name = "DayVM.TimeSheetID" })
+                                                @Html.HiddenFor(m => m.DayVM.RegularHrs)
+                                                <div class="fields">
+                                                    <div class="two wide field">
+                                                        <b>You are about to append a day onto the @(Model.months[ts.Month])/@ts.Year timesheet</b>
+                                                    </div>
+                                                </div>
+                                                <div class="two fields" style="text-align: center;">
+                                                    <div class="field form-group">
+                                                        @Html.DropDownList("DaysID", null, htmlAttributes:
+                                                                 new { @class = "ui scrollable dropdown form-control", id = "DayVM_On", Name = "DayVM.On" })
+
+                                                    </div>
+                                                    <div class="field form-group">
+                                                        <input type="submit" value="Add Day" class="ui small button positive" />
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+
+
+
+
+
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+
+}
+
+
+
+
+
+

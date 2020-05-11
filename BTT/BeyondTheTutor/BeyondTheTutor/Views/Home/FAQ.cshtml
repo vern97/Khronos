@@ -1,0 +1,151 @@
+﻿<body class="wou-grey-bg">
+    <div class="ui grid FAQ">
+        <div class="three wide column"></div>
+        <div class="ten wide column">
+            <div class="ui styled fluid accordion FAQ">
+                <div class="ui horizontal divider">
+                    <h1 class="ui centered header">Questions?</h1>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    What is Beyond the Tutor?
+                </div>
+                <div class="content">
+                    <p>
+                        Beyond the Tutor is a tutoring and information system available to the Computer Science Department at Western Oregon University.
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Who can use the application?
+                </div>
+                <div class="content">
+                    <p>
+                        Our system is open to all Western Oregon University students. However, our target audience are Computer Science and
+                        Information Systems students, tutors, and professors.
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    What kinds of features are available?
+                </div>
+                <div class="content">
+                    <p>Beyond the Tutor hosts different accounts with specialized features.</p>
+                    <p>
+                        All visitors may view current hours in the tutoring center, be alerted of changes in tutoring availability,
+                        and access general information. Registered users can access additional features so we do recommend
+                        <a href="/Account/Register" target="_blank">signing up</a> for the best experience.
+                    </p>
+                    <p>
+                        Student accounts can schedule tutoring sessions, chat in real time with tutors, receive online tutoring, access bonus
+                        educational features, and more.
+                        Upon registration and email confirmation, a student can access their portal and all student features.
+                    </p>
+                    <p>
+                        Tutor accounts can share their schedules, confirm tutoring sessions, chat in real time with students, provide online tutoring,
+                        access bonus educational features, and more.
+                        Upon registration and administrative approval, a tutor can access their portal and all tutor features.
+                    </p>
+                    <p>
+                        Professors accounts can share valuable resources with students, view department analytics, and more.
+                        Upon registration and administrative approval, a professor can access their portal and all professor features.
+                    </p>
+                    <p> We have also provided a helpful guide in each portal to guide users through all our great features.</p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    How do I sign up for an account?
+                </div>
+                <div class="content">
+                    <p>
+                        You may register for an account <a href="/Account/Register" target="_blank">here</a>. Students may register and
+                        access their portal once email has been confirmed. Tutor and professor accounts require administrative approval.
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Is my data protected?
+                </div>
+                <div class="content">
+                    <p>
+                        We care about your privacy. Data is always anonymous and will never be sold.
+                        Read our <a href="/Home/Privacy" target="_blank">Privacy Policy</a> for more information.
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Is it free to use?
+                </div>
+                <div class="content">
+                    <img class="ui medium image" src="../Content/images/TutoringLogo.png">
+                    <p>Beyond the Tutor is a member of the WOU Free Tutoring Consortium. All services are 100% free.</p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Where can I get in-person tutoring?
+                </div>
+                <div class="content">
+                    <p>You may find campus information on the images below. Please refer to tutor schedules before visiting the tutoring center.</p>
+                    <img class="ui huge image" src="../Content/images/campus_map_1.jpg">
+                    <img class="ui huge image" src="../Content/images/campus_map_2.jpg">
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Who created Beyond the Tutor?
+                </div>
+                <div class="content">
+                    <img class="ui medium image" src="../Content/images/KhronosLogo.png">
+                    <p>
+                        Beyond the Tutor was designed and created by Khronos, a web development team comprised of Brandon Linton, Maksim Stoyanov, and Victoria Rhine.
+                        They are 2020 Computer Science graduates at Western Oregon University and this product is the result of their Senior Capstone Project.
+                    </p>
+                    <p>You may view the source code for this project on <a href="https://github.com/vern97/Khronos" target="_blank">GitHub</a>.</p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    How do I contact the development team?
+                </div>
+                <div class="content">
+                    <p>
+                        Questions or comments? Contact us at beyondthetutor&commat;gmail.com
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="three wide column"></div>
+     </div>
+</body>
+
+<div class="ui container footer">
+    <hr />
+    <div class="ui vertical footer segment">
+        <div class="ui container">
+            <div class="ui stackable divided equal height stackable grid">
+                <div class="three wide column">
+                    <h4 class="ui header">Resources</h4>
+                    <div class="ui link list">
+                        @Html.ActionLink("FAQ", "FAQ", "Home", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "HomeFAQ" ? "item red active" : "item") })
+                        @Html.ActionLink("Privacy Policy", "Privacy", "Home", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "HomePrivacy" ? "item red active" : "item") })
+                        <a class=@(ViewBag.Current == "HomePrivacy" ? "item red active" : "item") href="#">Contact Us</a>
+                    </div>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui header">Account Services</h4>
+                    <div class="ui link list">
+                        @Html.ActionLink("Login", "Login", "Account", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "AccountLogin" ? "item red active" : "item") })
+                        @Html.ActionLink("Register", "Register", "Account", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "AccountRegister" ? "item red active" : "item") })
+                    </div>
+                </div>
+                <div class="seven wide column">
+                    <h4 class="ui header">Beyond the Tutor</h4>
+                    <p>If you have any questions about the services offered by Beyond the Tutor, you can reach us <a href="#">here</a>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+}

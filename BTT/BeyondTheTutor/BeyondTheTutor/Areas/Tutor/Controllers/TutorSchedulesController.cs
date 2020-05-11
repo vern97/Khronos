@@ -6,6 +6,7 @@ using BeyondTheTutor.DAL;
 using BeyondTheTutor.Models;
 using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
+using System;
 
 namespace BeyondTheTutor.Areas.Tutor.Controllers
 {
@@ -16,18 +17,10 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
 
         public ActionResult UpdateSchedule()
         {
+            ViewBag.Current = "TutSchedUpdate";
             var userID = User.Identity.GetUserId();
             var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
-            var scheduleList = db.TutorSchedules.Where(m => m.TutorID.Equals(currentUserID)).ToList();
-
-            return View(scheduleList);
-        }
-
-        public ActionResult ScheduleSuccess()
-        {
-            var userID = User.Identity.GetUserId();
-            var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
-            var scheduleList = db.TutorSchedules.Where(m => m.TutorID.Equals(currentUserID)).ToList();
+            var scheduleList = db.TutorSchedules.Where(m => m.TutorID.Equals(currentUserID)).OrderBy(m => m.StartTime).ToList();
 
             return View(scheduleList);
         }
@@ -35,6 +28,7 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
         // GET: Tutor/TutorSchedules/Create
         public ActionResult Create()
         {
+            ViewBag.Current = "TutSchedCreate";
             var userID = User.Identity.GetUserId();
             ViewBag.CurrentTutorID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
 
@@ -44,8 +38,20 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
         // POST: Tutor/TutorSchedules/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Description,StartTime,EndTime,ThemeColor,IsFullDay,TutorID")] TutorSchedule tutorSchedule)
+        public ActionResult Create([Bind(Include = "ID,Description,StartTime,EndTime,ThemeColor,IsFullDay,TutorID")] TutorSchedule tutorSchedule, DateTime? Date)
         {
+            if (Date == null)
+            {
+                Date = (DateTime.Now).AddDays(1);
+            }
+                
+            var date = Date?.ToString("yyyy-MM-dd");
+            var startTime = tutorSchedule.StartTime.ToString("HH:mm:ss tt");
+            var endTime = tutorSchedule.EndTime.ToString("HH:mm:ss tt");
+
+            tutorSchedule.StartTime = Convert.ToDateTime(date + " " + startTime);
+            tutorSchedule.EndTime = Convert.ToDateTime(date + " " + endTime);
+
             if (ModelState.IsValid)
             {
                 Dictionary<int, string> tutorColor = new Dictionary<int, string>()
@@ -63,7 +69,7 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
                 tutorSchedule.ThemeColor = setTutorColor;
                 db.TutorSchedules.Add(tutorSchedule);
                 db.SaveChanges();
-                return RedirectToAction("ScheduleSuccess");
+                return RedirectToAction("UpdateSchedule");
             }
 
             return View(tutorSchedule);

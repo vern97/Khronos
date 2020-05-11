@@ -1,26 +1,122 @@
-﻿<body class="campus-bg">
-    <div class="ui one column centered stackable grid">
-            <div class="ui center aligned grid" style=" margin-top: 2px; margin-bottom: 2px;">
-                <div class="ui info message">
-                    <i class="close icon"></i>
-                    <div class="header">
-                        Have a question? Ask a tutor!
+﻿<body class="wou-blue-bg">
+
+    @{string dayOfTheMonth = (DateTime.Now.Day).ToString(); }
+
+    <div class="ui container portal">
+        <h2 class="ui top attached center aligned icon header black" style="color:#231f20;">
+            <i class="user circle outline icon" style="color:#231f20;"></i>
+            Hello @ViewBag.User!
+        </h2>
+        <div class="ui internally divided padded grid grey">
+
+            @* ----------First row start---------- *@
+            <div class="row">           
+                <div class="three wide column">
+                    @* Real-time alerts for requested tutoring requests - DO NOT DELETE *@
+                    <div id="student_requests">
+
                     </div>
-                    <ul class="list">
-                        <li>Login with your Discord account or drop in as a guest user</li>
-                        <li>Please use your first and last name when using guest accounts</li>
-                        <li>Drop in chat is intended for quick homework help. For further assistance please stop by the tutoring center.</li>
-                    </ul>
+                    @* Real-time alerts for requested tutoring requests - DO NOT DELETE *@
+                </div>
+                <div class="ten wide column">
+                    @* Real-time alerts for Zoom requests - DO NOT DELETE *@
+                    <div id="display_zoom_alert">
+
+                    </div>
+                    @* Real-time alerts for Zoom requests - DO NOT DELETE *@
+                </div>
+                <div class="three wide column">
+                    <a href="/StudentResources">
+                        <img class="ui fluid centered image" style="vertical-align:middle;" src="@Url.Content("~/Content/images/books_stacked.png")" />
+                    </a>
                 </div>
             </div>
-            <div class="one column centered row">
-                <iframe src="https://titanembeds.com/embed/678653017465290762?scrollbartheme=inset-3&theme=IceWyvern&username=Student"
-                        height="500" width="800" frameborder="0" style="position: relative;"></iframe>
+
+            @* ----------Second row start---------- *@
+            <div class="row">
+                <div class="three wide column">
+                    <div class="ui floating message portal">
+                        <div class="ui card portal">
+                            <div class="ui slide masked reveal image">
+                                <img src="@Url.Content("~/Content/images/daniel.jpg")" class="ui fluid image hidden content">
+                                <img src="@Url.Content("~/Content/images/elyse.png")" class="ui fluid image visible content">
+                            </div>
+                            <div class="content">
+                                <a class="header">@ViewBag.fullName</a>
+                                <div class="meta">
+                                    <span class="date">@ViewBag.Class</span><br />
+                                    <span class="date">Class of @ViewBag.GradYear</span>
+                                </div>      
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ten wide column">
+                    <img class="ui fluid image" src="@Url.Content("~/Content/images/landscapes_images/" + dayOfTheMonth + ".jpg")" />
+                </div>
+                <div class="three wide column">
+                    <div class="ui floating message portal">
+                        <div class="ui card portal">
+                            <div class="content">
+                                <div class="ui centered block header"><p id="portal-headers-black">Progress Tracking</p></div>
+                                <div class="meta">Featured</div>
+                                <div class="fluid description">
+                                    <ol class="ui list">
+                                        <li value="*">Cumulative GPA</li>
+                                        <li value="*">Semester GPA</li>
+                                        <li value="*">Weighted Grade</li>
+                                        <li value="*">Final Exams</li>
+                                    </ol>
+                                    <br />
+                                    <a class="fluid ui medium button" href="/Calculators/Calculators">Calculators</a><br />
+                                    <a class="fluid ui medium button" href="/Calculators/SavedResults">Manage Grades</a>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            @* ----------Third row start---------- *@
+            <div class="row">
+                <div class="three wide column">
+                    <div class="ui floating message portal">
+                        <div class="ui card portal">
+                            <div class="content">
+                                <div class="ui centered block header"><p id="portal-headers-black">Users Features Guide</p></div>
+                                <div class="description">
+                                    Lost? Our <a id="portal-headers" href="/Student/Home/Guide">guide</a> can help.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="ten wide column">
+                        <a class="weatherwidget-io" href="https://forecast7.com/en/44d85n123d23/monmouth/?unit=us" data-label_1="Western Oregon University" data-label_2="WEATHER" data-font="Roboto Slab" data-icons="Climacons Animated" data-theme="retro-sky">Western Oregon University WEATHER</a>
+                    </div>
+                    <div class="three wide column">
+                        <div class="ui floating message">
+                            <div class="ui card portal">
+                                <div class="content">
+                                    <div class="ui centered block header"><p id="portal-headers-black">Questions or Concerns?</p></div>
+                                    <div class="fluid description">
+                                        <a href="mailto: beyondthetutor@gmail.com" id="portal-headers">beyondthetutor&commat;gmail.com</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+                 </div>
             </div>
-        </div>
+        <center>
+            <span style="color: #808080; font-size: 12px;"><b>&copy; 2020  Beyond The Tutor, Khronos |</b> <a href="/Home/Privacy">Privacy Notice</a></span>
+        </center>
+    </div>
 </body>
 
 @section scripts
 {
     <script src="~/Scripts/main.js"></script>
+    <script src="~/Scripts/displaystudentappts.js"></script>
+    <script src="~/Scripts/zoomstudent.js"></script>
 }
