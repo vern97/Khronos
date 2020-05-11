@@ -211,10 +211,7 @@
     <Compile Include="Controllers\StudentAppointmentController.cs" />
     <Compile Include="Controllers\StudentResourcesController.cs" />
     <Compile Include="Controllers\SurveyControllers\SurveysController.cs" />
-    <Compile Include="Controllers\TimeSheetControllers\DaysController.cs" />
-    <Compile Include="Controllers\TimeSheetControllers\TimeSheetCRUDController.cs" />
-    <Compile Include="Controllers\TimeSheetControllers\TimeSheetsController.cs" />
-    <Compile Include="Controllers\TimeSheetControllers\WorkHoursController.cs" />
+    <Compile Include="Controllers\TimeSheetControllers\TimeSheetController.cs" />
     <Compile Include="Controllers\TutorAppointmentController.cs" />
     <Compile Include="Controllers\TutorsController.cs" />
     <Compile Include="Controllers\WeightedGradesController.cs" />
@@ -452,6 +449,8 @@
     <Content Include="Content\images\Owl_RedYellow.png" />
     <Content Include="Content\images\resize_welcome_banner.png" />
     <Content Include="Content\images\stevie.jpg" />
+    <Content Include="Content\images\timesheet_images\finalpart.png" />
+    <Content Include="Content\images\timesheet_images\logo.jpg" />
     <Content Include="Content\images\TutoringLogo.png" />
     <Content Include="Content\images\Tutoring_Red_Banner.png" />
     <Content Include="Content\images\WOU_arch.jpg" />
@@ -705,22 +704,9 @@
     <Content Include="Views\Errors\Http403.cshtml" />
     <Content Include="Views\Errors\Http500.cshtml" />
     <Content Include="Views\Tutors\TutorProfile.cshtml" />
-    <Content Include="Views\TimeSheets\Create.cshtml" />
-    <Content Include="Views\TimeSheets\Delete.cshtml" />
-    <Content Include="Views\TimeSheets\Details.cshtml" />
-    <Content Include="Views\TimeSheets\Edit.cshtml" />
-    <Content Include="Views\TimeSheets\Index.cshtml" />
-    <Content Include="Views\Days\Create.cshtml" />
-    <Content Include="Views\Days\Delete.cshtml" />
-    <Content Include="Views\Days\Details.cshtml" />
-    <Content Include="Views\Days\Edit.cshtml" />
-    <Content Include="Views\Days\Index.cshtml" />
-    <Content Include="Views\WorkHours\Create.cshtml" />
-    <Content Include="Views\WorkHours\Delete.cshtml" />
-    <Content Include="Views\WorkHours\Details.cshtml" />
-    <Content Include="Views\WorkHours\Edit.cshtml" />
-    <Content Include="Views\WorkHours\Index.cshtml" />
-    <Content Include="Views\TimeSheetCRUD\Index.cshtml" />
+    <Content Include="Views\TimeSheet\Index.cshtml" />
+    <Content Include="Views\TimeSheet\PrintMonth.cshtml" />
+    <Content Include="Views\TimeSheet\ViewMonth.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

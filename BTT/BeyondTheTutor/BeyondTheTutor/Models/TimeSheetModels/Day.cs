@@ -77,7 +77,53 @@ namespace BeyondTheTutor.Models.TimeSheetModels
 
         public byte On { get; set; }
 
-        public decimal? RegularHrs { get; set; }
+        public int RegularHrs { get; set; }
+
+        public double getPayRollTime(int mins)
+        {
+            var hours = mins/60;
+
+            var minutes = mins % 60;
+                
+
+            switch (
+                minutes >= 57 ? "1" :
+                minutes >= 51 ? ".9" :
+                minutes >= 45 ? ".8" :
+                minutes >= 39 ? ".7" :
+                minutes >= 33 ? ".6" :
+                minutes >= 27 ? ".5" :
+                minutes >= 21 ? ".4" :
+                minutes >= 15 ? ".3" :
+                minutes >= 9 ? ".2" :
+                minutes >= 3 ? ".1" : ".0")
+            {
+                case "1":
+                    return hours + 1.0;
+                case ".9":
+                    return hours + .9;
+                case ".8":
+                    return hours + .8;
+                case ".7":
+                    return hours + .7;
+                case ".6":
+                    return hours + .6;
+                case ".5":
+                    return hours + .5;
+                case ".4":
+                    return hours + .4;
+                case ".3":
+                    return hours + .3;
+                case ".2":
+                    return hours + .2;
+                case ".1":
+                    return hours + .1;
+                case ".0":
+                    return hours;
+                default:
+                    return hours;
+            }
+        }
 
         public int TimeSheetID { get; set; }
 

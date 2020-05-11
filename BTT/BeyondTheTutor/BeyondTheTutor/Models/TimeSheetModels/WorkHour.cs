@@ -10,10 +10,12 @@ namespace BeyondTheTutor.Models.TimeSheetModels
     {
         public int ID { get; set; }
 
+        [Required]
         [DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Time)]
         public DateTime ClockedIn { get; set; }
 
+        [Required]
         [DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Time)]
         public DateTime ClockedOut { get; set; }
