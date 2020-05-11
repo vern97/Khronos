@@ -101,18 +101,6 @@
     <Reference Include="reCAPTCHA.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\reCAPTCH.MVC.1.0.1\lib\net45\reCAPTCHA.MVC.dll</HintPath>
     </Reference>
-    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Rotativa.1.7.3\lib\net461\Rotativa.dll</HintPath>
-    </Reference>
-    <Reference Include="RotativaHQ, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RotativaHQ.1.5.0\lib\net45\RotativaHQ.dll</HintPath>
-    </Reference>
-    <Reference Include="RotativaHQ.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RotativaHQ.1.5.0\lib\net45\RotativaHQ.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="RotativaHQ.MVC5, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RotativaHQ.1.5.0\lib\net45\RotativaHQ.MVC5.dll</HintPath>
-    </Reference>
     <Reference Include="SendGrid, Version=9.12.6.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
       <HintPath>..\packages\SendGrid.9.12.6\lib\net452\SendGrid.dll</HintPath>
     </Reference>
@@ -477,7 +465,6 @@
     <Content Include="Content\semantic.min.css" />
     <Content Include="Content\themes\default\assets\fonts\icons.svg" />
     <Content Include="Content\themes\default\assets\images\flags.png" />
-    <Content Include="CreatePackage.txt" />
     <Content Include="favicon-32x32.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -549,10 +536,6 @@
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Compile Include="Models\ViewModels\AllUsersViewModel.cs" />
     <Compile Include="Models\TimeSheetModels\TutorTimeSheetsCustomModel.cs" />
-    <Content Include="Rotativa\help-wkhtmltoimage.txt" />
-    <Content Include="Rotativa\help-wkhtmltopdf.txt" />
-    <Content Include="Rotativa\wkhtmltoimage.exe" />
-    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\calculators.js" />
     <Content Include="Scripts\disable-service-alert-dropdown.js" />
     <Content Include="Scripts\displayrequestedappts.js" />
