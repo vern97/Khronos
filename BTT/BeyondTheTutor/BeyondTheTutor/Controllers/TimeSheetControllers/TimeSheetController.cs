@@ -9,10 +9,9 @@ using BeyondTheTutor.Models.TimeSheetModels;
 using System.IO;
 using System.Web;
 using Microsoft.AspNet.Identity.Owin;
-using RotativaHQ;
+using Rotativa;
 using System.Collections.Generic;
 using System.Web.Security;
-using Rotativa;
 
 namespace BeyondTheTutor.Controllers.TimeSheetControllers
 {
