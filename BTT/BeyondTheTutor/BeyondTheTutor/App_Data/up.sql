@@ -1,4 +1,4 @@
-﻿ CREATE TABLE [dbo].[BTTUsers]
+﻿CREATE TABLE [dbo].[BTTUsers]
 (
 	[ID]				INT IDENTITY (1,1) 	NOT NULL,
 	[FirstName]			[NVARCHAR](50)		NOT NULL,
@@ -225,7 +225,7 @@ CREATE TABLE [Days]
 (
 	[ID]			INT IDENTITY(1,1)	NOT NULL,
     [On] 			TINYINT 			NOT NULL,
-    [RegularHrs] 	INT,
+    [RegularHrs] 	DECIMAL(4,2),
     [TimeSheetID] 	INT 				NOT NULL,
     CONSTRAINT [PK_Days] PRIMARY KEY ([ID]), 
 		
@@ -260,4 +260,3 @@ CREATE TABLE [dbo].[ProfilePictures]
 		REFERENCES [BTTUsers] ([ID])
 		ON DELETE CASCADE ON UPDATE CASCADE
 );
-
