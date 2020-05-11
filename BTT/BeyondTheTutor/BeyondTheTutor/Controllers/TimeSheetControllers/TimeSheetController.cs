@@ -8,16 +8,12 @@ using System.Data.Entity;
 using BeyondTheTutor.Models.TimeSheetModels;
 using System.IO;
 using CrystalDecisions.CrystalReports.Engine;
-using System.Web;
-using Microsoft.AspNet.Identity.Owin;
 
 namespace BeyondTheTutor.Controllers.TimeSheetControllers
 {
-    [Authorize(Roles = "Tutor, Admin")]
+    [Authorize(Roles = "Tutor")]
     public class TimeSheetController : Controller
     {
-        
-
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
         private TimeSheet viewBagTS = new TimeSheet();
         private Day viewBagD = new Day();
@@ -28,75 +24,34 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
             return db.BTTUsers.Where(t => t.ASPNetIdentityID == aspid).FirstOrDefault();
         }
 
-        private string getRole()
-        {
-            bool[] roles = { this.User.IsInRole("Admin"), this.User.IsInRole("Tutor"), this.User.IsInRole("Professor"), this.User.IsInRole("Student") };
-            switch(roles[0] ? "A" :
-                roles[1] ? "T" :
-                roles[2] ? "P" :
-                roles[3] ? "S" : "UNAUTHORIZED")
-            {
-                case "A":
-                    return "A";
-                case "T":
-                    return "T";
-                case "P":
-                    return "P";
-                case "S":
-                    return "S";
-                default:
-                    return "UNAUTHORIZED";
-            }
-        }
-
         // GET: TimeSheets
         public async Task<ActionResult> Index()
         {
-
             ViewBag.Current = "TutorTimeSheets";
+
+            var tutor = getUser();
+            var returningTutor = getUser().Tutor;
             ViewBag.MonthsID = new SelectList(viewBagTS.getMonths(), "Key", "Value");
             ViewBag.TutorID = new SelectList(db.Tutors, "ID", "VNumber");
             ViewBag.DaysID = new SelectList(viewBagD.getDays(), "Key", "Value");
 
-            if (getRole() == "T")
-            {
-                var tutor = getUser();
-                var returningTutor = getUser().Tutor;
 
-                TutorTimeSheetCustomModel tsData = new TutorTimeSheetCustomModel();
 
-                tsData.TimeSheets = db.TimeSheets
+            TutorTimeSheetCustomModel tsData = new TutorTimeSheetCustomModel();
+            tsData.TimeSheets = db.TimeSheets
                 .Where(t => t.TutorID == tutor.ID)
                 .OrderByDescending(y => y.Year)
                 .OrderByDescending(m => m.Month)
                 .ToList();
 
-                tsData.tutor = returningTutor;
-                Day d = new Day();
-                tsData.days = d.getDays();
-                TimeSheet ts = new TimeSheet();
-                tsData.months = ts.getMonths();
+            tsData.tutor = returningTutor;
+            Day d = new Day();
+            tsData.days = d.getDays();
+            TimeSheet ts = new TimeSheet();
+            tsData.months = ts.getMonths();
 
-                return View(tsData);
-            }
-            else if (getRole() == "A")
-            {
-                TutorTimeSheetCustomModel tsData = new TutorTimeSheetCustomModel();
 
-                tsData.TimeSheets = db.TimeSheets.Include(t => t.Tutor)
-                .OrderByDescending(y => y.Year)
-                .OrderByDescending(m => m.Month)
-                .ToList();
-                
-                Day d = new Day();
-                tsData.days = d.getDays();
-                TimeSheet ts = new TimeSheet();
-                tsData.months = ts.getMonths();
-
-                return View(tsData);
-            }
-
-            return View("error");
+            return View(tsData);
         }
 
         [HttpPost]
@@ -127,7 +82,7 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
                 model.DayVM.RegularHrs = 0;
                 db.Days.Add(model.DayVM);
                 db.SaveChangesAsync();
-                if(model.tutor == null)
+                if(model.tutor.VNumber == null)
                 {
                     return RedirectToAction("Index");
                 } else
@@ -324,9 +279,5 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
             stream.Seek(0, SeekOrigin.Begin);
             return File(stream, "application/pdf", last + "_" + first + "_" + date + ".pdf");
         }
-
-
-
-
     }
 }
