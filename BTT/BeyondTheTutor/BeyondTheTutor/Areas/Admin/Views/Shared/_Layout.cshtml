@@ -28,6 +28,7 @@
                 <div class="menu">
                     @Html.ActionLink("Courses", "Index", "Classes", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminClassesIndex" ? "item red active" : "item") })
                     @Html.ActionLink("Tutor Schedules", "UpdateSchedule", "TutorSchedules", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminTutorSchedUpdateSchedule" ? "item red active" : "item") })
+                    @Html.ActionLink("Tutor Time Sheets", "Index", "TimeSheet", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "TutorTimeSheets" ? "item red active" : "item") })
                 </div>
             </div>
             <div class="ui dropdown item">
