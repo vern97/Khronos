@@ -40,7 +40,8 @@ namespace BeyondTheTutor.DAL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Day>()
-                .Property(e => e.RegularHrs);
+                .Property(e => e.RegularHrs)
+                .HasPrecision(4, 2);
 
             modelBuilder.Entity<Day>()
                 .HasMany(e => e.WorkHours)

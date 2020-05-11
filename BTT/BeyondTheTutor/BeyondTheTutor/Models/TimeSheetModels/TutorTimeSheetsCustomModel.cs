@@ -11,9 +11,6 @@
         public List<TimeSheet> TimeSheets { get; set; }
 
         public TimeSheet TimeSheetVM { get; set; }
-
-        public WorkHour ShiftVM { get; set; }
-
         public Day DayVM { get; set; }
 
         public string DisplayMode { get; set; }
