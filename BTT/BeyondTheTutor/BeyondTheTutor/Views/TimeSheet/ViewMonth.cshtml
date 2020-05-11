@@ -103,7 +103,7 @@
                             </div>
                         </div>
                     </div>
-                    <a class="ui button negative" href="@Url.Action("Print", new { id = Model.TimeSheetVM.ID  })">
+                    <a class="ui button negative disabled" href="@Url.Action("Print", new { id = Model.TimeSheetVM.ID  })">
                         <i class="print icon"></i>
                         Save As .PDF
                     </a>
@@ -220,34 +220,34 @@
                             <button class="ui button negative" onclick="$('#@del').modal({allowMultiple: true}).modal('show');">
                                 Delete Day
                             </button>
-                            <div class="ui mini modal" id="@del">
-                                <div class="header">Deletion Confirmation</div>
-                                <div class="content">
-                                    <p>Do you want to permenently delete the @Model.days[(byte)day.ID]</p>
-                                </div>
-                                <div class="actions">
-                                    <div class="ui buttons fluid">
-                                        <div class="ui cancel button">
-                                            No
-                                        </div>
-                                        <div class="or"></div>
-                                        @using (Html.BeginForm("DeleteDay", "TimeSheet", FormMethod.Post, new { @class = "ui form form-horizontal", style = "text-align: center;" }))
-                                        {
-                                            @Html.AntiForgeryToken()
-                                            @Html.Hidden("DayVM_TimeSheetID", (object)Model.TimeSheetVM.ID, new { Name = "DayVM.TimeSheetID" })
-                                            @Html.Hidden("DayVM_ID", (object)day.ID, new { Name = "DayVM.ID" })
-                                            <input type="submit" value="Yes" class="ui button right labeled checkmark icon icon positive" />
-                                        }
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-</body>
+        <div class="ui mini modal" id="@del">
+            <div class="header">Deletion Confirmation</div>
+            <div class="content">
+                <p>Do you want to permenently delete the @Model.days[(byte)day.ID]</p>
+            </div>
+            <div class="actions">
+                <div class="ui buttons fluid">
+                    <div class="ui cancel button">
+                        No
+                    </div>
+                    <div class="or"></div>
+                    @using (Html.BeginForm("DeleteDay", "TimeSheet", FormMethod.Post, new { @class = "ui form form-horizontal", style = "text-align: center;" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("DayVM_TimeSheetID", (object)Model.TimeSheetVM.ID, new { Name = "DayVM.TimeSheetID" })
+                        @Html.Hidden("DayVM_ID", (object)day.ID, new { Name = "DayVM.ID" })
+                        <input type="submit" value="Yes" class="ui button right labeled checkmark icon icon positive" />
+                    }
+                </div>
+            </div>
+        </div>
+        </td>
+        </tr>
+    }
+                </tbody>
+                </table>
+                </div>
+            </body>
 
 
 @section scripts
