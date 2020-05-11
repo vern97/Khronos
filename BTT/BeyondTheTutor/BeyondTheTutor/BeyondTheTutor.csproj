@@ -52,9 +52,6 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
-      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -97,6 +94,12 @@
     </Reference>
     <Reference Include="reCAPTCHA.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\reCAPTCH.MVC.1.0.1\lib\net45\reCAPTCHA.MVC.dll</HintPath>
+    </Reference>
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.7.3\lib\net461\Rotativa.dll</HintPath>
+    </Reference>
+    <Reference Include="Rotativa.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.Core.2.0.0\lib\net45\Rotativa.Core.dll</HintPath>
     </Reference>
     <Reference Include="SendGrid, Version=9.12.6.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
       <HintPath>..\packages\SendGrid.9.12.6\lib\net452\SendGrid.dll</HintPath>
@@ -414,6 +417,7 @@
     <Content Include="Content\images\campus_map_2.jpg" />
     <Content Include="Content\images\daniel.jpg" />
     <Content Include="Content\images\elyse.png" />
+    <Content Include="Content\images\timesheet_images\finalpart.png" />
     <Content Include="Content\images\helen.jpg" />
     <Content Include="Content\images\Home_Page_Banner.png" />
     <Content Include="Content\images\KhronosLogo.png" />
@@ -452,6 +456,7 @@
     <Content Include="Content\images\Owl_RedYellow.png" />
     <Content Include="Content\images\resize_welcome_banner.png" />
     <Content Include="Content\images\stevie.jpg" />
+    <Content Include="Content\images\timesheet_images\logo.jpg" />
     <Content Include="Content\images\TutoringLogo.png" />
     <Content Include="Content\images\Tutoring_Red_Banner.png" />
     <Content Include="Content\images\WOU_arch.jpg" />
@@ -707,6 +712,7 @@
     <Content Include="Views\Tutors\TutorProfile.cshtml" />
     <Content Include="Views\TimeSheet\Index.cshtml" />
     <Content Include="Views\TimeSheet\ViewMonth.cshtml" />
+    <Content Include="Views\TimeSheet\PrintMonth.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

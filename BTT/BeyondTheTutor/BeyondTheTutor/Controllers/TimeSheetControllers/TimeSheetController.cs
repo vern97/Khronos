@@ -9,6 +9,9 @@ using BeyondTheTutor.Models.TimeSheetModels;
 using System.IO;
 using System.Web;
 using Microsoft.AspNet.Identity.Owin;
+using Rotativa;
+using System.Collections.Generic;
+using System.Web.Security;
 
 namespace BeyondTheTutor.Controllers.TimeSheetControllers
 {
@@ -145,7 +148,7 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
 
             var tutor = getUser();
             var returningTutor = getUser().Tutor;
-            var returningTimesheet =
+            //var returningTimesheet =
             ViewBag.MonthsID = new SelectList(viewBagTS.getMonths(), "Key", "Value");
             ViewBag.DaysID = new SelectList(viewBagD.getDays(), "Key", "Value");
 
@@ -251,63 +254,53 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
             return RedirectToAction("ViewMonth", new { tsid = model.DayVM.TimeSheetID });
         }
 
+        public async Task<ActionResult> PrintMonth(int? tsid)
+        {
 
-        /*working code, just no license for CrystalDecisions report
+            var tutor = getUser();
+            var returningTutor = getUser().Tutor;
+            ViewBag.MonthsID = new SelectList(viewBagTS.getMonths(), "Key", "Value");
+            ViewBag.DaysID = new SelectList(viewBagD.getDays(), "Key", "Value");
+
+
+
+            TutorTimeSheetCustomModel tsData = new TutorTimeSheetCustomModel();
+            tsData.TimeSheetVM = db.TimeSheets.Find(tsid);
+
+            tsData.tutor = returningTutor;
+            Day d = new Day();
+            tsData.days = d.getDays();
+            TimeSheet ts = new TimeSheet();
+            tsData.months = ts.getMonths();
+
+
+            return View(tsData);
+        }
+
         public ActionResult Print(int? id)
         {
-            Day d = new Day();
-
-            var days = db.TimeSheets
-                .Find(id)
-                .Days
-                .Select(m => new { 
-                    ID = m.ID, 
-                    On = m.On, 
-                    RegularHrs = d.getPayRollTime(m.RegularHrs)
-                    }).ToList();
-
-            var wh = db.WorkHours.Where(w => w.DayID == id);//continue from here
-
-       
-            var shifts = db.WorkHours.Where(g => g.Day.TimeSheetID == id) ;
-            
-
-            TimeSheet ts = new TimeSheet();
-
-
-            ReportDocument rd = new ReportDocument();
-            
-            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "PrintTutorTimesheet.rpt"));
-            var tbls = rd.Database.Tables;
-            rd.Database.Tables[0].SetDataSource(days);
-            rd.Database.Tables[1].SetDataSource(shifts);
-            
-            Response.Buffer = false;
-            Response.ClearContent();
-            Response.ClearHeaders();
-
             var t = db.BTTUsers.Find(db.TimeSheets.Find(id).Tutor.ID);
-
-            rd.SetParameterValue("total", d.getPayRollTime(db.Days.Where(m => m.TimeSheetID == id).Sum(m => m.RegularHrs)));
-            rd.SetParameterValue("emp_name", t.FirstName + " " + t.LastName);
-            rd.SetParameterValue("emp_v", t.Tutor.VNumber.ToString());
-            rd.SetParameterValue("ts_month", ts.getMonths()[db.TimeSheets.Find(id).Month].ToString());
-            rd.SetParameterValue("ts_year", db.TimeSheets.Find(id).Year.ToString());
-
+            TimeSheet ts = new TimeSheet();
 
             string first, last, date;
             first = t.FirstName;
             last = t.LastName;
             date = ts.getMonths()[db.TimeSheets.Find(id).Month] + "-" + db.TimeSheets.Find(id).Year;
 
-            
-            Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
-            stream.Seek(0, SeekOrigin.Begin);
-            return File(stream, "application/pdf", last + "_" + first + "_" + date + ".pdf");
+
+            Dictionary<string, string> cookieCollection = new Dictionary<string, string>();
+
+            foreach (var key in Request.Cookies.AllKeys)
+            {
+                cookieCollection.Add(key, Request.Cookies.Get(key).Value);
+            }
+
+            return new ActionAsPdf("PrintMonth", new { tsid = id })
+            {
+                FileName = last + "_" + first + "_" + date + ".pdf",
+                Cookies = cookieCollection
+            };
         }
-        */
-
-
 
     }
 }

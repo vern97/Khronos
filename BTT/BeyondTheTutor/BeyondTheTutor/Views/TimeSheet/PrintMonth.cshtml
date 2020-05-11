@@ -1,0 +1,159 @@
+﻿
+@{
+    Layout = null;
+    Day d = new Day();
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Powered By: Beyond the Tutor - Tutor Time Sheet Printout</title>
+    <link rel="icon" type="image/png" href="../../favicon-32x32.png" sizes="32x32" />
+
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/fullcalendarcss")
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <link rel="stylesheet" type="text/css" href="~/Content/semantic.min.css">
+</head>
+<body>
+
+    @model TutorTimeSheetCustomModel
+    <style>
+        table, td, th {
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        tr:nth-child(even) {
+            background-color: #e1e1e1;
+        }
+    </style>
+
+
+    <div class="row">
+
+    </div>
+
+    <div>
+        <img style="margin:10px; width: auto; height: 1.5in; float: left;" src="../../Content/images/timesheet_images/logo.jpg" alt="logo">
+
+        <table style="margin:10px; margin-top: 90px;  float: left;">
+            <tbody>
+                <tr>
+                    <td width="320px" style="text-align: left;">
+                        <b>EMPLOYEE NAME:</b> @Model.TimeSheetVM.Tutor.BTTUser.FirstName @Model.TimeSheetVM.Tutor.BTTUser.LastName
+                    </td>
+                </tr>
+                <tr>
+                    <td width="320px" style="text-align: left;">
+                        <b>EMPLOYEE V#:</b> @Model.TimeSheetVM.Tutor.VNumber
+                    </td>
+                </tr>
+                <tr>
+                    <td width="320px" style="text-align: left;">
+                        <b>DEPARTMENT:</b> COMPUTER SCIENCE
+                    </td>
+                </tr>
+                <tr>
+                    <td width="320px" style="text-align: left;">
+                        <b>DATE:</b> @Model.TimeSheetVM.getMonths()[Model.TimeSheetVM.Month] / @Model.TimeSheetVM.Year
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+    @using BeyondTheTutor.Models.TimeSheetModels
+
+    @for (int i = 0; i < 5; i++)
+    {<br /><p></p>}
+
+
+    <div style="float: none">
+        <table>
+            <thead>
+                <tr>
+                    <th><h4>Days</h4></th>
+                    <th><h4>Shifts</h4></th>
+                    <th><h4>Total</h4></th>
+                    <th><h4>Over-time Hours</h4></th>
+                    <th><h4>Shift Differential Hours</h4></th>
+                    <th><h4>Sick</h4></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var day in Model.TimeSheetVM.Days)
+                {
+                    <tr>
+                        <td width="80px">@Model.days[day.On]</td>
+                        <td width="330px">
+                            @if (day.WorkHours.Count() < 1)
+                            {<b style="color: dimgrey">None</b>}
+                            <div style="text-align: left;">
+                                @if (day.WorkHours.Count() > 1)
+                                {
+                                    ViewBag.Slash = "  /  ";
+                                }
+                                else { ViewBag.Slash = " "; }
+                                @{var i = 0;}
+                                <p>
+                                    @foreach (var shift in day.WorkHours)
+                                    {
+                                        if (i++ == day.WorkHours.Count() - 1) { ViewBag.Slash = " "; }
+                                        string print = @shift.ClockedIn.ToShortTimeString() + "-" + @shift.ClockedOut.ToShortTimeString() + ViewBag.Slash;
+                                        <span>@print</span>
+                                    }
+
+                                </p>
+                            </div>
+                        </td>
+                        <td width="80px">
+                            @day.getPayRollTime(@day.RegularHrs)
+                        </td>
+                        <td width="80px">
+                        </td>
+                        <td width="80px">
+                        </td>
+                        <td width="50px">
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2" style="text-align: left;">Payed Hours:</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td width="60px">@Model.TimeSheetVM.Days.Sum(t => d.getPayRollTime(t.RegularHrs))</td>
+                </tr>
+                <tr><td colspan="2" style="text-align: left;">Extra Pay:</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <th width="60px"><b>Total Hours</b> </th>
+                </tr>
+
+            </tfoot>
+        </table>
+    </div>
+    <img style="float: right; margin:25px; width: auto; height: 3.5in;" src="../../Content/images/timesheet_images/finalpart.png" alt="logo">
+
+</body>
+</body>
+</html>
