@@ -121,7 +121,7 @@ CREATE TABLE [dbo].[TutoringServiceAlerts]
 CREATE TABLE [dbo].[Surveys]
 (
 	[ID]				INT IDENTITY (1,1)	NOT NULL,
-	[Name]				NVARCHAR(20)		NOT NULL,
+	[Name]				NVARCHAR(40)		NOT NULL,
 	[Description]		TEXT,
 	[ClassID]			INT					NOT NULL,
 	CONSTRAINT [PK_dbo.Surveys] PRIMARY KEY CLUSTERED ([ID] ASC),

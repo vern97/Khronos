@@ -18,7 +18,7 @@ namespace BeyondTheTutor.Models.SurveyModels
         public int ID { get; set; }
 
         [Required]
-        [StringLength(20)]
+        [StringLength(40)]
         public string Name { get; set; }
 
         [Column(TypeName = "text")]
