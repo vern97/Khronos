@@ -18,6 +18,7 @@ namespace BeyondTheTutor.Models.SurveyModels
 
         [Column(TypeName = "text")]
         [Required]
+        [MinLength(5)]
         public string AskingQuestion { get; set; }
 
         public int SurveyID { get; set; }

@@ -19,19 +19,26 @@ namespace BeyondTheTutor.Controllers
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
 
         // GET: Questions
-        public ActionResult Index(int? id)
+        public ActionResult Index(int? id, int? id2)
         {
             var questions = db.Questions.Include(q => q.Survey);
 
             if (id != null)
             {
-
                 var userID = User.Identity.GetUserId();
                 var currentUser = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
                 var survey = db.Surveys.Find(id);
                 var listOfQuestions = survey.Questions;
-
+                ViewBag.name = survey.Name;
+                ViewBag.SurveyID = survey.ID;
                 return View(listOfQuestions.ToList());
+            } else if (id2 != null)
+            {
+                var survey = db.Surveys.Find(id2);
+
+                ViewBag.name = db.Surveys.Find(id2).Name;
+                ViewBag.SurveyID = db.Surveys.Find(id2).ID;
+                return View(survey.Questions.ToList());
 
             }
             return View(questions.ToList());
@@ -95,9 +102,11 @@ namespace BeyondTheTutor.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Question question = db.Questions.Find(id);
+            var sid = question.SurveyID;
             db.Questions.Remove(question);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            return RedirectToAction("Index", new { id2 = sid });
         }
 
         protected override void Dispose(bool disposing)
