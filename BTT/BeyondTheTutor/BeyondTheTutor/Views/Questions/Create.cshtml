@@ -16,14 +16,14 @@
                                     <div style="color: red; font-size: large;">
                                         Please ask questions that can be answered with a star rating of 1 - 5
                                     </div> <br />
+                                    @Html.ValidationMessageFor(model => model.AskingQuestion, "", new { @class = "text-danger" })
+
                                     <div class="col-md-10">
                                         <div class="ui fluid input">
                                             @Html.TextBoxFor(model => model.AskingQuestion, new { placeholder = "Example: The instructor was clear and helpful during the first few class meetings", @class = "form-control text-box single-line", style = "color: red" })
-
-                                            @Html.ValidationMessageFor(model => model.AskingQuestion, "", new { @class = "text-danger" })
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                         </th>
                     </tr>
                     <tr>

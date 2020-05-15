@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<BeyondTheTutor.Models.SurveyModels.Question>
 
 @{
-    string name = Model.FirstOrDefault().Survey.Name.ToString();
-    int SurveyID = Model.FirstOrDefault().SurveyID;
+    string name = @ViewBag.name;
+    int SurveyID = @ViewBag.SurveyID;
 }
 
     <body class="wou-silver-bg">

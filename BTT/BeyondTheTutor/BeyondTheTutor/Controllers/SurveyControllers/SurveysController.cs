@@ -26,7 +26,7 @@ namespace BeyondTheTutor.Controllers
                 
             }
 
-            return View(db.Surveys.ToList());
+            return View(db.Surveys.Include(m => m.Questions).ToList());
         }
 
         // GET: Surveys/Create
