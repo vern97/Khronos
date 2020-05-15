@@ -55,3 +55,7 @@ INSERT INTO [dbo].[Classes](Name)
 	('IS 350'),
 	('IS 355'),
 	('IS 485');
+
+INSERT INTO [dbo].[TutoringAppts] (StartTime, EndTime, TypeOfMeeting, ClassID, Length, Status, StudentID, TutorID)
+	VALUES
+	('5/14/2020 9:30:00 PM', '5/14/2020 10:00:00 PM', 'Online', '1', '1 hour', 'Approved', '3', '4')

@@ -3,3 +3,5 @@
 SELECT * FROM BTTUsers
 
 SELECT * FROM ProfilePictures
+
+SELECT * FROM TutoringAppts
