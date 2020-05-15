@@ -76,7 +76,7 @@ namespace BeyondTheTutor.Areas.Student.Controllers
 
         public bool IsUpcoming(DateTime start, DateTime end)
         {
-            if (DateTime.Now > start.AddMinutes(-59) && end > DateTime.Now)
+            if (DateTime.Now > start.AddMinutes(-30) && end > DateTime.Now)
             {
                 return true;
             }

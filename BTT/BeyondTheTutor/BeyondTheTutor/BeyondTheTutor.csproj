@@ -411,6 +411,7 @@
     <Content Include="Content\images\campus_map_2.jpg" />
     <Content Include="Content\images\daniel.jpg" />
     <Content Include="Content\images\elyse.png" />
+    <Content Include="Content\images\error_default.png" />
     <Content Include="Content\images\helen.jpg" />
     <Content Include="Content\images\Home_Page_Banner.png" />
     <Content Include="Content\images\KhronosLogo.png" />
