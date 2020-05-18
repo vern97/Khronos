@@ -160,7 +160,7 @@ namespace BeyondTheTutor.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("FAQ", "Home");
+                        return RedirectToAction("Index");
                     }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
