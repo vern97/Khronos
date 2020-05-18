@@ -142,26 +142,8 @@ namespace BeyondTheTutor.Controllers
                         }
                     }
 
-                    if (roles.Contains("Admin"))
-                    {
-                        return RedirectToAction("Index", "Home", new { area = "admin" });
-                    }
-                    else if (roles.Contains("Professor"))
-                    {
-                        return RedirectToAction("Index", "Home", new { area = "professor" });
-                    }
-                    else if (roles.Contains("Student"))
-                    {
-                        return RedirectToAction("Index", "Home", new { area = "student" });
-                    }
-                    else if (roles.Contains("Tutor"))
-                    {
-                        return RedirectToAction("Index", "Home", new { area = "tutor" });
-                    }
-                    else
-                    {
-                        return RedirectToAction("FAQ", "Home");
-                    }
+                    return RedirectToAction("Index", "Home");
+
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
