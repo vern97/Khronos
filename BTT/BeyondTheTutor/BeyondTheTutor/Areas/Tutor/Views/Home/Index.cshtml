@@ -26,10 +26,9 @@
                         <div class="ui floating message portal">
                             <div class="ui card portal">
                                 <div class="content tutor">
-                                    <div class="ui centered header"><a id="portal-headers">Digital Timesheet</a></div>
-                                    <div class="meta">Hours Worked</div>
+                                    <div class="ui centered dividing header"><p id="portal-headers-black">Digital TimeSheets</p></div>
                                     <div class="description">
-                                        Under Construction
+                                        <a href="/TimeSheet" button class="ui fluid button">Track Hours</a>
                                     </div>
                                 </div>
                             </div>
@@ -38,89 +37,75 @@
                     </div>
                 <div class="row">
                     <div class="three wide column">
+                        <div class="container" style="width: 100%; height: 100%; position: relative;">
+                        <div class="ui floating message portal">
                             <div class="ui card portal">
                                 <div class="content">
-                                    <div class="ui centered header"><a href="/Tutor/TutoringAppts" id="portal-headers">Tutoring Sessions</a></div>
-                                </div>
-                                <div class="content">
-                                    <h4 class="ui sub header">For @ViewBag.User</h4>
-                                    <div class="ui small feed">
-                                        <div class="event">
-                                            <div class="content">
-                                                <div class="summary">
-                                                    <div class="ui compact menu">
-                                                        <a class="item">
-                                                            <i class="icon thumbs up"></i> Approved Sessions
-                                                            <div class="floating ui green label">@ViewBag.futureSessions</div>
-                                                        </a>
-                                                    </div>
-                                                </div>
+                                    <div class="ui centered dividing header"><p id="portal-headers-black">Tutoring Sessions</p></div>
+                                    <div class="ui horizontal divider"></div>
+                                    <div class="ui centered header"><p id="portal-headers-black">For @ViewBag.User</p></div>
+                                    <div class="description">
+                                        <div class="ui labeled button" tabindex="0">
+                                            <div class="ui button">
+                                                <i class="icon thumbs up"></i> Approved Sessions
                                             </div>
+                                            <a class="ui basic label" href="/Tutor/TutoringAppts">@ViewBag.futureSessions</a>
                                         </div>
-                                        <div class="event">
-                                            <div class="content">
-                                                <div class="summary">
-                                                    <div class="ui compact menu">
-                                                        <a class="item">
-                                                            <i class="icon check"></i> Sessions by Tutor
-                                                            <div class="floating ui green label">@ViewBag.allTutorSessions</div>
-                                                        </a>
-                                                    </div>
-                                                </div>
+                                        <p></p>
+                                        <div class="ui labeled button" tabindex="0">
+                                            <div class="ui button">
+                                                <i class="icon thumbs up"></i> Tutor Sessions
                                             </div>
+                                            <a class="ui basic label" href="/Tutor/TutoringAppts">@ViewBag.allTutorSessions</a>
+                                        </div>
+                                    </div>
+                                    <div class="ui horizontal divider"></div>
+                                    <div class="ui centered header"><p id="portal-headers-black">For All Tutors</p></div>
+                                    <div class="description">
+                                        @{
+                                            if (ViewBag.requestedSessions == 0)
+                                            {
+                                                <div class="ui labeled button" tabindex="0">
+                                                    <div class="ui button">
+                                                        <i class="icon thumbs up"></i> Requested Sessions
+                                                    </div>
+                                                    <a class="ui basic label" href="/Tutor/TutoringAppts">@ViewBag.requestedSessions</a>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="ui labeled button" tabindex="0">
+                                                    <div class="ui red button">
+                                                        <i class="icon exclamation"></i> Requested Sessions
+                                                    </div>
+                                                    <a class="ui basic label" href="/Tutor/TutoringAppts">@ViewBag.requestedSessions</a>
+                                                </div>
+                                            }
+                                        }
+                                         <p></p>
+                                        <div class="ui labeled button" tabindex="0">
+                                            <div class="ui button">
+                                                <i class="icon thumbs up"></i> All Sessions
+                                            </div>
+                                            <a class="ui basic label" href="/Tutor/TutoringAppts">@ViewBag.allDepartmentSessions</a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="content">
-                                    <h4 class="ui sub header">For All Tutors</h4>
-                                    <div class="ui small feed">
-                                        <div class="event">
-                                            <div class="content">
-                                                <div class="summary">
-                                                    <div class="ui compact menu">
-                                                        <a class="item">
-                                                            <i class="icon exclamation"></i> Requested Sessions
-                                                            @{
-                                                                if (ViewBag.requestedSessions == 0)
-                                                                {
-                                                                    <div class="floating ui green label">@ViewBag.requestedSessions</div>
-                                                                }
-                                                                else
-                                                                {
-                                                                    <div class="floating ui red label">@ViewBag.requestedSessions</div>
-                                                                }
-                                                            }
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="event">
-                                            <div class="content">
-                                                <div class="summary">
-                                                    <div class="ui compact menu">
-                                                        <a class="item">
-                                                            <i class="icon star outline"></i> Sessions by Department
-                                                            <div class="floating ui green label">@ViewBag.allDepartmentSessions</div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                              </div>
-                           </div>
+                             </div>
                         </div>
-                        <div class="ten wide column">
+                      </div>
+                    </div>
+                    <div class="ten wide column">
+                        <div class="ui floating message portal">
                             <img class="ui fluid image" src="@Url.Content("~/Content/images/landscapes_images/" + dayOfTheMonth + ".jpg")" />
+                            </div>
                         </div>
                         <div class="three wide column">
+                            <div class="ui floating message portal">
                                 <div class="ui card portal">
                                     <div class="content">
-                                        <div class="ui centered header"><p id="portal-headers-black">Upcoming Schedules</p></div>
-                                    </div>
-                                    <div class="content">
-                                        <div class="ui small feed">
+                                        <div class="ui centered dividing header"><p id="portal-headers-black">Upcoming Schedules</p></div>
+                                        <div class="description">
                                             @foreach (var item in Model)
                                             {
                                                 <div class="event">
@@ -131,8 +116,9 @@
                                                                     <div class="ui list">
                                                                         <div class="item">
                                                                             <div class="content">
-                                                                                <p>@item.StartTime.DayOfWeek, @item.StartTime.ToString("MM-dd-yyyy")</p>
+                                                                                <div class="description">@item.StartTime.DayOfWeek, @item.StartTime.ToString("MM-dd-yyyy")</div>
                                                                                 <div class="description">From @item.StartTime.ToString("hh:mm tt") to @item.EndTime.ToString("hh:mm tt")</div>
+                                                                                <div class="ui horizontal divider"></div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -142,29 +128,25 @@
                                                     </div>
                                                 </div>
                                             }
-                                        </div>
-                                    </div>
-                                    <div class="extra content">
-                                        <div class="fluid ui buttons">
-                                            <a href="/Tutor/TutorSchedules/Create" button class="ui button">add</a>
-                                            <div class="or"></div>
-                                            <a href="/Tutor/TutorSchedules/UpdateSchedule" button class="ui grey button">manage</a>
-                                            <div class="or"></div>
-                                            <a href="/Tutor/TutoringServiceAlerts/Create" button class="ui red button">alert</a>
+                                            <div class="extra content">
+                                                <a href="/Tutor/TutorSchedules/Create" button class="fluid ui button" style="text-align: center;">Add New</a>
+                                                <a href="/Tutor/TutorSchedules/UpdateSchedule" button class="fluid ui grey button">Manage Existing</a>
+                                                <a href="/Tutor/TutoringServiceAlerts/Create" button class="fluid ui red button">Send Alert</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                          </div>
-                      </div>
+                            </div>
+                        </div>
+                    </div>
                 <div class="row">
                     <div class="three wide column">
                        <div class="ui floating message portal">
                         <div class="ui card portal">
                             <div class="content">
-                                <div class="ui centered header"><p id="portal-headers-black">Users Features Guide</p></div>
-                                <div class="meta">Tutor</div>
+                                <div class="ui centered dividing header"><p id="portal-headers-black">Need Some Help?</p></div>
                                 <div class="description">
-                                    Lost? Our <a id="portal-headers" href="/Tutor/Home/Guide">guide</a> can help.
+                                    <a id="portal-headers" href="/Tutor/Home/Guide"><center>Tutor User Guide</center></a>
                                 </div>
                             </div>
                         </div>
@@ -210,10 +192,9 @@
                         <div class="ui floating message portal">
                             <div class="ui card portal">
                                 <div class="content">
-                                    <div class="ui centered header"><p id="portal-headers-black">Questions or Concerns?</p></div>
-                                    <div class="meta">Contact</div>
+                                    <div class="ui centered dividing header"><p id="portal-headers-black">Questions or Concerns?</p></div>
                                     <div class="description">
-                                        <a href="mailto: beyondthetutor@gmail.com" id="portal-headers">beyondthetutor&commat;gmail.com</a>
+                                        <a href="mailto: beyondthetutor@gmail.com" id="portal-headers"><center>beyondthetutor&commat;gmail.com</center></a>
                                     </div>
                                 </div>
                             </div>
