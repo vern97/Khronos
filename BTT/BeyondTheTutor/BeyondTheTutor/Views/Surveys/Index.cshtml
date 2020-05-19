@@ -15,24 +15,6 @@
         <table class="ui striped compact table table-schedule" style="white-space:nowrap;">
             <thead>
                 <tr>
-                    <th colspan="6">
-                        @using (Html.BeginForm("Index", "AllUsers", FormMethod.Get))
-                        {
-                            <div class="ui fluid action input">
-                                @if (ViewBag.searched != null)
-                                {
-                                    <input type="text" style="color: #db0a29" value="@ViewBag.searched" name="search" id="search" placeholder="@ViewBag.Placeholder">
-                                }
-                                else
-                                {
-                                    <input type="text" style="color: #db0a29" name="search" id="search" placeholder="@ViewBag.Placeholder">
-                                }
-                                <button class="ui button" style="        background-color: #db0a29; color: white;">Search</button>
-                            </div>
-                        }
-                    </th>
-                </tr>
-                <tr>
                     <th colspan="6" style="text-align: center;">
                         @using (Html.BeginForm("Create", "Surveys", FormMethod.Get))
                         {
