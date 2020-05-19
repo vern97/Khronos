@@ -20,7 +20,7 @@
     <div class="one column row">
         <div class="ui column center aligned stackable grid">
             <div class="ten wide column segment">
-                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal massive", role = "form", id="login" }))
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal massive", role = "form", id = "login" }))
                 {
                     <div class="ui placeholder segment login">
                         <div class="ui form large">
@@ -61,6 +61,9 @@
                                 </div>
                             </div>
                             <button class="fluid ui button schedule" id="submit_btn" style="font-size: large;">Enter Site</button>
+                        </div><br />
+                        <div>
+                            @Html.ActionLink("Need an account?", "Register")
                         </div>
                     </div>
                 }
@@ -89,7 +92,7 @@
                         <div class="three wide column">
                             <h4 class="ui header">Account Services</h4>
                             <div class="ui link list">
-                                @Html.ActionLink("Login", "Login", "Account", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "AccountLogin" ? "item red active" : "item") });
+                                @Html.ActionLink("Login", "Login", "Account", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "AccountLogin" ? "item red active" : "item") })
                                 @Html.ActionLink("Register", "Register", "Account", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "AccountRegister" ? "item red active" : "item") })
                             </div>
                         </div>
@@ -108,7 +111,7 @@
     @Scripts.Render("~/bundles/jqueryval")
 
     <script>
-        $('#login').on('submit', function() {
+        $('#login').on('submit', function () {
             $('#submit_btn')
                 .attr('disabled', 'disabled').attr('class', 'fluid ui loading button schedule');
         })
