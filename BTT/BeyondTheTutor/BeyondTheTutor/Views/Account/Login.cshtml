@@ -92,7 +92,7 @@
                         <div class="three wide column">
                             <h4 class="ui header">Account Services</h4>
                             <div class="ui link list">
-                                @Html.ActionLink("Login", "Login", "Account", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "AccountLogin" ? "item red active" : "item") });
+                                @Html.ActionLink("Login", "Login", "Account", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "AccountLogin" ? "item red active" : "item") })
                                 @Html.ActionLink("Register", "Register", "Account", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "AccountRegister" ? "item red active" : "item") })
                             </div>
                         </div>
