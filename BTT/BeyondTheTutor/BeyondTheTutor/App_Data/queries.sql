@@ -2,6 +2,6 @@
 
 SELECT * FROM BTTUsers
 
-SELECT * FROM ProfilePictures
+SELECT * FROM Tutors
 
 SELECT * FROM TutoringAppts
