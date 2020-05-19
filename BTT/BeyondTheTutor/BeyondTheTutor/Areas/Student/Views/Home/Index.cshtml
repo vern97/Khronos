@@ -33,49 +33,64 @@
             </div>
 
             @* ----------Second row start---------- *@
-            <div class="row">
-                <div class="three wide column">
-                    <div class="ui floating message portal">
-                        <div class="ui card portal">
-                            <div class="ui slide masked reveal image">
-                                <img src="@Url.Content("~/Content/images/daniel.jpg")" class="ui fluid image hidden content">
-                                <img src="@Url.Content("~/Content/images/elyse.png")" class="ui fluid image visible content">
-                            </div>
-                            <div class="content">
-                                <a class="header">@ViewBag.fullName</a>
-                                <div class="meta">
-                                    <span class="date">@ViewBag.Class</span><br />
-                                    <span class="date">Class of @ViewBag.GradYear</span>
-                                </div>      
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="ten wide column">
-                    <img class="ui fluid image" src="@Url.Content("~/Content/images/landscapes_images/" + dayOfTheMonth + ".jpg")" />
-                </div>
-                <div class="three wide column">
-                    <div class="ui floating message portal">
-                        <div class="ui card portal">
-                            <div class="content">
-                                <div class="ui centered block header"><p id="portal-headers-black">Progress Tracking</p></div>
-                                <div class="meta">Featured</div>
-                                <div class="fluid description">
-                                    <ol class="ui list">
-                                        <li value="*">Cumulative GPA</li>
-                                        <li value="*">Semester GPA</li>
-                                        <li value="*">Weighted Grade</li>
-                                        <li value="*">Final Exams</li>
-                                    </ol>
-                                    <br />
-                                    <a class="fluid ui medium button" href="/Calculators/Calculators">Calculators</a><br />
-                                    <a class="fluid ui medium button" href="/Calculators/SavedResults">Manage Grades</a>
+        <div class="row">
+            <div class="three wide column">
+                <div class="ui floating message portal">
+                    <div class="ui card portal">
+                        <div class="content">
+                            <div class="ui centered dividing header"><p id="portal-headers-black">Student Profile</p></div>
+                            <div class="description">
+                                <div class="ui slide masked reveal image">
+                                    <img src="@Url.Content("~/Content/images/daniel.jpg")" class="ui fluid image hidden content">
+                                    <img src="@Url.Content("~/Content/images/elyse.png")" class="ui fluid image visible content">
+                                </div>
+                                <p></p>
+                                <div class="content">
+                                    <div class="ui centered dividing header"><p id="portal-headers-black">@ViewBag.fullName</p></div>
+                                    <div class="description">
+                                        <center>
+                                            <span class="date">@ViewBag.Class</span><br />
+                                            <span class="date">Class of @ViewBag.GradYear</span>
+                                        </center>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ten wide column">
+                <img class="ui fluid image" src="@Url.Content("~/Content/images/landscapes_images/" + dayOfTheMonth + ".jpg")" />
+            </div>
+            <div class="three wide column">
+                <div class="ui floating message portal">
+                    <div class="ui card portal">
+                        <div class="content">
+                            <div class="ui centered dividing header"><p id="portal-headers-black">Progress Tracking</p></div>
+                            <div class="ui info message">
+                                <div class="header">
+                                    Want to calculate your grade in a class? Want to know what to get on the final to get an A? 
+                                </div><p></p>
+                                <div class="meta">Check out our calculators to learn that and more. You may also save results
+                                                    and track your progress.</div><p></p>
+                                <ul class="list">
+                                    <li>Cumulative GPA</li>
+                                    <li>Semester GPA</li>
+                                    <li>Weighted Grade</li>
+                                    <li>Final Exams</li>
+                                </ul>
+                            </div>
+                            <p></p>
+                            <div class="description">
+                                <a href="/Calculators/Calculators" button class="fluid ui button" style="text-align: center;">Calculators</a>
+                                <p></p>
+                                <a href="/Calculators/SavedResults" button class="fluid ui grey button">Manage Grades</a>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
             @* ----------Third row start---------- *@
             <div class="row">
@@ -83,9 +98,9 @@
                     <div class="ui floating message portal">
                         <div class="ui card portal">
                             <div class="content">
-                                <div class="ui centered block header"><p id="portal-headers-black">Users Features Guide</p></div>
+                                <div class="ui centered dividing header"><p id="portal-headers-black">Need Some Help?</p></div>
                                 <div class="description">
-                                    Lost? Our <a id="portal-headers" href="/Student/Home/Guide">guide</a> can help.
+                                    <a id="portal-headers" href="/Student/Home/Guide"><center>Student User Guide</center></a>
                                 </div>
                             </div>
                         </div>
@@ -98,9 +113,9 @@
                         <div class="ui floating message">
                             <div class="ui card portal">
                                 <div class="content">
-                                    <div class="ui centered block header"><p id="portal-headers-black">Questions or Concerns?</p></div>
-                                    <div class="fluid description">
-                                        <a href="mailto: beyondthetutor@gmail.com" id="portal-headers">beyondthetutor&commat;gmail.com</a>
+                                    <div class="ui centered dividing header"><p id="portal-headers-black">Questions or Comments?</p></div>
+                                    <div class="description">
+                                        <center><a href="mailto: beyondthetutor@gmail.com" id="portal-headers">Email</a> our team.</center>
                                     </div>
                                 </div>
                             </div>

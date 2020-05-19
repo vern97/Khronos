@@ -24,8 +24,12 @@ namespace BeyondTheTutor.Areas.Professor.Controllers
 
             ViewBag.studentCount = db.Students.Count();
             ViewBag.sessionCount = db.TutoringAppts.Where(m => m.Status == "Completed").Count();
-            ViewBag.totalResources = currentUserID.StudentResources.Count();
-            ViewBag.resourceCount = db.StudentResources.Count();
+            ViewBag.myResources = currentUserID.StudentResources.Count();
+            ViewBag.allResources = db.StudentResources.Count();
+            ViewBag.professorCount = db.StudentResources.Where(m => m.UserID == m.BTTUser.Professor.ID).Count();
+            ViewBag.tutorCount = db.StudentResources.Where(m => m.UserID == m.BTTUser.Tutor.ID).Count();
+            ViewBag.onlineSessions = db.TutoringAppts.Where(m => m.TypeOfMeeting == "Online").Count();
+            ViewBag.inPersonSessions = db.TutoringAppts.Where(m => m.TypeOfMeeting == "In-Person").Count();
 
             return View();
         }

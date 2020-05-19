@@ -1,31 +1,37 @@
 ﻿@model IEnumerable<BeyondTheTutor.Models.TutorSchedule>
 
-<body class="wou-silver-bg">
+<body class="wou-grey-bg">
     <div class="ui one column stackable page grid">
         <table class="ui striped selectable celled table resources" style="margin-top: 10px;">
+            <thead>
+                <tr>
+                    <th colspan="4"><h1 class="ui centered header">@ViewBag.currentUser's Schedules</h1></th>
+                </tr>
+            </thead>
             <thead>
                 <tr>
                     <th><h4>Tutor Name &amp; Job</h4></th>
                     <th><h4>Start Date &amp; Time</h4></th>
                     <th><h4>End Date &amp; Time</h4></th>
+                    <th><h4>Action to Be Taken</h4></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>@Html.DisplayFor(modelItem => item.Description)</td>
-                        <td>@Html.DisplayFor(modelItem => item.StartTime)</td>
-                        <td>@Html.DisplayFor(modelItem => item.EndTime)</td>
-                        <td style="text-align: center;">
-                            <button class="ui small button">
-                                @Html.ActionLink("Edit", "Edit", new { id = item.ID })
-                            </button>
-                            <button class="ui small button">
-                                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                            </button>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                    <td>@Html.DisplayFor(modelItem => item.StartTime)</td>
+                    <td>@Html.DisplayFor(modelItem => item.EndTime)</td>
+                    <td style="text-align: center;">
+                        <button class="ui small button">
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                        </button>
+                        <button class="ui small button">
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                        </button>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>
