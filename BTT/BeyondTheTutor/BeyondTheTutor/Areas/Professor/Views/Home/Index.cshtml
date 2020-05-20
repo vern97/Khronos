@@ -51,14 +51,6 @@
                                     </div>
                                     <div class="item">
                                         <div class="right floated content">
-                                            <div class="ui button">@ViewBag.myResources</div>
-                                        </div>
-                                        <div class="content">
-                                            My Resources
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="right floated content">
                                             <div class="ui button">@ViewBag.professorCount</div>
                                         </div>
                                         <div class="content">
@@ -87,7 +79,9 @@
                     </div>
                 </div>
                 <div class="ten wide column">
-                    <img class="ui fluid image" src="@Url.Content("~/Content/images/landscapes_images/" + dayOfTheMonth + ".jpg")" />
+                    <div class="ui floating message portal">
+                        <img class="ui fluid image" src="@Url.Content("~/Content/images/landscapes_images/" + dayOfTheMonth + ".jpg")" />
+                    </div>
                 </div>
                 <div class="three wide column">
                     <div class="ui floating message portal">
@@ -98,21 +92,18 @@
                                     <a href="/Professor/Home/Guide" button class="fluid ui grey button">User Guide</a>
                                 </div>
                                 <div class="ui horizontal divider">
-                                    Or
                                 </div>
                                 <div class="ui centered dividing header"><p id="portal-headers-black">Questions or Comments?</p></div>
                                 <div class="description">
                                     <a href="mailto: beyondthetutor@gmail.com" button class="fluid ui grey button">Email Our Team</a>
                                 </div>
                                 <div class="ui horizontal divider">
-                                    Or
                                 </div>
                                 <div class="ui centered dividing header"><p id="portal-headers-black">Add Resources</p></div>
                                 <div class="description">
                                     <a href="/StudentResources/Create" button class="fluid ui grey button">Share Now</a>
                                 </div>
                                 <div class="ui horizontal divider">
-                                    Or
                                 </div>
                                 <div class="ui centered dividing header"><p id="portal-headers-black">Manage Resources</p></div>
                                 <div class="description">

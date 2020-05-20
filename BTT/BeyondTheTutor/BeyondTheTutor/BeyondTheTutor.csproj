@@ -19,7 +19,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44396</IISExpressSSLPort>
+    <IISExpressSSLPort>44342</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -493,8 +493,6 @@
     <Content Include="Areas\Admin\Views\TutorSchedules\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\TutorSchedules\UpdateSchedule.cshtml" />
     <Content Include="Areas\Student\Views\TutoringAppts\Create.cshtml" />
-    <Content Include="Areas\Student\Views\TutoringAppts\Delete.cshtml" />
-    <Content Include="Areas\Student\Views\TutoringAppts\Details.cshtml" />
     <Content Include="Areas\Student\Views\TutoringAppts\Edit.cshtml" />
     <Content Include="Areas\Student\Views\TutoringAppts\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Guide.cshtml" />
@@ -509,8 +507,6 @@
     <Content Include="Areas\Admin\Views\AllUsers\CreateAdmin.cshtml" />
     <Content Include="Areas\Admin\Views\ElevatedAccount\Delete.cshtml" />
     <Content Include="Areas\Tutor\Views\TutoringAppts\Create.cshtml" />
-    <Content Include="Areas\Tutor\Views\TutoringAppts\Delete.cshtml" />
-    <Content Include="Areas\Tutor\Views\TutoringAppts\Details.cshtml" />
     <Content Include="Areas\Tutor\Views\TutoringAppts\Edit.cshtml" />
     <Content Include="Areas\Tutor\Views\TutoringAppts\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Classes\Create.cshtml" />
@@ -522,10 +518,6 @@
     <Content Include="Areas\Tutor\Views\TutoringServiceAlerts\Details.cshtml" />
     <Content Include="Areas\Tutor\Views\TutoringServiceAlerts\Edit.cshtml" />
     <Content Include="Areas\Tutor\Views\TutoringServiceAlerts\Index.cshtml" />
-    <Content Include="Areas\Professor\Views\TutoringAppts\Create.cshtml" />
-    <Content Include="Areas\Professor\Views\TutoringAppts\Delete.cshtml" />
-    <Content Include="Areas\Professor\Views\TutoringAppts\Details.cshtml" />
-    <Content Include="Areas\Professor\Views\TutoringAppts\Edit.cshtml" />
     <Content Include="Areas\Professor\Views\TutoringAppts\Index.cshtml" />
     <Content Include="Areas\Tutor\Views\Zoom\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -674,12 +666,10 @@
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Manage\ManageLogins.cshtml" />
     <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\FAQ.cshtml" />
@@ -715,7 +705,6 @@
     <Folder Include="Areas\Student\Data\" />
     <Folder Include="Areas\Student\Views\Zoom\" />
     <Folder Include="Areas\Tutor\Data\" />
-    <Folder Include="Views\StudentAppointment\" />
     <Folder Include="Views\ZoomAPI\" />
   </ItemGroup>
   <ItemGroup>
