@@ -41,21 +41,6 @@ namespace BeyondTheTutor.Areas.Student.Controllers
             return View(sessionList);
         }
 
-        // GET: Student/TutoringAppts/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            TutoringAppt tutoringAppt = db.TutoringAppts.Find(id);
-            if (tutoringAppt == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tutoringAppt);
-        }
-
         // GET: Student/TutoringAppts/Create
         public ActionResult Create()
         {
