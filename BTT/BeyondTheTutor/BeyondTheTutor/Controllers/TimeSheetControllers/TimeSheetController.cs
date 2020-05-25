@@ -144,7 +144,10 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
         public async Task<ActionResult> ViewMonth(int? tsid)
         {
             ViewBag.Current = "TutorTimeSheets";
-
+            if(TempData["try_again"] != null)
+            {
+                ViewBag.error = "The shift you entered isn't valid.";
+            }
             var tutor = getUser();
             var returningTutor = getUser().Tutor;
             //var returningTimesheet =
@@ -175,6 +178,11 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
                 db.WorkHours.Add(model.ShiftVM);
                 Day d = db.Days.Find(model.ShiftVM.DayID);
                 d.RegularHrs += (int)(model.ShiftVM.ClockedOut - model.ShiftVM.ClockedIn).TotalMinutes;
+                if(d.RegularHrs < 0.01)
+                {
+                    TempData["try_again"] = "true";
+                    return RedirectToAction("ViewMonth", new { tsid = model.ShiftVM.Day.TimeSheetID });
+                }
                 db.Entry(d).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("ViewMonth", new { tsid=model.ShiftVM.Day.TimeSheetID });
@@ -282,34 +290,6 @@ namespace BeyondTheTutor.Controllers.TimeSheetControllers
 
             ViewBag.Title = last + "_" + first + "_" + date;
             return View(tsData);
-        }
-
-        public ActionResult Print(int? id)
-        {
-            /*
-            var t = db.BTTUsers.Find(db.TimeSheets.Find(id).Tutor.ID);
-            TimeSheet ts = new TimeSheet();
-
-            string first, last, date;
-            first = t.FirstName;
-            last = t.LastName;
-            date = ts.getMonths()[db.TimeSheets.Find(id).Month] + "-" + db.TimeSheets.Find(id).Year;
-
-
-            Dictionary<string, string> cookieCollection = new Dictionary<string, string>();
-
-            foreach (var key in Request.Cookies.AllKeys)
-            {
-                cookieCollection.Add(key, Request.Cookies.Get(key).Value);
-            }
-
-            return new ActionAsPdf("PrintMonth", new { tsid = id })
-            {
-                FileName = last + "_" + first + "_" + date + ".pdf",
-                Cookies = cookieCollection
-            };*/
-            return View();
-        }
-
+        }        
     }
 }

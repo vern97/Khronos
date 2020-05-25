@@ -6,6 +6,17 @@
 
 <body class="wou-silver-bg">
     <div class="ui one column center aligned stackable page grid">
+        <br />
+        @if (ViewBag.error != null)
+        {
+            <div class="ui sixteen wide column" style="text-align: center;">
+                <div class="ui red message" style="text-align: center;">
+                    <i class="time icon" id="message"></i>
+                    <B>@ViewBag.error</B>
+                </div>
+            </div>
+        }
+        <br />
         <table class="ui celled definition compact table" style="text-align: center;">
             <thead>
                 <tr>
