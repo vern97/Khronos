@@ -1,4 +1,5 @@
-﻿@{
+﻿@using System.Text.RegularExpressions
+@{
     ViewBag.Title = "Home Page";
 }
 <body class="wou-grey-bg">
@@ -18,7 +19,7 @@
             </div>
         }
 
-        @if(ViewBag.msg != null)
+        @if (ViewBag.msg != null)
         {
             <div class="ui green message" style="text-align: center;">
                 <B>@ViewBag.msg</B>
@@ -82,19 +83,45 @@
 
         <div class="ui segments background-color-white">
             <div class="ui horizontal segments">
-
                 <div class="ui red very padded segment">
                     <h3 class="ui center aligned header"><i class="thumbs up icon"></i>What classes can we help with?</h3>
                     <hr />
-                    @foreach (var className in ViewBag.csList)
-                    {
-                        <i>@className.Name </i>
-                    }
-                    <div class="ui hidden divider"></div>
-                    @foreach (var className in ViewBag.isList)
-                    {
-                        <i>@className.Name </i>
-                    }
+                    <div style="display: inline">
+                        @for (int i = 1; i < 6; i++)
+                        {
+                            <div style="display: inline-block; vertical-align:top; width: 3.5em">
+                                @foreach (var className in ViewBag.csList)
+                                {
+                                    var course = Int32.Parse(Regex.Match(className.Name, @"\d+").Value);
+                                    if (course / 100 == i)
+                                    {
+                                        <i>@className.Name</i><br />
+                                    }
+                                }
+                            </div>
+                        }
+                    </div>
+
+                    <div style="display: inline">
+                        @for (int i = 1; i < 6; i++)
+                        {
+                            <div style="display: inline-block; vertical-align:top; width: 3.5em">
+                                @foreach (var className in ViewBag.isList)
+                                {
+                                    var course = Int32.Parse(Regex.Match(className.Name, @"\d+").Value);
+                                    if (course / 100 == i)
+                                    {
+                                        <br /><i>@className.Name</i>
+                                    }
+                                }
+                            </div>
+                        }
+                    </div>
+
+                </div>
+
+                <div class="ui red padded segment">
+                    <img class=" ui center align big image" style="margin-left: auto; margin-right: auto; padding-top: 50px;" src="../Content/images/Logo_Stacked.jpg" alt="FooterImg" />
                 </div>
 
                 <div class="ui red very padded segment">
@@ -102,10 +129,6 @@
                     <hr />
                     <p>The tutoring room is located on the 2nd floor, south corner, room <b>OED 230</b>.</p>
                     <p>We are open starting April 1st, 2020.</p>
-                </div>
-
-                <div class="ui red very padded segment">
-                    <img class="ui large image" src="../Content/images/Logo_Stacked.jpg" alt="Alternate Text" />
                 </div>
 
             </div>
