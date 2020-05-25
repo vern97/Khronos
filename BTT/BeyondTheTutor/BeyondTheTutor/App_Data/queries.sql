@@ -1,1 +1,3 @@
 ﻿SELECT * FROM SMS
+
+SELECT * FROM SMSStatuses

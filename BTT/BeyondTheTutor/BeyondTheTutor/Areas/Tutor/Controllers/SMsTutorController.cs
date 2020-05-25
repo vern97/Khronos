@@ -98,6 +98,20 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
                 {
                     db.SMS.Add(SMSMessage);
                     db.SaveChanges();
+
+                    // set the statuses for the message
+                    SMSStatus newMessageStatus = new SMSStatus
+                    {
+                        Sent = true,
+                        Received = true,
+                        Read = false,
+                        Saved = false,
+                        SMSID = SMSMessage.ID
+                    };
+
+                    db.SMSStatuses.Add(newMessageStatus);
+                    db.SaveChanges();
+
                     string jsonString = JsonConvert.SerializeObject("Message Sent", Formatting.Indented);
                     return new ContentResult
                     {

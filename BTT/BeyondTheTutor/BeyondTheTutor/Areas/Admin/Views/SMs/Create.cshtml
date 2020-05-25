@@ -5,9 +5,10 @@
         <div class="ui one column centered padded grid">
             <div class="ui centered vertical segment">
                 <div class="ui top attached tabular large menu" style="justify-content:center;">
-                    <a class="active item red" data-tab="first">Send Messages</a>
-                    <a class="item red" data-tab="second">Read Messages</a>
-                    <a class="item red" data-tab="third">Saved Messages</a>
+                    <a class="active item red" data-tab="first">Compose a Message</a>
+                    <a class="item red" data-tab="second">Inbox</a>
+                    <a class="item red" data-tab="third">Sent</a>
+                    <a class="item red" data-tab="fourth">Saved</a>
                 </div>
                 <div class="ui bottom attached active tab segment" data-tab="first">
                     <div class="ui equal width form">
@@ -43,15 +44,42 @@
                 </div>
 
                 <div class="ui bottom attached tab segment" data-tab="second">
-                    Second
+
+                    <div id="incoming_sms">
+
+                    </div>
+
                 </div>
 
                 <div class="ui bottom attached tab segment" data-tab="third">
-                    Third
+
+                    <div class="ui icon message">
+                        <i class="notched circle loading icon"></i>
+                        <div class="content">
+                            <div class="header">
+                                Just one second
+                            </div>
+                            <p>We're fetching that content for you.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="ui bottom attached tab segment" data-tab="fourth">
+
+                    <div class="ui icon message">
+                        <i class="notched circle loading icon"></i>
+                        <div class="content">
+                            <div class="header">
+                                Just one second
+                            </div>
+                            <p>We're fetching that content for you.</p>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
-
 
         </div>
     </div>
@@ -62,4 +90,5 @@
 {
     <script src="~/Scripts/main.js"></script>
     <script src="~/Scripts/smsadmin.js"></script>
+    <script src="~/Scripts/displaytutorsms.js"></script>
 }

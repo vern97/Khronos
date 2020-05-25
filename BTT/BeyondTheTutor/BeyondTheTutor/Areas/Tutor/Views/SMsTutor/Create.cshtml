@@ -5,9 +5,10 @@
         <div class="ui one column centered padded grid">
             <div class="ui centered vertical segment">
                 <div class="ui top attached tabular large menu" style="justify-content:center;">
-                    <a class="active item red" data-tab="first">Send Messages</a>
-                    <a class="item red" data-tab="second">Received Messages</a>
-                    <a class="item red" data-tab="third">Saved Messages</a>
+                    <a class="active item red" data-tab="first">Compose a Message</a>
+                    <a class="item red" data-tab="second">Inbox</a>
+                    <a class="item red" data-tab="third">Sent</a>
+                    <a class="item red" data-tab="fourth">Saved</a>
                 </div>
                 <div class="ui bottom attached active tab segment" data-tab="first">
                     <div class="ui equal width form">
@@ -48,49 +49,37 @@
 
                     </div>
 
-
                 </div>
 
                 <div class="ui bottom attached tab segment" data-tab="third">
 
+                    <div class="ui icon message">
+                        <i class="notched circle loading icon"></i>
+                        <div class="content">
+                            <div class="header">
+                                Just one second
+                            </div>
+                            <p>We're fetching that content for you.</p>
+                        </div>
+                    </div>
 
-                    <table class="ui red table">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>From</th>
-                                <th>Priority</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Apples</td>
-                                <td>200</td>
-                                <td>0g</td>
-                            </tr>
-                        </tbody>
-                        <thead>
-                            <tr>
-                                <th>Subject</th>
-                                <th colspan="2">Message</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="border-bottom: solid; border-top-width: 2px; border-bottom-color: #db0a29;">Apples</td>
-                                <td> 
-                                    <div class="disabled field">
-                                        <textarea disabled="">Text here</textarea>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                </div>
+
+                <div class="ui bottom attached tab segment" data-tab="fourth">
+
+                    <div class="ui icon message">
+                        <i class="notched circle loading icon"></i>
+                        <div class="content">
+                            <div class="header">
+                                Just one second
+                            </div>
+                            <p>We're fetching that content for you.</p>
+                        </div>
+                    </div>
 
                 </div>
 
             </div>
-
 
         </div>
     </div>
