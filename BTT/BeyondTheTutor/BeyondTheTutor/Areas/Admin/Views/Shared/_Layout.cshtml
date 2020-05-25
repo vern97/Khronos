@@ -24,6 +24,7 @@
         @Html.ActionLink("Beyond the Tutor", "Index", "Home", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "HomeIndex" ? "item red active" : "item") })
         @Html.ActionLink("Admin Portal", "Index", "Home", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminHomeIndex" ? "item red active" : "item") })
         <div class="right menu">
+            @Html.ActionLink("Messages", "Create", "SMs", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminAddMessage" ? "item red active" : "item") })
             <div class="ui dropdown item">
                 Misc. Management
                 <i class="dropdown icon"></i>

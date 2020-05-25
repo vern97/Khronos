@@ -35,6 +35,8 @@
                 </div>
             </div>
 
+            @Html.ActionLink("Messages", "Create", "SMsTutor", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutorAddMessage" ? "item red active" : "item") })
+
             <div class="ui dropdown item">
                 Resources
                 <i class="dropdown icon"></i>

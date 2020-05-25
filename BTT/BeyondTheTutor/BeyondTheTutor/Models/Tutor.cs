@@ -6,6 +6,7 @@ namespace BeyondTheTutor.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
     using BeyondTheTutor.Models.TimeSheetModels;
+    using BeyondTheTutor.Models.SMSModels;
 
 
     public partial class Tutor
@@ -17,7 +18,6 @@ namespace BeyondTheTutor.Models
             TutoringServiceAlerts = new HashSet<TutoringServiceAlert>();
             TutorSchedules = new HashSet<TutorSchedule>();
             TimeSheets = new HashSet<TimeSheet>();
-
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -46,5 +46,6 @@ namespace BeyondTheTutor.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TimeSheet> TimeSheets { get; set; }
+
     }
 }

@@ -1,0 +1,105 @@
+﻿@model BeyondTheTutor.Models.SMSModels.SM
+
+<body class="wou-silver-bg">
+    <div class="container" style="position: relative">
+        <div class="ui one column centered padded grid">
+            <div class="ui centered vertical segment">
+                <div class="ui top attached tabular large menu" style="justify-content:center;">
+                    <a class="active item red" data-tab="first">Send Messages</a>
+                    <a class="item red" data-tab="second">Received Messages</a>
+                    <a class="item red" data-tab="third">Saved Messages</a>
+                </div>
+                <div class="ui bottom attached active tab segment" data-tab="first">
+                    <div class="ui equal width form">
+                        <div class="field">
+                            <label>Subject</label>
+                            <input type="text" id="Subject" name="Subject">
+                        </div>
+                        <div class="field">
+                            <label>Message</label>
+                            @Html.TextAreaFor(model => model.Message, new { htmlAttributes = new { @type = "form-control", id = "Message" } })<br />
+                        </div>
+                        <div class="fields">
+                            <div class="field">
+                                <label>Recipient</label>
+                                @Html.DropDownListFor(model => model.Receiver, new SelectList(ViewBag.TutorsandAdmins, "ID", "Name", "true"), "All Users", htmlAttributes: new { @class = "ui selection dropdown form-control", id = "Receiver" })
+                            </div>
+                            <div class="field">
+                                <label>Priority</label>
+                                @Html.DropDownListFor(model => model.Priority, new SelectListItem[] {
+                                new SelectListItem() {Text = "Normal", Value="1"},
+                                new SelectListItem() {Text = "High", Value="2"},
+                                }, htmlAttributes: new { @class = "ui selection dropdown form-control" })
+                                @Html.ValidationMessageFor(model => model.Priority, "", new { @class = "text-danger", id = "Priority" })
+                            </div>
+                        </div>
+                        <div class="ui hidden divider"></div>
+                        <button onclick="sendSMS()" class="fluid ui button schedule" id="sms-1">Send Message</button>
+                    </div>
+                    <div class="ui basic modal" id="sms_id_1">
+
+                    </div>
+
+                </div>
+
+                <div class="ui bottom attached tab segment" data-tab="second">
+
+                    <div id="incoming_sms">
+
+                    </div>
+
+
+                </div>
+
+                <div class="ui bottom attached tab segment" data-tab="third">
+
+
+                    <table class="ui red table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>From</th>
+                                <th>Priority</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Apples</td>
+                                <td>200</td>
+                                <td>0g</td>
+                            </tr>
+                        </tbody>
+                        <thead>
+                            <tr>
+                                <th>Subject</th>
+                                <th colspan="2">Message</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border-bottom: solid; border-top-width: 2px; border-bottom-color: #db0a29;">Apples</td>
+                                <td> 
+                                    <div class="disabled field">
+                                        <textarea disabled="">Text here</textarea>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+</body>
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+    <script src="~/Scripts/smstutor.js"></script>
+    <script src="~/Scripts/displaytutorsms.js"></script>
+}
