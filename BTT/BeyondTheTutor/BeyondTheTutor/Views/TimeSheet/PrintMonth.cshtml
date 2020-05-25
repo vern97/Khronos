@@ -114,9 +114,7 @@
                                     {
                                         if (i++ == day.WorkHours.Count() - 1) { ViewBag.Slash = " "; }
                                         string print = @shift.ClockedIn.ToShortTimeString() + "-" + @shift.ClockedOut.ToShortTimeString() + ViewBag.Slash;
-                                        
-                                    
-                                    @print</span>
+                                        <span>@print</span>
                                     }
 
                                 </p>
