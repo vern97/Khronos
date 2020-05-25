@@ -27,7 +27,6 @@
                             <img class="ui fluid large centered image" src="../Content/images/resize_welcome_banner.png" alt="Alternate Text">
 
                             @Html.AntiForgeryToken()
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="two fields">
                                 <div class="field">
                                     <label>Username</label>
@@ -52,7 +51,12 @@
                                         @Html.ActionLink("Forgot Password?", "ForgotPassword")
                                     </div>
                                 </div>
-
+                            </div>
+                            <div style="text-align: center;">
+                                @if (!ViewData.ModelState.IsValid)
+                                {
+                                    <p style="color: red;">Your login attempt has failed!</p>
+                                }
                             </div>
                             <div class="inline field">
                                 <div class="ui checkbox massive">
@@ -111,9 +115,30 @@
     @Scripts.Render("~/bundles/jqueryval")
 
     <script>
+        //this makes sure that the user doesn't send multiple post requesets by disabling the 
+        //submit button!
         $('#login').on('submit', function () {
             $('#submit_btn')
                 .attr('disabled', 'disabled').attr('class', 'fluid ui loading button schedule');
         })
+
+        //this makes sure that the user has entered the valid form information
+        //and disables the submit button from actually posting
+         $(document).ready(function () {
+            $('#submit_btn').click(function () {
+                $(this).prop("disabled", true);
+                if (!$('#login').valid())
+                {
+                    $(this).prop("disabled", false);
+                    return false;
+                }
+                $('#login').submit();
+            });
+        });
+
+
+        
     </script>
+
+
 }
