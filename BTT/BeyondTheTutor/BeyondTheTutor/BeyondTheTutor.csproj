@@ -19,7 +19,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44342</IISExpressSSLPort>
+    <IISExpressSSLPort>44396</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -101,6 +101,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -109,6 +112,12 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -179,6 +188,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AllUsersController.cs" />
     <Compile Include="Areas\Admin\Controllers\ClassesController.cs" />
@@ -231,6 +241,7 @@
     <Compile Include="Models\SMSModels\SMSArchive.cs" />
     <Compile Include="Models\SMSModels\SMSReply.cs" />
     <Compile Include="Models\SMSModels\SMSStatus.cs" />
+    <Compile Include="Models\StudentAlertModels\StudentAlert.cs" />
     <Compile Include="Models\SurveyModels\Answer.cs" />
     <Compile Include="DAL\BeyondTheTutorContext.cs" />
     <Compile Include="Models\BTTUser.cs" />
@@ -264,6 +275,10 @@
   <ItemGroup>
     <Content Include="App_Data\AspDown.sql" />
     <Content Include="App_Data\AspUp.sql" />
+    <Content Include="App_Data\BeyondTheTutor.mdf" />
+    <Content Include="App_Data\BeyondTheTutor_log.ldf">
+      <DependentUpon>BeyondTheTutor.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\down.sql" />
     <Content Include="App_Data\queries.sql" />
     <Content Include="App_Data\seed.sql" />

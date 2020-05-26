@@ -333,8 +333,17 @@ CREATE TABLE [SMSArchives]
 	ON DELETE CASCADE
 );
 
+CREATE TABLE [StudentAlerts]
+(
+	[ID]			INT IDENTITY (1,1)		NOT NULL,
+	[TimeStamp]		DATETIME				NOT NULL,
+	[Subject]		NVARCHAR(100)			NOT NULL,
+	[Message]		TEXT					NOT NULL,
+	[Expiration]	DATETIME				NOT NULL,
+	[AdminID]		INT						NOT NULL,
 
-
-
-
-
+	CONSTRAINT [PK_StudentAlerts] PRIMARY KEY CLUSTERED ([ID] ASC),
+	CONSTRAINT [FK.dbo.StudentAlerts_dbo.BTTUsers_ID] FOREIGN KEY ([AdminID]) 
+		REFERENCES [BTTUsers] ([ID])
+		ON DELETE CASCADE ON UPDATE CASCADE
+);
