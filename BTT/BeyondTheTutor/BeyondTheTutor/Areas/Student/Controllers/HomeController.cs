@@ -69,5 +69,35 @@ namespace BeyondTheTutor.Areas.Student.Controllers
             return View();
         }
 
+        public JsonResult GetStudent()
+        {
+            var userID = User.Identity.GetUserId();
+            var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
+
+            var tutors = db.Students.Where(e => e.ID == currentUserID).Select(e => new
+            {
+                FullName = e.BTTUser.FirstName + " " + e.BTTUser.LastName,
+                ClassStanding = e.ClassStanding,
+                GradYear = e.GraduatingYear,
+                profilePictureID = db.ProfilePictures.Where(m => m.UserID == e.ID).Select(m => m.ID).FirstOrDefault()
+            }).ToList();
+
+            return Json(tutors, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult RetrieveCurrentStudentProfilePicture(int id)
+        {
+            var profilePicture = db.ProfilePictures.Where(m => m.ID == id).Select(m => m.ImagePath).FirstOrDefault();
+
+            if (profilePicture == null)
+            {
+                return File("~/Content/images/BeyondtheTutor_Logo.png", "image/jpg");
+            }
+            else
+            {
+                return File(profilePicture, "image/jpg"); ;
+            }
+        }
+
     }
 }
