@@ -1,7 +1,4 @@
-﻿SELECT * FROM StudentResources
+﻿SELECT * FROM SMS
 
-SELECT * FROM BTTUsers
+SELECT * FROM SMSArchives
 
-SELECT * FROM Tutors
-
-SELECT * FROM TutoringAppts

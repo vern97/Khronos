@@ -450,3 +450,11 @@ table#savedFinalGPA tr {
     tr #noShow {
     background-color: #e60000;
 }
+
+/* Customizations for sms feature */
+
+.ui.basic.modal {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+}

@@ -1,0 +1,102 @@
+﻿@model BeyondTheTutor.Models.SMSModels.SM
+
+<body class="wou-silver-bg">
+    <div class="container" style="position: relative">
+        <div class="ui one column centered padded grid">
+            <div class="ui centered vertical segment">
+                <div class="ui top attached tabular large menu" style="justify-content:center;">
+                    <a class="active item red" data-tab="first">Compose a Message</a>
+                    <a class="item red" data-tab="second">Inbox</a>
+                    <a class="item red" data-tab="third">Sent</a>
+                    <a class="item red" data-tab="fourth">Saved</a>
+                </div>
+                <div class="ui bottom attached active tab segment" data-tab="first">
+                    <div class="ui equal width form">
+                        <div class="field">
+                            <label>Subject</label>
+                            <input type="text" id="Subject" name="Subject">
+                        </div>
+                        <div class="field">
+                            <label>Message</label>
+                            @Html.TextAreaFor(model => model.Message, new { htmlAttributes = new { @type = "form-control", id = "Message" } })<br />
+                        </div>
+                        <div class="fields">
+                            <div class="field">
+                                <label>Recipient</label>
+                                @Html.DropDownListFor(model => model.Receiver, new SelectList(ViewBag.TutorsandAdmins, "ID", "Name", "true"), "All Users", htmlAttributes: new { @class = "ui selection dropdown form-control", id = "Receiver" })
+                            </div>
+                            <div class="field">
+                                <label>Priority</label>
+                                @Html.DropDownListFor(model => model.Priority, new SelectListItem[] {
+                                new SelectListItem() {Text = "Normal", Value="1"},
+                                new SelectListItem() {Text = "High", Value="2"},
+                                }, htmlAttributes: new { @class = "ui selection dropdown form-control" })
+                                @Html.ValidationMessageFor(model => model.Priority, "", new { @class = "text-danger", id = "Priority" })
+                            </div>
+                        </div>
+                        <div class="ui hidden divider"></div>
+                        <button onclick="sendSMS()" class="fluid ui button schedule" id="sms-1">Send Message</button>
+                    </div>
+
+                    @* Modal that shows whether a message was successfully sent *@
+                    <div class="ui basic modal" id="sms_id_1">
+
+                    </div>
+
+                </div>
+
+                <div class="ui bottom attached tab segment" data-tab="second">
+
+                    @* SECTION TO DISPLAY INCOMING MESSAGES DO NOT DELETE *@
+                    <div id="incoming_sms">
+
+                    </div>
+                    @* END INCOMING MESSAGES SECTION *@
+
+                    @* Modal that shows whether a message was successfully saved *@
+                    <div class="ui basic modal" id="sms_id_2">
+
+                    </div>
+
+                </div>
+
+                <div class="ui bottom attached tab segment" data-tab="third">
+
+                    @* SECTION TO DISPLAY OUTGOING MESSAGES DO NOT DELETE *@
+                    <div id="outgoing_sms">
+
+                    </div>
+                    @* END OUTGOING MESSAGES SECTION *@
+
+                </div>
+
+                <div class="ui bottom attached tab segment" data-tab="fourth">
+
+                    @* SECTION TO DISPLAY ARCHIVES MESSAGES DO NOT DELETE *@
+                    <div id="archived_sms">
+
+                    </div>
+                    @* END ARCHIVED MESSAGES SECTION *@
+
+                    @* Modal that shows whether a message was successfully deleted *@
+                    <div class="ui basic modal" id="sms_id_3">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+    <script src="~/Scripts/smstutor.js"></script>
+    <script src="~/Scripts/displaytutorsms.js"></script>
+    <script src="~/Scripts/displaysentsms.js"></script>
+    <script src="~/Scripts/displaysavedsms.js"></script>
+}
