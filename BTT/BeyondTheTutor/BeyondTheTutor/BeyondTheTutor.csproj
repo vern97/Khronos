@@ -19,7 +19,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44396</IISExpressSSLPort>
+    <IISExpressSSLPort>44342</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -194,6 +194,7 @@
     <Compile Include="Areas\Student\Controllers\ZoomController.cs" />
     <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
     <Compile Include="Areas\Tutor\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Tutor\Controllers\SMSArchivesController.cs" />
     <Compile Include="Areas\Tutor\Controllers\SMsTutorController.cs" />
     <Compile Include="Areas\Tutor\Controllers\TutoringApptsController.cs" />
     <Compile Include="Areas\Tutor\Controllers\TutoringServiceAlertsController.cs" />
@@ -535,6 +536,8 @@
     <Content Include="Scripts\calculators.js" />
     <Content Include="Scripts\disable-service-alert-dropdown.js" />
     <Content Include="Scripts\displayrequestedappts.js" />
+    <Content Include="Scripts\displaysavedsms.js" />
+    <Content Include="Scripts\displaysentsms.js" />
     <Content Include="Scripts\displaystudent.js" />
     <Content Include="Scripts\displaystudentappts.js" />
     <Content Include="Scripts\displaytutors.js" />
@@ -718,6 +721,7 @@
     <Folder Include="Areas\Student\Data\" />
     <Folder Include="Areas\Student\Views\Zoom\" />
     <Folder Include="Areas\Tutor\Data\" />
+    <Folder Include="Areas\Tutor\Views\SMSArchives\" />
     <Folder Include="Views\ZoomAPI\" />
   </ItemGroup>
   <ItemGroup>

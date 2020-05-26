@@ -1,11 +1,11 @@
-﻿function saveSMS(currentID) {
+﻿function deleteSMS(currentID) {
 
     $.ajax({
         type: "GET",
         dataType: "json",
-        url: "/Tutor/SMSArchives/ArchiveMessage",
+        url: "/Tutor/SMSArchives/DeleteMessage",
         data: { 'messageID': currentID },
-        success: showSuccessfulSave,
+        success: showSuccessfulDeletion,
         error: errorOnAjax
     });
 };
@@ -16,35 +16,35 @@ $('#document').ready(function () {
         $.ajax({
             type: 'GET',
             dataType: 'json',
-            url: '/Tutor/TutorMessages/GetNewMessages',
-            success: displayNewSMS,
+            url: '/Tutor/TutorMessages/GetArchivedMessages',
+            success: displayArchivedSMS,
             error: errorOnAjax
         });
     }
 
     ajax_call.call();
 
-    var interval = 1000 * 3;
+    var interval = 1000 * 2;
     window.setInterval(ajax_call, interval);
 
     function errorOnAjax() {
-        console.log('Error on displaynewsms');
+        console.log('Error on displayarchivedsms');
     }
 
-    function displayNewSMS(data) {
-        $('#incoming_sms').empty();      
+    function displayArchivedSMS(data) {
+        $('#archived_sms').empty();
 
         if (data.length == 0) {
-            $('#incoming_sms').append(`
+            $('#archived_sms').append(`
                 <div class="ui floating message">
-                     <p><b>No New Messages</b></p>
+                     <p><b>No Saved Messages</b></p>
                 </div>
             `)
         }
         else {
 
-            $('#incoming_sms').append(`
-        <table class="ui red table" id="tutor_messages"></table>
+            $('#archived_sms').append(`
+        <table class="ui red table" id="archived_messages"></table>
     `)
             for (var i = 0; i < data.length; i++) {
                 if (data[i].priority == 1) {
@@ -58,7 +58,7 @@ $('#document').ready(function () {
                     weight = "bold";
                 }
 
-                $('#tutor_messages').append(`
+                $('#archived_messages').append(`
                 <thead>
                     <tr>
                         <th>Priority</th>
@@ -74,7 +74,7 @@ $('#document').ready(function () {
                         <td>${data[i].subject}</td>
                         <td>${data[i].sender}</td>
                         <td>${data[i].date}</td>
-                        <td>${data[i].time}</td>  
+                        <td>${data[i].time}</td>         
                     </tr>
                 </tbody>
                 <thead>
@@ -90,16 +90,12 @@ $('#document').ready(function () {
                     </tr>
                     <tr>
                         <td colspan="5" style="border-bottom: solid; border-bottom-width: 2px; border-bottom-color: #db0a29;">
-                            <div class="fluid ui buttons">
-                                 <button class="ui labeled icon button">
-                                  <i class="share icon"></i>
-                                  Reply
+
+                                <button onclick="deleteSMS('${data[i].id}')" class="ui fluid right labeled icon button">
+                                  <i class="x icon"></i>
+                                  Delete Archived Message
                                 </button>
-                                <button onclick="saveSMS('${data[i].id}')" class="ui right labeled icon button">
-                                  <i class="upload icon"></i>
-                                  Save
-                                </button>
-                            </div>
+
                         </td>
                     </tr>
                 </tbody>
@@ -109,12 +105,12 @@ $('#document').ready(function () {
     }
 });
 
-function showSuccessfulSave(data) {
+function showSuccessfulDeletion(data) {
     console.log('success');
-    $('#sms_id_2').modal('show');
-    $('#sms_id_2').empty();
+    $('#sms_id_3').modal('show');
+    $('#sms_id_3').empty();
 
-    $('#sms_id_2').append(`
+    $('#sms_id_3').append(`
           <div class="ui icon header">
             <i class="envelope outline icon"></i>
             ${data}
