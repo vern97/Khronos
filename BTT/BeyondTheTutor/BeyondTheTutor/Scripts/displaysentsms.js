@@ -1,4 +1,16 @@
-﻿$('#document').ready(function () {
+﻿function readSentSMS(currentMessage) {
+
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: "/Tutor/TutorMessages/ReadMessage",
+        data: { 'messageID': currentMessage },
+        success: readSentMessage,
+        error: errorOnAjax
+    });
+};
+
+$('#document').ready(function () {
 
     var ajax_call = function () {
         $.ajax({
@@ -77,7 +89,7 @@
                 <tbody>
                     <tr>                      
                         <td rows="2" colspan="5" style="max-width: 150px; border-bottom: solid; border-bottom-width: 2px; border-bottom-color: #db0a29;">   
-                           ${data[i].message}                         
+                           <button onclick="readSentSMS('${data[i].id}')" class="mini ui fluid button">View Message</button>                        
                         </td>
                     </tr>
                 </tbody>
@@ -86,3 +98,30 @@
         }
     }
 });
+
+function readSentMessage(data) {
+    console.log('success');
+
+    $('#read_sent_sms').empty();
+
+    $('#read_sent_sms').append(`
+        <div class="ui modal" id="sms_id_6"></div>
+            `)
+
+    $('#sms_id_6').append(`
+          <div class="ui icon header">
+            <i class="envelope open outline icon"></i>
+            ${data}
+          </div>
+          <div class="actions">
+            <center>
+                <div class="ui green ok inverted button">
+                  <i class="checkmark icon"></i>
+                  OK
+                </div>
+            </center>
+          </div>
+        `)
+    $('#sms_id_6').modal('show');
+}
+

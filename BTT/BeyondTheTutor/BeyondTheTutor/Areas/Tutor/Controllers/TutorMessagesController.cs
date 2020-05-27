@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using BeyondTheTutor.DAL;
 using BeyondTheTutor.Models.SMSModels;
 using Microsoft.AspNet.Identity;
+using Newtonsoft.Json;
 
 namespace BeyondTheTutor.Areas.Tutor.Controllers
 {
@@ -81,6 +82,7 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
                 (s, e) => new { s, e }).Where(se => se.s.Sent == true)
                 .Select(se => new
                 {
+                    id = se.e.ID,
                     date = se.e.DateSent,
                     time = se.e.DateSent,
                     receiver = se.e.BTTUser.FirstName + " " + se.e.BTTUser.LastName,
@@ -94,6 +96,7 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
             // convert the messages so that datetime is formatted correctly
             var convertedMessages = outgoingMessages.Select(e => new
             {
+                id = e.id,
                 date = e.date.ToString("MM-dd-yyyy"),
                 time = e.date.ToString("hh:mm tt"),
                 receiver = e.receiver,
@@ -142,6 +145,30 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
             }).ToList();
 
             return Json(convertedMessages, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ReadMessage()
+        {
+            // get id of message to be saved
+            string messageID = Request.QueryString["messageID"];
+
+            int currentID = Convert.ToInt32(messageID);
+
+            var message = db.SMS.Where(m => m.ID == currentID).Select(m => m.Message).FirstOrDefault();
+
+            return Json(message, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ReadArchivedMessage()
+        {
+            // get id of message to be saved
+            string messageID = Request.QueryString["messageID"];
+
+            int currentID = Convert.ToInt32(messageID);
+
+            var message = db.SMSArchives.Where(m => m.ID == currentID).Select(m => m.Message).FirstOrDefault();
+
+            return Json(message, JsonRequestBehavior.AllowGet);
         }
     }
 }

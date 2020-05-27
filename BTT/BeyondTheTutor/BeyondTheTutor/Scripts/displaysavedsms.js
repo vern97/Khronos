@@ -10,6 +10,19 @@
     });
 };
 
+function readArchivedSMS(currentMessage) {
+
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: "/Tutor/TutorMessages/ReadArchivedMessage",
+        data: { 'messageID': currentMessage },
+        success: readArchivedMessage,
+        error: errorOnAjax
+    });
+};
+
+
 $('#document').ready(function () {
 
     var ajax_call = function () {
@@ -24,7 +37,7 @@ $('#document').ready(function () {
 
     ajax_call.call();
 
-    var interval = 1000 * 2;
+    var interval = 1000 * 30;
     window.setInterval(ajax_call, interval);
 
     function errorOnAjax() {
@@ -85,17 +98,15 @@ $('#document').ready(function () {
                 <tbody>
                     <tr>                      
                         <td rows="2" colspan="5" style="max-width: 150px;">   
-                           ${data[i].message}                         
+                           <button onclick="readArchivedSMS('${data[i].id}')" class="mini ui fluid button">View Message</button>                      
                         </td>
                     </tr>
                     <tr>
                         <td colspan="5" style="border-bottom: solid; border-bottom-width: 2px; border-bottom-color: #db0a29;">
-
-                                <button onclick="deleteSMS('${data[i].id}')" class="ui fluid right labeled icon button">
-                                  <i class="x icon"></i>
-                                  Delete Archived Message
-                                </button>
-
+                            <button onclick="deleteSMS('${data[i].id}')" class="mini ui fluid red right labeled icon button">
+                                <i class="x icon"></i>
+                                Delete Archived Message
+                            </button>
                         </td>
                     </tr>
                 </tbody>
@@ -107,10 +118,14 @@ $('#document').ready(function () {
 
 function showSuccessfulDeletion(data) {
     console.log('success');
-    $('#sms_id_3').modal('show');
-    $('#sms_id_3').empty();
 
-    $('#sms_id_3').append(`
+    $('#show_deleted').empty();
+
+    $('#show_deleted').append(`
+        <div class="ui modal" id="sms_id_4"></div>
+            `)
+
+    $('#sms_id_4').append(`
           <div class="ui icon header">
             <i class="envelope outline icon"></i>
             ${data}
@@ -124,4 +139,31 @@ function showSuccessfulDeletion(data) {
             </center>
           </div>
         `)
+    $('#sms_id_4').modal('show');
+}
+
+function readArchivedMessage(data) {
+    console.log('success');
+
+    $('#read_archived_sms').empty();
+
+    $('#read_archived_sms').append(`
+        <div class="ui modal" id="sms_id_5"></div>
+            `)
+
+    $('#sms_id_5').append(`
+          <div class="ui icon header">
+            <i class="envelope open outline icon"></i>
+            ${data}
+          </div>
+          <div class="actions">
+            <center>
+                <div class="ui green ok inverted button">
+                  <i class="checkmark icon"></i>
+                  OK
+                </div>
+            </center>
+          </div>
+        `)
+    $('#sms_id_5').modal('show');
 }
