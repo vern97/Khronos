@@ -725,7 +725,6 @@
     <Folder Include="Areas\Student\Data\" />
     <Folder Include="Areas\Student\Views\Zoom\" />
     <Folder Include="Areas\Tutor\Data\" />
-    <Folder Include="Areas\Tutor\Views\SMSArchives\" />
     <Folder Include="Views\ZoomAPI\" />
   </ItemGroup>
   <ItemGroup>

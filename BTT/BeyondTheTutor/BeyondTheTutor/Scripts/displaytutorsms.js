@@ -36,7 +36,7 @@ $('#document').ready(function () {
 
     ajax_call.call();
 
-    var interval = 1000 * 30;
+    var interval = 1000 * 3;
     window.setInterval(ajax_call, interval);
 
     function errorOnAjax() {
@@ -102,10 +102,6 @@ $('#document').ready(function () {
                     <tr>
                         <td colspan="5" style="border-bottom: solid; border-bottom-width: 2px; border-bottom-color: #db0a29;">
                             <div class="fluid mini ui buttons">
-                                 <button class="ui red labeled icon button">
-                                  <i class="share icon"></i>
-                                  Reply
-                                </button>
                                 <button onclick="saveSMS('${data[i].id}')" class="ui red right labeled icon button">
                                   <i class="upload icon"></i>
                                   Save
@@ -117,7 +113,6 @@ $('#document').ready(function () {
         `)
             }
         }
-
     }
 });
 
@@ -149,28 +144,44 @@ function showSuccessfulSave(data) {
 
 function readMessage(data) {
     console.log('success');
-   
+
     $('#read_sms_modal').empty();
 
     $('#read_sms_modal').append(`
-        <div class="ui modal" id="sms_id_3"></div>
+        <div class="ui modal" id="sms_id_3"><i class="close icon"></i></div>
             `)
 
     $('#sms_id_3').append(`
           <div class="ui icon header">
             <i class="envelope open outline icon"></i>
-            ${data}
+            ${data.message}
           </div>
-          <div class="actions">
+            </br>
             <center>
-                <div class="ui green ok inverted button">
-                  <i class="checkmark icon"></i>
-                  OK
-                </div>
+               <button class="ui button">Toggle Reply Form</button>
             </center>
-          </div>
+             <div class="ui divider"></div>
+               <div class="ui one column padded grid">
+                 <div class="column">
+
+                    <div class="ui equal width form" style="display: none; text-align: center;">
+                        <div class="field">
+                            
+                            <label>Compose Message</label>
+                            <textarea></textarea>
+                           
+                        </div>
+                        <div class="ui hidden divider"></div>
+                        <button onclick="sendResponse()" class="fluid ui button schedule" id="sms-1">Send Reply</button>
+                    </div>
+                 </div>
+            </div>
         `)
     $('#sms_id_3').modal('show');
+
+    $("button").click(function () {
+        $(".ui.equal.width.form").toggle();
+    });
 }
 
 

@@ -1,5 +1,4 @@
-﻿function readSentSMS(currentMessage) {
-
+﻿function readSentSMS(currentMessage) {   
     $.ajax({
         type: "GET",
         dataType: "json",
@@ -24,7 +23,7 @@ $('#document').ready(function () {
 
     ajax_call.call();
 
-    var interval = 1000 * 5;
+    var interval = 1000 * 3;
     window.setInterval(ajax_call, interval);
 
     function errorOnAjax() {
@@ -111,7 +110,7 @@ function readSentMessage(data) {
     $('#sms_id_6').append(`
           <div class="ui icon header">
             <i class="envelope open outline icon"></i>
-            ${data}
+            ${data.message}
           </div>
           <div class="actions">
             <center>

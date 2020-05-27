@@ -154,7 +154,11 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
 
             int currentID = Convert.ToInt32(messageID);
 
-            var message = db.SMS.Where(m => m.ID == currentID).Select(m => m.Message).FirstOrDefault();
+            var message = db.SMS.Where(m => m.ID == currentID).Select(e => new
+            {
+                id = e.ID,
+                message = e.Message
+            }).FirstOrDefault();
 
             return Json(message, JsonRequestBehavior.AllowGet);
         }
