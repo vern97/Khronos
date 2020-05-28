@@ -5,7 +5,6 @@ using System.Web.Mvc;
 using BeyondTheTutor.DAL;
 using BeyondTheTutor.Models.SMSModels;
 using Microsoft.AspNet.Identity;
-using Newtonsoft.Json;
 
 namespace BeyondTheTutor.Areas.Tutor.Controllers
 {

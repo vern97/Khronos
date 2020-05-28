@@ -22,6 +22,22 @@ function readSMS(currentMessage) {
     });
 };
 
+function sendResponse(currentID) {
+
+    getUserResponse = document.querySelector('#userResponse');
+
+    userResponse = getUserResponse.value;
+
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: "/Tutor/SMSReplies/SendResponse",
+        data: { 'messageID': currentID, 'userResponse': userResponse },
+        success: showSuccessfulResponse,
+        error: errorOnAjax
+    });
+};
+
 $('#document').ready(function () {
 
     var ajax_call = function () {
@@ -160,19 +176,15 @@ function readMessage(data) {
             <center>
                <button class="ui button">Toggle Reply Form</button>
             </center>
-             <div class="ui divider"></div>
                <div class="ui one column padded grid">
                  <div class="column">
-
-                    <div class="ui equal width form" style="display: none; text-align: center;">
-                        <div class="field">
-                            
-                            <label>Compose Message</label>
-                            <textarea></textarea>
-                           
+                    <div class="response" style="display: none; text-align: center;">
+                        <div class="field">                           
+                            <h5>Compose Message</h5>
+                            <textarea id="userResponse"></textarea>                          
                         </div>
                         <div class="ui hidden divider"></div>
-                        <button onclick="sendResponse()" class="fluid ui button schedule" id="sms-1">Send Reply</button>
+                        <button onclick="sendResponse(${data.id})" class="fluid ui button schedule">Send Reply</button>
                     </div>
                  </div>
             </div>
@@ -180,8 +192,34 @@ function readMessage(data) {
     $('#sms_id_3').modal('show');
 
     $("button").click(function () {
-        $(".ui.equal.width.form").toggle();
+        $(".response").toggle();
     });
+}
+
+function showSuccessfulResponse(data) {
+    console.log('success');
+
+    $('#sms_id_3').empty();
+
+    $('#sms_id_3').append(`
+        <div class="ui modal" id="sms_id_3"></div>
+            `)
+
+    $('#sms_id_3').append(`
+          <div class="ui icon header">
+            <i class="envelope outline icon"></i>
+            ${data}
+          </div>
+          <div class="actions">
+            <center>
+                <div class="ui green ok inverted button">
+                  <i class="checkmark icon"></i>
+                  OK
+                </div>
+            </center>
+          </div>
+        `)
+    $('#sms_id_3').modal('show');
 }
 
 

@@ -194,11 +194,12 @@
     <Compile Include="Areas\Student\Controllers\ZoomController.cs" />
     <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
     <Compile Include="Areas\Tutor\Controllers\HomeController.cs" />
-    <Compile Include="Areas\Tutor\Controllers\SMSArchivesController.cs" />
-    <Compile Include="Areas\Tutor\Controllers\SMsTutorController.cs" />
+    <Compile Include="Areas\Tutor\Controllers\MessagesControllers\SMSArchivesController.cs" />
+    <Compile Include="Areas\Tutor\Controllers\MessagesControllers\SMSRepliesController.cs" />
+    <Compile Include="Areas\Tutor\Controllers\MessagesControllers\SMsTutorController.cs" />
     <Compile Include="Areas\Tutor\Controllers\TutoringApptsController.cs" />
     <Compile Include="Areas\Tutor\Controllers\TutoringServiceAlertsController.cs" />
-    <Compile Include="Areas\Tutor\Controllers\TutorMessagesController.cs" />
+    <Compile Include="Areas\Tutor\Controllers\MessagesControllers\TutorMessagesController.cs" />
     <Compile Include="Areas\Tutor\Controllers\TutorSchedulesController.cs" />
     <Compile Include="Areas\Tutor\Controllers\ZoomController.cs" />
     <Compile Include="Areas\Tutor\TutorAreaRegistration.cs" />
@@ -725,6 +726,7 @@
     <Folder Include="Areas\Student\Data\" />
     <Folder Include="Areas\Student\Views\Zoom\" />
     <Folder Include="Areas\Tutor\Data\" />
+    <Folder Include="Areas\Tutor\Views\SMSReplies\" />
     <Folder Include="Views\ZoomAPI\" />
   </ItemGroup>
   <ItemGroup>

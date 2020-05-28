@@ -1,4 +1,3 @@
 ﻿SELECT * FROM SMS
 
-SELECT * FROM SMSArchives
-
+SELECT * FROM SMSReplies
