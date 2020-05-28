@@ -13,9 +13,14 @@
             <div class="row">
                 <div class="three wide column">
                     @* Real-time alerts for requested tutoring requests - DO NOT DELETE *@
-                    <div id="student_requests">
+                    <div class="ui segment">
+                        <div style="overflow-y:scroll; height:300px; background:white">
+                            <div class="ui feed" id="student_alerts" style="margin-right:10px;">
 
+                            </div>
+                        </div>
                     </div>
+
                     @* Real-time alerts for requested tutoring requests - DO NOT DELETE *@
                 </div>
                 <div class="ten wide column">
@@ -36,7 +41,7 @@
             <div class="row">
                 <div class="three wide column">
 
-                        <div id="student_card"></div>
+                    <div id="student_card"></div>
 
                 </div>
                 <div class="ten wide column">
@@ -115,4 +120,5 @@
     <script src="~/Scripts/displaystudentappts.js"></script>
     <script src="~/Scripts/zoomstudent.js"></script>
     <script src="~/Scripts/displaystudent.js"></script>
+    <script src="~/Scripts/student-alerts.js"></script>
 }

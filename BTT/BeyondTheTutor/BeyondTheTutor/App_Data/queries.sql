@@ -1,5 +1,5 @@
-﻿SELECT * FROM SMS
+﻿SELECT * FROM BTTUsers
 
-SELECT * FROM SMSReplies
+SELECT * FROM Admins
 
-SELECT * FROM BTTUsers
+SELECT * FROM StudentAlerts

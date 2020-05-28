@@ -6,6 +6,7 @@ namespace BeyondTheTutor.DAL
     using BeyondTheTutor.Models.TimeSheetModels;
 	using BeyondTheTutor.Models.ProfilePictureModels;
     using BeyondTheTutor.Models.SMSModels;
+    using BeyondTheTutor.Models.StudentAlertModels;
 	
     public partial class BeyondTheTutorContext : DbContext
     {
@@ -36,6 +37,8 @@ namespace BeyondTheTutor.DAL
         public virtual DbSet<WorkHour> WorkHours { get; set; }
         public virtual DbSet<SM> SMS { get; set; }
         public virtual DbSet<SMSArchive> SMSArchives { get; set; }
+        public virtual DbSet<StudentAlert> StudentAlerts { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Day>()
@@ -138,6 +141,11 @@ namespace BeyondTheTutor.DAL
                 .WithRequired(e => e.BTTUser)
                 .HasForeignKey(e => e.Receiver);
 
+            modelBuilder.Entity<BTTUser>()
+                .HasMany(e => e.StudentAlerts)
+                .WithRequired(e => e.BTTUser)
+                .HasForeignKey(e => e.AdminID);
+
             modelBuilder.Entity<SM>()
                 .Property(e => e.Subject)
                 .IsUnicode(false);
@@ -151,6 +159,10 @@ namespace BeyondTheTutor.DAL
                 .IsUnicode(false);
 
             modelBuilder.Entity<SMSArchive>()
+                .Property(e => e.Message)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<StudentAlert>()
                 .Property(e => e.Message)
                 .IsUnicode(false);
         }
