@@ -31,8 +31,8 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
                     date = e.DateSent,
                     subject = e.Subject,
                     message = e.Message,
-                    sender = e.Sender, 
-                    receiver = currentUserID, 
+                    sender = e.Sender,
+                    receiver = currentUserID,
                     priority = e.Priority
                 }).SingleOrDefault();
 
@@ -86,12 +86,12 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
             db.SaveChanges();
 
             string jsonString = JsonConvert.SerializeObject("Message Deleted Successfully", Formatting.Indented);
-                return new ContentResult
-                {
-                    Content = jsonString,
-                    ContentType = "application/json",
-                    ContentEncoding = System.Text.Encoding.UTF8
-                };
+            return new ContentResult
+            {
+                Content = jsonString,
+                ContentType = "application/json",
+                ContentEncoding = System.Text.Encoding.UTF8
+            };
         }
 
         protected override void Dispose(bool disposing)

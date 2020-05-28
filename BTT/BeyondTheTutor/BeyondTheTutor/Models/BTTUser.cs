@@ -22,9 +22,6 @@ namespace BeyondTheTutor.Models
             SMS = new HashSet<SM>();
             SMS1 = new HashSet<SM>();
             SMSArchives = new HashSet<SMSArchive>();
-            SMSReplies = new HashSet<SMSReply>();
-            SMSReplies1 = new HashSet<SMSReply>();
-
         }
 
         public int ID { get; set; }
@@ -77,11 +74,5 @@ namespace BeyondTheTutor.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SMSArchive> SMSArchives { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SMSReply> SMSReplies { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SMSReply> SMSReplies1 { get; set; }
     }
 }

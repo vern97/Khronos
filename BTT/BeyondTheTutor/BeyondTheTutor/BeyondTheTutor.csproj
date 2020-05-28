@@ -230,8 +230,6 @@
     <Compile Include="Models\ProfilePictureModels\ProfilePicture.cs" />
     <Compile Include="Models\SMSModels\SM.cs" />
     <Compile Include="Models\SMSModels\SMSArchive.cs" />
-    <Compile Include="Models\SMSModels\SMSReply.cs" />
-    <Compile Include="Models\SMSModels\SMSStatus.cs" />
     <Compile Include="Models\SurveyModels\Answer.cs" />
     <Compile Include="DAL\BeyondTheTutorContext.cs" />
     <Compile Include="Models\BTTUser.cs" />
@@ -541,12 +539,12 @@
     <Content Include="Scripts\calculators.js" />
     <Content Include="Scripts\disable-service-alert-dropdown.js" />
     <Content Include="Scripts\displayrequestedappts.js" />
-    <Content Include="Scripts\displaysavedsms.js" />
-    <Content Include="Scripts\displaysentsms.js" />
+    <Content Include="Scripts\smssystem\displaysavedsms.js" />
+    <Content Include="Scripts\smssystem\displaysentsms.js" />
     <Content Include="Scripts\displaystudent.js" />
     <Content Include="Scripts\displaystudentappts.js" />
     <Content Include="Scripts\displaytutors.js" />
-    <Content Include="Scripts\displaytutorsms.js" />
+    <Content Include="Scripts\smssystem\displaytutorsms.js" />
     <Content Include="Scripts\fullcalendar.js" />
     <Content Include="Scripts\fullcalendar.min.js" />
     <Content Include="Scripts\gcal.js" />
@@ -660,8 +658,8 @@
     <Content Include="Scripts\semantic.js" />
     <Content Include="Scripts\semantic.min.js" />
     <Content Include="Scripts\service-alert.js" />
-    <Content Include="Scripts\smsadmin.js" />
-    <Content Include="Scripts\smstutor.js" />
+    <Content Include="Scripts\smssystem\smsadmin.js" />
+    <Content Include="Scripts\smssystem\smstutor.js" />
     <Content Include="Scripts\zoomstudent.js" />
     <Content Include="Scripts\zoomtutor.js" />
     <Content Include="Web.config" />
@@ -726,6 +724,7 @@
     <Folder Include="Areas\Student\Data\" />
     <Folder Include="Areas\Student\Views\Zoom\" />
     <Folder Include="Areas\Tutor\Data\" />
+    <Folder Include="Areas\Tutor\Views\SMSArchives\" />
     <Folder Include="Areas\Tutor\Views\SMSReplies\" />
     <Folder Include="Views\ZoomAPI\" />
   </ItemGroup>

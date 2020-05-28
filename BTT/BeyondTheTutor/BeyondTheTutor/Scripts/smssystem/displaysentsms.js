@@ -57,8 +57,8 @@ $('#document').ready(function () {
                     weight = "bold";
                 }
 
-                if (data[i].receiver == " " || data[i].receiver == null) {
-                    data[i].receiver = "Everyone";
+                if (data[i].target == " " || data[i].target == null) {
+                    data[i].target= "Everyone";
                 }
 
                 $('#sent_messages').append(`
@@ -75,7 +75,7 @@ $('#document').ready(function () {
                     <tr>
                         <td style="color: ${color}; font-weight: ${weight};">${data[i].priority}</td>
                         <td>${data[i].subject}</td>
-                        <td>${data[i].receiver}</td>
+                        <td>${data[i].target}</td>
                         <td>${data[i].date}</td>
                         <td>${data[i].time}</td>         
                     </tr>

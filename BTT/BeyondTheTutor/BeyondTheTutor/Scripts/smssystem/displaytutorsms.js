@@ -52,7 +52,7 @@ $('#document').ready(function () {
 
     ajax_call.call();
 
-    var interval = 1000 * 3;
+    var interval = 1000 * 2;
     window.setInterval(ajax_call, interval);
 
     function errorOnAjax() {

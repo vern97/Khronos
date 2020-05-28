@@ -11,7 +11,7 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
     [Authorize(Roles = "Tutor, Admin")]
     public class TutorMessagesController : Controller
     {
-        private BeyondTheTutorContext db = new BeyondTheTutorContext();    
+        private BeyondTheTutorContext db = new BeyondTheTutorContext();
         public ActionResult GetNewMessages()
         {
             var userID = User.Identity.GetUserId();
@@ -19,29 +19,21 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
 
             // get all messages that are sent to the logged in user or that were sent system wide and filter out messages sent from the logged in user
             // then make sure all messages are ordered by date and time 
-            var incomingMessages = db.SMSStatuses.Join(db.SMS.Where(e => e.Receiver == currentUserID || e.Receiver == null && e.Sender != currentUserID),
-                s => s.SMSID,
-                e => e.ID,
-                (s, e) => new { s, e })                
-                .Select(se => new
-            {
-                id = se.s.SMSID,
-                date = se.e.DateSent,
-                time = se.e.DateSent,
-                sender = se.e.BTTUser1.FirstName + " " + se.e.BTTUser1.LastName,
-                subject = se.e.Subject,
-                message = se.e.Message,
-                priority = se.e.Priority,
-                read = se.s.Read, 
-                saved = se.s.Saved
-            }).OrderByDescending(se => se.date).ThenBy(se => se.time).ToList();
+            var allMessages = db.SMS.Where(m => m.Receiver == currentUserID || m.Receiver == null && m.Sender != currentUserID).ToList()
+                .Select(e => new
+                {
+                    id = e.ID,
+                    date = e.DateSent
+                }).ToList();
+
+            #pragma warning disable CS0472 // The result of the expression is always the same since a value of this type is never equal to 'null'
 
             // this function autodeletes messages from the system over 1 week old
-            for (int i = 0; i < incomingMessages.Count; i++)
+            for (int i = 0; i < allMessages.Count; i++)
             {
                 DateTime current = DateTime.Now;
-                DateTime saved = incomingMessages[i].date;
-                int savedID = incomingMessages[i].id;
+                DateTime saved = allMessages[i].date;
+                int savedID = allMessages[i].id;
 
                 if (saved.AddDays(7) < current)
                 {
@@ -50,6 +42,20 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
                     db.SaveChanges();
                 }
             }
+
+            var incomingMessages = db.SMS.Where(m => m.Receiver == currentUserID || m.Receiver == null && m.Sender != currentUserID)
+                .Select(e => new
+                {
+                    id = e.ID,
+                    date = e.DateSent,
+                    time = e.DateSent,
+                    subject = e.Subject,
+                    message = e.Message,
+                    sender = e.BTTUser1.FirstName + " " + e.BTTUser1.LastName,
+                    priority = e.Priority
+                }).OrderByDescending(t => t.date).ThenBy(t => t.time).ToList();
+
+            #pragma warning restore CS0472 // The result of the expression is always the same since a value of this type is never equal to 'null'
 
             // convert the messages so that datetime is formatted correctly
             var convertedMessages = incomingMessages.Select(e => new
@@ -61,12 +67,10 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
                 subject = e.subject,
                 message = e.message,
                 priority = e.priority, 
-                read = e.read, 
-                saved = e.saved
 
             }).ToList();         
 
-            return Json(convertedMessages, JsonRequestBehavior.AllowGet);
+            return Json(convertedMessages, JsonRequestBehavior.AllowGet); 
         }
 
         public ActionResult GetSentMessages()
@@ -75,22 +79,17 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
             var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
 
             // get all messages sent by the logged in user
-            var outgoingMessages = db.SMSStatuses.Join(db.SMS.Where(e => e.Sender == currentUserID),
-                s => s.SMSID,
-                e => e.ID,
-                (s, e) => new { s, e }).Where(se => se.s.Sent == true)
-                .Select(se => new
+            var outgoingMessages = db.SMS.Where(m => m.Sender == currentUserID)
+                .Select(e => new
                 {
-                    id = se.e.ID,
-                    date = se.e.DateSent,
-                    time = se.e.DateSent,
-                    receiver = se.e.BTTUser.FirstName + " " + se.e.BTTUser.LastName,
-                    subject = se.e.Subject,
-                    message = se.e.Message,
-                    priority = se.e.Priority,
-                    read = se.s.Read,
-                    saved = se.s.Saved
-                }).OrderByDescending(se => se.date).ThenBy(se => se.time).ToList();
+                    id = e.ID,
+                    date = e.DateSent,
+                    time = e.DateSent,
+                    subject = e.Subject,
+                    message = e.Message,
+                    target = e.BTTUser.FirstName + " " + e.BTTUser.LastName,
+                    priority = e.Priority
+                }).OrderByDescending(t => t.date).ThenBy(t => t.time).ToList();
 
             // convert the messages so that datetime is formatted correctly
             var convertedMessages = outgoingMessages.Select(e => new
@@ -98,13 +97,10 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
                 id = e.id,
                 date = e.date.ToString("MM-dd-yyyy"),
                 time = e.date.ToString("hh:mm tt"),
-                receiver = e.receiver,
+                target = e.target,
                 subject = e.subject,
                 message = e.message,
                 priority = e.priority,
-                read = e.read,
-                saved = e.saved
-
             }).ToList();
 
             return Json(convertedMessages, JsonRequestBehavior.AllowGet);
