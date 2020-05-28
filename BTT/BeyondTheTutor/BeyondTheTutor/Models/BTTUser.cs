@@ -8,6 +8,7 @@ namespace BeyondTheTutor.Models
     using BeyondTheTutor.Models.SurveyModels;
     using BeyondTheTutor.Models.ProfilePictureModels;
     using BeyondTheTutor.Models.SMSModels;
+    using BeyondTheTutor.Models.StudentAlertModels;
 
     public partial class BTTUser
     {
@@ -24,6 +25,7 @@ namespace BeyondTheTutor.Models
             SMSArchives = new HashSet<SMSArchive>();
             SMSReplies = new HashSet<SMSReply>();
             SMSReplies1 = new HashSet<SMSReply>();
+            StudentAlerts = new HashSet<StudentAlert>();
 
         }
 
@@ -83,5 +85,8 @@ namespace BeyondTheTutor.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SMSReply> SMSReplies1 { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StudentAlert> StudentAlerts { get; set; }
     }
 }

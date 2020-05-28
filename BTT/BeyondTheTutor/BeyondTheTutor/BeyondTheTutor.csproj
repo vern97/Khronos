@@ -19,7 +19,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44342</IISExpressSSLPort>
+    <IISExpressSSLPort>44396</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -184,12 +184,14 @@
     <Compile Include="Areas\Admin\Controllers\ClassesController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\SMsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StudentAlertsController.cs" />
     <Compile Include="Areas\Admin\Controllers\TutorSchedulesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ElevatedAccountController.cs" />
     <Compile Include="Areas\Professor\Controllers\HomeController.cs" />
     <Compile Include="Areas\Professor\Controllers\TutoringApptsController.cs" />
     <Compile Include="Areas\Professor\ProfessorAreaRegistration.cs" />
     <Compile Include="Areas\Student\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Student\Controllers\StudentAlertsController.cs" />
     <Compile Include="Areas\Student\Controllers\TutoringApptsController.cs" />
     <Compile Include="Areas\Student\Controllers\ZoomController.cs" />
     <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
@@ -231,6 +233,7 @@
     <Compile Include="Models\SMSModels\SMSArchive.cs" />
     <Compile Include="Models\SMSModels\SMSReply.cs" />
     <Compile Include="Models\SMSModels\SMSStatus.cs" />
+    <Compile Include="Models\StudentAlertModels\StudentAlert.cs" />
     <Compile Include="Models\SurveyModels\Answer.cs" />
     <Compile Include="DAL\BeyondTheTutorContext.cs" />
     <Compile Include="Models\BTTUser.cs" />
@@ -530,6 +533,11 @@
     <Content Include="Areas\Tutor\Views\Zoom\Index.cshtml" />
     <Content Include="Areas\Admin\Views\SMs\Create.cshtml" />
     <Content Include="Areas\Tutor\Views\SMsTutor\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\StudentAlerts\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\StudentAlerts\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\StudentAlerts\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\StudentAlerts\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\StudentAlerts\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Compile Include="Models\ViewModels\AllUsersViewModel.cs" />
     <Compile Include="Models\TimeSheetModels\TutorTimeSheetsCustomModel.cs" />
@@ -657,6 +665,7 @@
     <Content Include="Scripts\service-alert.js" />
     <Content Include="Scripts\smsadmin.js" />
     <Content Include="Scripts\smstutor.js" />
+    <Content Include="Scripts\student-alerts.js" />
     <Content Include="Scripts\zoomstudent.js" />
     <Content Include="Scripts\zoomtutor.js" />
     <Content Include="Web.config" />

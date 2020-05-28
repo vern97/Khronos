@@ -1,4 +1,5 @@
-﻿SELECT * FROM SMS
+﻿SELECT * FROM BTTUsers
 
-SELECT * FROM SMSArchives
+SELECT * FROM Admins
 
+SELECT * FROM StudentAlerts
