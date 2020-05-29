@@ -14,8 +14,6 @@ DROP TABLE dbo.WorkHours;
 DROP TABLE dbo.Days;
 DROP TABLE dbo.TimeSheets;
 
-DROP TABLE dbo.SMSReplies;
-DROP TABLE dbo.SMSStatuses;
 DROP TABLE dbo.SMSArchives;
 DROP TABLE dbo.SMS;
 

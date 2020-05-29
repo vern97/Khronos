@@ -13,7 +13,7 @@
     $.ajax({
         type: "GET",
         dataType: "json",
-        url: "/SMs/SendMessageAdmin",
+        url: "/SMsTutor/SendMessageTutor",
         data: { 'subject': subject, 'message': message, 'receiver': receiver, 'priority': priority },
         success: showSuccess,
         error: errorOnAjax
@@ -24,15 +24,14 @@ function errorOnAjax() {
     console.log("ERROR in ajax request.");
 }
 
-$(document).ready(function () {
-    $('#sms-1').click(function () {
-        $('#sms_id_1').modal('show');
-    });
-});
-
 function showSuccess(data) {
     console.log('success');
-    $('#sms_id_1').empty();
+
+    $('#sent_success_modal').empty();
+
+    $('#show_saved_modal').append(`
+         <div class="ui tiny modal" id="sms_id_1"></div>
+            `)
 
     $('#sms_id_1').append(`
           <div class="ui icon header">
@@ -48,4 +47,5 @@ function showSuccess(data) {
             </center>
           </div>
         `)
+    $('#sms_id_1').modal('show');
 }

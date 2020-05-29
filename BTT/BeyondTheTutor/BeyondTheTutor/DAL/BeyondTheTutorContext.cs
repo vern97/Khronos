@@ -37,8 +37,6 @@ namespace BeyondTheTutor.DAL
         public virtual DbSet<WorkHour> WorkHours { get; set; }
         public virtual DbSet<SM> SMS { get; set; }
         public virtual DbSet<SMSArchive> SMSArchives { get; set; }
-        public virtual DbSet<SMSReply> SMSReplies { get; set; }
-        public virtual DbSet<SMSStatus> SMSStatuses { get; set; }
         public virtual DbSet<StudentAlert> StudentAlerts { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -140,20 +138,8 @@ namespace BeyondTheTutor.DAL
 
             modelBuilder.Entity<BTTUser>()
                 .HasMany(e => e.SMSArchives)
-                .WithOptional(e => e.BTTUser)
-                .HasForeignKey(e => e.Receiver)
-                .WillCascadeOnDelete();
-
-            modelBuilder.Entity<BTTUser>()
-                .HasMany(e => e.SMSReplies)
                 .WithRequired(e => e.BTTUser)
-                .HasForeignKey(e => e.Receiver)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<BTTUser>()
-                .HasMany(e => e.SMSReplies1)
-                .WithRequired(e => e.BTTUser1)
-                .HasForeignKey(e => e.Sender);
+                .HasForeignKey(e => e.Receiver);
 
             modelBuilder.Entity<BTTUser>()
                 .HasMany(e => e.StudentAlerts)
@@ -168,27 +154,12 @@ namespace BeyondTheTutor.DAL
                 .Property(e => e.Message)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<SM>()
-                .HasMany(e => e.SMSReplies)
-                .WithRequired(e => e.SM)
-                .HasForeignKey(e => e.SMSID)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<SM>()
-                .HasMany(e => e.SMSStatuses)
-                .WithRequired(e => e.SM)
-                .HasForeignKey(e => e.SMSID);
-
             modelBuilder.Entity<SMSArchive>()
                 .Property(e => e.Subject)
                 .IsUnicode(false);
 
             modelBuilder.Entity<SMSArchive>()
                 .Property(e => e.Message)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<SMSReply>()
-                .Property(e => e.Response)
                 .IsUnicode(false);
 
             modelBuilder.Entity<StudentAlert>()

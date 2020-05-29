@@ -35,16 +35,21 @@
                             </div>
                         </div>
                         <div class="ui hidden divider"></div>
-                        <button onclick="sendSMS()" class="fluid ui button schedule" id="sms-1">Send Message</button>
+                        <button onclick="sendSMS()" class="ui vertical animated button fluid ui button schedule" tabindex="0" id="sms-1">
+                            <div class="hidden content"><i class="envelope outline icon"></i></div>
+                            <div class="visible content">
+                                Send Message
+                            </div>
+                        </button>
                     </div>
-                    <div class="ui basic modal" id="sms_id_1">
+                </div>
 
-                    </div>
+                @* Modal that shows whether a message was successfully sent *@
+                <div id="sent_success_modal">
 
                 </div>
 
                 <div class="ui bottom attached tab segment" data-tab="second">
-
 
                     @* SECTION TO DISPLAY INCOMING MESSAGES DO NOT DELETE *@
                     <div id="incoming_sms">
@@ -53,7 +58,12 @@
                     @* END INCOMING MESSAGES SECTION *@
 
                     @* Modal that shows whether a message was successfully saved *@
-                    <div class="ui basic modal" id="sms_id_2">
+                    <div id="show_saved_modal">
+
+                    </div>
+
+                    @* Modal that shows the incoming message *@
+                    <div id="read_sms_modal">
 
                     </div>
 
@@ -67,6 +77,11 @@
                     </div>
                     @* END OUTGOING MESSAGES SECTION *@
 
+                    @* Modal to read sent messages *@
+                    <div id="read_sent_sms">
+
+                    </div>
+
                 </div>
 
                 <div class="ui bottom attached tab segment" data-tab="fourth">
@@ -78,7 +93,12 @@
                     @* END ARCHIVED MESSAGES SECTION *@
 
                     @* Modal that shows whether a message was successfully deleted *@
-                    <div class="ui basic modal" id="sms_id_3">
+                    <div id="show_deleted">
+
+                    </div>
+
+                    @* Modal to read archived messages *@
+                    <div id="read_archived_sms">
 
                     </div>
 
@@ -94,8 +114,8 @@
 @section scripts
 {
     <script src="~/Scripts/main.js"></script>
-    <script src="~/Scripts/smsadmin.js"></script>
-    <script src="~/Scripts/displaytutorsms.js"></script>
-    <script src="~/Scripts/displaysentsms.js"></script>
-    <script src="~/Scripts/displaysavedsms.js"></script>
+    <script src="~/Scripts/smssystem/smsadmin.js"></script>
+    <script src="~/Scripts/smssystem/displaytutorsms.js"></script>
+    <script src="~/Scripts/smssystem/displaysentsms.js"></script>
+    <script src="~/Scripts/smssystem/displaysavedsms.js"></script>
 }

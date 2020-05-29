@@ -1,4 +1,15 @@
-﻿$('#document').ready(function () {
+﻿function readSentSMS(currentMessage) {   
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: "/Tutor/TutorMessages/ReadMessage",
+        data: { 'messageID': currentMessage },
+        success: readSentMessage,
+        error: errorOnAjax
+    });
+};
+
+$('#document').ready(function () {
 
     var ajax_call = function () {
         $.ajax({
@@ -12,7 +23,7 @@
 
     ajax_call.call();
 
-    var interval = 1000 * 5;
+    var interval = 1000 * 2;
     window.setInterval(ajax_call, interval);
 
     function errorOnAjax() {
@@ -46,8 +57,8 @@
                     weight = "bold";
                 }
 
-                if (data[i].receiver == " " || data[i].receiver == null) {
-                    data[i].receiver = "Everyone";
+                if (data[i].target == " " || data[i].target == null) {
+                    data[i].target= "Everyone";
                 }
 
                 $('#sent_messages').append(`
@@ -64,7 +75,7 @@
                     <tr>
                         <td style="color: ${color}; font-weight: ${weight};">${data[i].priority}</td>
                         <td>${data[i].subject}</td>
-                        <td>${data[i].receiver}</td>
+                        <td>${data[i].target}</td>
                         <td>${data[i].date}</td>
                         <td>${data[i].time}</td>         
                     </tr>
@@ -77,7 +88,12 @@
                 <tbody>
                     <tr>                      
                         <td rows="2" colspan="5" style="max-width: 150px; border-bottom: solid; border-bottom-width: 2px; border-bottom-color: #db0a29;">   
-                           ${data[i].message}                         
+                        <button onclick="readSentSMS('${data[i].id}')" class="ui vertical animated button mini ui fluid button" tabindex="0">
+                            <div class="hidden content"><i class="envelope open outline icon"></i></div>
+                            <div class="visible content">
+                                View Message
+                            </div>
+                        </button>                                                
                         </td>
                     </tr>
                 </tbody>
@@ -86,3 +102,30 @@
         }
     }
 });
+
+function readSentMessage(data) {
+    console.log('success');
+
+    $('#read_sent_sms').empty();
+
+    $('#read_sent_sms').append(`
+        <div class="ui tiny modal" id="sms_id_6"></div>
+            `)
+
+    $('#sms_id_6').append(`
+          <div class="ui icon header">
+            <i class="envelope open outline icon"></i>
+            ${data.message}
+          </div>
+          <div class="actions">
+            <center>
+                <div class="ui green ok inverted button">
+                  <i class="checkmark icon"></i>
+                  OK
+                </div>
+            </center>
+          </div>
+        `)
+    $('#sms_id_6').modal('show');
+}
+

@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.WebPages;
 using BeyondTheTutor.DAL;
 using BeyondTheTutor.Models.SMSModels;
 using Microsoft.AspNet.Identity;
-using Newtonsoft.Json;
 
 
 namespace BeyondTheTutor.Areas.Admin.Controllers
@@ -53,13 +51,7 @@ namespace BeyondTheTutor.Areas.Admin.Controllers
             // the only bad input would be an empty message so check for that here
             if (message == null || message.IsEmpty() == true)
             {
-                string jsonString = JsonConvert.SerializeObject("Message Cannot Be Empty", Formatting.Indented);
-                return new ContentResult
-                {
-                    Content = jsonString,
-                    ContentType = "application/json",
-                    ContentEncoding = System.Text.Encoding.UTF8
-                };
+                return Json("Message Cannot Be Empty", JsonRequestBehavior.AllowGet);
             }
             else
             {
@@ -95,41 +87,14 @@ namespace BeyondTheTutor.Areas.Admin.Controllers
                     db.SMS.Add(SMSMessage);
                     db.SaveChanges();
 
-                    // set the statuses for the message
-                    SMSStatus newMessageStatus = new SMSStatus
-                    {
-                        Sent = true, 
-                        Received = true,
-                        Read = false,
-                        Saved = false,
-                        SMSID = SMSMessage.ID
-                    };
-
-                    db.SMSStatuses.Add(newMessageStatus);
-                    db.SaveChanges();
-
-                    string jsonString = JsonConvert.SerializeObject("Message Sent", Formatting.Indented);
-                    return new ContentResult
-                    {
-                        Content = jsonString,
-                        ContentType = "application/json",
-                        ContentEncoding = System.Text.Encoding.UTF8
-                    };
-
+                    return Json("Message Sent", JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
-                    string jsonString = JsonConvert.SerializeObject("Something Went Wrong", Formatting.Indented);
-                    return new ContentResult
-                    {
-                        Content = jsonString,
-                        ContentType = "application/json",
-                        ContentEncoding = System.Text.Encoding.UTF8
-                    };
+                    return Json("Something Went Wrong", JsonRequestBehavior.AllowGet);
                 }
             }
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
