@@ -32,22 +32,22 @@
         @Html.ActionLink("Professor Portal", "Index", "Home", new { area = "professor" }, htmlAttributes: new { @class = (ViewBag.Current == "ProfHomeIndex" ? "item red active" : "item") })
         <div class="right menu">
             <div class="ui dropdown item">
-                Student Analysis
+                Tutoring &amp; Student Analysis
                 <i class="dropdown icon"></i>
-                <div class="menu">
-                    @Html.ActionLink("Analyze Tutoring Requests", "Index", "TutoringAppts", new { area = "professor" }, htmlAttributes: new { @class = (ViewBag.Current == "ProfApptsIndex" ? "item red active" : "item") })
+                <div class="menu" >
+                    @Html.ActionLink("Tutoring Requests", "Index", "TutoringAppts", new { area = "professor" }, htmlAttributes: new { style="text-align: center;", @class = (ViewBag.Current == "ProfApptsIndex" ? "item red active" : "item") })
                     @if (ViewBag.Current == "ProfDataView")
                     {
                         <a class="item red active disabled" href="/Professor/ViewData">
                             <i class="chart pie icon"></i>
-                            Analyze Students Tutoring
+                            Students & Appointments
                         </a>
                     }
                     else
                     {
                         <a class="item" href="/Professor/ViewData">
                             <i class="chart pie icon"></i>
-                            Analyze Students Tutoring
+                            Students & Appointments
                         </a>
                     }
                 </div>
