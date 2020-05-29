@@ -119,9 +119,14 @@
                             @Html.ValidationMessageFor(model => model.TypeOfMeeting, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                        <div class="ui hidden divider"></div>
-                        <button class="fluid ui button schedule">Submit Request</button>
-                    <h2 style="color: green"><i>After requesting an appointment, you will be able to take a <a href="Index">survey</a> for the class.</i></h2>
+                    <div class="ui hidden divider"></div>
+                    <button class="fluid ui button schedule">Submit Request</button>
+                    <h3 style="color: green">
+                        <i>
+                            <i class="pin icon" id="message"></i>
+                            After requesting an appointment, you will be able to take a <a href="Index">quick survey</a> for the class.
+                        </i>
+                    </h3>
                 </form>
             }
         </div>
