@@ -1,0 +1,167 @@
+﻿@model ViewDataViewModel
+@using BeyondTheTutor.Models.ViewModels;
+
+@{
+
+}
+<body class="wou-silver-bg">
+    <div class="ui one column centered padded grid" style="padding-top:10px;">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+        <div class="ui segment background-color-white">
+
+            <div class="ui horizontal segments">
+                <div class="ui red padded segment">
+                    <h1 class="ui center aligned header"><i class="user icon"></i>Students using Beyond The Tutor</h1>
+                    <hr />
+                    <canvas id="pie-chart" style="min-width: 300px; min-height: 250px;" max-width="300" height="250px"></canvas>
+
+                </div>
+                <div class="ui red padded segment">
+                    <h1 class="ui center aligned header"><i class="chart bar icon"></i>ALL TIME Session Frequency per Course</h1>
+                    <hr />
+                    <canvas id="bar-chart" style="min-width: 300px; min-height: 250px;" max-width="300" height="250px"></canvas>
+                </div>
+            </div>
+            <div class="ui horizontal segments">
+                <div class="ui red padded segment">
+                    <h1 class="ui center aligned header"><i class="chart line icon"></i>Dated Session Frequency</h1>
+                    <hr />
+                    <canvas id="line" style="min-width: 1200px; max-height: 500px;" max-width="1200px" height="400"></canvas>
+
+                </div>
+            </div>
+
+            <script>
+new Chart(document.getElementById("pie-chart"), {
+    type: 'pie',
+    data: {
+        labels: ["Seniors", "Juniors", "Sophmores", "Freshmen"],
+        datasets: [{
+            label: "Students (Class Standing)",
+            backgroundColor: ["Black", "Green", "Teal", "Pink"],
+            data: [@ViewBag.seniors, @ViewBag.juniors, @ViewBag.sophmores, @ViewBag.freshmen]
+        }]
+    },
+    options: {
+        legend: {
+            position: 'left',
+            display: true,
+            labels: {
+                fontColor: 'rgb(255, 99, 132)',
+                fontSize: 20
+            }
+        }
+    }
+});
+
+var names = [];
+var counts = [];
+var colors = [];
+
+
+
+var dict = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.courseAptFreq));
+var color = 0;
+for (var key in dict) {
+    var value = dict[key];
+    names.push(key);
+    counts.push(value);
+
+
+    if (color == 0) {
+        color = 1;
+        colors.push('#FF0000');
+    } else {
+        color = 0;
+        colors.push('#838383')
+    }
+}
+
+
+var barChart = new Chart(document.getElementById("bar-chart"), {
+    type: 'horizontalBar',
+    data: {
+        labels: names,
+        datasets: [{
+            backgroundColor: colors,
+            minBarLength: 0,
+            data: counts
+        }]
+    },
+    options: {
+        scales: {
+            xAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    callback: function(value) {
+                        if (value % 1 === 0) {
+                            return value;
+                        }
+                    }
+                }
+            }]
+        },
+        legend: {
+            display: false
+        }
+    }
+});
+
+var monthFreq = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.courseAptFreq_dated));
+
+var months = [];
+var counts = [];
+for (var key in monthFreq) {
+    var value = monthFreq[key];
+    months.push(value);
+    counts.push(key);
+}
+var ctx = document.getElementById("line").getContext("2d");
+
+
+var myLineChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: counts,
+        
+        datasets: [{
+            borderColor: '#FF0000',
+            data: months
+        }]
+    },
+    options: {
+        responsive: false,
+        legend: {
+            display: false,
+        },
+        scales: {
+            yAxes: [{
+                display: true,
+                ticks: {
+                    min: 0, // minimum will be 0, unless there is a lower value.
+                    // OR //
+                    beginAtZero: true // minimum value will be 0.
+                }
+            }]
+        }
+    }
+});
+
+
+
+        
+
+                $(window).on('load', function() {
+    document.getElementById('line').scrollIntoView({
+            behavior: "smooth"
+        });
+})
+            </script>
+
+        </div>
+</body>
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+}

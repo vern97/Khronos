@@ -22,6 +22,9 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="~/Content/semantic.min.css">
+    <link href="~/Content/Chart.min.css" rel="stylesheet" />
+    <link href="~/Content/Chart.css" rel="stylesheet" />
+
 </head>
 <body>
     <div class="ui stackable secondary large pointing menu background-color-white" style="font-family: 'Roboto Slab';">
@@ -33,7 +36,7 @@
                 <i class="dropdown icon"></i>
                 <div class="menu">
                     @Html.ActionLink("Analyze Tutoring Requests", "Index", "TutoringAppts", new { area = "professor" }, htmlAttributes: new { @class = (ViewBag.Current == "ProfApptsIndex" ? "item red active" : "item") })
-                    @Html.ActionLink("Analyze Student Tutoring", "Index", "TutoringAppts", new { area = "professor" }, htmlAttributes: new { @class = (ViewBag.Current == "ProfApptsIndex" ? "item red active disabled" : "disabled item") })
+                    @Html.ActionLink("Analyze Students & Tutoring", "Index", "ViewData", new { area = "professor" }, htmlAttributes: new { @class = (ViewBag.Current == "ProfDataView" ? "item red active disabled" : "item") })
                 </div>
             </div>
             @Html.ActionLink("Surveys", "Index", "Surveys", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "ProfSurveyIndex" ? "item red active" : "item") })
