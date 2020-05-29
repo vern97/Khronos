@@ -5,7 +5,6 @@ using System.Web.Mvc;
 using BeyondTheTutor.DAL;
 using BeyondTheTutor.Models.SMSModels;
 using Microsoft.AspNet.Identity;
-using Newtonsoft.Json;
 
 namespace BeyondTheTutor.Areas.Tutor.Controllers
 {
@@ -31,8 +30,8 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
                     date = e.DateSent,
                     subject = e.Subject,
                     message = e.Message,
-                    sender = e.Sender, 
-                    receiver = currentUserID, 
+                    sender = e.Sender,
+                    receiver = currentUserID,
                     priority = e.Priority
                 }).SingleOrDefault();
 
@@ -51,23 +50,11 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
             {
                 db.SMSArchives.Add(savedMessage);
                 db.SaveChanges();
-                string jsonString = JsonConvert.SerializeObject("Message Saved", Formatting.Indented);
-                return new ContentResult
-                {
-                    Content = jsonString,
-                    ContentType = "application/json",
-                    ContentEncoding = System.Text.Encoding.UTF8
-                };
+                return Json("Message Saved", JsonRequestBehavior.AllowGet);
             }
             else
             {
-                string jsonString = JsonConvert.SerializeObject("Something Went Wrong", Formatting.Indented);
-                return new ContentResult
-                {
-                    Content = jsonString,
-                    ContentType = "application/json",
-                    ContentEncoding = System.Text.Encoding.UTF8
-                };
+                return Json("Something Went Wrong", JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -85,13 +72,7 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
             db.SMSArchives.Remove(sMSArchive);
             db.SaveChanges();
 
-            string jsonString = JsonConvert.SerializeObject("Message Deleted Successfully", Formatting.Indented);
-                return new ContentResult
-                {
-                    Content = jsonString,
-                    ContentType = "application/json",
-                    ContentEncoding = System.Text.Encoding.UTF8
-                };
+            return Json("Message Deleted Successfully", JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

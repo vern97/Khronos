@@ -19,7 +19,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44396</IISExpressSSLPort>
+    <IISExpressSSLPort>44342</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -197,11 +197,12 @@
     <Compile Include="Areas\Student\Controllers\ZoomController.cs" />
     <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
     <Compile Include="Areas\Tutor\Controllers\HomeController.cs" />
-    <Compile Include="Areas\Tutor\Controllers\SMSArchivesController.cs" />
-    <Compile Include="Areas\Tutor\Controllers\SMsTutorController.cs" />
+    <Compile Include="Areas\Tutor\Controllers\MessagesControllers\SMSArchivesController.cs" />
+    <Compile Include="Areas\Tutor\Controllers\MessagesControllers\SMSRepliesController.cs" />
+    <Compile Include="Areas\Tutor\Controllers\MessagesControllers\SMsTutorController.cs" />
     <Compile Include="Areas\Tutor\Controllers\TutoringApptsController.cs" />
     <Compile Include="Areas\Tutor\Controllers\TutoringServiceAlertsController.cs" />
-    <Compile Include="Areas\Tutor\Controllers\TutorMessagesController.cs" />
+    <Compile Include="Areas\Tutor\Controllers\MessagesControllers\TutorMessagesController.cs" />
     <Compile Include="Areas\Tutor\Controllers\TutorSchedulesController.cs" />
     <Compile Include="Areas\Tutor\Controllers\ZoomController.cs" />
     <Compile Include="Areas\Tutor\TutorAreaRegistration.cs" />
@@ -232,8 +233,6 @@
     <Compile Include="Models\ProfilePictureModels\ProfilePicture.cs" />
     <Compile Include="Models\SMSModels\SM.cs" />
     <Compile Include="Models\SMSModels\SMSArchive.cs" />
-    <Compile Include="Models\SMSModels\SMSReply.cs" />
-    <Compile Include="Models\SMSModels\SMSStatus.cs" />
     <Compile Include="Models\StudentAlertModels\StudentAlert.cs" />
     <Compile Include="Models\SurveyModels\Answer.cs" />
     <Compile Include="DAL\BeyondTheTutorContext.cs" />
@@ -546,17 +545,18 @@
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Compile Include="Models\ViewModels\AllUsersViewModel.cs" />
     <Compile Include="Models\TimeSheetModels\TutorTimeSheetsCustomModel.cs" />
+    <Content Include="Scripts\admin-student-alerts.js" />
     <Content Include="Scripts\calculators.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
     <Content Include="Scripts\disable-service-alert-dropdown.js" />
     <Content Include="Scripts\displayrequestedappts.js" />
-    <Content Include="Scripts\displaysavedsms.js" />
-    <Content Include="Scripts\displaysentsms.js" />
+    <Content Include="Scripts\smssystem\displaysavedsms.js" />
+    <Content Include="Scripts\smssystem\displaysentsms.js" />
     <Content Include="Scripts\displaystudent.js" />
     <Content Include="Scripts\displaystudentappts.js" />
     <Content Include="Scripts\displaytutors.js" />
-    <Content Include="Scripts\displaytutorsms.js" />
+    <Content Include="Scripts\smssystem\displaytutorsms.js" />
     <Content Include="Scripts\fullcalendar.js" />
     <Content Include="Scripts\fullcalendar.min.js" />
     <Content Include="Scripts\gcal.js" />
@@ -670,8 +670,8 @@
     <Content Include="Scripts\semantic.js" />
     <Content Include="Scripts\semantic.min.js" />
     <Content Include="Scripts\service-alert.js" />
-    <Content Include="Scripts\smsadmin.js" />
-    <Content Include="Scripts\smstutor.js" />
+    <Content Include="Scripts\smssystem\smsadmin.js" />
+    <Content Include="Scripts\smssystem\smstutor.js" />
     <Content Include="Scripts\student-alerts.js" />
     <Content Include="Scripts\zoomstudent.js" />
     <Content Include="Scripts\zoomtutor.js" />
@@ -737,7 +737,6 @@
     <Folder Include="Areas\Student\Data\" />
     <Folder Include="Areas\Student\Views\Zoom\" />
     <Folder Include="Areas\Tutor\Data\" />
-    <Folder Include="Areas\Tutor\Views\SMSArchives\" />
     <Folder Include="Views\ZoomAPI\" />
   </ItemGroup>
   <ItemGroup>

@@ -266,7 +266,7 @@ CREATE TABLE [SMS]
     [ID] 			INT IDENTITY (1, 1) 	NOT NULL,
 	[DateSent]		[DATETIME]				NOT NULL,
     [Subject] 		VARCHAR(100)			NULL,
-    [Message] 		TEXT	 				NOT NULL,
+    [Message] 		VARCHAR(MAX)	 		NOT NULL,
 	[Sender]		INT						NOT NULL,
 	[Receiver]		INT						NULL,
 	[Priority]		INT						NOT NULL
@@ -280,50 +280,14 @@ CREATE TABLE [SMS]
 		REFERENCES [BTTUsers] ([ID])
 );
 
-CREATE TABLE [SMSReplies] 
-(
-    [ID] 			INT IDENTITY (1, 1) 	NOT NULL,
-    [Response]		TEXT	 				NOT NULL,
-	[Sender]		INT						NOT NULL,
-	[Receiver]		INT						NOT NULL,
-	[SMSID]			INT						NOT NULL,
-	CONSTRAINT [PK_SMSReplies] PRIMARY KEY CLUSTERED ([ID] ASC),
-
-	CONSTRAINT [FK.dbo.SMSReplies_dbo.Sender_ID] FOREIGN KEY ([Sender]) 
-		REFERENCES [BTTUsers] ([ID])
-		ON DELETE CASCADE,
-
-		CONSTRAINT [FK.dbo.SMSReplies_dbo.Receiver_ID] FOREIGN KEY ([Receiver]) 
-		REFERENCES [BTTUsers] ([ID]),
-
-		CONSTRAINT [FK.dbo.SMSReplies_dbo.Message_ID] FOREIGN KEY ([SMSID]) 
-		REFERENCES [SMS] ([ID])
-);
-
-CREATE TABLE [SMSStatuses] 
-(
-    [ID] 			INT IDENTITY (1, 1) 	NOT NULL,
-	[Sent]			BIT						NULL,
-	[Received]		BIT						NULL, 
-	[Read]			BIT						NULL, 
-	[Saved]			BIT						NULL,
-	[SMSID]			INT						NOT NULL,
-
-	CONSTRAINT [PK_SMSStatuses] PRIMARY KEY CLUSTERED ([ID] ASC),
-
-	CONSTRAINT [FK.dbo.SMSStatuses_dbo.SMS_ID] FOREIGN KEY ([SMSID]) 
-		REFERENCES [SMS] ([ID])
-		ON DELETE CASCADE
-);
-
 CREATE TABLE [SMSArchives] 
 (
     [ID] 			INT IDENTITY (1, 1) 	NOT NULL,
 	[DateSent]		[DATETIME]				NOT NULL,
     [Subject] 		VARCHAR(100)			NOT NULL,
-    [Message] 		TEXT	 				NOT NULL,
-	[Sender]		INT						NULL,
-	[Receiver]		INT						NULL,
+    [Message] 		VARCHAR(MAX)	 		NOT NULL,
+	[Sender]		INT						NOT NULL,
+	[Receiver]		INT						NOT NULL,
 	[Priority]		INT						NOT NULL,
 
 	CONSTRAINT [PK_SMSArchives] PRIMARY KEY CLUSTERED ([ID] ASC),

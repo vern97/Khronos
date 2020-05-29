@@ -16,13 +16,12 @@ namespace BeyondTheTutor.Models.SMSModels
         [StringLength(100)]
         public string Subject { get; set; }
 
-        [Column(TypeName = "text")]
         [Required]
         public string Message { get; set; }
 
-        public int? Sender { get; set; }
+        public int Sender { get; set; }
 
-        public int? Receiver { get; set; }
+        public int Receiver { get; set; }
 
         public int Priority { get; set; }
 

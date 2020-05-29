@@ -452,9 +452,3 @@ table#savedFinalGPA tr {
 }
 
 /* Customizations for sms feature */
-
-.ui.basic.modal {
-    position: fixed;
-    top: 30%;
-    left: 50%;
-}
