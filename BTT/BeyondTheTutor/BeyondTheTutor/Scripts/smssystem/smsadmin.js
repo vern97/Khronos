@@ -10,6 +10,12 @@
     receiver = getreceiver.value;
     priority = getpriority.value;
 
+    $('#Subject').attr('placeholder', getsubject.value);
+    $('#Message').attr('placeholder', getmessage.value);
+
+    document.getElementById("Subject").value = "";
+    document.getElementById("Message").value = "";
+
     $.ajax({
         type: "GET",
         dataType: "json",
