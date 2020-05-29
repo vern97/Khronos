@@ -132,6 +132,21 @@ namespace BeyondTheTutor.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult DeleteMessage()
+        {
+            var userID = User.Identity.GetUserId();
+            var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
+
+            string messageID = Request.QueryString["messageID"];
+            int id = Convert.ToInt32(messageID);
+
+            StudentAlert message = db.StudentAlerts.Find(id);
+            db.StudentAlerts.Remove(message);
+            db.SaveChanges();
+
+            return Json("Message Deleted Successfully", JsonRequestBehavior.AllowGet);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

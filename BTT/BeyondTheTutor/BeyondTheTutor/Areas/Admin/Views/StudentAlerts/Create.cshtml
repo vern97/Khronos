@@ -3,49 +3,53 @@
 @{
     ViewBag.Title = "Create";
 }
-<body class="wou-silver-bg">
+    <body class="wou-silver-bg">
 
         <div class="ui container" style="width:600px;">
             <div class="ui top attached segment">
-                <div style="overflow-y:scroll; height:300px; background:white;">
+                <div style="overflow-y:scroll; height:600px; background:white;">
                     <div class="ui feed" id="student_alerts" style="margin-right:10px;">
 
                     </div>
                 </div>
             </div>
-            <div class="ui bottom attached form center aligned segment">
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
-                    @Html.Hidden("AdminID", (int)ViewBag.UserID)
-                    @Html.Hidden("TimeStamp", (DateTime)ViewBag.TimeStamp)
-                    @Html.Hidden("Expiration", (DateTime)ViewBag.Expiration)
-
-                    <div class="ui info message">
-                        <h3>
-                            Use this area to send a message to the Student Message Board
-                        </h3>
-                    </div>
-                    <div class="field">
-                        <label>Subject</label>
-                        @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="field">
-                        <label>Message</label>
-                        @Html.TextAreaFor(model => model.Message, new { htmlAttributes = new { @type = "form-control", id = "Message" } })
-                        @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="ui hidden divider"></div>
-                    <button class="fluid ui button schedule">Send to Students</button>
-
-                }
+            <div class="ui bottom attached center aligned segment">
+                
+                <button class="fluid ui button schedule" OnClick="create_post()">Create New Post</button>
             </div>
         </div>
-        
+        <div id="confirm_delete"></div>
+        <div class="ui mini modal" id="show_create_post">
+            <div class="header">Post to Message Board</div>
+            <div class="content">
+                <div class="ui form center aligned segment">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("AdminID", (int)ViewBag.UserID)
+                        @Html.Hidden("TimeStamp", (DateTime)ViewBag.TimeStamp)
+                        @Html.Hidden("Expiration", (DateTime)ViewBag.Expiration)
 
-</body>
+                        <div class="field">
+                            <label>Subject</label>
+                            @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control", required = "required", type = "text", maxLength = "100" } })
+                            @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="field">
+                            <label>Message</label>
+                            @Html.TextAreaFor(model => model.Message, new { required = "required", htmlAttributes = new { @class = "form-control"} })
+                            @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="ui hidden divider"></div>
+                        <button class="fluid ui button schedule">Send to Students</button>
+
+                    }
+                </div>
+                
+            </div>
+        </div>
+    </body>
 
 
 @section scripts
