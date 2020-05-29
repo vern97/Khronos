@@ -541,6 +541,7 @@
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Compile Include="Models\ViewModels\AllUsersViewModel.cs" />
     <Compile Include="Models\TimeSheetModels\TutorTimeSheetsCustomModel.cs" />
+    <Content Include="Scripts\admin-student-alerts.js" />
     <Content Include="Scripts\calculators.js" />
     <Content Include="Scripts\disable-service-alert-dropdown.js" />
     <Content Include="Scripts\displayrequestedappts.js" />
