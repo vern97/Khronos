@@ -36,7 +36,10 @@
                 <i class="dropdown icon"></i>
                 <div class="menu">
                     @Html.ActionLink("Analyze Tutoring Requests", "Index", "TutoringAppts", new { area = "professor" }, htmlAttributes: new { @class = (ViewBag.Current == "ProfApptsIndex" ? "item red active" : "item") })
-                    @Html.ActionLink("Analyze Students & Tutoring", "Index", "ViewData", new { area = "professor" }, htmlAttributes: new { @class = (ViewBag.Current == "ProfDataView" ? "item red active disabled" : "item") })
+                    <a class="item" href="/Professor/TutoringAppts">
+                        <i class="chart pie icon"></i>
+                        Analyze Tutoring Requests
+                    </a>                
                 </div>
             </div>
             @Html.ActionLink("Surveys", "Index", "Surveys", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "ProfSurveyIndex" ? "item red active" : "item") })
