@@ -19,7 +19,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44396</IISExpressSSLPort>
+    <IISExpressSSLPort>44342</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -266,10 +266,6 @@
   <ItemGroup>
     <Content Include="App_Data\AspDown.sql" />
     <Content Include="App_Data\AspUp.sql" />
-    <Content Include="App_Data\BeyondTheTutor.mdf" />
-    <Content Include="App_Data\BeyondTheTutor_log.ldf">
-      <DependentUpon>BeyondTheTutor.mdf</DependentUpon>
-    </Content>
     <Content Include="App_Data\down.sql" />
     <Content Include="App_Data\queries.sql" />
     <Content Include="App_Data\seed.sql" />
@@ -733,8 +729,6 @@
     <Folder Include="Areas\Student\Data\" />
     <Folder Include="Areas\Student\Views\Zoom\" />
     <Folder Include="Areas\Tutor\Data\" />
-    <Folder Include="Areas\Tutor\Views\SMSArchives\" />
-    <Folder Include="Areas\Tutor\Views\SMSReplies\" />
     <Folder Include="Views\ZoomAPI\" />
   </ItemGroup>
   <ItemGroup>

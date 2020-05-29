@@ -30,7 +30,7 @@ function showSuccess(data) {
     $('#sent_success_modal').empty();
 
     $('#show_saved_modal').append(`
-         <div class="ui modal" id="sms_id_1"></div>
+         <div class="ui tiny modal" id="sms_id_1"></div>
             `)
 
     $('#sms_id_1').append(`

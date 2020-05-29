@@ -21,6 +21,10 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers.MessagesControllers
             // get the message that is being sent as a response
             string userResponse = Request.QueryString["userResponse"];
 
+            // get the priority that is being sent in the response
+            string messagePriority = Request.QueryString["messagePriority"];
+            int responsePriority = Convert.ToInt32(messagePriority);
+
             // the only bad input would be an empty message so check for that here
             if (userResponse == null || userResponse.IsEmpty() == true)
             {
@@ -47,7 +51,7 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers.MessagesControllers
                     Message = userResponse,
                     Sender = currentUserID,
                     Receiver = getResponseReceiver,
-                    Priority = 0,
+                    Priority = responsePriority,
                 };
 
                 if (ModelState.IsValid)

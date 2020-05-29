@@ -25,6 +25,9 @@ function readSMS(currentMessage) {
 function sendResponse(currentID) {
 
     getUserResponse = document.querySelector('#userResponse');
+    getMessagePriority = document.querySelector('[name="priority"]:checked');
+
+    priorityValue = getMessagePriority.value;
 
     userResponse = getUserResponse.value;
 
@@ -32,7 +35,7 @@ function sendResponse(currentID) {
         type: "GET",
         dataType: "json",
         url: "/Tutor/SMSReplies/SendResponse",
-        data: { 'messageID': currentID, 'userResponse': userResponse },
+        data: { 'messageID': currentID, 'userResponse': userResponse, 'messagePriority': priorityValue },
         success: showSuccessfulResponse,
         error: errorOnAjax
     });
@@ -111,18 +114,23 @@ $('#document').ready(function () {
                 </thead>
                 <tbody>
                     <tr>                      
-                        <td rows="2" colspan="5" style="max-width: 150px;">   
-                            <button onclick="readSMS('${data[i].id}')" class="mini ui fluid button">View Message</button>
+                        <td rows="2" colspan="5" style="max-width: 150px;">                             
+                        <button onclick="readSMS('${data[i].id}')" class="ui vertical animated button mini ui fluid button" tabindex="0">
+                            <div class="hidden content"><i class="envelope open outline icon"></i></div>
+                            <div class="visible content">
+                                View Message
+                            </div>
+                        </button>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="5" style="border-bottom: solid; border-bottom-width: 2px; border-bottom-color: #db0a29;">
-                            <div class="fluid mini ui buttons">
-                                <button onclick="saveSMS('${data[i].id}')" class="ui red right labeled icon button">
-                                  <i class="upload icon"></i>
-                                  Save
-                                </button>
+                        <button onclick="saveSMS('${data[i].id}')" class="ui vertical animated button mini ui red fluid button" tabindex="0">
+                            <div class="hidden content"><i class="upload icon"></i></div>
+                            <div class="visible content">
+                                Save Message
                             </div>
+                        </button>
                         </td>
                     </tr>
                 </tbody>
@@ -138,7 +146,7 @@ function showSuccessfulSave(data) {
     $('#show_saved_modal').empty();
 
     $('#show_saved_modal').append(`
-        <div class="ui modal" id="sms_id_2"></div>
+        <div class="ui tiny modal" id="sms_id_2"></div>
             `)
 
     $('#sms_id_2').append(`
@@ -164,7 +172,7 @@ function readMessage(data) {
     $('#read_sms_modal').empty();
 
     $('#read_sms_modal').append(`
-        <div class="ui modal" id="sms_id_3"><i class="close icon"></i></div>
+        <div class="ui tiny modal" id="sms_id_3"><i class="close icon"></i></div>
             `)
 
     $('#sms_id_3').append(`
@@ -174,7 +182,7 @@ function readMessage(data) {
           </div>
             </br>
             <center>
-               <button class="ui button">Toggle Reply Form</button>
+               <button class="ui mini button">Toggle Reply Form</button>
             </center>
                <div class="ui one column padded grid">
                  <div class="column">
@@ -183,6 +191,24 @@ function readMessage(data) {
                             <h5>Compose Message</h5>
                             <textarea id="userResponse"></textarea>                          
                         </div>
+                        </br>
+                        <div class="ui form" style="padding-left: 25%;">
+                          <div class="inline fields">
+                            <label>Choose a priority</label>
+                            <div class="field">
+                              <div class="ui radio checkbox">
+                                <input type="radio" name="priority" id="priority" value="1" checked="checked">
+                                <label>Normal</label>
+                              </div>
+                            </div>
+                            <div class="field">
+                              <div class="ui radio checkbox">
+                                <input type="radio" name="priority" id="priority" value="2" >
+                                <label>High</label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                         <div class="ui hidden divider"></div>
                         <button onclick="sendResponse(${data.id})" class="fluid ui button schedule">Send Reply</button>
                     </div>
@@ -190,6 +216,8 @@ function readMessage(data) {
             </div>
         `)
     $('#sms_id_3').modal('show');
+
+    $('.ui.checkbox').checkbox(); 
 
     $("button").click(function () {
         $(".response").toggle();

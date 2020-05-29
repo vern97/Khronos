@@ -37,7 +37,7 @@ $('#document').ready(function () {
 
     ajax_call.call();
 
-    var interval = 1000 * 3;
+    var interval = 1000 * 2;
     window.setInterval(ajax_call, interval);
 
     function errorOnAjax() {
@@ -98,15 +98,22 @@ $('#document').ready(function () {
                 <tbody>
                     <tr>                      
                         <td rows="2" colspan="5" style="max-width: 150px;">   
-                           <button onclick="readArchivedSMS('${data[i].id}')" class="mini ui fluid button">View Message</button>                      
+                        <button onclick="readArchivedSMS('${data[i].id}')" class="ui vertical animated button mini ui fluid button" tabindex="0">
+                            <div class="hidden content"><i class="envelope open outline icon"></i></div>
+                            <div class="visible content">
+                                View Message
+                            </div>
+                        </button>                    
                         </td>
                     </tr>
                     <tr>
                         <td colspan="5" style="border-bottom: solid; border-bottom-width: 2px; border-bottom-color: #db0a29;">
-                            <button onclick="deleteSMS('${data[i].id}')" class="mini ui fluid red right labeled icon button">
-                                <i class="x icon"></i>
+                        <button onclick="deleteSMS('${data[i].id}')" class="ui vertical animated button mini ui fluid red button" tabindex="0">
+                            <div class="hidden content"><i class="x icon"></i></div>
+                            <div class="visible content">
                                 Delete Archived Message
-                            </button>
+                            </div>
+                        </button>   
                         </td>
                     </tr>
                 </tbody>
@@ -122,7 +129,7 @@ function showSuccessfulDeletion(data) {
     $('#show_deleted').empty();
 
     $('#show_deleted').append(`
-        <div class="ui modal" id="sms_id_4"></div>
+        <div class="ui tiny modal" id="sms_id_4"></div>
             `)
 
     $('#sms_id_4').append(`
@@ -148,7 +155,7 @@ function readArchivedMessage(data) {
     $('#read_archived_sms').empty();
 
     $('#read_archived_sms').append(`
-        <div class="ui modal" id="sms_id_5"></div>
+        <div class="ui tiny modal" id="sms_id_5"></div>
             `)
 
     $('#sms_id_5').append(`

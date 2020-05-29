@@ -6,7 +6,6 @@ using System.Web.WebPages;
 using BeyondTheTutor.DAL;
 using BeyondTheTutor.Models.SMSModels;
 using Microsoft.AspNet.Identity;
-using Newtonsoft.Json;
 
 namespace BeyondTheTutor.Areas.Tutor.Controllers
 {
@@ -57,13 +56,7 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
             // the only bad input would be an empty message so check for that here
             if (message == null || message.IsEmpty() == true)
             {
-                string jsonString = JsonConvert.SerializeObject("Message Cannot Be Empty", Formatting.Indented);
-                return new ContentResult
-                {
-                    Content = jsonString,
-                    ContentType = "application/json",
-                    ContentEncoding = System.Text.Encoding.UTF8
-                };
+                return Json("Message Cannot Be Empty", JsonRequestBehavior.AllowGet);
             }
             else
             {
@@ -99,24 +92,11 @@ namespace BeyondTheTutor.Areas.Tutor.Controllers
                     db.SMS.Add(SMSMessage);
                     db.SaveChanges();
 
-                    string jsonString = JsonConvert.SerializeObject("Message Sent", Formatting.Indented);
-                    return new ContentResult
-                    {
-                        Content = jsonString,
-                        ContentType = "application/json",
-                        ContentEncoding = System.Text.Encoding.UTF8
-                    };
-
+                    return Json("Message Sent", JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
-                    string jsonString = JsonConvert.SerializeObject("Something Went Wrong", Formatting.Indented);
-                    return new ContentResult
-                    {
-                        Content = jsonString,
-                        ContentType = "application/json",
-                        ContentEncoding = System.Text.Encoding.UTF8
-                    };
+                    return Json("Something Went Wrong", JsonRequestBehavior.AllowGet);
                 }
             }
         }
