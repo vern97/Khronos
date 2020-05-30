@@ -32,27 +32,31 @@
             </div>
 
             <script>
-new Chart(document.getElementById("pie-chart"), {
-    type: 'pie',
-    data: {
-        labels: ["Seniors", "Juniors", "Sophmores", "Freshmen"],
-        datasets: [{
-            label: "Students (Class Standing)",
-            backgroundColor: ["Black", "Green", "Teal", "Pink"],
-            data: [@ViewBag.seniors, @ViewBag.juniors, @ViewBag.sophmores, @ViewBag.freshmen]
-        }]
-    },
-    options: {
-        legend: {
-            position: 'left',
-            display: true,
-            labels: {
-                fontColor: 'rgb(255, 99, 132)',
-                fontSize: 20
-            }
-        }
-    }
-});
+
+                new Chart(document.getElementById("pie-chart").getContext('2d'), {
+                    type: 'doughnut',
+			data: {
+				datasets: [{
+					data: [
+						@ViewBag.seniors,
+						@ViewBag.juniors,
+						@ViewBag.sophmores,
+						@ViewBag.freshmen,
+					],
+					backgroundColor: ["Red", "Pink", "Yellow", "Blue"],
+					label: 'Dataset 1'
+				}],
+				labels: [
+					'@ViewBag.seniors Seniors',
+						'@ViewBag.juniors Juniors',
+						'@ViewBag.sophmores Sophmores',
+						'@ViewBag.freshmen Freshmen',
+				]
+			},
+			options: {
+				responsive: true
+			}
+		});
 
 var names = [];
 var counts = [];
