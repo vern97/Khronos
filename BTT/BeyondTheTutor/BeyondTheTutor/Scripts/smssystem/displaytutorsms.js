@@ -55,7 +55,7 @@ $('#document').ready(function () {
 
     ajax_call.call();
 
-    var interval = 1000 * 2;
+    var interval = 1000 * 1.5;
     window.setInterval(ajax_call, interval);
 
     function errorOnAjax() {
@@ -230,22 +230,9 @@ function showSuccessfulResponse(data) {
     $('#sms_id_3').empty();
 
     $('#sms_id_3').append(`
-        <div class="ui modal" id="sms_id_3"></div>
-            `)
-
-    $('#sms_id_3').append(`
-          <div class="ui icon header">
-            <i class="envelope outline icon"></i>
-            ${data}
-          </div>
-          <div class="actions">
-            <center>
-                <div class="ui green ok inverted button">
-                  <i class="checkmark icon"></i>
-                  OK
-                </div>
-            </center>
-          </div>
+        <div class="ui floating message">
+          ${data}
+        </div>
         `)
     $('#sms_id_3').modal('show');
 }

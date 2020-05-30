@@ -19,7 +19,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44396</IISExpressSSLPort>
+    <IISExpressSSLPort>44342</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -197,6 +197,7 @@
     <Compile Include="Areas\Student\Controllers\ZoomController.cs" />
     <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
     <Compile Include="Areas\Tutor\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Tutor\Controllers\MessagesControllers\SecretMessagesController.cs" />
     <Compile Include="Areas\Tutor\Controllers\MessagesControllers\SMSArchivesController.cs" />
     <Compile Include="Areas\Tutor\Controllers\MessagesControllers\SMSRepliesController.cs" />
     <Compile Include="Areas\Tutor\Controllers\MessagesControllers\SMsTutorController.cs" />
@@ -542,6 +543,8 @@
     <Content Include="Areas\Admin\Views\StudentAlerts\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\StudentAlerts\Index.cshtml" />
     <Content Include="Areas\Professor\Views\ViewData\Index.cshtml" />
+    <Content Include="Areas\Tutor\Views\SecretMessages\Delete.cshtml" />
+    <Content Include="Areas\Tutor\Views\SecretMessages\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Compile Include="Models\ViewModels\AllUsersViewModel.cs" />
     <Compile Include="Models\TimeSheetModels\TutorTimeSheetsCustomModel.cs" />
