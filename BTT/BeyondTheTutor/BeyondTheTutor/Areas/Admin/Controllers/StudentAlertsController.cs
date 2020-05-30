@@ -41,7 +41,7 @@ namespace BeyondTheTutor.Areas.Admin.Controllers
         // GET: Admin/StudentAlerts/Create
         public ActionResult Create()
         {
-            
+            ViewBag.Current = "AdminStuMessageBoard";
             var userID = User.Identity.GetUserId();
             var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
             ViewBag.UserID = currentUserID;
@@ -62,6 +62,7 @@ namespace BeyondTheTutor.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,TimeStamp,Subject,Message,Expiration,AdminID")] StudentAlert studentAlert)
         {
+            ViewBag.Current = "AdminStuMessageBoard";
             if (ModelState.IsValid)
             {
                 db.StudentAlerts.Add(studentAlert);
