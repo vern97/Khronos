@@ -189,6 +189,7 @@
     <Compile Include="Areas\Admin\Controllers\ElevatedAccountController.cs" />
     <Compile Include="Areas\Professor\Controllers\HomeController.cs" />
     <Compile Include="Areas\Professor\Controllers\TutoringApptsController.cs" />
+    <Compile Include="Areas\Professor\Controllers\ViewDataController.cs" />
     <Compile Include="Areas\Professor\ProfessorAreaRegistration.cs" />
     <Compile Include="Areas\Student\Controllers\HomeController.cs" />
     <Compile Include="Areas\Student\Controllers\StudentAlertsController.cs" />
@@ -253,6 +254,7 @@
     <Compile Include="Models\TutoringAppt.cs" />
     <Compile Include="Models\TutoringServiceAlert.cs" />
     <Compile Include="Models\TutorSchedule.cs" />
+    <Compile Include="Models\ViewModels\ViewDataViewModel.cs" />
     <Compile Include="Models\ZoomModels\MeetingInfo.cs" />
     <Compile Include="Models\ZoomModels\Meetings.cs" />
     <Compile Include="Models\ZoomModels\Users.cs" />
@@ -270,6 +272,8 @@
     <Content Include="App_Data\queries.sql" />
     <Content Include="App_Data\seed.sql" />
     <Content Include="App_Data\up.sql" />
+    <Content Include="Content\Chart.css" />
+    <Content Include="Content\Chart.min.css" />
     <Content Include="Content\components\accordion.css" />
     <Content Include="Content\components\accordion.js" />
     <Content Include="Content\components\accordion.min.css" />
@@ -537,11 +541,14 @@
     <Content Include="Areas\Admin\Views\StudentAlerts\Details.cshtml" />
     <Content Include="Areas\Admin\Views\StudentAlerts\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\StudentAlerts\Index.cshtml" />
+    <Content Include="Areas\Professor\Views\ViewData\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Compile Include="Models\ViewModels\AllUsersViewModel.cs" />
     <Compile Include="Models\TimeSheetModels\TutorTimeSheetsCustomModel.cs" />
     <Content Include="Scripts\admin-student-alerts.js" />
     <Content Include="Scripts\calculators.js" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\Chart.min.js" />
     <Content Include="Scripts\disable-service-alert-dropdown.js" />
     <Content Include="Scripts\displayrequestedappts.js" />
     <Content Include="Scripts\smssystem\displaysavedsms.js" />
