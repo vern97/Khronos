@@ -41,7 +41,7 @@ namespace BeyondTheTutor.Areas.Admin.Controllers
         // GET: Admin/StudentAlerts/Create
         public ActionResult Create()
         {
-            
+            ViewBag.Current = "AdminStuMessageBoard";
             var userID = User.Identity.GetUserId();
             var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
             ViewBag.UserID = currentUserID;
@@ -62,6 +62,7 @@ namespace BeyondTheTutor.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,TimeStamp,Subject,Message,Expiration,AdminID")] StudentAlert studentAlert)
         {
+            ViewBag.Current = "AdminStuMessageBoard";
             if (ModelState.IsValid)
             {
                 db.StudentAlerts.Add(studentAlert);
@@ -130,6 +131,21 @@ namespace BeyondTheTutor.Areas.Admin.Controllers
             db.StudentAlerts.Remove(studentAlert);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult DeleteMessage()
+        {
+            var userID = User.Identity.GetUserId();
+            var currentUserID = db.BTTUsers.Where(m => m.ASPNetIdentityID.Equals(userID)).FirstOrDefault().ID;
+
+            string messageID = Request.QueryString["messageID"];
+            int id = Convert.ToInt32(messageID);
+
+            StudentAlert message = db.StudentAlerts.Find(id);
+            db.StudentAlerts.Remove(message);
+            db.SaveChanges();
+
+            return Json("Message Deleted Successfully", JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)
