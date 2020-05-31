@@ -29,8 +29,6 @@ namespace BeyondTheTutor.Areas.Professor.Controllers
         {
             List<object> custList = new List<object>();
 
-
-
             foreach (var c in db.Classes.OrderBy(m => m.Name).Distinct())
             {
                 int noAppts = db.TutoringAppts.Where(ta => ta.Class.Name == c.Name).Count();
@@ -80,8 +78,6 @@ namespace BeyondTheTutor.Areas.Professor.Controllers
                 };
 
                 custList.Add(data);
-
-                //j++;//inc month
             }
 
 
