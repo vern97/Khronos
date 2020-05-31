@@ -17,12 +17,7 @@ namespace BeyondTheTutor.Areas.Professor.Controllers
         public ActionResult Index()
         {
             ViewBag.Current = "ProfDataView";
-            ViewDataViewModel viewData = new ViewDataViewModel();
-            viewData.Appts = db.TutoringAppts.ToList();
-            viewData.Students = db.Students.ToList();
-            viewData.TimeSheets = db.TimeSheets.ToList();
-
-            return View(viewData);
+            return View();
         }
 
         public JsonResult getBars()
