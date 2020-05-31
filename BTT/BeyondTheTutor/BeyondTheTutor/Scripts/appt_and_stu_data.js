@@ -1,15 +1,15 @@
 ﻿$.ajax({
     type: 'GET',
     dataType: 'json',
-    url: 'viewdata/getstu',
+    url: 'ViewData/GetStu',
     success: setStudents,
     error: errorOnAjax
 });
 
 function setStudents(data) {
-    var names = [];
-    var counts = [];
-    data.forEach(m => {
+     names = [];
+     counts = [];
+     data.forEach(m => {
         names.push(m.name);
         counts.push(m.count);
     });
@@ -34,19 +34,19 @@ function setStudents(data) {
 $.ajax({
     type: 'GET',
     dataType: 'json',
-    url: 'viewdata/getbars',
+    url: 'ViewData/GetBars',
     success: setBars,
     error: errorOnAjax
 });
 
 
 function setBars(data) {
-    var colors = [];
-    var color = 0;
+    colors = [];
+    color = 0;
 
-    var names = [];
-    var counts = [];
-    data.forEach(m => {
+     names = [];
+     counts = [];
+     data.forEach(m => {
         names.push(m.name);
         counts.push(m.count);
 
@@ -64,7 +64,7 @@ function setBars(data) {
 
 
 
-    var barChart = new Chart(document.getElementById("bar-chart"), {
+        barChart = new Chart(document.getElementById("bar-chart"), {
         type: 'horizontalBar',
         data: {
             labels: names,
@@ -100,7 +100,7 @@ function setBars(data) {
 $.ajax({
     type: 'GET',
     dataType: 'json',
-    url: 'viewdata/getlines',
+    url: 'ViewData/GetLines',
     success: setLines,
     error: errorOnAjax
 });
@@ -109,17 +109,17 @@ $.ajax({
 
 
 function setLines(data) {
-    var months = [];
-    var counts = [];
+    months = [];
+    counts = [];
     data.forEach(m => {
         months.push(m.name);
         counts.push(m.count);
     });
 
-    var ctx = document.getElementById("line").getContext("2d");
+    ctx = document.getElementById("line").getContext("2d");
 
 
-    var myLineChart = new Chart(ctx, {
+    myLineChart = new Chart(ctx, {
         type: 'line',
         data: {
             labels: months,
