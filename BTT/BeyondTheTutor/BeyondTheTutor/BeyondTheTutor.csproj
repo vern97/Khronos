@@ -255,7 +255,6 @@
     <Compile Include="Models\TutoringAppt.cs" />
     <Compile Include="Models\TutoringServiceAlert.cs" />
     <Compile Include="Models\TutorSchedule.cs" />
-    <Compile Include="Models\ViewModels\ViewDataViewModel.cs" />
     <Compile Include="Models\ZoomModels\MeetingInfo.cs" />
     <Compile Include="Models\ZoomModels\Meetings.cs" />
     <Compile Include="Models\ZoomModels\Users.cs" />
