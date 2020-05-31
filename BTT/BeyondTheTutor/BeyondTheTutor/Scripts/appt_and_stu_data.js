@@ -42,7 +42,7 @@ $.ajax({
 
 function setBars(data) {
     var colors = [];
-    color = 0;
+    var color = 0;
 
     var names = [];
     var counts = [];
