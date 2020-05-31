@@ -20,7 +20,7 @@ namespace BeyondTheTutor.Areas.Professor.Controllers
             return View();
         }
 
-        public ActionResult GetBars()
+        public JsonResult getBars()
         {
             List<object> custList = new List<object>();
 
@@ -41,7 +41,7 @@ namespace BeyondTheTutor.Areas.Professor.Controllers
             return Json(custList, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult GetLines()
+        public JsonResult getLines()
         {
             List<object> custList = new List<object>();
 
@@ -80,7 +80,7 @@ namespace BeyondTheTutor.Areas.Professor.Controllers
         }
 
 
-        public ActionResult GetStu()
+        public JsonResult getStu()
         {
             List<object> students = new List<object>();
 
