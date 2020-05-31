@@ -226,6 +226,7 @@ function readMessage(data) {
 
 function showSuccessfulResponse(data) {
     console.log('success');
+    $('#sms_id_3').modal('show');
 
     $('#sms_id_3').empty();
 
@@ -234,7 +235,7 @@ function showSuccessfulResponse(data) {
           ${data}
         </div>
         `)
-    $('#sms_id_3').modal('show');
+   
 }
 
 

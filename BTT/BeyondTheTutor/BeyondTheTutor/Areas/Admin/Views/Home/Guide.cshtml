@@ -23,14 +23,13 @@
                 </div>
                 <div class="content">
                     <p>
-                        Administrators may only be added to the system by another administrator.
-                        In the @Html.ActionLink("Create an Admin", "CreateAdmin", "AllUsers", new { area = "admin" },
-          htmlAttributes: new { @class = (ViewBag.Current == "CreateAdmin" ? "item red active" : "item") })
-                        form you will enter the new administrator's first and last name, email,
+                        Administrators may only be added to the system by another administrator. To add an admin, you will enter the new administrator's first and last name, email,
                         and assign them a temporary password of your choosing. Then simply give the new administrator
                         their login information and remind them to change the temporary password.
                     </p>
-
+                    <p>
+                        @Html.ActionLink("Create an Admin", "CreateAdmin", "AllUsers", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "CreateAdmin" ? "item red active" : "item") })
+                    </p>
                 </div>
                 <div class="title">
                     <i class="dropdown icon"></i>
@@ -38,23 +37,39 @@
                 </div>
                 <div class="content">
                     <p>
-                        Professor and Tutor accounts must be approved before accessing professor and tutor features.
-                        In the @Html.ActionLink("Elevated User Area", "Index", "ElevatedAccount",
-                        new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminElevatedAccountIndex" ? "item red active" : "item") })
-                        you will see pending accounts which you may approve or disapprove. These actions may be undone at any time.
+                        Professor and Tutor accounts must be approved before accessing professor and tutor features. Elevated accounts awaiting approval are shown
+                        in your portal. Additionally, you may access the elevated features page to approve or disapprove users at any time. We recommend updating
+                        elevated accounts following each school term.
+                    </p>
+                    <p>
+                        @Html.ActionLink("Elevated User Area", "Index", "ElevatedAccount", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminElevatedAccountIndex" ? "item red active" : "item") })
                     </p>
                 </div>
                 <div class="title">
                     <i class="dropdown icon"></i>
-                    Managing Courses 
+                    Managing Courses
                 </div>
                 <div class="content">
                     <p>
                         Keeping course information up-to-date is an important duty of administrators. Courses in the database are displayed
-                        on the Beyond the Tutor homepage, tutoring session requests form, all calculator forms, and more.
-                        In the  @Html.ActionLink("Course Management Area", "Index", "Classes", new { area = "admin" }, htmlAttributes: 
-                        new { @class = (ViewBag.Current == "AdminClassesIndex" ? "item red active" : "item") }) you may add new course offerings
-                        and remove courses no longer offered by the department. 
+                        on the Beyond the Tutor homepage, tutoring session requests form, all calculator forms, and more. You may easily
+                        add or delete new courses.
+                    </p>
+                    <p>
+                        @Html.ActionLink("Course Management Area", "Index", "Classes", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminClassesIndex" ? "item red active" : "item") })
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Posting Messages for Students via the Message Board
+                </div>
+                <div class="content">
+                    <p>
+                        Keep students informed of exciting news, remind them of tutoring events, or simple say hello. You may post messages that are dispplayed to all students through
+                        a message board in the student portal.
+                    </p>
+                    <p>
+                        @Html.ActionLink("Student Message Board", "Create", "StudentAlerts", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminStuMessageBoard" ? "item red active" : "item") })
                     </p>
                 </div>
                 <div class="title">
@@ -63,13 +78,44 @@
                 </div>
                 <div class="content">
                     <p>
-                        Although it is not required that you maintain the database you may choose to remove outdated accounts.
-                        In the @Html.ActionLink("Manage Users Area", "Index", "AllUsers", new { area = "admin" }, htmlAttributes:
-                        new { @class = (ViewBag.Current == "AdminAllUsersIndex" ? "item red active" : "item") }) you may remove users
-                        from the application. Removing a user from the database cannot be undone.
+                        Although it is not required that you maintain the database you may choose to remove outdated accounts. Removing a user from the database cannot be undone.
                         Should you accidentally remove a user from the database the user would need to re-register to access features
                         and may lose information associated with their account. Because of this we recommend focusing removal on
                         professors and tutors who are no longer with the department.
+                    </p>
+                    <p>
+                        @Html.ActionLink("Manage Users Area", "Index", "AllUsers", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminAllUsersIndex" ? "item red active" : "item") })
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Sending Messages to Admins and Tutors
+                </div>
+                <div class="content">
+                    <p>
+                        We provide an internal message system between admins and tutors.
+                    </p>
+                    <p>
+                        There are four parts to composing a message:
+                        <br />1) Subject - you may enter a short subject or leave this box blank. Empty subject lines
+                        will show as No Subject to the recipient.
+                        <br />2) Message - you may enter a short or lengthy message. The message box
+                        is required to send a message.
+                        <br />3) Recipient - You may choose to send the message to All Users (e.g. all other tutors
+                        and the admin) or specify a user.
+                        <br />4) Priority - You may choose to change the priority to High for important messages.
+                        Otherwise, messages are labeled with the default Normal priority setting.
+                    </p>
+                    <p>
+                        You may view, reply to, and save messages in the Inbox tab. You may view sent messages in the Sent tab.
+                        You may view and delete saved messages in the Saved tab.
+                    </p>
+                    <p>
+                        Note: All messages send through the Beyond the Tutor web application are automatically deleted after 7 days. If you
+                        need to preserve a message beyond the 7 day mark, save the message from your inbox.
+                    </p>
+                    <p>
+                        @Html.ActionLink("Messages", "Create", "SMs", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminAddMessage" ? "item red active" : "item") })
                     </p>
                 </div>
                 <div class="title">
@@ -78,11 +124,12 @@
                 </div>
                 <div class="content">
                     <p>
-                        It is the responsibility of tutors to add current schedules and edit any longterm changes.
+                        It is the responsibility of tutors to add current schedules and edit changes in their schedules.
                         However there are times when a tutor may be unable to edit this information themselves. In such a situation
-                        you may access a list of all tutor schedules. In the @Html.ActionLink("Tutor Schedule Area", "UpdateSchedule", "TutorSchedules",
-new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminTutorSchedUpdateSchedule" ? "item red active" : "item") })
-                        you may edit or delete schedules from all tutors.
+                        you may access a list of all tutor schedules and update information.
+                    </p>
+                    <p>
+                        @Html.ActionLink("Tutor Schedule Area", "UpdateSchedule", "TutorSchedules", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminTutorSchedUpdateSchedule" ? "item red active" : "item") })
                     </p>
                 </div>
                 <div class="title">
@@ -91,7 +138,10 @@ new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "Admi
                 </div>
                 <div class="content">
                     <p>
-                        Questions or comments? Contact us at beyondthetutor&commat;gmail.com
+                        Questions or comments? Contact us at <a href="mailto: beyondthetutor@gmail.com" id="portal-headers">beyondthetutor&commat;gmail.com</a>
+                    </p>
+                    <p>
+                        <img class="ui medium fluid image" src="@Url.Content("~/Content/images/KhronosLogo.png")" />
                     </p>
                 </div>
             </div>
