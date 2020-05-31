@@ -55,7 +55,7 @@ function setBars(data) {
             colors.push('#FF0000');
         } else {
             color = 0;
-            colors.push('#000000')
+            colors.push('#000000');
         }
     });
 
