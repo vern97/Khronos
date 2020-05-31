@@ -145,19 +145,19 @@
                     <p>
                         We provide online tutoring via the Zoom application. To use online tutoring via Zoom, you should download and install the application on your device.
                         Signing up for a Zoom account is necessary to participate in online tutoring. We will likely provide an account or send a link to your registered email
-                        so that you may enjoy elevated features. 
+                        so that you may enjoy elevated features.
                     </p>
                     <p>
                         <a target="_blank" href="https://www.zoom.us/">Zoom website</a>
                     </p>
                     <p>
                         To participate in an online tutoring session, a student must previously have requested a tutoring appointment and a you must previously have
-                        approved that appointment and assigned it to your account. 
+                        approved that appointment and assigned it to your account.
                     </p>
                     <p>
                         In the tutor portal, the Zoom link is displayed under Live Chat. You may view all upcoming sessions for that day. Additionally, you may
-                        view information pertaining to your personal Zoom account. If you have an upcoming appointment, you are allowed to join the session 
-                        up to 30 minutes before it begins. Beginning the meeting early is not required although we do recommend allowing for 5 minutes to properly 
+                        view information pertaining to your personal Zoom account. If you have an upcoming appointment, you are allowed to join the session
+                        up to 30 minutes before it begins. Beginning the meeting early is not required although we do recommend allowing for 5 minutes to properly
                         prepare and adjust any user settings. Clicking the alert redirects to the appropriate Zoom room.
                     </p>
                     <p>
@@ -194,16 +194,47 @@
                 </div>
                 <div class="title">
                     <i class="dropdown icon"></i>
+                    Sending Messages to Admins and Tutors
+                </div>
+                <div class="content">
+                    <p>
+                        We provide an internal message system between admins and tutors. 
+                    </p>
+                    <p>
+                        There are four parts to composing a message:
+                        <br />1) Subject - you may enter a short subject or leave this box blank. Empty subject lines
+                        will show as No Subject to the recipient. 
+                        <br />2) Message - you may enter a short or lengthy message. The message box
+                        is required to send a message.
+                        <br />3) Recipient - You may choose to send the message to All Users (e.g. all other tutors
+                        and the admin) or specify a user.
+                        <br />4) Priority - You may choose to change the priority to High for important messages.
+                        Otherwise, messages are labeled with the default Normal priority setting.
+                    </p>               
+                    <p>
+                        You may view, reply to, and save messages in the Inbox tab. You may view sent messages in the Sent tab.
+                        You may view and delete saved messages in the Saved tab. 
+                    </p>
+                    <p>
+                        Note: All messages send through the Beyond the Tutor web application are automatically deleted after 7 days. If you
+                        need to preserve a message beyond the 7 day mark, save the message from your inbox. 
+                    </p>
+                    <p>
+                        @Html.ActionLink("Messages", "Create", "SMsTutor", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutorAddMessage" ? "item red active" : "item") })
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
                     Sending a Real-Time Service Alert
                 </div>
                 <div class="content">
                     <p>
                         We provide a quick way to alert students of any last minute changes to your schedule for that day, such as running late or all day unavailability.
-                        Instead of editing your schedule for that day, simply send a service alert by choosing an alert message and time of expected arrival. 
+                        Instead of editing your schedule for that day, simply send a service alert by choosing an alert message and time of expected arrival.
                     </p>
                     <p>
-                        Service alerts are displayed on the homepage so that all visitors to the website can easily view changes. Do not worry about deleting alerts as 
-                        they will automatically expire. 
+                        Service alerts are displayed on the homepage so that all visitors to the website can easily view changes. Do not worry about deleting alerts as
+                        they will automatically expire.
                     </p>
                     <p>
                         @Html.ActionLink("Service Alert", "Create", "TutoringServiceAlerts", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutServiceAlert" ? "item red active" : "item") })

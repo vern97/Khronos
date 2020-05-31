@@ -78,11 +78,10 @@
                     </div>
                 </div>
                 <div class="ten wide column">
-                    <div class="ui floating message">
+                    <div class="ui floating message portal">
                         <img class="ui fluid image" src="@Url.Content("~/Content/images/landscapes_images/" + dayOfTheMonth + ".jpg")" />
                     </div>
                 </div>
-
                 <div class="three wide column">
                     <div class="ui floating message" style="height: 100%;">
                         <div class="ui card portal">
@@ -115,68 +114,68 @@
                 </div>
             </div>
             @* ----------Second row start---------- *@
-            <div class="row">
-                <div class="three wide column">
-                    <div class="ui floating message portal">
-                        <div class="ui card portal">
-                            <div class="content">
-                                <div class="ui centered block header"><p id="portal-headers-black">Users Features Guide</p></div>
-                                <div class="description">
-                                    Lost? Our <a id="portal-headers" href="/Admin/Home/Guide">guide</a> can help.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="ten wide column">
-                    <div class="ui four statistics">
-                        <div class="statistic">
-                            <div class="value">
-                                @ViewBag.resourceCount
-                            </div>
-                            <div class="label">
-                                Resources
-                            </div>
-                        </div>
-                        <div class="statistic">
-                            <div class="value">
-                                @ViewBag.usersCount
-                            </div>
-                            <div class="label">
-                                Signups
-                            </div>
-                        </div>
-                        <div class="statistic">
-                            <div class="value">
-                                <i class="laptop icon"></i> @ViewBag.studentCount
-                            </div>
-                            <div class="label">
-                                Students
-                            </div>
-                        </div>
-                        <div class="statistic">
-                            <div class="value">
-                                @ViewBag.sessionCount
-                            </div>
-                            <div class="label">
-                                Sessions Completed
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="three wide column">
-                    <div class="ui floating message">
-                        <div class="ui card portal">
-                            <div class="content">
-                                <div class="ui centered block header"><p id="portal-headers-black">Questions or Concerns?</p></div>
-                                <div class="fluid description">
-                                    <a href="mailto: beyondthetutor@gmail.com" id="portal-headers">beyondthetutor&commat;gmail.com</a>
-                                </div>
+        <div class="row">
+            <div class="three wide column">
+                <div class="ui floating message portal">
+                    <div class="ui card portal">
+                        <div class="content">
+                            <div class="ui centered dividing header"><p id="portal-headers-black">Need Some Help?</p></div>
+                            <div class="description">
+                                <a id="portal-headers" href="/Admin/Home/Guide"><center>Tutor User Guide</center></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="ten wide column">
+                <div class="ui four statistics">
+                    <div class="statistic">
+                        <div class="value">
+                            @ViewBag.resourceCount
+                        </div>
+                        <div class="label">
+                            Resources
+                        </div>
+                    </div>
+                    <div class="statistic">
+                        <div class="value">
+                            @ViewBag.usersCount
+                        </div>
+                        <div class="label">
+                            Signups
+                        </div>
+                    </div>
+                    <div class="statistic">
+                        <div class="value">
+                            <i class="laptop icon"></i> @ViewBag.studentCount
+                        </div>
+                        <div class="label">
+                            Students
+                        </div>
+                    </div>
+                    <div class="statistic">
+                        <div class="value">
+                            @ViewBag.sessionCount
+                        </div>
+                        <div class="label">
+                            Sessions Completed
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="three wide column">
+                <div class="ui floating message portal">
+                    <div class="ui card portal">
+                        <div class="content">
+                            <div class="ui centered dividing header"><p id="portal-headers-black">Questions or Comments?</p></div>
+                            <div class="description">
+                                <center><a href="mailto: beyondthetutor@gmail.com" id="portal-headers">Email</a> our team.</center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
             @* ----------Third row start---------- *@
             <div class="row">
                 <div class="three wide column">
