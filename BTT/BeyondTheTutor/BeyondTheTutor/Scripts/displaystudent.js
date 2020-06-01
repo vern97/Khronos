@@ -19,15 +19,6 @@ function displayTutors(data) {
             <div class="ui image">
                 <img src="/Home/RetrieveCurrentTutorProfilePicture/${data[0].profilePictureID}" alt="Alternate Text" />
             </div>
-            <div class="content">
-                <div class="ui centered dividing header"><p id="portal-headers-black">${data[0].FullName}</p></div>
-                <div class="description">
-                    <center>
-                        <span class="date">${data[0].ClassStanding}</span><br />
-                        <span class="date">Class of ${data[0].GradYear}</span>
-                    </center>
-                </div>
-            </div>
         </div>
     `)
 

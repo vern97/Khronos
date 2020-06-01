@@ -13,13 +13,9 @@
             <div class="row">
                 <div class="three wide column">
                     @* Real-time alerts for requested tutoring requests - DO NOT DELETE *@
-                    <div class="ui segment">
-                        <div style="overflow-y:scroll; height:300px; background:white">
-                            <div class="ui feed" id="student_alerts" style="margin-right:10px;">
 
-                            </div>
-                        </div>
-                    </div>
+                    <div id="student_card"></div>
+                    
 
                     @* Real-time alerts for requested tutoring requests - DO NOT DELETE *@
                 </div>
@@ -41,7 +37,13 @@
             <div class="row">
                 <div class="three wide column">
 
-                    <div id="student_card"></div>
+                    <div class="ui segment">
+                        <div style="overflow-y:scroll; height:300px; background:white">
+                            <div class="ui feed" id="student_alerts" style="margin-right:10px;">
+
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
                 <div class="ten wide column">
@@ -56,7 +58,7 @@
                                 <div class="ui centered dividing header"><p id="portal-headers-black">Progress Tracking</p></div>
                                 <div class="ui info message">
                                     <div class="header">
-                                        Want to calculate your grade in a class? Want to know what to get on the final to get an A?
+
                                     </div><p></p>
                                     <ul class="list">
                                         <li>Cumulative GPA</li>
