@@ -141,5 +141,5 @@ $(window).on('load', function () {
 
 function errorOnAjax(data) {
 
-    console.log('Error on AJAX return' + 'data');
+    console.log('Error on AJAX return');
 };

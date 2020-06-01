@@ -6,19 +6,19 @@ using System.Web.Mvc;
 
 namespace BeyondTheTutor.Areas.Professor.Controllers
 {
+    [Authorize(Roles = "Professor")]
     public class ViewDataController : Controller
     {
         // GET: Professor/ViewData
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
 
-        [Authorize(Roles = "Professor")]
         public ActionResult Index()
         {
             ViewBag.Current = "ProfDataView";
             return View();
         }
 
-        public JsonResult bars()
+        /*public JsonResult bars()
         {
             List<object> custList = new List<object>();
 
@@ -37,7 +37,7 @@ namespace BeyondTheTutor.Areas.Professor.Controllers
             }
            
             return Json(custList, JsonRequestBehavior.AllowGet);
-        }
+        }*/
 
         public JsonResult getLines()
         {
@@ -84,7 +84,7 @@ namespace BeyondTheTutor.Areas.Professor.Controllers
 
             var seniors = db.Students.Where(m => m.ClassStanding == "Senior").Count();
             var juniors = db.Students.Where(m => m.ClassStanding == "Junior").Count();
-            var sophmores = db.Students.Where(m => m.ClassStanding == "Sophmore").Count();
+            var sophomores = db.Students.Where(m => m.ClassStanding == "Sophomore").Count();
             var freshmen = db.Students.Where(m => m.ClassStanding == "Freshman").Count();
 
             object data = new
@@ -105,8 +105,8 @@ namespace BeyondTheTutor.Areas.Professor.Controllers
 
             object data2 = new
             {
-                name = sophmores + " Sophmores",
-                count = sophmores
+                name = sophomores + " Sophomores",
+                count = sophomores
             };
 
             students.Add(data2);
