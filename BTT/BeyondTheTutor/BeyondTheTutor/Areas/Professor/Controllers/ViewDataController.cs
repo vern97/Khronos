@@ -20,14 +20,14 @@ namespace BeyondTheTutor.Areas.Professor.Controllers
             return View();
         }
 
-        public JsonResult getBars()
+        public JsonResult bars()
         {
             List<object> custList = new List<object>();
 
             foreach (var c in db.Classes.OrderBy(m => m.Name).Distinct())
             {
-                int noAppts = db.TutoringAppts.Where(ta => ta.Class.Name == c.Name).Count();
-                if (noAppts >= 1)
+                int noAppts = c.TutoringAppts.Count();
+                if (noAppts > 0)
                 {
                     object data = new
                     {

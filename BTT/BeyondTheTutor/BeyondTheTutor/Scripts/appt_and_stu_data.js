@@ -6,6 +6,22 @@
     error: errorOnAjax
 });
 
+$.ajax({
+    type: 'GET',
+    dataType: 'json',
+    url: 'viewdata/bars',
+    success: setBars,
+    error: errorOnAjax
+});
+
+$.ajax({
+    type: 'GET',
+    dataType: 'json',
+    url: 'viewdata/getlines',
+    success: setLines,
+    error: errorOnAjax
+});
+
 function setStudents(data) {
     var names = [];
     var counts = [];
@@ -29,84 +45,6 @@ function setStudents(data) {
         }
     });
 }
-
-
-$.ajax({
-    type: 'GET',
-    dataType: 'json',
-    url: 'viewdata/getbars',
-    success: setBars,
-    error: errorOnAjax
-});
-
-
-function setBars(data) {
-    var colors = [];
-    var color = 0;
-
-    var names = [];
-    var counts = [];
-    data.forEach(m => {
-        names.push(m.name);
-        counts.push(m.count);
-
-        if (color == 0) {
-            color = 1;
-            colors.push('#FF0000');
-        } else {
-            color = 0;
-            colors.push('#000000');
-        }
-    });
-
-
-
-
-
-
-    var barChart = new Chart(document.getElementById("bar-chart"), {
-        type: 'horizontalBar',
-        data: {
-            labels: names,
-            datasets: [{
-                backgroundColor: colors,
-                minBarLength: 0,
-                data: counts
-            }]
-        },
-        options: {
-            scales: {
-                xAxes: [{
-                    ticks: {
-                        beginAtZero: true,
-                        callback: function (value) {
-                            if (value % 1 === 0) {
-                                return value;
-                            }
-                        }
-                    }
-                }]
-            },
-            legend: {
-                display: false
-            }
-        }
-    });
-}
-
-
-
-
-$.ajax({
-    type: 'GET',
-    dataType: 'json',
-    url: 'viewdata/getlines',
-    success: setLines,
-    error: errorOnAjax
-});
-
-
-
 
 function setLines(data) {
     var months = [];
@@ -146,7 +84,51 @@ function setLines(data) {
             }
         }
     });
+}
 
+function setBars(data) {
+    var colors = [];
+    var color = 0;
+
+    var names = [];
+    var counts = [];
+    data.forEach(m => {
+        names.push(m.name);
+        counts.push(m.count);
+
+        if (color == 0) {
+            color = 1;
+            colors.push('#FF0000');
+        } else {
+            color = 0;
+            colors.push('#000000');
+        }
+    });
+
+
+    var barChart = new Chart(document.getElementById("bar-chart"), {
+        type: 'horizontalBar',
+        data: {
+            labels: names,
+            datasets: [{
+                backgroundColor: colors,
+                minBarLength: 0,
+                data: counts
+            }]
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            legend: {
+                display: false
+            }
+        }
+    });
 }
 
 $(window).on('load', function () {
@@ -155,8 +137,7 @@ $(window).on('load', function () {
     });
 })
 
-
 function errorOnAjax(data) {
 
-    console.log('Error on AJAX return');
+    console.log('Error on AJAX return' + 'data');
 };
