@@ -18,26 +18,26 @@ namespace BeyondTheTutor.Areas.Professor.Controllers
             return View();
         }
 
-        /*public JsonResult bars()
+        public JsonResult getBars()
         {
             List<object> custList = new List<object>();
-
+            string endstring = "";
             foreach (var c in db.Classes.OrderBy(m => m.Name).Distinct())
             {
                 int noAppts = c.TutoringAppts.Count();
-                if (noAppts > 0)
+                endstring += c.Name.ToString();
+                object data = new
                 {
-                    object data = new
-                    {
-                        name = c.Name,
-                        count = noAppts
-                    };
-                    custList.Add(data);
-                }
+                    name = c.Name.ToString(),
+                    count = noAppts
+                };
+                custList.Add(data);
             }
-           
+
+            object estring = new { endstring = endstring };
+            custList.Add(estring);
             return Json(custList, JsonRequestBehavior.AllowGet);
-        }*/
+        }
 
         public JsonResult getLines()
         {
