@@ -6,13 +6,14 @@
     error: errorOnAjax
 });
 
+/*
 $.ajax({
     type: 'GET',
     dataType: 'json',
     url: 'viewdata/bars',
     success: setBars,
     error: errorOnAjax
-});
+});*/
 
 $.ajax({
     type: 'GET',
@@ -86,6 +87,7 @@ function setLines(data) {
     });
 }
 
+/*
 function setBars(data) {
     var colors = [];
     var color = 0;
@@ -129,7 +131,7 @@ function setBars(data) {
             }
         }
     });
-}
+}*/
 
 $(window).on('load', function () {
     document.getElementById('line').scrollIntoView({
@@ -139,5 +141,5 @@ $(window).on('load', function () {
 
 function errorOnAjax(data) {
 
-    console.log('Error on AJAX return' + 'data');
+    console.log('Error on AJAX return');
 };

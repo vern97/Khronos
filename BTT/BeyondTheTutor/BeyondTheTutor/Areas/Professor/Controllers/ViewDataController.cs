@@ -1,43 +1,42 @@
 ﻿using BeyondTheTutor.DAL;
-using BeyondTheTutor.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace BeyondTheTutor.Areas.Professor.Controllers
 {
+    [Authorize(Roles = "Professor")]
     public class ViewDataController : Controller
     {
         // GET: Professor/ViewData
         private BeyondTheTutorContext db = new BeyondTheTutorContext();
 
-        [Authorize(Roles = "Professor")]
         public ActionResult Index()
         {
             ViewBag.Current = "ProfDataView";
             return View();
         }
 
-        public JsonResult bars()
+        public JsonResult getBars()
         {
             List<object> custList = new List<object>();
-
-            foreach (var c in db.Classes.OrderBy(m => m.Name).Distinct())
+            string endstring = "";
+            var myList = db.Classes.OrderBy(m => m.Name).Distinct().ToList();
+            foreach (var c in myList)
             {
                 int noAppts = c.TutoringAppts.Count();
-                if (noAppts > 0)
+                endstring += c.Name.ToString();
+                object data = new
                 {
-                    object data = new
-                    {
-                        name = c.Name,
-                        count = noAppts
-                    };
-                    custList.Add(data);
-                }
+                    name = c.Name.ToString(),
+                    count = noAppts
+                };
+                custList.Add(data);
             }
-           
+
+            object estring = new { endstring = endstring };
+            custList.Add(estring);
             return Json(custList, JsonRequestBehavior.AllowGet);
         }
 
@@ -86,7 +85,7 @@ namespace BeyondTheTutor.Areas.Professor.Controllers
 
             var seniors = db.Students.Where(m => m.ClassStanding == "Senior").Count();
             var juniors = db.Students.Where(m => m.ClassStanding == "Junior").Count();
-            var sophmores = db.Students.Where(m => m.ClassStanding == "Sophmore").Count();
+            var sophomores = db.Students.Where(m => m.ClassStanding == "Sophomore").Count();
             var freshmen = db.Students.Where(m => m.ClassStanding == "Freshman").Count();
 
             object data = new
@@ -107,8 +106,8 @@ namespace BeyondTheTutor.Areas.Professor.Controllers
 
             object data2 = new
             {
-                name = sophmores + " Sophmores",
-                count = sophmores
+                name = sophomores + " Sophomores",
+                count = sophomores
             };
 
             students.Add(data2);
