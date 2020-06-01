@@ -226,16 +226,8 @@ function readMessage(data) {
 
 function showSuccessfulResponse(data) {
     console.log('success');
-    $('#sms_id_3').modal('show');
 
-    $('#sms_id_3').empty();
-
-    $('#sms_id_3').append(`
-        <div class="ui floating message">
-          ${data}
-        </div>
-        `)
-   
+    location.reload();
 }
 
 
