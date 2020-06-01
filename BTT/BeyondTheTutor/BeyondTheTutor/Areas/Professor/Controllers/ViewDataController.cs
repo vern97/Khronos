@@ -22,7 +22,8 @@ namespace BeyondTheTutor.Areas.Professor.Controllers
         {
             List<object> custList = new List<object>();
             string endstring = "";
-            foreach (var c in db.Classes.OrderBy(m => m.Name).Distinct())
+            var myList = db.Classes.OrderBy(m => m.Name).Distinct().ToList();
+            foreach (var c in myList)
             {
                 int noAppts = c.TutoringAppts.Count();
                 endstring += c.Name.ToString();
