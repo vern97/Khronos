@@ -29,11 +29,26 @@
                 Live Chat
                 <i class="dropdown icon"></i>
                 <div class="menu">
-                    <a class="item red" href="https://titanembeds.com/embed/678653017465290762?scrollbartheme=inset-3&theme=IceWyvern&username=Student" target="_blank">Discord</a>
-                    @Html.ActionLink("Zoom", "Index", "Zoom", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutZoomIndex" ? "item red active" : "item") })
+                    <a class="item red" href="https://titanembeds.com/embed/678653017465290762?scrollbartheme=inset-3&theme=IceWyvern&username=Student" target="_blank">
+                        <i class="discord icon"></i>
+                        Discord
+                    </a>
+                    @if (ViewBag.Current == "TutZoomIndex")
+                    {
+                        <a class="item red active disabled" href="/Tutor/Zoom/">
+                            <i class="microphone icon"></i>
+                            Zoom
+                        </a>
+                    }
+                    else
+                    {
+                        <a class="item" href="/Tutor/Zoom/">
+                            <i class="video camera icon"></i>
+                            Zoom
+                        </a>
+                    }
                 </div>
             </div>
-
             @Html.ActionLink("Messages", "Create", "SMsTutor", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutorAddMessage" ? "item red active" : "item") })
 
             <div class="ui dropdown item">
