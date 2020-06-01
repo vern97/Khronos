@@ -21,22 +21,20 @@ namespace BeyondTheTutor.Areas.Professor.Controllers
         public JsonResult getBars()
         {
             List<object> custList = new List<object>();
-            string endstring = "";
             var myList = db.Classes.OrderBy(m => m.Name).Distinct().ToList();
             foreach (var c in myList)
             {
                 int noAppts = c.TutoringAppts.Count();
-                endstring += c.Name.ToString();
-                object data = new
-                {
-                    name = c.Name.ToString(),
-                    count = noAppts
-                };
-                custList.Add(data);
+                if(noAppts > 0)
+                { 
+                    object data = new
+                    {
+                        name = c.Name.ToString(),
+                        count = noAppts
+                    };
+                    custList.Add(data);
+                }
             }
-
-            object estring = new { endstring = endstring };
-            custList.Add(estring);
             return Json(custList, JsonRequestBehavior.AllowGet);
         }
 
