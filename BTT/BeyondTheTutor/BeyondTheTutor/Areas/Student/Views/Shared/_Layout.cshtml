@@ -50,6 +50,7 @@
         </div>
         @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
         {
+            @Html.AntiForgeryToken()
             <div class="ui dropdown item">
                 @ViewBag.FirstName
                 <i class="dropdown icon"></i>
@@ -58,8 +59,10 @@
                         @Html.ActionLink("Change Password", "ChangePassword", "Manage", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "ChangePassword" ? "item red active" : "item") })
                         @Html.ActionLink("Manage Profile", "StudentProfile", "Students", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuProfile" ? "item red active" : "item") })
                         @Html.ActionLink("User Guide", "Guide", "Home", new { area = "student" }, htmlAttributes: new { @class = (ViewBag.Current == "StuHomeGuide" ? "item red active" : "item") })
-                        @Html.AntiForgeryToken()
-                        <a href="javascript:document.getElementById('logoutForm').submit()" class="item">Sign out</a>
+                        <a href="javascript:document.getElementById('logoutForm').submit()" class="item">
+                            <i class="sign out icon"></i>
+                            Sign out
+                        </a>
                     </div>
                 </div>
             </div>
