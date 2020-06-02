@@ -40,8 +40,35 @@
                             Calculators
                         </span>
                         <div class="menu">
-                            @Html.ActionLink("Calculate", "Calculators", "Calculators", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "Calculators" ? "item red active" : "item") })
-                            @Html.ActionLink("Saved Results", "SavedResults", "Calculators", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "SavedResults" ? "item red active" : "item") })
+                            @if (ViewBag.Current == "Calculators")
+                            {
+                                <a class="item red active disabled" href="/Calculators/Calculators/">
+                                    <i class="percent icon"></i>
+                                    Calculate
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="item" href="/Calculators/Calculators/">
+                                    <i class="percent icon"></i>
+                                    Calculate
+                                </a>
+                            }
+
+                           @if (ViewBag.Current == "SavedResults")
+                            {
+                                <a class="item red active disabled" href="/Calculators/SavedResults/">
+                                    <i class="save icon"></i>
+                                    Saved Results
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="item" href="/Calculators/SavedResults/">
+                                    <i class="save icon"></i>
+                                    Saved Results
+                                </a>
+                            }
                         </div>
                     </div>
                     
