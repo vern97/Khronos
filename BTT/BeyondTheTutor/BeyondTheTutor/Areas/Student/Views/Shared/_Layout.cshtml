@@ -34,8 +34,18 @@
                 <div class="menu">
                     @Html.ActionLink("Search Resources", "Index", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResIndex" ? "item red active" : "item") })
                     <div class="divider"></div>
-                    @Html.ActionLink("Calculators", "Calculators", "Calculators", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "Calculators" ? "item red active" : "item") })
-                    @Html.ActionLink("Saved Results", "SavedResults", "Calculators", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "SavedResults" ? "item red active" : "item") })
+                    <div class="item">
+                        <i class="dropdown icon"></i>
+                        <span class="text">
+                            <i class="calculator icon"></i>
+                            Calculators
+                        </span>
+                        <div class="menu">
+                            @Html.ActionLink("Calculate", "Calculators", "Calculators", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "Calculators" ? "item red active" : "item") })
+                            @Html.ActionLink("Saved Results", "SavedResults", "Calculators", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "SavedResults" ? "item red active" : "item") })
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
 
