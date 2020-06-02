@@ -46,19 +46,23 @@
             </div>
             @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
             {
-                <div class="ui dropdown item">
-                    @ViewBag.FirstName
-                    <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <div style="text-align: left;">
-                            @Html.ActionLink("Change Password", "ChangePassword", "Manage", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "ChangePassword" ? "item red active" : "item") })
-                            @Html.ActionLink("User Guide", "Guide", "Home", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminHomeGuide" ? "item red active" : "item") })
-                            @Html.AntiForgeryToken()
-                            <a href="javascript:document.getElementById('logoutForm').submit()" class="item">Sign out</a>
-                        </div>
+                @Html.AntiForgeryToken()
+
+            <div class="ui dropdown item">
+                @ViewBag.FirstName
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <div style="text-align: left;">
+                        @Html.ActionLink("Change Password", "ChangePassword", "Manage", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "ChangePassword" ? "item red active" : "item") })
+                        @Html.ActionLink("User Guide", "Guide", "Home", new { area = "admin" }, htmlAttributes: new { @class = (ViewBag.Current == "AdminHomeGuide" ? "item red active" : "item") })
+                        <a href="javascript:document.getElementById('logoutForm').submit()" class="item">
+                            <i class="sign out icon"></i>
+                            Sign out
+                        </a>
                     </div>
                 </div>
-            }
+            </div>
+        }
         </div>
     </div>
 

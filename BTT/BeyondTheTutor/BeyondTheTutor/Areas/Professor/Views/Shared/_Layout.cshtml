@@ -73,7 +73,10 @@
                         @Html.ActionLink("Change Password", "ChangePassword", "Manage", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "ChangePassword" ? "item red active" : "item") })
                         @Html.ActionLink("User Guide", "Guide", "Home", new { area = "professor" }, htmlAttributes: new { @class = (ViewBag.Current == "ProfHomeGuide" ? "item red active" : "item") })
                         @Html.AntiForgeryToken()
-                        <a href="javascript:document.getElementById('logoutForm').submit()" class="item">Sign out</a>
+                        <a href="javascript:document.getElementById('logoutForm').submit()" class="item">
+                            <i class="sign out icon"></i>
+                            Sign out
+                        </a>
                     </div>
                 </div>
             </div>
