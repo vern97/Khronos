@@ -34,8 +34,8 @@
             <div class="ui dropdown item">
                 Tutoring &amp; Student Analysis
                 <i class="dropdown icon"></i>
-                <div class="menu" >
-                    @Html.ActionLink("Tutoring Requests", "Index", "TutoringAppts", new { area = "professor" }, htmlAttributes: new { style="text-align: center;", @class = (ViewBag.Current == "ProfApptsIndex" ? "item red active" : "item") })
+                <div class="menu">
+                    @Html.ActionLink("Tutoring Requests", "Index", "TutoringAppts", new { area = "professor" }, htmlAttributes: new { style = "text-align: center;", @class = (ViewBag.Current == "ProfApptsIndex" ? "item red active" : "item") })
                     @if (ViewBag.Current == "ProfDataView")
                     {
                         <a class="item red active disabled" href="/Professor/ViewData">
@@ -60,6 +60,42 @@
                     @Html.ActionLink("Add New", "Create", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResCreate" ? "item red active" : "item") })
                     @Html.ActionLink("Manage", "ManageResources", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResManage" ? "item red active" : "item") })
                     @Html.ActionLink("View All", "Index", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResIndex" ? "item red active" : "item") })
+
+                </div>
+            </div>
+            <div class="ui dropdown item">
+                Grade Calculators
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    @if (ViewBag.Current == "Calculators")
+                    {
+                        <a class="item red active disabled" href="/Calculators/Calculators/">
+                            <i class="percent icon"></i>
+                            Calculate Grade
+                        </a>
+                    }
+                    else
+                    {
+                        <a class="item" href="/Calculators/Calculators/">
+                            <i class="percent icon"></i>
+                            Calculate Grade
+                        </a>
+                    }
+
+                    @if (ViewBag.Current == "SavedResults")
+                    {
+                        <a class="item red active disabled" href="/Calculators/SavedResults/">
+                            <i class="save icon"></i>
+                            View Saved Results
+                        </a>
+                    }
+                    else
+                    {
+                        <a class="item" href="/Calculators/SavedResults/">
+                            <i class="save icon"></i>
+                            View saved Results
+                        </a>
+                    }
                 </div>
             </div>
         </div>

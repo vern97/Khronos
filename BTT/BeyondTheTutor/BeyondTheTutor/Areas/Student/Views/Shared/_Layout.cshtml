@@ -26,7 +26,10 @@
         @Html.ActionLink("Student Portal", "Index", "Home", new { area = "student" }, htmlAttributes: new { @class = (ViewBag.Current == "StuHomeIndex" ? "item red active" : "item") })
         <div class="right menu">
 
-            <a class="item red" href="https://titanembeds.com/embed/678653017465290762?scrollbartheme=inset-3&theme=IceWyvern&username=Student" target="_blank">Live Chat</a>
+            <a class="item red" href="https://titanembeds.com/embed/678653017465290762?scrollbartheme=inset-3&theme=IceWyvern&username=Student" target="_blank">
+                <i class="microphone icon"></i>
+                Live Chat
+            </a>
 
             <div class="ui dropdown item">
                 Student Resources
@@ -44,34 +47,33 @@
                             {
                                 <a class="item red active disabled" href="/Calculators/Calculators/">
                                     <i class="percent icon"></i>
-                                    Calculate
+                                    Calculate Grade
                                 </a>
                             }
                             else
                             {
                                 <a class="item" href="/Calculators/Calculators/">
                                     <i class="percent icon"></i>
-                                    Calculate
+                                    Calculate Grade
                                 </a>
                             }
 
-                           @if (ViewBag.Current == "SavedResults")
+                            @if (ViewBag.Current == "SavedResults")
                             {
                                 <a class="item red active disabled" href="/Calculators/SavedResults/">
                                     <i class="save icon"></i>
-                                    Saved Results
+                                    View Saved Results
                                 </a>
                             }
                             else
                             {
                                 <a class="item" href="/Calculators/SavedResults/">
                                     <i class="save icon"></i>
-                                    Saved Results
+                                    View saved Results
                                 </a>
                             }
                         </div>
                     </div>
-                    
                 </div>
             </div>
 
