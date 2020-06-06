@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace BeyondTheTutor.Controllers
 {
-    [Authorize(Roles = "Student, Tutor")]
+    [Authorize(Roles = "Student, Tutor, Professor")]
     public class CalculatorsController : Controller
     {
         private BeyondTheTutorContext db = new BeyondTheTutorContext();

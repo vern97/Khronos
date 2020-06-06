@@ -30,13 +30,13 @@
                 <i class="dropdown icon"></i>
                 <div class="menu">
                     <a class="item red" href="https://titanembeds.com/embed/678653017465290762?scrollbartheme=inset-3&theme=IceWyvern&username=Student" target="_blank">
-                        <i class="discord icon"></i>
+                        <i class="microphone icon"></i>
                         Discord
                     </a>
                     @if (ViewBag.Current == "TutZoomIndex")
                     {
                         <a class="item red active disabled" href="/Tutor/Zoom/">
-                            <i class="microphone icon"></i>
+                            <i class="video icon"></i>
                             Zoom
                         </a>
                     }
@@ -58,9 +58,44 @@
                     @Html.ActionLink("Add New Link", "Create", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResCreate" ? "item red active" : "item") })
                     @Html.ActionLink("Manage Links", "ManageResources", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResManage" ? "item red active" : "item") })
                     @Html.ActionLink("Search Resources", "Index", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResIndex" ? "item red active" : "item") })
-                    <div class="divider"></div>
-                    @Html.ActionLink("Calculators", "Calculators", "Calculators", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "Calculators" ? "item red active" : "item") })
-                    @Html.ActionLink("Saved Results", "SavedResults", "Calculators", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "SavedResults" ? "item red active" : "item") })
+                    <div class="item">
+                        <i class="dropdown icon"></i>
+                        <span class="text">
+                            <i class="calculator icon"></i>
+                            Calculators
+                        </span>
+                        <div class="menu">
+                            @if (ViewBag.Current == "Calculators")
+                            {
+                                <a class="item red active disabled" href="/Calculators/Calculators/">
+                                    <i class="percent icon"></i>
+                                    Calculate Grade
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="item" href="/Calculators/Calculators/">
+                                    <i class="percent icon"></i>
+                                    Calculate Grade
+                                </a>
+                            }
+
+                            @if (ViewBag.Current == "SavedResults")
+                            {
+                                <a class="item red active disabled" href="/Calculators/SavedResults/">
+                                    <i class="save icon"></i>
+                                    View Saved Results
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="item" href="/Calculators/SavedResults/">
+                                    <i class="save icon"></i>
+                                    View saved Results
+                                </a>
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
 
