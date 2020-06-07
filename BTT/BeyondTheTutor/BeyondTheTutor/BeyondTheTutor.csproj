@@ -733,6 +733,7 @@
     <Content Include="Views\TimeSheet\Index.cshtml" />
     <Content Include="Views\TimeSheet\PrintMonth.cshtml" />
     <Content Include="Views\TimeSheet\ViewMonth.cshtml" />
+    <Content Include="Views\Home\Credits.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
