@@ -13,10 +13,8 @@ DROP TABLE dbo.Classes;
 DROP TABLE dbo.WorkHours;
 DROP TABLE dbo.Days;
 DROP TABLE dbo.TimeSheets;
-
 DROP TABLE dbo.SMSArchives;
 DROP TABLE dbo.SMS;
-
 DROP TABLE dbo.Admins;
 DROP TABLE dbo.Students;
 DROP TABLE dbo.Tutors;

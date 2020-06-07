@@ -1,0 +1,105 @@
+﻿<body class="wou-grey-bg">
+    <div class="ui grid privacy">
+        <div class="four wide column"></div>
+        <div class="eight wide column">
+            <div class="ui raised red segment">
+                <h1 class="ui centered header">Credits</h1>
+                <center><img class="ui large image" src="../Content/images/KhronosLogo.png"></center>
+                <hr />
+                <p>
+                    <h3>Why We Did This:</h3>
+                    At Western Oregon University (WOU), the Computer Science Senior Capstone course begins in the Fall and continues
+                    through Spring. The sequence includes Software Engineering I, II, and III
+                    (i.e. 460, 461, and 462).
+                    <br /><br />
+                    During Software Engineering I, we worked on individual projects to familiarize ourselves with tools
+                    required for the final team project. Following completion of Software Engineering I, we were placed into
+                    a 3-person team for the remainder of the academic year.
+                    <br /><br />
+                    During Software Engineering II, our team used Agile practices to design a web application.
+                    Following weeks of inception and planning, we began work on the project with 2-week sprints. During Software
+                    Engineering III, we continued working through sprints, finishing with 6 sprints total. Finally, we
+                    presented our project at Academic Excellence Showcase (AES).
+                    <br /><br />
+                    Due to the global pandemic, AES 2020 was held in a virtual format. Our team created a video for presentation following
+                    the 5th sprint. Although the project was not completed at that time, our team was proud to present our work so far. You
+                    may view our presentation <a href="https://www.youtube.com/watch?v=QioakFND_l8&t=124s">here.</a>
+                </p>
+                <p>
+                    <h3>Who We Are:</h3>
+                    Our team is called Khronos and our motto is All in Good Time. Our members include Brandon Linton,
+                    Victoria Rhine, and Maksim Stoyanov.
+                    <br /><br />
+                    Brandon served as Git repo owner, ensuring only quality code was
+                    accepted into the codebase; and maintained continuous deployment of our web application, providing the team
+                    with an up-to-date site ready for demonstration. Victoria served as Scrum
+                    Master by taking lead on technical documentation, helping keep the team organized, and
+                    producing the final AES video. Max served as architecture lead by designing and implementing the portals
+                    that served as the foundation for the entire application, as well as being the go-to
+                    database designer when his team needed direction.
+                </p>
+                <p>
+                    <h3>The Source Code:</h3>
+                    You may view the source code for this application <a href="https://github.com/vern97/Khronos">here.</a>
+                    The README includes our vision for the project, all inception documents, and how to get started with our application.
+                    We have provided guidelines on contributing and a summary of tech, language, SDLC, and tools used to develop our site.
+                </p>
+                <p>
+                    <h3>What We Are Proud Of and What We Want To Say:</h3>
+                    Our team is incredibly proud of all we accomplished over the past 6 months. Our members first met on this project and
+                    immediately began working together harmoniously. We have gone from strangers, to team mates, to friends, and
+                    we feel that our team is truly one of a kind. Through hard work and mutal respect, we have grown as programmers and
+                    created a product that surpasses our initial vision.
+                    <br /><br />
+                    We set out to create a tutoring interface for the computer science
+                    division at WOU because we wanted to better the program that served us so well. We believe we have done just that, and 
+                    it is our hope that our application can serve the department and students throughout the years while also standing
+                    as testament to what students at WOU CS are capable of accomplishing. 
+                </p>
+            </div>
+        </div>
+        <div class="four wide column"></div>
+    </div>
+
+    <div class="ui container footer">
+        <hr />
+        <div class="ui vertical footer segment">
+            <div class="ui container">
+                <div class="ui stackable divided equal height stackable grid">
+                    @if (Request.IsAuthenticated)
+                    {
+
+                    }
+                    else
+                    {
+                        <div class="three wide column">
+                            <h4 class="ui header">Resources</h4>
+                            <div class="ui link list">
+                                @Html.ActionLink("FAQ", "FAQ", "Home", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "HomeFAQ" ? "item red active" : "item") })
+                                @Html.ActionLink("Privacy Policy", "Privacy", "Home", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "HomePrivacy" ? "item red active" : "item") })
+                                <a class=@(ViewBag.Current == "HomePrivacy" ? "item red active" : "item") href="#">Contact Us</a>
+                            </div>
+                        </div>
+                        <div class="three wide column">
+                            <h4 class="ui header">Account Services</h4>
+                            <div class="ui link list">
+                                @Html.ActionLink("Login", "Login", "Account", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "AccountLogin" ? "item red active" : "item") })
+                                @Html.ActionLink("Register", "Register", "Account", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "AccountRegister" ? "item red active" : "item") })
+                            </div>
+                        </div>
+                    }
+                    <div class="seven wide column">
+                        <h4 class="ui header">Beyond the Tutor</h4>
+                        <p>If you have any questions about the services offered by Beyond the Tutor, you can reach us <a href="#">here</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+}
+

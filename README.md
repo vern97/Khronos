@@ -60,4 +60,7 @@ Visit this page for a complete list of [tools](/Milestones/Milestone_5/BTT_Tools
 ### Feel Free to Play Our Team Song on Repeat
 [Come and Get Your Love](https://www.youtube.com/watch?v=eo813WVXqk8)
 
+### Current ERD as of June 2020
+Visit this page for the current design [ERD](/Milestones/Milestone_5/Final_ERD_Design_June.jpg).
+
 
