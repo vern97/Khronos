@@ -1,14 +1,12 @@
 namespace BeyondTheTutor.DAL
 {
-    using System;
     using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
     using BeyondTheTutor.Models;
     using BeyondTheTutor.Models.SurveyModels;
     using BeyondTheTutor.Models.TimeSheetModels;
 	using BeyondTheTutor.Models.ProfilePictureModels;
-    using BeyondTheTutor.DAL;
+    using BeyondTheTutor.Models.SMSModels;
+    using BeyondTheTutor.Models.StudentAlertModels;
 	
     public partial class BeyondTheTutorContext : DbContext
     {
@@ -37,6 +35,10 @@ namespace BeyondTheTutor.DAL
         public virtual DbSet<Day> Days { get; set; }
         public virtual DbSet<TimeSheet> TimeSheets { get; set; }
         public virtual DbSet<WorkHour> WorkHours { get; set; }
+        public virtual DbSet<SM> SMS { get; set; }
+        public virtual DbSet<SMSArchive> SMSArchives { get; set; }
+        public virtual DbSet<StudentAlert> StudentAlerts { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Day>()
@@ -123,6 +125,46 @@ namespace BeyondTheTutor.DAL
                 .HasMany(e => e.ProfilePictures)
                 .WithRequired(e => e.BTTUser)
                 .HasForeignKey(e => e.UserID);
+
+            modelBuilder.Entity<BTTUser>()
+                .HasMany(e => e.SMS)
+                .WithOptional(e => e.BTTUser)
+                .HasForeignKey(e => e.Receiver);
+
+            modelBuilder.Entity<BTTUser>()
+                .HasMany(e => e.SMS1)
+                .WithRequired(e => e.BTTUser1)
+                .HasForeignKey(e => e.Sender);
+
+            modelBuilder.Entity<BTTUser>()
+                .HasMany(e => e.SMSArchives)
+                .WithRequired(e => e.BTTUser)
+                .HasForeignKey(e => e.Receiver);
+
+            modelBuilder.Entity<BTTUser>()
+                .HasMany(e => e.StudentAlerts)
+                .WithRequired(e => e.BTTUser)
+                .HasForeignKey(e => e.AdminID);
+
+            modelBuilder.Entity<SM>()
+                .Property(e => e.Subject)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<SM>()
+                .Property(e => e.Message)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<SMSArchive>()
+                .Property(e => e.Subject)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<SMSArchive>()
+                .Property(e => e.Message)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<StudentAlert>()
+                .Property(e => e.Message)
+                .IsUnicode(false);
         }
     }
 }

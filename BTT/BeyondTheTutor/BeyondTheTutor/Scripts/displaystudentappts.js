@@ -10,6 +10,8 @@
         });
     }
 
+    ajax_call.call();
+
     var interval = 1000 * 2;
     window.setInterval(ajax_call, interval);
 

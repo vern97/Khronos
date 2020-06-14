@@ -1,7 +1,5 @@
-﻿SELECT * FROM StudentResources
+﻿SELECT * FROM BTTUsers
 
-SELECT * FROM BTTUsers
+SELECT * FROM Admins
 
-SELECT * FROM ProfilePictures
-
-SELECT * FROM TutoringAppts
+SELECT * FROM StudentAlerts

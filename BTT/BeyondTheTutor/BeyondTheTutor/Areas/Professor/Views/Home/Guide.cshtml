@@ -23,20 +23,100 @@
                 </div>
                 <div class="content">
                     <p>
-                        @Html.ActionLink("Student resources", "Index", "StudentResources", new { area = "" }, htmlAttributes:
-                        new { @class = (ViewBag.Current == "StuResIndex" ? "item red active" : "item") }) are an easy way to
-                        share helpful and interesting finds with your students. In the @Html.ActionLink("Add New", "Create", 
-                        "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResCreate" ? 
-                        "item red active" : "item") }) form you will enter a topic for your resource. Example topics are "Java", 
-                        "Semantic UI", "CSS Styling". Make the topic simple and searchable. You will provide the website URL for
-                        your resource by copying and pasting it into the appropropriate box. And you will decide how you want the 
-                        link displayed. Example displays are "Parse Trees - Wikipedia", "AJAX - CS 461", "HTML Tutorial". Make
-                        displays simple and searchable. 
+                        You may share helpful resources with students. In the resource form, add a topic label, URL for the resource, and how you want
+                        the link displayed. Resources are first organized by topic so make topics concise. How you want the link displayed
+                        is a more descriptive way to label the resources.
                     </p>
                     <p>
-                        You may @Html.ActionLink("manage", "ManageResources", "StudentResources", new { area = "" }, htmlAttributes: 
-                        new { @class = (ViewBag.Current == "StuResManage" ? "item red active" : "item") }) your student resources
-                        at any time. You may change the topic, URL, display text, or delete. 
+                        Recommendations on how to add resources:
+                        <br />Topic examples include HTML, CSS, JavaScript.
+                        <br />Link display examples include HTML YouTube tutorial, CSS website, JavaScript functions.
+                    </p>
+                    <p>
+                        @Html.ActionLink("Add New Link", "Create", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResCreate" ? "item red active" : "item") })
+                    </p>
+                    <p>
+                        You may edit or delete resources owned by you at any time.
+                    </p>
+                    <p>
+                        @Html.ActionLink("Manage Links", "ManageResources", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResManage" ? "item red active" : "item") })
+                    </p>
+                    <p>
+                        Additionally, you are permitted to search all resources.
+                    </p>
+                    <p>
+                        @Html.ActionLink("Search Resources", "Index", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResIndex" ? "item red active" : "item") })
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Analyzing Tutoring Requests
+                </div>
+                <div class="content">
+                    <p>
+                        You may view general information about tutoring requests such as class tutored, date tutored, session length,
+                        method of delivery, student class standing, student graduation year, participating tutor, and status of the request (e.g. requested, completed, etc.)
+                        We provide this information so that you may analyze student need. Student information is anonymous as all data is thrown into a collective pool.
+                    </p>
+                    <p>
+                        Examples of how to analyze the information we provide:<br />
+                        <b>Scenario:</b> Tutoring requests were high the first week of October for CS 260.<br />
+                        <b>Questions to Ask:</b> What material was covered at that time? Would revisiting the material help students? Are there ways to better deliver the material?<br />
+
+                        <b>Scenario:</b> Your classroom is quiet and students aren't asking many questions.<br />
+                        <b>Questions to Ask:</b> Does this mean that all students perfectly understand the material? Are there tutoring requests that point to unspoken student need?<br />
+                    </p>
+                    <p>
+                        We aim to make your job as a professor more intuitive and informed. 
+                    </p>
+                    <p>
+                        @Html.ActionLink("Analyze Tutoring Requests", "Index", "TutoringAppts", new { area = "professor" }, htmlAttributes: new { @class = (ViewBag.Current == "ProfApptsIndex" ? "item red active" : "item") })
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Creating Surveys and Analyzing Survey Responses
+                </div>
+                <div class="content">
+                    <p>
+                        You may create surveys to better understand student need. You will name your survey, describe it, and assign it to a course. These surveys are available to students that have 
+                        requested tutoring for that course. 
+                        Once the survey is created, add questions that may be answered with a 1-5 star rating system. We do not allow custom student input to protect possible abuse in the system. 
+                    </p>
+                    <p>
+                        Once any response is recorded, you may view the survey again to see those responses. You will see the average answer recorded and how many students took the survey.
+                        Student information is anonymous as all data is thrown into a collective pool. 
+                    </p>
+                    <p>
+                        You may add additional questions to the survey. Students who previously took the survey will only be prompted to answer the new questions. You may also delete questions and
+                        the entire survey at any time of your choosing. 
+                    </p>
+                    <p>
+                        @Html.ActionLink("Surveys", "Index", "Surveys", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "ProfSurveyIndex" ? "item red active" : "item") })
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Managing Your Profile
+                </div>
+                <div class="content">
+                    <p>
+                        You may change your current password.
+                    </p>
+                    <p>
+                        @Html.ActionLink("Change Password", "ChangePassword", "Manage", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "ChangePassword" ? "item red active" : "item") })
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    How do I contact the development team?
+                </div>
+                <div class="content">
+                    <p>
+                        Questions or comments? Contact us at <a href="mailto: beyondthetutor@gmail.com" id="portal-headers">beyondthetutor&commat;gmail.com</a>
+                    </p>
+                    <p>
+                        <img class="ui medium fluid image" src="@Url.Content("~/Content/images/KhronosLogo.png")" />
                     </p>
                 </div>
             </div>

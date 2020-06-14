@@ -19,7 +19,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44396</IISExpressSSLPort>
+    <IISExpressSSLPort>44342</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -183,18 +183,27 @@
     <Compile Include="Areas\Admin\Controllers\AllUsersController.cs" />
     <Compile Include="Areas\Admin\Controllers\ClassesController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SMsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StudentAlertsController.cs" />
     <Compile Include="Areas\Admin\Controllers\TutorSchedulesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ElevatedAccountController.cs" />
     <Compile Include="Areas\Professor\Controllers\HomeController.cs" />
     <Compile Include="Areas\Professor\Controllers\TutoringApptsController.cs" />
+    <Compile Include="Areas\Professor\Controllers\ViewDataController.cs" />
     <Compile Include="Areas\Professor\ProfessorAreaRegistration.cs" />
     <Compile Include="Areas\Student\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Student\Controllers\StudentAlertsController.cs" />
     <Compile Include="Areas\Student\Controllers\TutoringApptsController.cs" />
     <Compile Include="Areas\Student\Controllers\ZoomController.cs" />
     <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
     <Compile Include="Areas\Tutor\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Tutor\Controllers\MessagesControllers\SecretMessagesController.cs" />
+    <Compile Include="Areas\Tutor\Controllers\MessagesControllers\SMSArchivesController.cs" />
+    <Compile Include="Areas\Tutor\Controllers\MessagesControllers\SMSRepliesController.cs" />
+    <Compile Include="Areas\Tutor\Controllers\MessagesControllers\SMsTutorController.cs" />
     <Compile Include="Areas\Tutor\Controllers\TutoringApptsController.cs" />
     <Compile Include="Areas\Tutor\Controllers\TutoringServiceAlertsController.cs" />
+    <Compile Include="Areas\Tutor\Controllers\MessagesControllers\TutorMessagesController.cs" />
     <Compile Include="Areas\Tutor\Controllers\TutorSchedulesController.cs" />
     <Compile Include="Areas\Tutor\Controllers\ZoomController.cs" />
     <Compile Include="Areas\Tutor\TutorAreaRegistration.cs" />
@@ -223,6 +232,9 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\ProfilePictureModels\ProfilePicture.cs" />
+    <Compile Include="Models\SMSModels\SM.cs" />
+    <Compile Include="Models\SMSModels\SMSArchive.cs" />
+    <Compile Include="Models\StudentAlertModels\StudentAlert.cs" />
     <Compile Include="Models\SurveyModels\Answer.cs" />
     <Compile Include="DAL\BeyondTheTutorContext.cs" />
     <Compile Include="Models\BTTUser.cs" />
@@ -260,6 +272,8 @@
     <Content Include="App_Data\queries.sql" />
     <Content Include="App_Data\seed.sql" />
     <Content Include="App_Data\up.sql" />
+    <Content Include="Content\Chart.css" />
+    <Content Include="Content\Chart.min.css" />
     <Content Include="Content\components\accordion.css" />
     <Content Include="Content\components\accordion.js" />
     <Content Include="Content\components\accordion.min.css" />
@@ -493,8 +507,6 @@
     <Content Include="Areas\Admin\Views\TutorSchedules\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\TutorSchedules\UpdateSchedule.cshtml" />
     <Content Include="Areas\Student\Views\TutoringAppts\Create.cshtml" />
-    <Content Include="Areas\Student\Views\TutoringAppts\Delete.cshtml" />
-    <Content Include="Areas\Student\Views\TutoringAppts\Details.cshtml" />
     <Content Include="Areas\Student\Views\TutoringAppts\Edit.cshtml" />
     <Content Include="Areas\Student\Views\TutoringAppts\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Guide.cshtml" />
@@ -509,8 +521,6 @@
     <Content Include="Areas\Admin\Views\AllUsers\CreateAdmin.cshtml" />
     <Content Include="Areas\Admin\Views\ElevatedAccount\Delete.cshtml" />
     <Content Include="Areas\Tutor\Views\TutoringAppts\Create.cshtml" />
-    <Content Include="Areas\Tutor\Views\TutoringAppts\Delete.cshtml" />
-    <Content Include="Areas\Tutor\Views\TutoringAppts\Details.cshtml" />
     <Content Include="Areas\Tutor\Views\TutoringAppts\Edit.cshtml" />
     <Content Include="Areas\Tutor\Views\TutoringAppts\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Classes\Create.cshtml" />
@@ -522,20 +532,34 @@
     <Content Include="Areas\Tutor\Views\TutoringServiceAlerts\Details.cshtml" />
     <Content Include="Areas\Tutor\Views\TutoringServiceAlerts\Edit.cshtml" />
     <Content Include="Areas\Tutor\Views\TutoringServiceAlerts\Index.cshtml" />
-    <Content Include="Areas\Professor\Views\TutoringAppts\Create.cshtml" />
-    <Content Include="Areas\Professor\Views\TutoringAppts\Delete.cshtml" />
-    <Content Include="Areas\Professor\Views\TutoringAppts\Details.cshtml" />
-    <Content Include="Areas\Professor\Views\TutoringAppts\Edit.cshtml" />
     <Content Include="Areas\Professor\Views\TutoringAppts\Index.cshtml" />
     <Content Include="Areas\Tutor\Views\Zoom\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SMs\Create.cshtml" />
+    <Content Include="Areas\Tutor\Views\SMsTutor\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\StudentAlerts\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\StudentAlerts\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\StudentAlerts\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\StudentAlerts\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\StudentAlerts\Index.cshtml" />
+    <Content Include="Areas\Professor\Views\ViewData\Index.cshtml" />
+    <Content Include="Areas\Tutor\Views\SecretMessages\Delete.cshtml" />
+    <Content Include="Areas\Tutor\Views\SecretMessages\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Compile Include="Models\ViewModels\AllUsersViewModel.cs" />
     <Compile Include="Models\TimeSheetModels\TutorTimeSheetsCustomModel.cs" />
+    <Content Include="Scripts\admin-student-alerts.js" />
+    <Content Include="Scripts\appt_and_stu_data.js" />
     <Content Include="Scripts\calculators.js" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\Chart.min.js" />
     <Content Include="Scripts\disable-service-alert-dropdown.js" />
     <Content Include="Scripts\displayrequestedappts.js" />
+    <Content Include="Scripts\smssystem\displaysavedsms.js" />
+    <Content Include="Scripts\smssystem\displaysentsms.js" />
+    <Content Include="Scripts\displaystudent.js" />
     <Content Include="Scripts\displaystudentappts.js" />
     <Content Include="Scripts\displaytutors.js" />
+    <Content Include="Scripts\smssystem\displaytutorsms.js" />
     <Content Include="Scripts\fullcalendar.js" />
     <Content Include="Scripts\fullcalendar.min.js" />
     <Content Include="Scripts\gcal.js" />
@@ -649,6 +673,9 @@
     <Content Include="Scripts\semantic.js" />
     <Content Include="Scripts\semantic.min.js" />
     <Content Include="Scripts\service-alert.js" />
+    <Content Include="Scripts\smssystem\smsadmin.js" />
+    <Content Include="Scripts\smssystem\smstutor.js" />
+    <Content Include="Scripts\student-alerts.js" />
     <Content Include="Scripts\zoomstudent.js" />
     <Content Include="Scripts\zoomtutor.js" />
     <Content Include="Web.config" />
@@ -674,12 +701,10 @@
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Manage\ManageLogins.cshtml" />
     <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\FAQ.cshtml" />
@@ -708,6 +733,7 @@
     <Content Include="Views\TimeSheet\Index.cshtml" />
     <Content Include="Views\TimeSheet\PrintMonth.cshtml" />
     <Content Include="Views\TimeSheet\ViewMonth.cshtml" />
+    <Content Include="Views\Home\Credits.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
@@ -715,7 +741,6 @@
     <Folder Include="Areas\Student\Data\" />
     <Folder Include="Areas\Student\Views\Zoom\" />
     <Folder Include="Areas\Tutor\Data\" />
-    <Folder Include="Views\StudentAppointment\" />
     <Folder Include="Views\ZoomAPI\" />
   </ItemGroup>
   <ItemGroup>

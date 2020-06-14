@@ -1,5 +1,4 @@
 ﻿body {
-    padding-top: 50px;
     padding-bottom: 20px;
 }
 
@@ -435,6 +434,7 @@ table#savedFinalGPA tr {
 .ui.card.portal {
     height: 100%;
     width: 100%;
+    position: relative;
 }
 
 .ui.container.portal {
@@ -444,7 +444,11 @@ table#savedFinalGPA tr {
 .ui.floating.message.portal {
     height: 100%;
     width: 100%;
+    position: relative;
+}
 
-tr#noShow {
+    tr #noShow {
     background-color: #e60000;
 }
+
+/* Customizations for sms feature */

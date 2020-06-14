@@ -1,0 +1,112 @@
+﻿@model BeyondTheTutor.Models.SMSModels.SM
+
+<body class="wou-silver-bg">
+    <div class="container" style="position: relative">
+        <div class="ui one column centered padded grid">
+            <div class="ui centered vertical segment">
+                <div class="ui top attached tabular large menu" style="justify-content:center;">
+                    <a class="active item red" data-tab="first">Inbox</a>
+                    <a class="item red" data-tab="second">Sent</a>
+                    <a class="item red" data-tab="third">Saved</a>
+                    <a class="item red" data-tab="fourth">Compose a Message</a>
+                </div>
+                <div class="ui bottom attached active tab segment" data-tab="first">
+                    @* SECTION TO DISPLAY INCOMING MESSAGES DO NOT DELETE *@
+                    <div id="incoming_sms">
+
+                    </div>
+                    @* END INCOMING MESSAGES SECTION *@
+
+                    @* Modal that shows whether a message was successfully saved *@
+                    <div id="show_saved_modal">
+
+                    </div>
+
+                    @* Modal that shows the incoming message *@
+                    <div id="read_sms_modal">
+
+                    </div>
+
+                </div>
+                <div class="ui bottom attached tab segment" data-tab="second">
+
+                    @* SECTION TO DISPLAY OUTGOING MESSAGES DO NOT DELETE *@
+                    <div id="outgoing_sms">
+
+                    </div>
+                    @* END OUTGOING MESSAGES SECTION *@
+
+                    @* Modal to read sent messages *@
+                    <div id="read_sent_sms">
+
+                    </div>
+                </div>
+                <div class="ui bottom attached tab segment" data-tab="third">
+
+                    @* SECTION TO DISPLAY ARCHIVES MESSAGES DO NOT DELETE *@
+                    <div id="archived_sms">
+
+                    </div>
+                    @* END ARCHIVED MESSAGES SECTION *@
+
+                    @* Modal that shows whether a message was successfully deleted *@
+                    <div id="show_deleted">
+
+                    </div>
+
+                    @* Modal to read archived messages *@
+                    <div id="read_archived_sms">
+
+                    </div>
+                </div>
+                <div class="ui bottom attached tab segment" data-tab="fourth">
+                    <div class="ui equal width form">
+                        <div class="field">
+                            <label>Subject</label>
+                            <input type="text" id="Subject" name="Subject">
+                        </div>
+                        <div class="field">
+                            <label>Message</label>
+                            @Html.TextAreaFor(model => model.Message, new { htmlAttributes = new { @type = "form-control", id = "Message" } })<br />
+                        </div>
+                        <div class="fields">
+                            <div class="field">
+                                <label>Recipient</label>
+                                @Html.DropDownListFor(model => model.Receiver, new SelectList(ViewBag.Tutors, "ID", "Name", "true"), "All Tutors", htmlAttributes: new { @class = "ui selection dropdown form-control", id = "Receiver" })
+                            </div>
+                            <div class="field">
+                                <label>Priority</label>
+                                @Html.DropDownListFor(model => model.Priority, new SelectListItem[] {
+                                new SelectListItem() {Text = "Normal", Value="1"},
+                                new SelectListItem() {Text = "High", Value="2"},
+                                }, htmlAttributes: new { @class = "ui selection dropdown form-control" })
+                                @Html.ValidationMessageFor(model => model.Priority, "", new { @class = "text-danger", id = "Priority" })
+                            </div>
+                        </div>
+                        <div class="ui hidden divider"></div>
+                        <button onclick="sendSMS()" class="ui vertical animated button fluid ui button schedule" tabindex="0" id="sms-1">
+                            <div class="hidden content"><i class="envelope outline icon"></i></div>
+                            <div class="visible content">
+                                Send Message
+                            </div>
+                        </button>
+                    </div>
+                    @* Modal that shows whether a message was successfully sent *@
+                    <div id="sent_success_modal">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+    <script src="~/Scripts/smssystem/smsadmin.js"></script>
+    <script src="~/Scripts/smssystem/displaytutorsms.js"></script>
+    <script src="~/Scripts/smssystem/displaysentsms.js"></script>
+    <script src="~/Scripts/smssystem/displaysavedsms.js"></script>
+}

@@ -113,6 +113,46 @@
                 </div>
                 <div class="title">
                     <i class="dropdown icon"></i>
+                    Managing Your Profile
+                </div>
+                <div class="content">
+                    <p>
+                        You may change your current password.
+                    </p>
+                    <p>
+                        @Html.ActionLink("Change Password", "ChangePassword", "Manage", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "ChangePassword" ? "item red active" : "item") })
+                    </p>
+                    <p>
+                        You may also update current class standing and graduation year.
+                    </p>
+                    <p>
+                        @Html.ActionLink("Manage Profile", "StudentProfile", "Students", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuProfile" ? "item red active" : "item") })
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Online Tutoring Using Zoom
+                </div>
+                <div class="content">
+                    <p>
+                        We provide online tutoring via the Zoom application. To use online tutoring via Zoom, you should download and install the application on your device.
+                        Signing up for a Zoom account is not necessary to participate in online tutoring, but we do recommend creating an account for optimal personalization.
+                    </p>
+                    <p>
+                        <a target="_blank" href="https://www.zoom.us/">Zoom website</a>
+                    </p>
+                    <p>
+                        To participate in an online tutoring session, you must previously have requested a tutoring appointment and a tutor must previously have
+                        approved that appointment. Links for tutoring sessions are found in this guide and the navigation bar.
+                    </p>
+                    <p>
+                        In the student portal, the Zoom banner is displayed. If a you do not currently have a scheduled appointment, you may request one.
+                        If you have an upcoming appointment, you will be prompted to join the session when it begins. Clicking the alert redirects
+                        to the appropriate Zoom room.
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
                     Real-Time Chatting with Tutors
                 </div>
                 <div class="content">
@@ -141,7 +181,10 @@
                 </div>
                 <div class="content">
                     <p>
-                        Questions or comments? Contact us at beyondthetutor&commat;gmail.com
+                        Questions or comments? Contact us at <a href="mailto: beyondthetutor@gmail.com" id="portal-headers">beyondthetutor&commat;gmail.com</a>
+                    </p>
+                    <p>
+                        <img class="ui medium fluid image" src="@Url.Content("~/Content/images/KhronosLogo.png")" />
                     </p>
                 </div>
             </div>

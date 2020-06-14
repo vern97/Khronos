@@ -260,3 +260,54 @@ CREATE TABLE [dbo].[ProfilePictures]
 		REFERENCES [BTTUsers] ([ID])
 		ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+CREATE TABLE [SMS] 
+(
+    [ID] 			INT IDENTITY (1, 1) 	NOT NULL,
+	[DateSent]		[DATETIME]				NOT NULL,
+    [Subject] 		VARCHAR(100)			NULL,
+    [Message] 		VARCHAR(MAX)	 		NOT NULL,
+	[Sender]		INT						NOT NULL,
+	[Receiver]		INT						NULL,
+	[Priority]		INT						NOT NULL
+	CONSTRAINT [PK_SMS] PRIMARY KEY CLUSTERED ([ID] ASC),
+
+	CONSTRAINT [FK.dbo.SMS_dbo.Sender_ID] FOREIGN KEY ([Sender]) 
+		REFERENCES [BTTUsers] ([ID])
+		ON DELETE CASCADE,
+
+		CONSTRAINT [FK.dbo.SMS_dbo.Receiver_ID] FOREIGN KEY ([Receiver]) 
+		REFERENCES [BTTUsers] ([ID])
+);
+
+CREATE TABLE [SMSArchives] 
+(
+    [ID] 			INT IDENTITY (1, 1) 	NOT NULL,
+	[DateSent]		[DATETIME]				NOT NULL,
+    [Subject] 		VARCHAR(100)			NOT NULL,
+    [Message] 		VARCHAR(MAX)	 		NOT NULL,
+	[Sender]		INT						NOT NULL,
+	[Receiver]		INT						NOT NULL,
+	[Priority]		INT						NOT NULL,
+
+	CONSTRAINT [PK_SMSArchives] PRIMARY KEY CLUSTERED ([ID] ASC),
+
+	CONSTRAINT [FK.dbo.SMSArchives_dbo.Receiver] FOREIGN KEY ([Receiver]) 
+	REFERENCES [BTTUsers] ([ID])
+	ON DELETE CASCADE
+);
+
+CREATE TABLE [StudentAlerts]
+(
+	[ID]			INT IDENTITY (1,1)		NOT NULL,
+	[TimeStamp]		DATETIME				NOT NULL,
+	[Subject]		NVARCHAR(100)			NOT NULL,
+	[Message]		TEXT					NOT NULL,
+	[Expiration]	DATETIME				NOT NULL,
+	[AdminID]		INT						NOT NULL,
+
+	CONSTRAINT [PK_StudentAlerts] PRIMARY KEY CLUSTERED ([ID] ASC),
+	CONSTRAINT [FK.dbo.StudentAlerts_dbo.BTTUsers_ID] FOREIGN KEY ([AdminID]) 
+		REFERENCES [BTTUsers] ([ID])
+		ON DELETE CASCADE ON UPDATE CASCADE
+);

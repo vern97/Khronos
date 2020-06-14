@@ -19,11 +19,61 @@
         <div class="row six wide column">
             <div class="column">
                 <div class="ui grid registration">
-                    <div class="ui attached fluid segment form">
+                    <div class="ui attached red fluid segment form">
+                        @using (Html.BeginForm("StudentProfilePicture", "Students", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <h2>Update Profile Picture</h2>
+                            <hr />
+                            <div class="ui one column padded center aligned grid" id="tutors_container">
+                                @if (ViewBag.UserHasProfilePicture == false)
+                                {
+                                    <div style="min-width:240px;">
+                                        <img class="ui rounded image" src="~/Content/images/helen.jpg" alt="Alternate Text" style="max-height:320px; max-width:240px; min-height:320px;" />
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div style="min-width:240px;">
+                                        <img class="ui rounded image" src="@Url.Action("RetrieveCurrentStudentProfilePicture", "Students", new { id = ViewBag.currentUserID})" alt="Alternate Text" style="max-height:320px; max-width:240px; min-height:320px;" />
+                                    </div>
+                                }
+                            </div>
+                            <p>Recommended picture ratio is 240x320</p>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <div>
+                                        <label for="userPicture" class="ui icon button">
+                                            <i class="file icon"></i>
+                                            Upload Photo
+                                        </label>
+                                        <input type="file" id="userPicture" name="userPicture" style="display:none" />
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <button class="fluid ui button schedule">Save Changes</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui divided grid center aligned">
+        <div class="row six wide column">
+            <div class="column">
+                <div class="ui grid registration">
+                    <div class="ui attached fluid red segment form">
                         @using (Html.BeginForm("Edit", "Students", FormMethod.Post))
                         {
                             @Html.AntiForgeryToken()
-                            <h2>Update Profile Form</h2>
+                            <h2>Update Profile Information</h2>
                             <hr />
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             @Html.Hidden("ID", (object)ViewBag.CurrentUserID)
@@ -31,12 +81,13 @@
                                 Graduating Year
                                 <div class="col-md-10">
                                     @Html.DropDownListFor(m => m.GraduatingYear, new SelectListItem[] {
-                            new SelectListItem() {Text = DateTime.Now.AddYears(0).Year.ToString(), Value=DateTime.Now.AddYears(0).Year.ToString()},
-                            new SelectListItem() {Text = DateTime.Now.AddYears(1).Year.ToString(), Value=DateTime.Now.AddYears(1).Year.ToString()},
-                            new SelectListItem() {Text = DateTime.Now.AddYears(2).Year.ToString(), Value=DateTime.Now.AddYears(2).Year.ToString()},
-                            new SelectListItem() {Text = DateTime.Now.AddYears(3).Year.ToString(), Value=DateTime.Now.AddYears(3).Year.ToString()},
-                            new SelectListItem() {Text = DateTime.Now.AddYears(4).Year.ToString(), Value=DateTime.Now.AddYears(4).Year.ToString()}
-                            }, "Select", htmlAttributes: new { @class = "ui selection dropdown form-control" })
+                                    new SelectListItem() {Text = (string)ViewBag.StuGradYear, Value=(string)ViewBag.StuGradYear, Selected=true},
+                                    new SelectListItem() {Text = DateTime.Now.AddYears(0).Year.ToString(), Value=DateTime.Now.AddYears(0).Year.ToString()},
+                                    new SelectListItem() {Text = DateTime.Now.AddYears(1).Year.ToString(), Value=DateTime.Now.AddYears(1).Year.ToString()},
+                                    new SelectListItem() {Text = DateTime.Now.AddYears(2).Year.ToString(), Value=DateTime.Now.AddYears(2).Year.ToString()},
+                                    new SelectListItem() {Text = DateTime.Now.AddYears(3).Year.ToString(), Value=DateTime.Now.AddYears(3).Year.ToString()},
+                                    new SelectListItem() {Text = DateTime.Now.AddYears(4).Year.ToString(), Value=DateTime.Now.AddYears(4).Year.ToString()}
+                                    }, "Select", htmlAttributes: new { @class = "ui selection dropdown form-control" })
                                     @Html.ValidationMessageFor(model => model.GraduatingYear, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -44,11 +95,12 @@
                                 Class Standing
                                 <div class="col-md-10">
                                     @Html.DropDownListFor(m => m.ClassStanding, new SelectListItem[] {
-                            new SelectListItem() {Text = "Freshman", Value="Freshman"},
-                            new SelectListItem() {Text = "Sophomore", Value="Sophomore"},
-                            new SelectListItem() {Text = "Junior", Value="Junior"},
-                            new SelectListItem() {Text = "Senior", Value="Senior"}
-                            }, "Select", htmlAttributes: new { @class = "ui selection dropdown form-control" })
+                                    new SelectListItem() {Text = (string)ViewBag.StuClassStanding, Value=(string)ViewBag.StuClassStanding, Selected=true},
+                                    new SelectListItem() {Text = "Freshman", Value="Freshman"},
+                                    new SelectListItem() {Text = "Sophomore", Value="Sophomore"},
+                                    new SelectListItem() {Text = "Junior", Value="Junior"},
+                                    new SelectListItem() {Text = "Senior", Value="Senior"}
+                                    }, "Select", htmlAttributes: new { @class = "ui selection dropdown form-control" })
                                     @Html.ValidationMessageFor(model => model.ClassStanding, "", new { @class = "text-danger" })
                                 </div>
                             </div>

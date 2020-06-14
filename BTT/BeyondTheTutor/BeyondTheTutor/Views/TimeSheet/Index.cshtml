@@ -18,25 +18,7 @@
 
         <table class="ui striped compact table table-schedule" style="text-align: center;">
             <thead>
-                <tr>
-                    <th colspan="2"></th>
-                    <th colspan="3">
-                        @using (Html.BeginForm("Index", "TimeSheets", FormMethod.Get))
-                        {
-                            <div class="ui fluid action input">
-                                @if (ViewBag.searched != null)
-                                {
-                                    <input type="text" style="color: #db0a29" value="@ViewBag.searched" name="search" id="search" placeholder="@ViewBag.Placeholder">
-                                }
-                                else
-                                {
-                                    <input type="text" style="color: #db0a29" name="search" id="search" placeholder="@ViewBag.Placeholder">
-                                }
-                                <button class="ui button" style="background-color: #003b98; color: white;">Search</button>
-                            </div>
-                        }
-                    </th>
-                </tr>
+                
                 <tr style="text-align: center;">
                     <th colspan="2"></th>
                     <th colspan="3">

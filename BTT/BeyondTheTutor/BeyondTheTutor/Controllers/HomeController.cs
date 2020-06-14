@@ -50,7 +50,13 @@ namespace BeyondTheTutor.Controllers
             ViewBag.Current = "HomePrivacy";
             return View();
         }
-        
+
+        public ActionResult Credits()
+        {
+            ViewBag.Current = "Credits";
+            return View();
+        }
+
         public ActionResult GetTutorSchedules()
         {
             var events = db.TutorSchedules.Select(e => new

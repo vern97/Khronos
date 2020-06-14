@@ -7,6 +7,8 @@ namespace BeyondTheTutor.Models
     using System.Data.Entity.Spatial;
     using BeyondTheTutor.Models.SurveyModels;
     using BeyondTheTutor.Models.ProfilePictureModels;
+    using BeyondTheTutor.Models.SMSModels;
+    using BeyondTheTutor.Models.StudentAlertModels;
 
     public partial class BTTUser
     {
@@ -18,7 +20,10 @@ namespace BeyondTheTutor.Models
             StudentResources = new HashSet<StudentResource>();
             WeightedGrades = new HashSet<WeightedGrade>();
             Answers = new HashSet<Answer>();
-
+            SMS = new HashSet<SM>();
+            SMS1 = new HashSet<SM>();
+            SMSArchives = new HashSet<SMSArchive>();
+            StudentAlerts = new HashSet<StudentAlert>();
         }
 
         public int ID { get; set; }
@@ -63,5 +68,16 @@ namespace BeyondTheTutor.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProfilePicture> ProfilePictures { get; set; }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SM> SMS { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SM> SMS1 { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SMSArchive> SMSArchives { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StudentAlert> StudentAlerts { get; set; }
     }
 }

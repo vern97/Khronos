@@ -23,62 +23,221 @@
                 </div>
                 <div class="content">
                     <p>
-                        @Html.ActionLink("Student resources", "Index", "StudentResources", new { area = "" }, htmlAttributes:
-                        new { @class = (ViewBag.Current == "StuResIndex" ? "item red active" : "item") }) are an easy way to
-                        share helpful and interesting finds with your students. In the @Html.ActionLink("Add New", "Create",
-"StudentResources", new { area = "" }, htmlAttributes: new
-{
-@class = (ViewBag.Current == "StuResCreate" ?
-"item red active" : "item")
-}) form you will enter a topic for your resource. Example topics are "Java",
-                        "Semantic UI", "CSS Styling". Make the topic simple and searchable. You will provide the website URL for
-                        your resource by copying and pasting it into the appropropriate box. And you will decide how you want the
-                        link displayed. Example displays are "Parse Trees - Wikipedia", "AJAX - CS 461", "HTML Tutorial". Make
-                        displays simple and searchable.
+                        You may share helpful resources with students. In the resource form, add a topic label, URL for the resource, and how you want
+                        the link displayed. Resources are first organized by topic so make topics concise. How you want the link displayed
+                        is a more descriptive way to label the resources.
                     </p>
                     <p>
-                        You may @Html.ActionLink("manage", "ManageResources", "StudentResources", new { area = "" }, htmlAttributes:
-                new { @class = (ViewBag.Current == "StuResManage" ? "item red active" : "item") }) your student resources
-                        at any time. You may change the topic, URL, display text, or delete.
-                    </p>
-                </div>
-                <div class="title">
-                    <i class="dropdown icon"></i>
-                    Discord Real-Time Chat
-                </div>
-                <div class="content">
-                    <p>
-                        On your portal <a href="/Tutor/Home/Index" target="_blank">home page</a> you will find a Discord chat box.
-                        This allows you to chat with students in real-time.<br />
+                        Recommendations on how to add resources:
+                        <br />Topic examples include HTML, CSS, JavaScript.
+                        <br />Link display examples include HTML YouTube tutorial, CSS website, JavaScript functions.
                     </p>
                     <p>
-                        If you don't have a Discord account we recommend signing up <a href="https://discordapp.com/" target="_blank">here</a>.
-                        Join the tutoring server by clicking DISCORD LOGIN in the chat box. <b>You may join the server with a pre-existing Discord account</b>.<br />
+                        @Html.ActionLink("Add New Link", "Create", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResCreate" ? "item red active" : "item") })
                     </p>
                     <p>
-                        <a href="https://discordapp.com/" target="_blank">Download desktop Discord</a> or access the server in your
-                        <a href="https://discordapp.com/channels/678653017465290762/678653017465290765" target="_blank">browser</a>. Right-click
-                        your username and change your nickname to FIRST-NAME (Tutor). Once your account is set up with an appropriate user name you
-                        may chat with students from your portal home page or whichever method you prefer.
+                        You may edit or delete resources owned by you at any time.
                     </p>
                     <p>
-                        Real-time chat is intended for quick help. If a student's needs require significant time then politely recommend
-                        they visit the tutoring center or schedule a tutoring session.
+                        @Html.ActionLink("Manage Links", "ManageResources", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResManage" ? "item red active" : "item") })
                     </p>
                     <p>
-                        Real-time chat is intended for use while you are scheduled in the tutoring center. If you would like to work with a student
-                        outside your normal tutoring hours please recommend they schedule a tutoring session so that you are compensated for your time.
+                        Additionally, tutors are permitted to search resources to assist their own studying needs.
+                    </p>
+                    <p>
+                        @Html.ActionLink("Search Resources", "Index", "StudentResources", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "StuResIndex" ? "item red active" : "item") })
                     </p>
                 </div>
                 <div class="title">
                     <i class="dropdown icon"></i>
-                    Tutoring Center Scheduling
+                    Adding and Managing TimeSheets
                 </div>
                 <div class="content">
                     <p>
-                        You can <a href="/Tutor/TutorSchedules/Create" target="_blank">add your scheduled times</a> in the tutoring center. You may also
-                        <a href="/Tutor/TutorSchedules/UpdateSchedule" target="_blank">edit or delete</a> your schedules. Schedules are automatically shown
-                        on the Beyond the Tutor home page calendar. Notice that time slots have a unique color for each tutor.
+                        You may track your tutoring hours through the use of digital timesheets. You will use these timesheets to save all times - in-person and online - worked
+                        as a Computer Science Division tutor for the current pay period.
+                    </p>
+                    <p>
+                        First, you will Create a Timesheet for the current pay period. Once the timesheet exists, you may add a day to the timesheet. Once the day exists, you
+                        may view the timesheet to add shifts for that day. Total hours are automatically calculated for that day, and the overall time worked in the period. There is no
+                        need to add multiple of the same day should you work multiple shifts within a day as days may contain several shifts.
+                    </p>
+                    <p>
+                        Timesheets are editable in case of user error. You may edit pay period, delete shifts, delete days, and so forth - so there is no need to restart
+                        a timesheet should you make a mistake.
+                    </p>
+                    <p>
+                        Once the pay period has concluded, or at any time of your choosing, you may save the timesheet as a pdf and print.
+                    </p>
+                    <p>
+                        @Html.ActionLink("Time Sheets", "Index", "TimeSheet", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "TutorTimeSheets" ? "item red active" : "item") })
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Adding and Managing Tutor Schedules
+                </div>
+                <div class="content">
+                    <p>
+                        You should add your scheduled tutoring times for the upcoming week to display on the homepage calendar. All visitors to the application may view
+                        the calendar. This allows users to request appointments at reasonable times or stop by the tutoring center when tutors are available.
+                    </p>
+                    <p>
+                        In the schedule form, you will choose a date, time range, and enter some label for the calendar display. Please use a label such as
+                        YOUR NAME Tutoring, YOU NAME Online Tutoring, YOUR NAME some other event, and so forth. Keep labels concise. On the homepage calendar, time blocks
+                        are color-coded by tutor.
+                    </p>
+                    <p>
+                        You may also view and manage your schedules at any time.
+                        The department administrator may edit a tutor schedule if needed. Should changes occur in your schedule that you cannot update, please
+                        contact the administrator through regular communication channels. Changes made by the administrator change the previous color block for that tutor.
+                    </p>
+                    <p>
+                        @Html.ActionLink("Add Schedule", "Create", "TutorSchedules", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutSchedCreate" ? "item red active" : "item") })
+                    </p>
+                    <p>
+                        @Html.ActionLink("Manage Schedule", "UpdateSchedule", "TutorSchedules", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutSchedUpdate" ? "item red active" : "item") })
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Calculators and Progress Tracking
+                </div>
+                <div class="content">
+                    <p>
+                        We provide several types of calculators: Weighted Grade, Final Grade, Current Semester GPA, and Cumulative GPA.
+                        You will find instructions along with each calculator. You may also save and manage results to track your progress.
+                    </p>
+                    <p>
+                        @Html.ActionLink("Calculators", "Calculators", "Calculators", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "Calculators" ? "item red active" : "item") })
+                    </p>
+                    <p>
+                        Results are separated by calculation type and color-coded by course name. Finally, results are ordered by
+                        most recent entry so that you can easily measure progress.
+                    </p>
+                    <p>
+                        @Html.ActionLink("Saved Results", "SavedResults", "Calculators", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "SavedResults" ? "item red active" : "item") })
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Managing Your Profile
+                </div>
+                <div class="content">
+                    <p>
+                        You may change your current password.
+                    </p>
+                    <p>
+                        @Html.ActionLink("Change Password", "ChangePassword", "Manage", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "ChangePassword" ? "item red active" : "item") })
+                    </p>
+                    <p>
+                        You may also upload a photo to display on the homepage tutor card.
+                    </p>
+                    <p>
+                        @Html.ActionLink("Manage Profile", "TutorProfile", "Tutors", new { area = "" }, htmlAttributes: new { @class = (ViewBag.Current == "TutProfile" ? "item red active" : "item") })
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Online Tutoring Using Zoom
+                </div>
+                <div class="content">
+                    <p>
+                        We provide online tutoring via the Zoom application. To use online tutoring via Zoom, you should download and install the application on your device.
+                        Signing up for a Zoom account is necessary to participate in online tutoring. We will likely provide an account or send a link to your registered email
+                        so that you may enjoy elevated features.
+                    </p>
+                    <p>
+                        <a target="_blank" href="https://www.zoom.us/">Zoom website</a>
+                    </p>
+                    <p>
+                        To participate in an online tutoring session, a student must previously have requested a tutoring appointment and a you must previously have
+                        approved that appointment and assigned it to your account.
+                    </p>
+                    <p>
+                        In the tutor portal, the Zoom link is displayed under Live Chat. You may view all upcoming sessions for that day. Additionally, you may
+                        view information pertaining to your personal Zoom account. If you have an upcoming appointment, you are allowed to join the session
+                        up to 30 minutes before it begins. Beginning the meeting early is not required although we do recommend allowing for 5 minutes to properly
+                        prepare and adjust any user settings. Clicking the alert redirects to the appropriate Zoom room.
+                    </p>
+                    <p>
+                        @Html.ActionLink("Zoom in Our Application", "Index", "Zoom", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutZoomIndex" ? "item red active" : "item") })
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Real-Time Chatting with Students
+                </div>
+                <div class="content">
+                    <p>
+                        We provide real-time chat with students through Discord.
+                    </p>
+                    <p>
+                        <a class="item red" href="https://titanembeds.com/embed/678653017465290762?scrollbartheme=inset-3&theme=IceWyvern&username=Student" target="_blank">Discord</a>
+                    </p>
+                    <p>
+                        To use the chat feature as a guest click on the guest account name box and press Enter.
+                        The default guest account is named STUDENT. Please enter chat using your real name.
+                        If you have a pre-existing Discord account you may join with your account by choosing DISCORD LOGIN.
+                    </p>
+                    <p>
+                        If you want a Discord account sign up <a href="https://discordapp.com/" target="_blank">here</a>.
+                    </p>
+                    <p>
+                        Real-time chat is intended for quick help. If a student's needs require significant time then recommend visiting the
+                        tutoring center or <a href="/Student/TutoringAppts/Create" target="_blank">request a tutoring session</a>.
+                    </p>
+                    <p>
+                        To ensure student messages do not go unnoticed, please keep Discord chat open during your tutoring times. By using the Desktop
+                        application, and creating an account, you may enable desktop alerts so you may navigate away from the Discord page.
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Sending Messages to Admins and Tutors
+                </div>
+                <div class="content">
+                    <p>
+                        We provide an internal message system between admins and tutors. 
+                    </p>
+                    <p>
+                        There are four parts to composing a message:
+                        <br />1) Subject - you may enter a short subject or leave this box blank. Empty subject lines
+                        will show as No Subject to the recipient. 
+                        <br />2) Message - you may enter a short or lengthy message. The message box
+                        is required to send a message.
+                        <br />3) Recipient - You may choose to send the message to All Users (e.g. all other tutors
+                        and the admin) or specify a user.
+                        <br />4) Priority - You may choose to change the priority to High for important messages.
+                        Otherwise, messages are labeled with the default Normal priority setting.
+                    </p>               
+                    <p>
+                        You may view, reply to, and save messages in the Inbox tab. You may view sent messages in the Sent tab.
+                        You may view and delete saved messages in the Saved tab. 
+                    </p>
+                    <p>
+                        Note: All messages send through the Beyond the Tutor web application are automatically deleted after 7 days. If you
+                        need to preserve a message beyond the 7 day mark, save the message from your inbox. 
+                    </p>
+                    <p>
+                        @Html.ActionLink("Messages", "Create", "SMsTutor", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutorAddMessage" ? "item red active" : "item") })
+                    </p>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Sending a Real-Time Service Alert
+                </div>
+                <div class="content">
+                    <p>
+                        We provide a quick way to alert students of any last minute changes to your schedule for that day, such as running late or all day unavailability.
+                        Instead of editing your schedule for that day, simply send a service alert by choosing an alert message and time of expected arrival.
+                    </p>
+                    <p>
+                        Service alerts are displayed on the homepage so that all visitors to the website can easily view changes. Do not worry about deleting alerts as
+                        they will automatically expire.
+                    </p>
+                    <p>
+                        @Html.ActionLink("Service Alert", "Create", "TutoringServiceAlerts", new { area = "tutor" }, htmlAttributes: new { @class = (ViewBag.Current == "TutServiceAlert" ? "item red active" : "item") })
                     </p>
                 </div>
                 <div class="title">
@@ -87,7 +246,10 @@
                 </div>
                 <div class="content">
                     <p>
-                        Questions or comments? Contact us at beyondthetutor&commat;gmail.com
+                        Questions or comments? Contact us at <a href="mailto: beyondthetutor@gmail.com" id="portal-headers">beyondthetutor&commat;gmail.com</a>
+                    </p>
+                    <p>
+                        <img class="ui medium fluid image" src="@Url.Content("~/Content/images/KhronosLogo.png")" />
                     </p>
                 </div>
             </div>
